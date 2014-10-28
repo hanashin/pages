@@ -2,6 +2,7 @@
     导航栏-顶部 
 --------------------------------------------------------*/
 .navbar-top {
+  background-color: #fff;
   border: none;
   border-radius: 0px;
   margin-bottom: 0px;
@@ -21,7 +22,7 @@
     font-size: 18px;
     font-weight: bold;
   }
-  .navbar-top .navbar-right > li > a {
+  .navbar-top .navbar-left > li > a {
   	width: 120px;
     padding-top: 80px;
     padding-bottom: 10px;
@@ -34,7 +35,7 @@
     -webkit-transition: background-color 1s ease;
     transition: background-color 1s ease;
   }
-  .navbar-top .navbar-right li span {
+  .navbar-top .navbar-left li span {
     width: 70px;
 	  height: 70px;
 	  display: inline-block;
@@ -47,12 +48,12 @@
 	  position: absolute;
   }
 }
-.navbar-top .navbar-right li span {
+.navbar-top .navbar-left li span {
     padding-right: 15px;
 }
-.navbar-top .navbar-right > li > a.active,
-.navbar-top .navbar-right > li > a:hover,
-.navbar-top .navbar-right > li > a:focus {
+.navbar-top .navbar-left > li > a.active,
+.navbar-top .navbar-left > li > a:hover,
+.navbar-top .navbar-left > li > a:focus {
   color: white;
   background-color: #595959;
 }
@@ -139,10 +140,45 @@
 /*------------------------------------------------------
     页面主体 
 --------------------------------------------------------*/
-.container-main{
+.container-main {  
   padding-right: 0px;
   padding-left: 0px;
   min-height: 420px;
+}
+
+/*------------------------------------------------------
+    面板 
+--------------------------------------------------------*/
+@media (max-width: 767px) {
+  .container-main article {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .container-main .panel {
+    border-radius: 0px;
+  }
+  .container-main .panel-heading {
+    border-radius: 0px;
+}
+}
+
+.container-main .panel-body {
+}
+
+.container-main .panel-heading {
+}
+
+/*------------------------------------------------------
+    列表组 
+--------------------------------------------------------*/
+.container-main .list-group .active {
+  border-color: #eb7203;
+  background-color: #eb7203;
+}
+@media (max-width: 767px) {
+  .container-main .list-group {
+    display: none;
+  }
 }
 
 /*------------------------------------------------------
@@ -151,6 +187,7 @@
 .container-main .breadcrumb {
   padding: 0px 15px;
   margin-bottom: 0px;
+  color: white;
   background-color: transparent;
 }
 
