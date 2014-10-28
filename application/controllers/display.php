@@ -14,12 +14,12 @@ class Display extends CI_Controller {
 
         /* 设置系统语言 */
         $language = "english";
-        // $fp = fopen("/etc/yuneng/language.conf",'r');
-        // if($fp)
-        // {
-        //     $language = fgets($fp);
-        //     fclose($fp);
-        // }
+        $fp = fopen("/etc/yuneng/language.conf",'r');
+        if($fp)
+        {
+            $language = fgets($fp);
+            fclose($fp);
+        }
         //加载页面显示语言文件
         $this->lang->load('page', $language);
         //加载验证信息语言文件
@@ -70,11 +70,6 @@ class Display extends CI_Controller {
         $this->load->view('templates/header', $data);
         $this->load->view('display/historical_data', $data);
         $this->load->view('templates/footer');
-    }
-     /* 显示逆变器状态 */
-    public function test()
-    {      
-        $this->load->view('test');
     }
 }
 

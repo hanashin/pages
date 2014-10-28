@@ -1,5 +1,5 @@
-<div class="table-responsive-mystyle">
-  <table class="table table-condensed table-striped table-hover-mystyle">
+<div class="table-responsive">
+  <table class="table table-condensed table-striped table-hover">
     <thead>
       <tr>
         <th scope="col"><?php echo $this->lang->line('data_inverter_id')?></th>

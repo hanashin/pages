@@ -8,16 +8,16 @@
 	
 /* 导航栏 */
 	$lang['item_1'] = "Home";
-	$lang['item_2'] = "RealTimeData";
+	$lang['item_2'] = "Data";
 	$lang['item_2_1'] = "Data";
 	$lang['item_2_2'] = "Power";
 	$lang['item_2_3'] = "Energy";
-	$lang['item_3'] = "Configuration";
+	$lang['item_3'] = "Config";
 	$lang['item_3_1'] = "Parameters";
 	$lang['item_3_2'] = "Ground Fault Protection";
 	$lang['item_3_3'] = "Remote Control";
 	$lang['item_3_4'] = "Maxpower setting";
-	$lang['item_4'] = "Administration";
+	$lang['item_4'] = "Admin";
 	$lang['item_4_1'] = "ID";
 	$lang['item_4_2'] = "Time";
 	$lang['item_4_3'] = "Language";

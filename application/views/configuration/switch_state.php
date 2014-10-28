@@ -1,4 +1,4 @@
-<!-- 载入表单辅助函数创建一个开始form标签 -->
+﻿<!-- 载入表单辅助函数创建一个开始form标签 -->
 <?php echo form_open('configuration/set_switch_state');?>
   <table class="table table-condensed table-striped table-hover-mystyle">
     <thead>

@@ -132,8 +132,8 @@
 <fieldset>
   <legend><?php echo $this->lang->line('protection_actual_value')?></legend>
 
-  <div class="table-responsive-mystyle">
-    <table class="table table-condensed table-striped table-hover-mystyle">
+  <div class="table-responsive">
+    <table class="table table-condensed table-striped table-hover">
       <thead>
         <tr>
           <?php

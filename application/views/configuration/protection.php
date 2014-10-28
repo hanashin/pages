@@ -62,22 +62,23 @@
     </div>
   </div>
 </form>
-<center>
+
+<div class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <strong>Warning:</strong>
   <?php echo $this->lang->line("protection_result_$result")?>
-</center>
+</div>
 
 <?php echo form_open('configuration/read_inverter_parameters');?>
-  <center>
     <input name="flag" type="hidden" value="1">
     <button type="submit" class="btn btn-default"><?php echo $this->lang->line('protection_read_inverter_parameters')?></button>
-  </center>
-</from>
+</form>
 
 <fieldset>
   <legend><?php echo $this->lang->line('protection_actual_value')?></legend>
 
-  <div class="table-responsive-mystyle">
-    <table class="table table-condensed table-striped table-hover-mystyle">
+  <div class="table-responsive">
+    <table class="table table-condensed table-striped table-hover">
       <thead>
         <tr>
           <?php
