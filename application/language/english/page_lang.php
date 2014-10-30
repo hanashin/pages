@@ -5,6 +5,15 @@
 /* 标题 */
 	$lang['title'] = "Altenergy Power Control Software";
 	$lang['language'] = "English/Chinese";
+	$lang['energy_control']="ENERGY CONTROL";
+	
+/* 通用 */
+	$lang['button_save'] = "Save";
+	$lang['button_update'] = "Update";
+	$lang['button_ok'] = "OK";
+	$lang['button_cancel'] = "Cancel";
+	$lang['button_reset'] = "Reset";
+	$lang['button_query'] = "Query";		
 	
 /* 导航栏 */
 	$lang['item_1'] = "Home";
@@ -40,13 +49,13 @@
 	$lang['home_mac'] = "ECU Mac Address";	
 	
 /* 实时数据 */
-	$lang['function_data'] = "Data";
+	$lang['function_data'] = "Real-time Data";
 	$lang['data_inverter_id'] = "Inverter ID";
 	$lang['data_current_power'] = "Current Power";
 	$lang['data_grid_frequency'] = "Grid Frequency";
 	$lang['data_grid_voltage'] = "Grid Voltage";
 	$lang['data_temperature'] = "Temperature";
-	$lang['data_date'] = "Date";
+	$lang['data_date'] = "Reporting Time";
 	
 	//图表属性
 	$lang['graph_language'] = "lang:'en'";
@@ -61,9 +70,9 @@
 	
 	//能量柱状图
 	$lang['function_energy'] = "Energy";
-	$lang['energy_the_recent_week'] = "The recent week";
-	$lang['energy_the_recent_month'] = "The recent month";
-	$lang['energy_the_recent_year'] = "The recent year";
+	$lang['energy_the_recent_week'] = "The Recent Week";
+	$lang['energy_the_recent_month'] = "The Recent Month";
+	$lang['energy_the_recent_year'] = "The Recent Year";
 	
 /* 参数配置 */
 
@@ -294,7 +303,5 @@
 	$lang['serial_ecu_address'] = "ECU address";
 	$lang['serial_update'] = "Update";
 
-	//按键
-	$lang['button_query'] = "Query";	
 	
 ?>

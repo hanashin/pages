@@ -1,4 +1,4 @@
-<table class="table table-condensed table-striped table-hover-mystyle">
+<table class="table table-condensed table-striped table-hover">
   <thead>
     <tr>
       <th><?php echo $this->lang->line('maxpower_inverter_id')?></th>
@@ -17,7 +17,7 @@
         echo "<input type=\"hidden\" name=\"id\" value=\"".$value['id']."\" >";
         echo "<td><input type=\"text\" name=\"maxpower\" value=\"".$value['limitedpower']."\" >W</td>";
         echo "<td>".$value['limitedresult']."</td>";
-        echo "<td><button type=\"submit\" class=\"btn btn-default btn-sm\">".$this->lang->line('maxpower_save')."</button></td>";
+        echo "<td><button type=\"submit\" class=\"btn btn-default btn-sm\">".$this->lang->line('button_save')."</button></td>";
         echo "</tr>";
         echo "</form>";
       }

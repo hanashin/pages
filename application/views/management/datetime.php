@@ -1,18 +1,24 @@
 <?php date_default_timezone_set($timezone);?>      
 <form class="form-horizontal" role="form" action="<?php echo base_url('index.php/management/set_datetime');?>" method="post">
   <div class="form-group">    
-    <label for="inputtime" class="col-sm-5 control-label"><?php echo $this->lang->line('time_data_time')?></label>
+    <label for="inputdate" class="col-sm-5 control-label">Date</label>
     <div class="col-sm-4">
-      <input type="text" name="date" class="form-control" id="inputtime" value="<?php echo date("Y-m-d",time())." ".date("H:i:s",time());?>">
+      <input type="text" name="date" class="form-control" id="inputdate" value="<?php echo date("Y-m-d",time());?>">
     </div>
   </div>
   <div class="form-group">
+    <label for="inputtime" class="col-sm-5 control-label">Time</label>
+      <div class="col-sm-4">
+        <input type="text" name="time" class="form-control" id="inputtime" value="<?php echo date("H:i:s",time());?>">
+      </div>
+  </div>
+  <div class="form-group">
     <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('time_update_date_time')?></button>
+      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('button_update')?></button>
     </div>
   </div>
 </form>
-
+<br>
 <form class="form-horizontal" role="form" action="<?php echo base_url('index.php/management/set_timezone');?>" method="post">
   <div class="form-group">    
     <label class="col-sm-5 control-label"><?php echo $this->lang->line('time_timezone')?></label>
@@ -576,11 +582,11 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('time_update_timezone')?></button>
+      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('button_update')?></button>
     </div>
   </div>
 </form>
-
+<br>
 <form class="form-horizontal" role="form" action="<?php echo base_url('index.php/management/set_ntp_server');?>" method="post">
   <div class="form-group">    
     <label for="inputtime" class="col-sm-5 control-label"><?php echo $this->lang->line('time_ntp')?></label>
@@ -590,7 +596,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('time_update_ntp')?></button>
+      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('button_update')?></button>
     </div>
   </div>
 </form>

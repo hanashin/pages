@@ -1,3 +1,10 @@
+/*-----------------------------------------------------------------------------------*/
+/*  GENERAL
+/*-----------------------------------------------------------------------------------*/
+html { font-size: 1em; }
+
+body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; } 
+
 /*------------------------------------------------------
     导航栏-顶部 
 --------------------------------------------------------*/
@@ -24,6 +31,7 @@
   }
   .navbar-top .navbar-left > li > a {
   	width: 120px;
+    height: 124px;
     padding-top: 80px;
     padding-bottom: 10px;
 	  text-align: center;
@@ -143,7 +151,6 @@
 .container-main {  
   padding-right: 0px;
   padding-left: 0px;
-  min-height: 420px;
 }
 
 /*------------------------------------------------------
@@ -159,13 +166,23 @@
   }
   .container-main .panel-heading {
     border-radius: 0px;
-}
+  }
 }
 
 .container-main .panel-body {
+  min-height: 300px;
+}
+
+.container-main .panel {
+  border-top-left-radius: 0px;
 }
 
 .container-main .panel-heading {
+  border-top-left-radius: 0px;
+  border: 0px;
+  border-left: 8px solid #eb7203;
+  color: #eb7203;
+  font-size: 18px;
 }
 
 /*------------------------------------------------------
@@ -179,6 +196,17 @@
   .container-main .list-group {
     display: none;
   }
+}
+
+/*------------------------------------------------------
+    隐藏按钮
+--------------------------------------------------------*/
+.container-main .dropdown-menu{
+  padding: 0px;
+}
+.container-main .dropdown-menu .active{
+  border-color: #eb7203;
+  background-color: #eb7203;
 }
 
 /*------------------------------------------------------
@@ -253,6 +281,13 @@
 .container-main .alert {
   text-align: center;
   border: 0px;
+}
+
+/*------------------------------------------------------
+    textarea 
+--------------------------------------------------------*/
+.container-main textarea {
+  width: 124px;
 }
 
 /*------------------------------------------------------

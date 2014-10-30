@@ -3,18 +3,18 @@
     <legend><?php echo $this->lang->line('network_set_gprs')?></legend>
 
     <div class="form-group">    
-      <div class="col-sm-4">
+      <div class="col-sm-4 col-sm-offset-4">
         <input type='checkbox' name="gprs" value="1"<?php 
                         if ($gprs==1){
                             echo "checked='checked'";
-                    }?>><?php echo $this->lang->line('network_use_gprs')?>
+                    }?>> <?php echo $this->lang->line('network_use_gprs')?>
       </div>
     </div>
   </fieldset>
 
   <div class="form-group">
-    <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('network_update_gprs')?></button>
+    <div class="col-sm-offset-4 col-sm-2">
+      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('button_update')?></button>
     </div>
   </div>
 </form>
@@ -24,22 +24,22 @@
     <legend><?php echo $this->lang->line('network_set_ip')?></legend>
 
     <div class="form-group">    
-      <div class="col-sm-4">
+      <div class="col-sm-8 col-sm-offset-4">
         <input type='radio' name="dhcp" value="1" onclick="setip(this.value)"<?php
                         if ($dhcp==1){
                             echo "checked='checked'";
                         }
-                    ?>><?php echo $this->lang->line('network_use_dhcp')?>
+                    ?>> <?php echo $this->lang->line('network_use_dhcp')?>
       </div>
     </div>
 
     <div class="form-group">    
-      <div class="col-sm-4">
+      <div class="col-sm-8 col-sm-offset-4">
         <input type='radio' name="dhcp" value="0" onclick="setip(this.value)"<?php
                         if ($dhcp==0){
                             echo "checked='checked'";
                         }
-                    ?>><?php echo $this->lang->line('network_use_static_ip')?>
+                    ?>> <?php echo $this->lang->line('network_use_static_ip')?>
       </div>
     </div>
   </fieldset>
@@ -82,8 +82,8 @@
   </fieldset>
 
   <div class="form-group">
-    <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" name="dhcp_submit" class="btn btn-default"><?php echo $this->lang->line('network_update_ip')?></button>
+    <div class="col-sm-offset-4 col-sm-2">
+      <button type="submit" name="dhcp_submit" class="btn btn-default"><?php echo $this->lang->line('button_update')?></button>
     </div>
   </div>
 </form>

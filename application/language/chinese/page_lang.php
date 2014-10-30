@@ -5,6 +5,15 @@
 /* 标题 */
 	$lang['title'] = "昱能科技能量控制软件";
 	$lang['language'] = "中文/英文";
+	$lang['energy_control']="能量控制";
+	
+/* 通用 */
+	$lang['button_save'] = "保存";
+	$lang['button_update'] = "确定";
+	$lang['button_ok'] = "确定";
+	$lang['button_cancel'] = "取消";
+	$lang['button_reset'] = "重置";
+	$lang['button_query'] = "查询";	
 	
 /* 导航栏 */
 	$lang['item_1'] = "主页";
@@ -293,8 +302,6 @@
 	$lang['serial_baud_rate'] = "串口波特率";
 	$lang['serial_ecu_address'] = "ECU 地址";
 	$lang['serial_update'] = "确定";
-	
-	//按键
-	$lang['button_query'] = "查询";
+
 	
 ?>

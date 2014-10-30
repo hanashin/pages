@@ -1,6 +1,6 @@
 <form id="defaultForm" method="post" action="<?php echo base_url('index.php/configuration/set_protection2');?>" class="form-horizontal" role="form">
   <fieldset>
-    <legend><?php echo $this->lang->line('protection_select')?></legend>
+    <legend><?php echo $this->lang->line('protection_set')?></legend>
 
     <div class="form-group">    
       <label class="col-sm-5 control-label"><?php echo $this->lang->line('protection_select_inverter')?></label>
@@ -15,10 +15,6 @@
         </select>
       </div>
     </div>
-  </fieldset>
-
-  <fieldset>
-    <legend><?php echo $this->lang->line('protection_set')?></legend>
 
     <div class="form-group">
       <label for="inputdata1" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_under_voltage_fast')?></label>
@@ -114,7 +110,7 @@
 
   <div class="form-group">
     <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('protection_setting')?></button>
+      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('button_save')?></button>
     </div>
   </div>
 </form>

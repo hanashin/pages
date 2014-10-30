@@ -5,7 +5,7 @@
     </section>
 
     <footer class="footer">
-      &copy;2014 Altenergy Power System Inc.
+      &copy; 2014 Altenergy Power System Inc.
     </footer>
   </body>
 </html>
