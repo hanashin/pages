@@ -156,7 +156,7 @@ class Management_model extends CI_Model {
         $this->pdo->exec("DELETE FROM id");
         system('killall main.exe');
 
-        $data['result'] = "clear_id_success";
+        $data['result'] = "success_clear_id";
 
         return $data;   
     }
@@ -231,11 +231,11 @@ class Management_model extends CI_Model {
             system($cmd);
             echo "-->";
 
-            $data['result'] = "datetime_success";
+            $data['result'] = "success_datetime";
         }
         else
         {
-            $data['result'] = "datetime_failed";
+            $data['result'] = "failed_datetime";
         }
 
         return $data;
@@ -263,7 +263,7 @@ class Management_model extends CI_Model {
         system("killall main.exe");
         system("killall client");
 
-        $data['result'] = "timezone_success";      
+        $data['result'] = "success_timezone";      
 
     /* 将ECU本地页面变动数据存入数据库 */
         //ECU_id
@@ -315,7 +315,7 @@ class Management_model extends CI_Model {
         fwrite($fp, $ntp);
         fclose($fp);
 
-        $data['result'] = "ntp_success";
+        $data['result'] = "success_ntp";
 
         return $data;
     }
@@ -451,9 +451,9 @@ class Management_model extends CI_Model {
         system("killall main.exe");
 
         if ($gprs == "0") {
-            $data['result'] = "gprs_off_success";
+            $data['result'] = "success_gprs_off";
         }else{
-            $data['result'] = "gprs_on_success";
+            $data['result'] = "success_gprs_on";
         }
 
         return $data;
@@ -480,7 +480,7 @@ class Management_model extends CI_Model {
             system("/sbin/udhcpc &");
             echo "-->";
 
-            $data['result'] = "dhcp_success";
+            $data['result'] = "success_dhcp";
         }
         else if($dhcp == "0")
         {
@@ -525,7 +525,7 @@ class Management_model extends CI_Model {
             system("killall main.exe");
             echo "-->";
 
-            $data['result'] = "static_ip_success";        
+            $data['result'] = "success_static_ip";        
         }
 
         return $data;
@@ -780,7 +780,7 @@ class Management_model extends CI_Model {
                 system("/usr/sbin/udhcpd /etc/yuneng/udhcpd.conf");
                 usleep(1000);
 
-                $data['result'] = "change_mode_success";
+                $data['result'] = "success_change_mode";
             }
         }
 
@@ -822,7 +822,7 @@ class Management_model extends CI_Model {
                 if(!$flag)
                 {
                     //连接成功
-                    $data['result'] = "change_mode_success";
+                    $data['result'] = "success_change_mode";
                 }
             }
         }
@@ -923,7 +923,7 @@ class Management_model extends CI_Model {
             system("cp /tmp/hostapd.conf /etc/yuneng/wifi_ap_info.conf");
             usleep(100000);
 
-            $data['result'] = "set_ap_success";
+            $data['result'] = "success_set_ap";
         }
 
         return $data;
@@ -1025,7 +1025,7 @@ class Management_model extends CI_Model {
                     $cmd = "/sbin/route add -net ".$ip_arr[0].".".$ip_arr[1].".".$ip_arr[2].".0 "."netmask 255.255.255.0 dev wlan0";
                     system($cmd);
 
-                    $data['result'] = "connect_sta_success";
+                    $data['result'] = "success_connect_sta";
                 }
                 else
                 {
@@ -1043,7 +1043,7 @@ class Management_model extends CI_Model {
         {
             system("killall wpa_supplicant");
 
-            $data['result'] = "disconnect_sta_success";
+            $data['result'] = "success_disconnect_sta";
         }
 
         return $data;

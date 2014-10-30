@@ -13,7 +13,12 @@
 	$lang['button_ok'] = "确定";
 	$lang['button_cancel'] = "取消";
 	$lang['button_reset'] = "重置";
-	$lang['button_query'] = "查询";	
+	$lang['button_query'] = "查询";
+	$lang['button_refresh'] = "刷新";
+	
+	$lang['message_success'] = "设置成功";
+	$lang['message_warning'] = "警告";
+	$lang['message_failed'] = "登录失败";			
 	
 /* 导航栏 */
 	$lang['item_1'] = "主页";
@@ -22,12 +27,12 @@
 	$lang['item_2_2'] = "功率曲线图";
 	$lang['item_2_3'] = "能量柱状图";
 	$lang['item_3'] = "参数配置";
-	$lang['item_3_1'] = "保护参数";
-	$lang['item_3_2'] = "GFDI设置";
+	$lang['item_3_1'] = "保护参数设置";
+	$lang['item_3_2'] = "接地故障保护";
 	$lang['item_3_3'] = "远程控制";
 	$lang['item_3_4'] = "功率设置";
 	$lang['item_4'] = "系统管理";
-	$lang['item_4_1'] = "ID管理";
+	$lang['item_4_1'] = "逆变器ID";
 	$lang['item_4_2'] = "时间管理";
 	$lang['item_4_3'] = "语言管理";
 	$lang['item_4_4'] = "网络管理";
@@ -81,22 +86,17 @@
 	$lang['login_title'] = "欢迎登录";
 	$lang['login_username'] = "用户名";
 	$lang['login_password'] = "密码";
-	$lang['login_login'] = "登录";
-	
+	$lang['login_login'] = "登录";	
 	$lang['login_result_success'] = "登录成功";
 	$lang['login_result_failed'] = "用户名或密码错误";
 	
 	//交流保护参数
 	$lang['function_protection'] = "保护参数";
-	$lang['function_protection2'] = "13项保护参数";
-	$lang['protection_select'] = "选择逆变器";
-	$lang['protection_set'] = "设置保护参数";
+	$lang['function_protection2'] = "保护参数(13项)";
+	$lang['protection_set'] = "参数设置";
 	$lang['protection_actual_value'] = "逆变器实际值";	
 	$lang['protection_select_inverter'] = "请选择逆变器";
 	$lang['protection_select_inverter_all'] = "所有逆变器";
-	$lang['protection_setting'] = "设置";
-	$lang['protection_reset'] = "重置";
-	$lang['protection_read_inverter_parameters'] = "读取逆变器保护参数";	
 	$lang['protection_inverter_id'] = "逆变器 ID";	
 	$lang['protection_under_voltage_fast'] = "外围电压下限";
 	$lang['protection_over_voltage_fast'] = "外围电压上限";
@@ -112,16 +112,16 @@
 	$lang['protection_frequency_triptime_slow'] = "内围过欠频延迟保护时间";
 	$lang['protection_grid_recovery_time'] = "并网恢复时间";
 	
-	$lang['protection_result_set_protection_success'] = "设置参数成功，请过5分钟之后查看";
+	$lang['protection_result_set_protection_success'] = "请过5分钟之后查看结果";
 	$lang['protection_result_null_protection'] = "请至少输入一个保护参数";	
 
 	//GFDI设置
-	$lang['function_gfdi'] = "GFDI设置";
+	$lang['function_gfdi'] = "接地故障保护";
 	$lang['gfdi_inverter_id'] = "逆变器 ID";
 	$lang['gfdi_state'] = "状态";
-	$lang['gfdi_clear'] = "GFDI 解锁";
+	$lang['gfdi_unlock'] = "GFDI 解锁";
 	
-	$lang['gfdi_result_success'] = "设置解锁成功,请5分钟后查看";
+	$lang['gfdi_result_success'] = "请过5分钟之后查看结果";
 	$lang['gfdi_result_null'] = "请选择需要解锁的逆变器";
 	
 	//远程控制开关机
@@ -134,24 +134,22 @@
 	$lang['switch_turn_on_all'] = "开启所有逆变器";
 	$lang['switch_turn_off_all'] = "关闭所有逆变器";
 	
-	$lang['switch_result_success'] = "设置开关机成功,请5分钟后查看";
+	$lang['switch_result_success'] = "请过5分钟之后查看结果";
 	$lang['switch_result_null'] = "请选择逆变器";
 	
 	//最大功率设置
-	$lang['function_maxpower'] = "最大功率设置";
+	$lang['function_maxpower'] = "功率设置";
 	$lang['maxpower_inverter_id'] = "逆变器 ID";
-	$lang['maxpower_maxpower'] = "最大功率(20W-270W)";
+	$lang['maxpower_maxpower'] = "最大功率(20-270W)";
 	$lang['maxpower_actual_maxpower'] = "实际最大功率";
-	$lang['maxpower_save'] = "保存";
 	
-	$lang['maxpower_result_success'] = "设置最大功率成功,请5分钟后查看";
+	$lang['maxpower_result_success'] = "请过5分钟之后查看结果看";
 	$lang['maxpower_result_failed'] = "请输入20-270之间的整数";
 	
 /* 系统管理 */	
 	//ID管理
-	$lang['function_id'] = "ID管理";
+	$lang['function_id'] = "逆变器ID";
 	$lang['id_inverter_id'] = "逆变器 ID";
-	$lang['id_update_id'] = "更新 ID";
 	$lang['id_clear_id'] = "清空 ID";
 	$lang['id_total'] = "总数";
 	$lang['id_correct'] = "更新成功";
@@ -162,30 +160,26 @@
 	
 	//时间管理
 	$lang['function_time'] = "时间管理";
-	$lang['time_data_time'] = "日期 时间";
-	$lang['time_update_date_time'] = "更新日期时间";
+	$lang['time_date'] = "日期";
+	$lang['time_time'] = "时间";
 	$lang['time_timezone'] = "时区";
-	$lang['time_update_timezone'] = "更新时区";
 	$lang['time_ntp'] = "NTP服务器";
-	$lang['time_update_ntp'] = "更新NTP服务器";
 	
-	$lang['time_result_datetime_success'] = "更改时间成功";
-	$lang['time_result_datetime_failed'] = "更改时间失败";
-	$lang['time_result_timezone_success'] = "更改时区成功";	
-	$lang['time_result_ntp_success'] = "更改NTP服务器成功";
+	$lang['time_result_success_datetime'] = "更改时间成功";
+	$lang['time_result_failed_datetime'] = "更改时间失败";
+	$lang['time_result_success_timezone'] = "更改时区成功";	
+	$lang['time_result_success_ntp'] = "更改NTP服务器成功";
 	
 	//语言管理
 	$lang['function_language'] = "语言管理";
 	$lang['language_current_language'] = "当前语言";
-	$lang['language_update_language'] = "更改语言";
 	$lang['language_english'] = "英文";
 	$lang['language_chinese'] = "中文";
 	
 	//网络管理
 	$lang['function_network'] = "网络管理";
 	$lang['network_set_gprs'] = "GPRS 设置";
-	$lang['network_use_gprs'] = "使用 GPRS";
-	$lang['network_update_gprs'] = "确定";
+	$lang['network_use_gprs'] = "使用 GPRS 模块";
 	$lang['network_set_ip'] = "IP 设置";
 	$lang['network_use_dhcp'] = "自动获得IP地址";
 	$lang['network_use_static_ip'] = "使用下面的IP地址";
@@ -194,12 +188,11 @@
 	$lang['network_default_gateway'] = "默认网关";
 	$lang['network_preferred_dns_server'] = "首选 DNS 服务器";
 	$lang['network_alternate_dns_server'] = "备用 DNS 服务器";
-	$lang['network_update_ip'] = "确定";
 	
 	$lang['network_result_gprs_on'] = "设置GPRS成功";
 	$lang['network_result_gprs_off'] = "取消GPRS成功";
-	$lang['network_result_dhcp_success'] = "设置动态IP成功";
-	$lang['network_result_static_ip_success'] = "设置静态IP成功";
+	$lang['network_result_success_dhcp'] = "设置动态IP成功";
+	$lang['network_result_success_static_ip'] = "设置静态IP成功";
 	
 	//用户管理
 	$lang['function_user_info'] = "用户管理";
@@ -241,10 +234,10 @@
 	$lang['wlan_sta_connect'] = "连接";
 	$lang['wlan_sta_disconnect'] = "断开";
 	
-	$lang['wlan_result_change_mode_success'] = "更改模式成功";
-	$lang['wlan_result_set_ap_success'] = "设置主机模式参数成功";
-	$lang['wlan_result_connect_sta_success'] = "连接WIFI成功";
-	$lang['wlan_result_disconnect_sta_success'] = "断开WIFI成功";
+	$lang['wlan_result_success_change_mode'] = "更改模式成功";
+	$lang['wlan_result_success_set_ap'] = "设置主机模式参数成功";
+	$lang['wlan_result_success_connect_sta'] = "连接WIFI成功";
+	$lang['wlan_result_success_disconnect_sta'] = "断开WIFI成功";
 	
 /* 显示数据库数据 */
 	//status

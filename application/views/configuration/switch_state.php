@@ -1,4 +1,21 @@
-﻿<!-- 载入表单辅助函数创建一个开始form标签 -->
+﻿<?php
+  if(!empty($result)){
+    if(!strncmp($result, "success", 7)){
+      echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
+      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+      echo "<strong>".$this->lang->line("message_success")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("switch_result_$result")."\n";
+      echo "</div>"."\n";
+    }
+    else{
+      echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">"."\n";
+      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+      echo "<strong>".$this->lang->line("message_warning")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("switch_result_$result")."\n";
+      echo "</div>"."\n";
+    }
+  }
+?>
+
+<!-- 载入表单辅助函数创建一个开始form标签 -->
 <?php echo form_open('configuration/set_switch_state');?>
   <table class="table table-condensed table-striped table-hover">
     <thead>
@@ -37,14 +54,6 @@
     </div>
   </div>
 </form>
-<div class="col-sm-12">
-  <br>
-</div>
-<div class="col-sm-12">
-  <center>
-    <?php echo $this->lang->line("switch_result_$result")?>
-  </center>
-</div>
 
 <script language="javascript">  
     var tempradio = null;    

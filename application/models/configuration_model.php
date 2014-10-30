@@ -302,7 +302,7 @@ class Configuration_model extends CI_Model {
             $sql = "REPLACE INTO process_result (item, result, flag) VALUES(120, '$record', 1)";
             $this->pdo->exec($sql);
 
-            $data['result'] = "set_protection_success";
+            $data['result'] = "success";
         }
 
         return $data;
@@ -664,7 +664,7 @@ class Configuration_model extends CI_Model {
             $sql = "REPLACE INTO process_result (item, result, flag) VALUES(120, '$record', 1)";
             $this->pdo->exec($sql);
 
-            $data['result'] = "set_protection_success";
+            $data['result'] = "success_set_protection";
         }
 
         return $data;

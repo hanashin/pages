@@ -32,10 +32,10 @@
 	$lang['validform_null_preferred_dns_server'] = "Please input Preferred DNS server";
 	
 	//用户管理
-	$lang['validform_username'] = "请输入4-18位任意字符";
-	$lang['validform_old_password'] = "请输入6-18位任意字符";
-	$lang['validform_new_password'] = "请输入6-18位任意字符";
-	$lang['validform_confirm_password'] = "两次输入的密码不一致";
+	$lang['validform_username'] = "Please enter 4-18 bit arbitrary character";
+	$lang['validform_old_password'] = "Please enter 6-18 bit arbitrary character";
+	$lang['validform_new_password'] = "Please enter 6-18 bit arbitrary character";
+	$lang['validform_confirm_password'] = "The two passwords do not match";
 	$lang['validform_null_username'] = "Please input the username";
 	$lang['validform_null_old_password'] = "Please input the old password";
 	$lang['validform_null_new_password'] = "Please input the new password";
@@ -43,11 +43,11 @@
 	
 	//无线网络管理
 	  //AP
-	$lang['validform_ap_ssid'] = "请输入4-18位任意字符";
-	$lang['validform_ap_password_wep'] = "请输入5位或13位字符";
-	$lang['validform_ap_password_wpa'] = "请输入8-18位任意字符";
-	$lang['validform_null_ap_ssid'] = "请输入信号名称";
-	$lang['validform_null_ap_password'] = "请输入密码";
+	$lang['validform_ap_ssid'] = "Please enter 4-18 bit arbitrary character";
+	$lang['validform_ap_password_wep'] = "Please enter the 5 or 13 characters";
+	$lang['validform_ap_password_wpa'] = "-Please enter 8-18 bit arbitrary character";
+	$lang['validform_null_ap_ssid'] = "Please input signal name";
+	$lang['validform_null_ap_password'] = "Please input password";
       //STA	
 	  
 /* 隐藏功能 */	

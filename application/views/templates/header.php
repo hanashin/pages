@@ -52,14 +52,14 @@
             <ul class="nav navbar-nav navbar-title">
               <li><a>ENERGY CONTROL UNIT</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="<?php echo base_url('index.php/management/language');?>"><?php echo $this->lang->line('language')?></a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-left">
               <li><a href="<?php echo base_url('index.php/home');?>" class="active"><span class="glyphicon glyphicon-home"></span><?php echo $this->lang->line('energy_control')?></a></li>
-              <li><a href="<?php echo base_url('index.php/realtimedata');?>"><span class="glyphicon glyphicon-cog"></span>SETTINGS</a></li>
-              <li><a href="<?php echo base_url('index.php/configuration');?>"<?php if(!strncmp($page, "1111", 4)){echo " class=\"active\"";}?>><span class="glyphicon glyphicon-user"></span>FAQ</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="<?php echo base_url('index.php/management/language');?>">English/Chinese</a></li>
-            </ul>
+              <li><a href="#"><span class="glyphicon glyphicon-cog"></span>SETTINGS</a></li>
+              <li><a href="#"<?php if(!strncmp($page, "1111", 4)){echo " class=\"active\"";}?>><span class="glyphicon glyphicon-user"></span>FAQ</a></li>
+            </ul>            
           </div>
         </div>
       </div>     
@@ -80,7 +80,7 @@
 
           <div class="navbar-collapse collapse" id="navbar-orange">
             <ul class="nav navbar-nav navbar-right">
-              <li>To be added</li>
+              <li><a>TO BE ADD</a></li>
             </ul>
             <ul class="nav navbar-nav ">
               <li><a href="<?php echo base_url('index.php/home');?>"<?php if(!strncmp($page, "home", 4)){echo " class=\"active\"";}?>><?php echo $this->lang->line('item_1')?></a></li>
@@ -181,6 +181,7 @@
                 </button>          
                 <ul class="dropdown-menu" role="menu">
                 <?php
+                //注：与侧边导航栏内容保持一致！
                   //主页 
                   if(!strncmp($page, "home", 4))
                   {
@@ -254,7 +255,3 @@
 
             <div class="panel-body">
 
-<!-- <div class="alert alert-warning alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-  <strong>Warning!</strong> Better check yourself, you're not looking too good.
-</div> -->

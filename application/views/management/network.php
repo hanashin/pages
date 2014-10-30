@@ -2,6 +2,23 @@
   <fieldset>
     <legend><?php echo $this->lang->line('network_set_gprs')?></legend>
 
+    <?php
+      if(!empty($result)){
+        if(!strncmp($result, "success", 7)){
+          echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
+          echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+          echo "<strong>".$this->lang->line("message_success")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("network_result_$result")."\n";
+          echo "</div>"."\n";
+        }
+        else{
+          echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">"."\n";
+          echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+          echo "<strong>".$this->lang->line("message_warning")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("network_result_$result")."\n";
+          echo "</div>"."\n";
+        }
+      }
+    ?>
+
     <div class="form-group">    
       <div class="col-sm-4 col-sm-offset-4">
         <input type='checkbox' name="gprs" value="1"<?php 
@@ -22,6 +39,23 @@
 <form id="defaultForm" method="post" action="<?php echo base_url('index.php/management/set_ip');?>" class="form-horizontal" role="form">
   <fieldset>
     <legend><?php echo $this->lang->line('network_set_ip')?></legend>
+
+    <?php
+      if(!empty($result)){
+        if(!strncmp($result, "success", 7)){
+          echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
+          echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+          echo "<strong>".$this->lang->line("message_success")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("network_result_$result")."\n";
+          echo "</div>"."\n";
+        }
+        else{
+          echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">"."\n";
+          echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+          echo "<strong>".$this->lang->line("message_warning")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("network_result_$result")."\n";
+          echo "</div>"."\n";
+        }
+      }
+    ?>
 
     <div class="form-group">    
       <div class="col-sm-8 col-sm-offset-4">
@@ -87,10 +121,6 @@
     </div>
   </div>
 </form>
-<br>
-<center>
-    <?php echo $this->lang->line("network_result_$result")?>
-</center>
 
 <script>
     function setip(value) { 

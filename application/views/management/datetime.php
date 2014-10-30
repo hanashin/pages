@@ -1,13 +1,30 @@
+<?php
+  if(!empty($result)){
+    if(!strncmp($result, "success", 7)){
+      echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
+      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+      echo "<strong>".$this->lang->line("message_success")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("time_result_$result")."\n";
+      echo "</div>"."\n";
+    }
+    else{
+      echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">"."\n";
+      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+      echo "<strong>".$this->lang->line("message_warning")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("time_result_$result")."\n";
+      echo "</div>"."\n";
+    }
+  }
+?>
+
 <?php date_default_timezone_set($timezone);?>      
 <form class="form-horizontal" role="form" action="<?php echo base_url('index.php/management/set_datetime');?>" method="post">
   <div class="form-group">    
-    <label for="inputdate" class="col-sm-5 control-label">Date</label>
+    <label for="inputdate" class="col-sm-5 control-label"><?php echo $this->lang->line('time_date')?></label>
     <div class="col-sm-4">
       <input type="text" name="date" class="form-control" id="inputdate" value="<?php echo date("Y-m-d",time());?>">
     </div>
   </div>
   <div class="form-group">
-    <label for="inputtime" class="col-sm-5 control-label">Time</label>
+    <label for="inputtime" class="col-sm-5 control-label"><?php echo $this->lang->line('time_time')?></label>
       <div class="col-sm-4">
         <input type="text" name="time" class="form-control" id="inputtime" value="<?php echo date("H:i:s",time());?>">
       </div>
@@ -600,7 +617,3 @@
     </div>
   </div>
 </form>
-
-<center>
-    <?php echo $this->lang->line("time_result_$result")?>
-</center>

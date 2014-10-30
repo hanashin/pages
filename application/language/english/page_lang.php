@@ -13,26 +13,31 @@
 	$lang['button_ok'] = "OK";
 	$lang['button_cancel'] = "Cancel";
 	$lang['button_reset'] = "Reset";
-	$lang['button_query'] = "Query";		
+	$lang['button_query'] = "Query";
+	$lang['button_refresh'] = "Refresh";
+	
+	$lang['message_success'] = "Success";
+	$lang['message_warning'] = "Warning";
+	$lang['message_failed'] = "Failed";		
 	
 /* 导航栏 */
 	$lang['item_1'] = "Home";
-	$lang['item_2'] = "Data";
-	$lang['item_2_1'] = "Data";
+	$lang['item_2'] = "Real-time Data";
+	$lang['item_2_1'] = "Real-time Data";
 	$lang['item_2_2'] = "Power";
 	$lang['item_2_3'] = "Energy";
-	$lang['item_3'] = "Config";
-	$lang['item_3_1'] = "Parameters";
+	$lang['item_3'] = "configuration";
+	$lang['item_3_1'] = "Protection Parameters";
 	$lang['item_3_2'] = "Ground Fault Protection";
 	$lang['item_3_3'] = "Remote Control";
-	$lang['item_3_4'] = "Maxpower setting";
-	$lang['item_4'] = "Admin";
-	$lang['item_4_1'] = "ID";
-	$lang['item_4_2'] = "Time";
+	$lang['item_3_4'] = "Power Setting";
+	$lang['item_4'] = "administration";
+	$lang['item_4_1'] = "Inverter ID";
+	$lang['item_4_2'] = "Time ";
 	$lang['item_4_3'] = "Language";
-	$lang['item_4_4'] = "Network";
+	$lang['item_4_4'] = "Network ";
 	$lang['item_4_5'] = "User";
-	$lang['item_4_6'] = "WLAN";
+	$lang['item_4_6'] = "WLAN ";
 	
 /* 主页 */
 	$lang['function_home'] = "Home";
@@ -81,22 +86,17 @@
 	$lang['login_title'] = "Please Login";
 	$lang['login_username'] = "Username";
 	$lang['login_password'] = "Password";
-	$lang['login_login'] = "Login";
-	
-	$lang['login_result_success'] = "Login is successful";
+	$lang['login_login'] = "Login";	
+	$lang['login_result_success'] = "Login successful";
 	$lang['login_result_failed'] = "Incorrect username or password";
 	
 	//交流保护参数
-	$lang['function_protection'] = "Parameters";
-	$lang['function_protection2'] = "Protection2";
-	$lang['protection_select'] = "Selection";
-	$lang['protection_set'] = "Setting";
+	$lang['function_protection'] = "Protection Parameters";
+	$lang['function_protection2'] = "Protection Parameters";
+	$lang['protection_set'] = "Settings";
 	$lang['protection_actual_value'] = "Actual value";	
 	$lang['protection_select_inverter'] = "Please select inverter";
-	$lang['protection_select_inverter_all'] = "All inverters";
-	$lang['protection_setting'] = "Set";
-	$lang['protection_reset'] = "Reset";
-	$lang['protection_read_inverter_parameters'] = "Read Parameters From Inverters";	
+	$lang['protection_select_inverter_all'] = "All Inverters";	
 	$lang['protection_inverter_id'] = "Inverter ID";
 	$lang['protection_under_voltage_fast'] = "Undervoltage Fast";
 	$lang['protection_over_voltage_fast'] = "Overvoltage Fast";
@@ -112,20 +112,20 @@
 	$lang['protection_frequency_triptime_slow'] = "Frequency Triptime Slow";
 	$lang['protection_grid_recovery_time'] = "Grid Recovery Time";
 	
-	$lang['protection_result_set_protection_success'] = "See the result 5 minutes later";
+	$lang['protection_result_set_protection_success'] = "See the results 5 minutes later";
 	$lang['protection_result_null_protection'] = "Please enter at least one protection parameters";
 
 	//GFDI设置
 	$lang['function_gfdi'] = "Ground Fault Protection";
 	$lang['gfdi_inverter_id'] = "Inverter ID";
 	$lang['gfdi_state'] = "Status";
-	$lang['gfdi_clear'] = "Clear GFDI";
+	$lang['gfdi_unlock'] = "Unlock GFDI";
 	
-	$lang['gfdi_result_success'] = "See the result 5 minutes later";
-	$lang['gfdi_result_null'] = "Please choose the inverter needs to unlock";
+	$lang['gfdi_result_success'] = "See the results 5 minutes later";
+	$lang['gfdi_result_null'] = "Please select inverters need to be unlocked";
 	
 	//远程控制开关机
-	$lang['function_switch'] = "Remote control";
+	$lang['function_switch'] = "Remote Control";
 	$lang['switch_inverter_id'] = "Inverter ID";
 	$lang['switch_state'] = "Status";
 	$lang['switch_turn_on'] = "Turn On";
@@ -134,24 +134,22 @@
 	$lang['switch_turn_on_all'] = "Turn on all inverters";
 	$lang['switch_turn_off_all'] = "Turn off all inverters";
 	
-	$lang['switch_result_success'] = "See the result 5 minutes later";
-	$lang['switch_result_null'] = "Please choose the inverter";
+	$lang['switch_result_success'] = "See the results 5 minutes later";
+	$lang['switch_result_null'] = "Please select inverters";
 	
 	//最大功率设置
-	$lang['function_maxpower'] = "Maxpower setting";
+	$lang['function_maxpower'] = "Power Setting";
 	$lang['maxpower_inverter_id'] = "Inverter ID";
-	$lang['maxpower_maxpower'] = "Maximum Power(20W-270W)";
+	$lang['maxpower_maxpower'] = "Maximum Power(20-270W)";
 	$lang['maxpower_actual_maxpower'] = "Actual Maximum Power";
-	$lang['maxpower_save'] = "Save";
 	
-	$lang['maxpower_result_success'] = "See the result 5 minutes later";
+	$lang['maxpower_result_success'] = "See the results 5 minutes later";
 	$lang['maxpower_result_failed'] = "Please enter an integer between 20-270";
 
 /* 系统管理 */
 	//ID管理
-	$lang['function_id'] = "ID";
+	$lang['function_id'] = "Inverter ID";
 	$lang['id_inverter_id'] = "Inverter ID";
-	$lang['id_update_id'] = "Update ID";
 	$lang['id_clear_id'] = "Clear ID";
 	$lang['id_total'] = "Total";
 	$lang['id_correct'] = "Update success";
@@ -161,32 +159,28 @@
 	//$lang['id_result_update_id_success'] = "更新ID成功";
 	
 	//时间管理
-	$lang['function_time'] = "Time";
-	$lang['time_data_time'] = "Date Time";
-	$lang['time_update_date_time'] = "Update";
+	$lang['function_time'] = "Time ";
+	$lang['time_date'] = "Date";
+	$lang['time_time'] = "Time";
 	$lang['time_timezone'] = "Timezone";
-	$lang['time_update_timezone'] = "Update";
 	$lang['time_ntp'] = "NTP Server";
-	$lang['time_update_ntp'] = "Update";
 
-	$lang['time_result_datetime_success'] = "update datetime successful";
-	$lang['time_result_datetime_failed'] = "update datetime failed";	
-	$lang['time_result_timezone_success'] = "update timezone successful";	
-	$lang['time_result_ntp_success'] = "update ntp_server successful";
+	$lang['time_result_success_datetime'] = "update datetime successful";
+	$lang['time_result_failed_datetime'] = "update datetime failed";	
+	$lang['time_result_success_timezone'] = "update timezone successful";	
+	$lang['time_result_success_ntp'] = "update ntp_server successful";
 	
 	//语言管理
 	$lang['function_language'] = "Language";
-	$lang['language_current_language'] = "Current language";
-	$lang['language_update_language'] = "Update";
-	$lang['language_english'] = "english";
-	$lang['language_chinese'] = "chinese";
+	$lang['language_current_language'] = "Current Language";
+	$lang['language_english'] = "English";
+	$lang['language_chinese'] = "Chinese";
 	
 	//网络管理
-	$lang['function_network'] = "Network";
-	$lang['network_set_gprs'] = "GPRS Setting";
+	$lang['function_network'] = "Network ";
+	$lang['network_set_gprs'] = "GPRS Settings";
 	$lang['network_use_gprs'] = "Use GPRS Module";
-	$lang['network_update_gprs'] = "Update";
-	$lang['network_set_ip'] = "IP Setting";
+	$lang['network_set_ip'] = "IP Settings";
 	$lang['network_use_dhcp'] = "Obtain an IP address automatically";
 	$lang['network_use_static_ip'] = "Use the following IP address";
 	$lang['network_ip_address'] = "IP address";
@@ -194,12 +188,11 @@
 	$lang['network_default_gateway'] = "Default gateway";
 	$lang['network_preferred_dns_server'] = "Preferred DNS server";
 	$lang['network_alternate_dns_server'] = "Alternate DNS server";
-	$lang['network_update_ip'] = "Update";
 	
-	$lang['network_result_gprs_on_success'] = "设置GPRS成功";
-	$lang['network_result_gprs_off_success'] = "取消GPRS成功";
-	$lang['network_result_dhcp_success'] = "设置动态IP成功";
-	$lang['network_result_static_ip_success'] = "设置静态IP成功";
+	$lang['network_result_gprs_on_success'] = "Set GPRS success";
+	$lang['network_result_gprs_off_success'] = "Set GPRS success";
+	$lang['network_result_success_dhcp'] = "Set IP success";
+	$lang['network_result_success_static_ip'] = "Set IP success";
 	
 	//用户管理
 	$lang['function_user_info'] = "User";
@@ -215,7 +208,7 @@
 	$lang['user_info_result_success'] = "Password updated successfully!";
 	
 	//无线网络管理
-	$lang['function_wlan'] = "WLAN";
+	$lang['function_wlan'] = "WLAN ";
 	$lang['wlan_mode'] = "Mode";
 	$lang['wlan_ssid'] = "SSID";
 	$lang['wlan_ip_address'] = "IP address";
@@ -241,10 +234,10 @@
 	$lang['wlan_sta_connect'] = "Connect";
 	$lang['wlan_sta_disconnect'] = "Disconnect";
 	
-	$lang['wlan_result_change_mode_success'] = "更改模式成功";
-	$lang['wlan_result_set_ap_success'] = "设置主机模式参数成功";
-	$lang['wlan_result_connect_sta_success'] = "连接WIFI成功";
-	$lang['wlan_result_disconnect_sta_success'] = "断开WIFI成功";
+	$lang['wlan_result_success_change_mode'] = "Change Mode success";
+	$lang['wlan_result_success_set_ap'] = "Set Host mode parameter success";
+	$lang['wlan_result_success_connect_sta'] = "Connect WIFI success";
+	$lang['wlan_result_success_disconnect_sta'] = "Disconnect WIFI success";
 	
 /* 显示数据库数据 */
 	//status
@@ -282,7 +275,7 @@
 	$lang['datacenter_port2'] = "Port 2";
 	$lang['datacenter_update'] = "Update";
 	
-	$lang['datacenter_result_success'] = "设置成功";
+	$lang['datacenter_result_success'] = "success";
 	
 	//自动更新服务器地址与端口
 	$lang['updatecenter_domain'] = "Domain Name";

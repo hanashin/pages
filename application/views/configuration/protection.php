@@ -2,6 +2,23 @@
   <fieldset>
     <legend><?php echo $this->lang->line('protection_set')?></legend>
 
+    <?php
+      if(!empty($result)){
+        if(!strncmp($result, "success", 7)){
+          echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
+          echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+          echo "<strong>".$this->lang->line("message_success")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("protection_result_set_protection_success")."\n";
+          echo "</div>"."\n";
+        }
+        else{
+          echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">"."\n";
+          echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+          echo "<strong>".$this->lang->line("message_warning")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("protection_result_$result")."\n";
+          echo "</div>"."\n";
+        }
+      }
+    ?>
+
     <div class="form-group">    
       <label class="col-sm-5 control-label"><?php echo $this->lang->line('protection_select_inverter')?></label>
       <div class="col-sm-4">
@@ -59,20 +76,16 @@
   </div>
 </form>
 
-<div class="alert alert-warning alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-  <strong>Warning:</strong>
-  <?php echo $this->lang->line("protection_result_$result")?>
-</div>
-
-<?php echo form_open('configuration/read_inverter_parameters');?>
-    <input name="flag" type="hidden" value="1">
-    <button type="submit" class="btn btn-default"><?php echo $this->lang->line('protection_read_inverter_parameters')?></button>
-</form>
-
 <fieldset>
-  <legend><?php echo $this->lang->line('protection_actual_value')?></legend>
-
+  <legend><?php echo $this->lang->line('protection_actual_value')?>
+    <div class="btn-group">
+      <?php echo form_open('configuration/read_inverter_parameters');?>
+        <input name="flag" type="hidden" value="1">
+        <button type="submit" class="btn btn-default btn-sm"><?php echo $this->lang->line('button_refresh')?></button>
+      </form>
+    </div>
+  </legend>
+  
   <div class="table-responsive">
     <table class="table table-condensed table-striped table-hover">
       <thead>
