@@ -14,7 +14,7 @@ class Display extends CI_Controller {
 
         /* 设置系统语言 */
         $language = "english";
-        $fp = fopen("/etc/yuneng/language.conf",'r');
+        $fp = @fopen("/etc/yuneng/language.conf",'r');
         if($fp)
         {
             $language = fgets($fp);
@@ -56,6 +56,7 @@ class Display extends CI_Controller {
         $data = $this->display_model->get_database($table);
         $data['page'] = $this->page;
         $data['func'] = "database";
+        $data['table'] = $table;
         $this->load->view('templates/header', $data);
         $this->load->view('display/database', $data);
         $this->load->view('templates/footer');
@@ -67,6 +68,7 @@ class Display extends CI_Controller {
         $data = $this->display_model->get_historical_data($table);
         $data['page'] = $this->page;
         $data['func'] = "historical_data";
+        $data['table'] = $table;
         $this->load->view('templates/header', $data);
         $this->load->view('display/historical_data', $data);
         $this->load->view('templates/footer');

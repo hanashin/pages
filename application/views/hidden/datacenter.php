@@ -1,99 +1,124 @@
-  <form class="registerform" action="<?php echo base_url('index.php/hidden/set_datacenter');?>" method="post" accept-charset="utf-8">
-      <table class="table">
-        <tr>
-          <th scope="row"><?php echo $this->lang->line('datacenter_domain')?></th>
-          <td>
-              <input type="text" name="domain" value="<?php echo $domain;?>"
-                      datatype="/\w*\.\w+$/"
-                      nullmsg="<?php echo $this->lang->line('validform_null_domain')?>"
-                      errormsg="<?php echo $this->lang->line('validform_domain')?>"
-                      sucmsg=" ">
-              <div>
-                  <div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
-              </div>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row"><?php echo $this->lang->line('datacenter_ip')?></th>
-          <td>
-              <input type="text" name="ip" value="<?php echo $ip;?>"
-                      datatype="ipv4"
-                      nullmsg="<?php echo $this->lang->line('validform_null_ip_address')?>"
-                      errormsg="<?php echo $this->lang->line('validform_ip_address')?>"
-                      sucmsg=" ">
-              <div>
-                  <div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
-              </div>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row"><?php echo $this->lang->line('datacenter_port1')?></th>
-          <td>
-              <input type="text" name="port1" value="<?php echo $port1;?>"
-                      datatype="/^(\d{1,4}|([1-5]\d{4})|([1-6][0-4]\d{3})|([1-6][0-5][0-4]\d{2})|([1-6][0-5][0-5][0-2]\d)|([1-6][0-5][0-5][0-3][0-5]))$/"
-                      nullmsg="<?php echo $this->lang->line('validform_null_port1')?>"
-                      errormsg="<?php echo $this->lang->line('validform_port')?>"
-                      sucmsg=" ">
-              <div>
-                  <div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
-              </div>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row"><?php echo $this->lang->line('datacenter_port2')?></th>
-          <td>
-              <input type="text" name="port2" value="<?php echo $port2;?>"
-                      datatype="/^(\d{1,4}|([1-5]\d{4})|([1-6][0-4]\d{3})|([1-6][0-5][0-4]\d{2})|([1-6][0-5][0-5][0-2]\d)|([1-6][0-5][0-5][0-3][0-5]))$/"
-                      nullmsg="<?php echo $this->lang->line('validform_null_port2')?>"
-                      errormsg="<?php echo $this->lang->line('validform_port')?>"
-                      sucmsg=" ">
-              <div>
-                  <div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
-              </div>
-          </td>
-        </tr>
-      </table>
-      <center><input name="submit" type="submit" value='<?php echo $this->lang->line('datacenter_update')?>'><center>
-  </form>
-  <br>
-  <center>
-    <?php echo $this->lang->line("datacenter_result_$result")?>
-  </center>
+<?php
+  if(!empty($result)){
+    if(!strncmp($result, "success", 7)){
+      echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
+      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+      echo "<strong>".$this->lang->line("message_success")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("datacenter_result_$result")."\n";
+      echo "</div>"."\n";
+    }
+    else{
+      echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">"."\n";
+      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+      echo "<strong>".$this->lang->line("message_warning")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("datacenter_result_$result")."\n";
+      echo "</div>"."\n";
+    }
+  }
+?>
+<form id="defaultForm" method="post" action="<?php echo base_url('index.php/hidden/set_datacenter');?>" class="form-horizontal" role="form">
+  <div class="form-group">    
+    <label for="inputdata1" class="col-sm-5 control-label"><?php echo $this->lang->line('datacenter_domain')?></label>
+    <div class="col-sm-4">
+      <input type="text" name="domain" class="form-control" id="inputdata1" value="<?php echo $domain;?>">
+    </div>
+  </div>
 
-  <script src="<?php echo base_url('js/jquery/jquery-1.8.2.min.js');?>"></script>
-  <script src="<?php echo base_url('js/Validform_v5.3.2_min.js');?>"></script>
-  <script src="<?php echo base_url('js/Validform_Datatype.js');?>"></script>  
-  <script>
-      $(function(){
-          $(".registerform").Validform({
-              tiptype:function(msg,o,cssctl){
-              //msg：提示信息;
-              //o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
-              //cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
-            
-                  if(!o.obj.is("form")){//验证表单元素时o.obj为该表单元素，全部验证通过提交表单时o.obj为该表单对象;
-                      var objtip=o.obj.next("div").find(".Validform_checktip");
-                      cssctl(objtip,o.type);
-                      objtip.text(msg);
+  <div class="form-group">    
+    <label for="inputdata2" class="col-sm-5 control-label"><?php echo $this->lang->line('datacenter_ip')?></label>
+    <div class="col-sm-4">
+      <input type="text" name="ip" class="form-control" id="inputdata2" value="<?php echo $ip;?>">
+    </div>
+  </div>
 
-                      var infoObj=o.obj.next("div").find(".info");
-                      if(o.type==2){
-                          infoObj.fadeOut(2000);
-                      }else{
-                          if(infoObj.is(":visible")){return;}
-                          var left=o.obj.offset().left,
-                          top=o.obj.offset().top;
+  <div class="form-group">    
+    <label for="inputdata3" class="col-sm-5 control-label"><?php echo $this->lang->line('datacenter_port1')?></label>
+    <div class="col-sm-4">
+      <input type="text" name="port1" class="form-control" id="inputdata3" value="<?php echo $port1;?>">
+    </div>
+  </div>
 
-                          infoObj.css({
-                              left:left+200,
-                              top:top-1
-                          }).show().animate({
-                              left:left+180, 
-                          },200);
-                      }
-                  }
-              },
-              ignoreHidden:true
-          });
-      })
-  </script>
+  <div class="form-group">    
+    <label for="inputdata4" class="col-sm-5 control-label"><?php echo $this->lang->line('datacenter_port2')?></label>
+    <div class="col-sm-4">
+      <input type="text" name="port2" class="form-control" id="inputdata4" value="<?php echo $port2;?>">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-5 col-sm-2">
+      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_update')?></button>
+    </div>
+  </div>
+</form>
+
+<script>
+$(document).ready(function() {
+    $('#defaultForm').bootstrapValidator({
+        message: 'This value is not valid',
+        fields: {
+            domain: {
+                message: 'The domain is not valid',
+                validators: {
+                    notEmpty: {
+                        message: '<?php echo $this->lang->line('validform_null_domain')?>'
+                    },
+                    stringLength: {
+                        max: 16,
+                        message: 'The input string must be less than 16 characters long'
+                    },
+                    regexp: {
+                        regexp: /\w*\.\w+$/,
+                        message: '<?php echo $this->lang->line('validform_domain')?>'
+                    }
+                }
+            },
+            ip: {
+                message: 'The ip is not valid',
+                validators: {
+                    notEmpty: {
+                        message: '<?php echo $this->lang->line('validform_null_ip_address')?>'
+                    },
+                    stringLength: {
+                        max: 16,
+                        message: 'The input string must be less than 16 characters long'
+                    },
+                    ip: {
+                        message: '<?php echo $this->lang->line('validform_ip_address')?>'
+                    }
+                }
+            },
+            port1: {
+                message: 'The port1 is not valid',
+                validators: {
+                    notEmpty: {
+                        message: '<?php echo $this->lang->line('validform_null_port1')?>'
+                    },
+                    stringLength: {
+                        max: 16,
+                        message: 'The input string must be less than 16 characters long'
+                    },
+                    regexp: {
+                        regexp: /^(\d{1,4}|([1-5]\d{4})|([1-6][0-4]\d{3})|([1-6][0-5][0-4]\d{2})|([1-6][0-5][0-5][0-2]\d)|([1-6][0-5][0-5][0-3][0-5]))$/,
+                        message: '<?php echo $this->lang->line('validform_port1')?>'
+                    }
+                }
+            },
+            port2: {
+                message: 'The port2 is not valid',
+                validators: {
+                    notEmpty: {
+                        message: '<?php echo $this->lang->line('validform_null_port2')?>'
+                    },
+                    stringLength: {
+                        max: 16,
+                        message: 'The input string must be less than 16 characters long'
+                    },
+                    regexp: {
+                        regexp: /^(\d{1,4}|([1-5]\d{4})|([1-6][0-4]\d{3})|([1-6][0-5][0-4]\d{2})|([1-6][0-5][0-5][0-2]\d)|([1-6][0-5][0-5][0-3][0-5]))$/,
+                        message: '<?php echo $this->lang->line('validform_port2')?>'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>

@@ -15,7 +15,7 @@ class Configuration extends CI_Controller {
 
         /* 设置系统语言 */
         $language = "english";
-        $fp = fopen("/etc/yuneng/language.conf",'r');
+        $fp = @fopen("/etc/yuneng/language.conf",'r');
         if($fp)
         {
             $language = fgets($fp);

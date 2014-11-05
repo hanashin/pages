@@ -14,7 +14,7 @@ class Hidden extends CI_Controller {
 
         /* 设置系统语言 */
         $language = "english";
-        $fp = fopen("/etc/yuneng/language.conf",'r');
+        $fp = @fopen("/etc/yuneng/language.conf",'r');
         if($fp)
         {
             $language = fgets($fp);
@@ -29,11 +29,11 @@ class Hidden extends CI_Controller {
     /* 显示实时数据(默认函数) */
 
     /* 显示DEBUG页面 */
-    public function debug()
+    public function debug($result = "")
     {
         $data['page'] = $this->page;
         $data['func'] = "debug";
-        $data['result'] = "";      
+        $data['result'] = $result;      
         $this->load->view('templates/header', $data);
         $this->load->view('hidden/debug', $data);
         $this->load->view('templates/footer');
@@ -43,11 +43,7 @@ class Hidden extends CI_Controller {
     public function exec_command()
     {      
         $data = $this->hidden_model->exec_command();
-        $data['page'] = $this->page;
-        $data['func'] = "exec_command";
-        $this->load->view('templates/header', $data);
-        $this->load->view('hidden/debug', $data);
-        $this->load->view('templates/footer');
+        $this->debug($data['result']);
     }
 
     /* 显示导数据页面 */
@@ -120,7 +116,7 @@ class Hidden extends CI_Controller {
     public function exec_initialize()
     {      
         $data = $this->hidden_model->exec_initialize();
-        $this->initialize();
+        $this->initialize($data['result']);
     }
 
     /* 显示串口信息 */

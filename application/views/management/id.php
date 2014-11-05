@@ -1,25 +1,24 @@
-<!-- 载入表单辅助函数创建一个开始form标签 -->
-<?php echo form_open('management/set_id'); ?>
+<form class="form-horizontal" role="form" action="<?php echo base_url('index.php/management/set_id');?>" method="post">
   <div class="form-group">    
     <div class="col-sm-offset-4 col-sm-4">
-       <textarea class="form-control" name="ids" rows="10"><?php foreach ($ids as $value) {
+       <textarea class="form-control" name="ids" rows="10" autofocus><?php foreach ($ids as $value) {
           echo $value."\n";
         }?></textarea>
     </div>
   </div>
-  <div class="form-group"> 
-    <div class="col-sm-offset-4 col-sm-2">
-      <button type="submit" class="btn btn-default btn-sm"><?php echo $this->lang->line('button_update')?></button>
-    </div>
-          
-</form>
-<?php echo form_open('management/set_id_clear'); ?>
-    <div class="col-sm-2">
-      <button type="submit" class="btn btn-default btn-sm"><?php echo $this->lang->line('id_clear_id')?></button>
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-4"> 
+      <div class="btn-group btn-group-justified">
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_update')?></button>
+        </div>
+        <div class="btn-group">
+          <a href="<?php echo base_url('index.php/management/set_id_clear');?>" class="btn btn-danger btn-sm"><?php echo $this->lang->line('id_clear_id')?></a>
+        </div>
+      </div>
     </div>
   </div>
 </form>
-
 
 <center>
   <?php

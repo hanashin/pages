@@ -76,3 +76,9 @@
     });
     
     </script>
+<script>
+function myrefresh(){
+   window.location.reload();
+}
+setTimeout('myrefresh()',300000); //指定5分钟刷新一次
+</script>

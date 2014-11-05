@@ -7,7 +7,7 @@
     <!-- 支持国产浏览器高速模式 -->
     <meta name="renderer" content="webkit">
     <!-- 响应式布局 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">   
 
     <title><?php echo $this->lang->line('title')?></title>
 
@@ -15,6 +15,7 @@
     <link href="<?php echo base_url('css/bootstrap.min.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('css/ecu-style.css');?>" rel="stylesheet">  
     <link href="<?php echo base_url('css/bootstrapValidator.css');?>" rel="stylesheet">
+    <link href="<?php echo base_url('css/bootstrap-datetimepicker.min.css');?>" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn"t work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -24,6 +25,7 @@
     <script src="<?php echo base_url('js/jquery-1.8.2.min.js');?>"></script>
     <script src="<?php echo base_url('js/bootstrap.min.js');?>"></script>
     <script src="<?php echo base_url('js/bootstrapValidator.min.js');?>"></script>
+    <script src="<?php echo base_url('js/bootstrap-datetimepicker.min.js');?>"></script>
     <script src="<?php echo base_url('js/timeShow.js');?>"></script>
     <script type="text/javascript">
       $(document).ready(function(){
@@ -50,15 +52,22 @@
 
           <div class="navbar-collapse collapse" id="navbar-header">
             <ul class="nav navbar-nav navbar-title">
-              <li><a>ENERGY CONTROL UNIT</a></li>
+              <li><a><?php echo $this->lang->line('title_ecu');?></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="<?php echo base_url('index.php/management/language');?>"><?php echo $this->lang->line('language')?></a></li>
+            <li class="dropdown">
+              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><small><?php echo $this->lang->line('language');?></small> <span class="caret"></span></button>
+              <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                  <li><a href="<?php echo base_url('index.php/management/set_language/english');?>"><small><?php echo $this->lang->line('language_english');?></small></a></li>
+                  <li><a href="<?php echo base_url('index.php/management/set_language/chinese');?>"><small><?php echo $this->lang->line('language_chinese');?></small></a></li>
+              </ul>
+            </li>
+              <!-- <li><a href="<?php echo base_url('index.php/management/language');?>"><?php echo $this->lang->line('language')?></a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-left">
-              <li><a href="<?php echo base_url('index.php/home');?>" class="active"><span class="glyphicon glyphicon-home"></span><?php echo $this->lang->line('energy_control')?></a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-cog"></span>SETTINGS</a></li>
-              <li><a href="#"<?php if(!strncmp($page, "1111", 4)){echo " class=\"active\"";}?>><span class="glyphicon glyphicon-user"></span>FAQ</a></li>
+              <li><a href="<?php echo base_url('index.php/home');?>" class="active"><span class="glyphicon energy-control">&#9728;</span><?php echo $this->lang->line('energy_control')?></a></li>
+              <li><a href="#"><span class="glyphicon">&#9889;</span>...</a></li>
+              <li><a href="<?php echo base_url('index.php/home/faq');?>"<?php if(!strncmp($page, "faq", 3)){echo " class=\"active\"";}?>><span class="glyphicon">?</span>FAQ</a></li>
             </ul>            
           </div>
         </div>
@@ -80,7 +89,8 @@
 
           <div class="navbar-collapse collapse" id="navbar-orange">
             <ul class="nav navbar-nav navbar-right">
-              <li><a>TO BE ADD</a></li>
+              <!-- TO BE ADD -->
+              <li><a></a></li>
             </ul>
             <ul class="nav navbar-nav ">
               <li><a href="<?php echo base_url('index.php/home');?>"<?php if(!strncmp($page, "home", 4)){echo " class=\"active\"";}?>><?php echo $this->lang->line('item_1')?></a></li>
@@ -102,7 +112,7 @@
             //主页 
             if(!strncmp($page, "home", 4))
             {
-              echo "<br><div id=\"txt\"></div>";
+              echo "<a id=\"txt\" class=\"list-group-item active\"></a>";
             }
             //实时数据 
             if(!strncmp($page, "realtimedata", 12))
@@ -118,6 +128,10 @@
               echo "<a href=\"".base_url('index.php/realtimedata/energy_graph')."\" class=\"list-group-item";
               if(!strncmp($func, "energy", 6))echo " active";
               echo "\">".$this->lang->line('item_2_3')."</a>"."\n";
+
+              echo "<a href=\"".base_url('index.php/realtimedata/inverter_status')."\" class=\"list-group-item";
+              if(!strncmp($func, "inverter_status", 15))echo " active";
+              echo "\">".$this->lang->line('item_2_4')."</a>"."\n";
             }
             //参数配置 
             if(!strncmp($page, "configuration", 13))
@@ -168,24 +182,30 @@
           ?>
           </div>
         </aside>
-
+        
         <!-- 正文 -->
         <article class="col-md-9 col-md-pull-3">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <?php echo $this->lang->line("function_$func")?>
-
+              <?php echo $this->lang->line("function_$func");
+                    if (!empty($table)){
+                      echo " &#8680; ".$table;
+                    }
+              ?>
               <div class="btn-group pull-right visible-xs">
-                <button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown">
-                  More <span class="caret"></span>
-                </button>          
-                <ul class="dropdown-menu" role="menu">
-                <?php
+              <?php
+                if(strncmp($page, "home", 4) && strncmp($page, "display", 7) && strncmp($page, "hidden", 6))
+                  echo <<<EOF
+  <button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown">
+    More <span class="caret"></span>
+  </button>         
+EOF;
+                echo "<ul class=\"dropdown-menu\" role=\"menu\">";
                 //注：与侧边导航栏内容保持一致！
                   //主页 
                   if(!strncmp($page, "home", 4))
                   {
-                    echo "<li><div id=\"txt\"></div></li>";
+                    echo "<a id=\"txt\" class=\"list-group-item active\"></a>";
                   }
                   //实时数据 
                   if(!strncmp($page, "realtimedata", 12))
@@ -201,6 +221,10 @@
                     echo "<a href=\"".base_url('index.php/realtimedata/energy_graph')."\" class=\"list-group-item";
                     if(!strncmp($func, "energy", 6))echo " active";
                     echo "\">".$this->lang->line('item_2_3')."</a>"."\n";
+
+                    echo "<a href=\"".base_url('index.php/realtimedata/inverter_status')."\" class=\"list-group-item";
+                    if(!strncmp($func, "inverter_status", 15))echo " active";
+                    echo "\">".$this->lang->line('item_2_4')."</a>"."\n";
                   }
                   //参数配置 
                   if(!strncmp($page, "configuration", 13))
@@ -247,11 +271,10 @@
                     echo "<a href=\"".base_url('index.php/management/wlan')."\" class=\"list-group-item";
                     if(!strncmp($func, "wlan", 4))echo " active";
                     echo "\">".$this->lang->line('item_4_6')."</a>"."\n";
-                  }
-                ?>
+                  }                              
+              ?>
                 </ul>
               </div>
             </div>
 
             <div class="panel-body">
-

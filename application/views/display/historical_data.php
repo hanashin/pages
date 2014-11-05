@@ -9,7 +9,7 @@
     height:400px; 
     background-color:transparent;
     position:fixed;
-    top:136px;
+    top:165px;
 }
 #show_table{
     float:left;height:100%;

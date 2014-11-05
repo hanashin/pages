@@ -1,4 +1,4 @@
-﻿<?php
+<?php
   if(!empty($result)){
     if(!strncmp($result, "success", 7)){
       echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
@@ -42,8 +42,8 @@
   </table>
   <div class="col-sm-offset-5 col-sm-4">
     <div class="btn-group">
-      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('switch_turn_on_off')?></button>
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('switch_turn_on_off')?></button>
+      <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
         <span class="caret"></span>
         <span class="sr-only">Toggle Dropdown</span>
       </button>

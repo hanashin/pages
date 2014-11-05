@@ -127,7 +127,7 @@
 
   <div class="form-group">
     <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('button_save')?></button>
+      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_save')?></button>
     </div>
   </div>
 </form>
@@ -137,7 +137,7 @@
     <div class="btn-group">
       <?php echo form_open('configuration/read_inverter_parameters');?>
         <input name="flag" type="hidden" value="1">
-        <button type="submit" class="btn btn-default btn-sm"><?php echo $this->lang->line('button_refresh')?></button>
+        <button type="submit" class="btn btn-default btn-xs"><?php echo $this->lang->line('button_refresh')?></button>
       </form>
     </div>
   </legend>

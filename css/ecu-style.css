@@ -3,7 +3,11 @@
 /*-----------------------------------------------------------------------------------*/
 html { font-size: 1em; }
 
-body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; } 
+body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
+
+::selection { background:#eb7203; color:#fff;}
+::-moz-selection { background:#eb7203; color:#fff;}
+::-webkit-selection { background:#eb7203; color:#fff;} 
 
 /*------------------------------------------------------
     导航栏-顶部 
@@ -14,7 +18,7 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
   border-radius: 0px;
   margin-bottom: 0px;
 }
-@media (max-width: 998px) {
+@media (max-width: 1200px) {
   .navbar-top .navbar-title > li > a{
     display: none;
   }
@@ -76,6 +80,25 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
 .navbar-top .navbar-toggle:hover,
 .navbar-top .navbar-toggle:focus {
   background-color: #f0f0f0;
+}
+.navbar-top .btn-default {
+  border-color: #fff;
+}
+.navbar-top .btn-default:hover,
+.navbar-top .btn-default:focus,
+.navbar-top .btn-default:active,
+.navbar-top .open > .dropdown-toggle.btn-default {
+  background-color: #fff;
+  border-color: #fff;
+}
+.navbar-top .dropdown-menu {
+  min-width: 90px;
+  padding: 0px;
+}
+.navbar-top .dropdown-menu :hover {
+  color: white;
+  border-color: #eb7203;
+  background-color: #eb7203;
 }
 
 /*------------------------------------------------------
@@ -139,9 +162,9 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
 	  background:#F58603;
 	  top: 13px;
 	  position: absolute;
-      -webkit-box-shadow: 1px 0 5px rgba(1, 1, 1, 0.25);
-  -moz-box-shadow: 1px 0 1px rgba(1, 1, 1, 0.25);
-  box-shadow: 1px 0 1px rgba(1, 1, 1, 0.25);
+    -webkit-box-shadow: 1px 0 5px rgba(1, 1, 1, 0.25);
+    -moz-box-shadow: 1px 0 1px rgba(1, 1, 1, 0.25);
+    box-shadow: 1px 0 1px rgba(1, 1, 1, 0.25);
   }
 }
 
@@ -166,31 +189,51 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
   }
   .container-main .panel-heading {
     border-radius: 0px;
+    color: #eb7203;
   }
 }
-
 .container-main .panel-body {
   min-height: 300px;
 }
-
-.container-main .panel {
-  border-top-left-radius: 0px;
+@media (min-width: 768px) {
+  .container-main .panel {
+    background-color: #ffcc00;
+    border: 0px;
+    border-radius: 5px;
+    padding: 1px;
+    -webkit-box-shadow: 1px 1px 5px rgba(1, 1, 1, 0.15);
+    -moz-box-shadow: 1px 1px 5px rgba(1, 1, 1, 0.15);
+    box-shadow: 1px 1px 5px rgba(1, 1, 1, 0.15);
+  }
+  .container-main .panel-heading {
+    border: 0px;
+    padding: 8px 16px;
+    background-color: transparent;
+    color: #fff;
+  }
+  .container-main .panel-body {
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: #fdfdfd;
+  }
 }
-
 .container-main .panel-heading {
-  border-top-left-radius: 0px;
-  border: 0px;
-  border-left: 8px solid #eb7203;
-  color: #eb7203;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: bold;
 }
+
 
 /*------------------------------------------------------
     列表组 
 --------------------------------------------------------*/
 .container-main .list-group .active {
-  border-color: #eb7203;
-  background-color: #eb7203;
+  border-color: #99cc33;
+  background-color: #99cc33;
+}
+.container-main .list-group {
+    -webkit-box-shadow: 2px 2px 4px rgba(1, 1, 1, 0.15);
+    -moz-box-shadow: 2px 2px 4px rgba(1, 1, 1, 0.15);
+    box-shadow: 2px 2px 4px rgba(1, 1, 1, 0.15);
 }
 @media (max-width: 767px) {
   .container-main .list-group {
@@ -270,6 +313,17 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
 .container-main .table-responsive > .table-bordered > tfoot > tr:last-child > td {
   border-bottom: 0;
 }
+.table_wlan .table-striped > tbody > tr > td,
+.table_wlan .table-striped > tbody > tr > th {
+  background-color: #fff;
+}
+.table_wlan .table-striped > tbody > tr:nth-child(4n+3) > td,
+.table_wlan .table-striped > tbody > tr:nth-child(4n+3) > th {
+  background-color: #f9f9f9;
+}
+.table_wlan .table > tbody > tr:first-child > td {
+  border-top: 0px;
+}
 .container-main .table-hover > tbody > tr:hover > td,
 .container-main .table-hover > tbody > tr:hover > th {
   background-color: #fdf5ce;
@@ -282,13 +336,6 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
   text-align: center;
   border: 0px;
 }*/
-
-/*------------------------------------------------------
-    textarea 
---------------------------------------------------------*/
-.container-main textarea {
-  width: 124px;
-}
 
 /*------------------------------------------------------
     页脚 

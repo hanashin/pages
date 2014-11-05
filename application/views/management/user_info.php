@@ -1,93 +1,113 @@
-    <form class="registerform" action="<?php echo base_url('index.php/management/set_user_info');?>" method="post" accept-charset="utf-8">
-      <table class="table">
-        <tr>
-          <th scope="row"><?php echo $this->lang->line('user_info_username')?></th>
-          <td><input class="inputxt" type="text" name="username" value="" 
-                      datatype="*4-18"
-                      nullmsg="<?php echo $this->lang->line('validform_null_username')?>" 
-                      errormsg="<?php echo $this->lang->line('validform_username')?>"
-                      sucmsg=" ">
-              <div>
-                  <div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
-              </div>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row"><?php echo $this->lang->line('user_info_old_password')?></th>
-          <td><input class="inputxt" type="password" name="old_password" value=""
-                      datatype="*6-18"
-                      nullmsg="<?php echo $this->lang->line('validform_null_old_password')?>" 
-                      errormsg="<?php echo $this->lang->line('validform_old_password')?>"
-                      sucmsg=" ">
-              <div>
-                  <div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
-              </div>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row"><?php echo $this->lang->line('user_info_new_password')?></th>
-          <td><input class="inputxt" type="password" name="new_password" value=""
-                      datatype="*6-18",
-                      nullmsg="<?php echo $this->lang->line('validform_null_new_password')?>" 
-                      errormsg="<?php echo $this->lang->line('validform_new_password')?>"
-                      sucmsg=" ">
-              <div>
-                  <div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
-              </div>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row"><?php echo $this->lang->line('user_info_confirm_password')?></th>
-          <td><input class="inputxt" type="password" name="confirm_password" value="" recheck="new_password" 
-                      errormsg="<?php echo $this->lang->line('validform_confirm_password')?>"
-                      datatype="*",
-                      nullmsg="<?php echo $this->lang->line('validform_null_confirm_password')?>"
-                      sucmsg=" ">
-              <div>
-                  <div class="info"><span class="Validform_checktip"></span><span class="dec"><s class="dec1">&#9670;</s><s class="dec2">&#9670;</s></span></div>
-              </div>
-          </td>
-        </tr>
-      </table>
-      <center><input class="inputxt" name="submit" type="submit" value='<?php echo $this->lang->line('user_info_change_password')?>'><center>
-    </form>
-    <br>
-    <center>
-        <?php echo $this->lang->line("user_info_result_$result")?>
-    </center>
+ <?php
+  if(!empty($result)){
+    if(!strncmp($result, "success", 7)){
+      echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
+      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+      echo "<strong>".$this->lang->line("message_success")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("user_info_result_$result")."\n";
+      echo "</div>"."\n";
+    }
+    else{
+      echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">"."\n";
+      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+      echo "<strong>".$this->lang->line("message_warning")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("user_info_result_$result")."\n";
+      echo "</div>"."\n";
+    }
+  }
+?>
+<form id="defaultForm" method="post" action="<?php echo base_url('index.php/management/set_user_info');?>" class="form-horizontal" role="form">
 
-    <script src="<?php echo base_url('js/jquery/jquery-1.8.2.min.js');?>"></script>
-    <script src="<?php echo base_url('js/Validform_v5.3.2_min.js');?>"></script>   
-    <script>
-        $(function(){
-              $(".registerform").Validform({
-                  tiptype:function(msg,o,cssctl){
-                  //msg：提示信息;
-                  //o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
-                  //cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
-                
-                      if(!o.obj.is("form")){//验证表单元素时o.obj为该表单元素，全部验证通过提交表单时o.obj为该表单对象;
-                          var objtip=o.obj.next("div").find(".Validform_checktip");
-                          cssctl(objtip,o.type);
-                          objtip.text(msg);
+  <div class="form-group">    
+    <label for="inputdata1" class="col-sm-5 control-label"><?php echo $this->lang->line('user_info_username')?></label>
+    <div class="col-sm-4">
+      <input type="text" name="username" class="form-control" id="inputdata1" value="">
+    </div>
+  </div>
 
-                          var infoObj=o.obj.next("div").find(".info");
-                          if(o.type==2){
-                              infoObj.fadeOut(2000);
-                          }else{
-                              if(infoObj.is(":visible")){return;}
-                              var left=o.obj.offset().left,
-                              top=o.obj.offset().top;
+  <div class="form-group">    
+    <label for="inputdata2" class="col-sm-5 control-label"><?php echo $this->lang->line('user_info_old_password')?></label>
+    <div class="col-sm-4">
+      <input type="password" name="old_password" class="form-control" id="inputdata2" value="">
+    </div>
+  </div>
 
-                              infoObj.css({
-                                  left:left+200,
-                                  top:top-1
-                              }).show().animate({
-                                  left:left+180, 
-                              },200);
-                          }
-                      }
-                  },
-              });
-          })
-    </script>
+  <div class="form-group">    
+    <label for="inputdata3" class="col-sm-5 control-label"><?php echo $this->lang->line('user_info_new_password')?></label>
+    <div class="col-sm-4">
+      <input type="password" name="new_password" class="form-control" id="inputdata3" value="">
+    </div>
+  </div>
+
+  <div class="form-group">    
+    <label for="inputdata4" class="col-sm-5 control-label"><?php echo $this->lang->line('user_info_confirm_password')?></label>
+    <div class="col-sm-4">
+      <input type="password" name="confirm_password" class="form-control" id="inputdata4" value="">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-5 col-sm-2">
+      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_update')?></button>
+    </div>
+  </div>
+</form>
+
+<script>
+$(document).ready(function() {
+    $('#defaultForm').bootstrapValidator({
+        message: 'This value is not valid',
+        fields: {
+            username: {
+                message: 'The username is not valid',
+                validators: {
+                    notEmpty: {
+                        message: '<?php echo $this->lang->line('validform_null_username')?>'
+                    },
+                    stringLength: {
+                        min: 4,
+                        max: 18,
+                        message: '<?php echo $this->lang->line('validform_username')?>'
+                    }
+                }
+            },
+            old_password: {
+                message: 'The old_password is not valid',
+                validators: {
+                    notEmpty: {
+                        message: '<?php echo $this->lang->line('validform_null_old_password')?>'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 18,
+                        message: '<?php echo $this->lang->line('validform_old_password')?>'
+                    }
+                }
+            },
+            new_password: {
+                message: 'The new_password is not valid',
+                validators: {
+                    notEmpty: {
+                        message: '<?php echo $this->lang->line('validform_null_new_password')?>'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 18,
+                        message: '<?php echo $this->lang->line('validform_new_password')?>'
+                    }
+                }
+            },
+            confirm_password: {
+                message: 'The confirm_password is not valid',
+                validators: {
+                    notEmpty: {
+                        message: '<?php echo $this->lang->line('validform_null_confirm_password')?>'
+                    },
+                    identical: {
+                        field: 'new_password',
+                        message: '<?php echo $this->lang->line('validform_confirm_password')?>'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>

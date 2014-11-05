@@ -15,7 +15,7 @@ class Management extends CI_Controller {
 
         /* 设置系统语言 */
         $language = "english";
-        $fp = fopen("/etc/yuneng/language.conf",'r');
+        $fp = @fopen("/etc/yuneng/language.conf",'r');
         if($fp)
         {
             $language = fgets($fp);
@@ -104,9 +104,9 @@ class Management extends CI_Controller {
     }
 
     /* 设置语言 */
-    public function set_language()
+    public function set_language($language = "english")
     {      
-        $data = $this->management_model->set_language();
+        $data = $this->management_model->set_language($language);
         $this->language($data['result']);
     }
 

@@ -15,8 +15,7 @@ class Realtimedata_model extends CI_Model {
     {
         $curdata = array();
         $num = 0;
-        //$fp = fopen(APPPATH.'../../../parameters.conf', 'r');
-        $fp=fopen("/tmp/parameters.conf",'r');
+        $fp = @fopen("/tmp/parameters.conf",'r');
         if ($fp)
         {
             while(!feof($fp))
@@ -274,6 +273,27 @@ class Realtimedata_model extends CI_Model {
         $data['period'] = $period;
         $data['total'] = $total;
 
+        return $data;
+    }
+
+    //获取逆变器工作状态
+    public function get_inverter_status()
+    {
+       $temp = array();
+
+        $query = "SELECT id FROM id";
+        $result = $this->pdo->prepare($query);
+        if(!empty($result))
+        {
+            $result->execute();
+            $res = $result->fetchAll();
+            foreach ($res as $key => $value) {
+                $temp[$key] = $value[0];
+            }
+        }
+        
+        $data['ids'] = $temp;
+      
         return $data;
     }
 }

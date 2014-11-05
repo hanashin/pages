@@ -17,7 +17,7 @@
 
 <?php date_default_timezone_set($timezone);?>      
 <form class="form-horizontal" role="form" action="<?php echo base_url('index.php/management/set_datetime');?>" method="post">
-  <div class="form-group">    
+<!--   <div class="form-group">    
     <label for="inputdate" class="col-sm-5 control-label"><?php echo $this->lang->line('time_date')?></label>
     <div class="col-sm-4">
       <input type="text" name="date" class="form-control" id="inputdate" value="<?php echo date("Y-m-d",time());?>">
@@ -28,10 +28,27 @@
       <div class="col-sm-4">
         <input type="text" name="time" class="form-control" id="inputtime" value="<?php echo date("H:i:s",time());?>">
       </div>
-  </div>
+  </div> -->
+
+<!-- ceshi -->
+<div class="form-group">
+    <label for="inputdate" class="col-sm-5 control-label"><?php echo $this->lang->line('time_date')?></label>
+    <div class="input-group date form_date col-sm-4">
+        <input type="text" name="date" class="form-control" id="inputdate" value="<?php echo date("Y-m-d",time());?>">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+    </div>
+</div>
+<div class="form-group">
+    <label for="inputtime" class="col-sm-5 control-label"><?php echo $this->lang->line('time_time')?></label>
+    <div class="input-group date form_time col-sm-4">
+        <input type="text" name="time" class="form-control" id="inputtime" value="<?php echo date("H:i:s",time());?>">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+    </div>
+</div>
+
   <div class="form-group">
     <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('button_update')?></button>
+      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_update')?></button>
     </div>
   </div>
 </form>
@@ -599,7 +616,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('button_update')?></button>
+      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_update')?></button>
     </div>
   </div>
 </form>
@@ -613,7 +630,29 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('button_update')?></button>
+      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_update')?></button>
     </div>
   </div>
 </form>
+
+<script type="text/javascript">
+    $('.form_date').datetimepicker({
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0,
+        format: "yyyy-mm-dd"
+    });
+    $('.form_time').datetimepicker({
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0,
+        format: "hh:ii:ss"
+    });
+</script>

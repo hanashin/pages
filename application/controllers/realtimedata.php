@@ -14,7 +14,7 @@ class Realtimedata extends CI_Controller {
 
         /* 设置系统语言 */
         $language = "english";
-        $fp = fopen("/etc/yuneng/language.conf",'r');
+        $fp = @fopen("/etc/yuneng/language.conf",'r');
         if($fp)
         {
             $language = fgets($fp);
@@ -56,6 +56,17 @@ class Realtimedata extends CI_Controller {
         $data['func'] = "energy";
         $this->load->view('templates/header', $data);
         $this->load->view('realtimedata/energy_graph', $data);
+        $this->load->view('templates/footer');
+    }
+
+    /* 显示逆变器工作状态 */
+    public function inverter_status()
+    {      
+        $data = $this->realtimedata_model->get_inverter_status();
+        $data['page'] = $this->page;
+        $data['func'] = "inverter_status";
+        $this->load->view('templates/header', $data);
+        $this->load->view('realtimedata/inverter_status', $data);
         $this->load->view('templates/footer');
     }
 

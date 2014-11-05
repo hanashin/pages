@@ -196,7 +196,7 @@ class Configuration_model extends CI_Model {
             /* 将ECU本地页面变动数据存入数据库 */
             //ECU_id
             $ecuid = "000000000000";        
-            $fp = fopen("/etc/yuneng/ecuid.conf",'r');
+            $fp = @fopen("/etc/yuneng/ecuid.conf",'r');
             if($fp)
             {
                 $ecuid = fgets($fp);
@@ -313,9 +313,12 @@ class Configuration_model extends CI_Model {
     {
         $flag = intval($this->input->post('flag'));
 
-        $fp = fopen("/tmp/presetdata.conf", 'w');
-        fwrite($fp, "2");
-        fclose($fp);
+        $fp = @fopen("/tmp/presetdata.conf", 'w');
+        if ($fp)
+        {
+            fwrite($fp, "2");
+            fclose($fp);
+        }
 
         $data['flag'] = $flag;
 
@@ -694,7 +697,7 @@ class Configuration_model extends CI_Model {
         }     
 
         //获取每台逆变器的GFDI状态
-        $fp = fopen("/tmp/gfdiresult.txt", 'r');
+        $fp = @fopen("/tmp/gfdiresult.txt", 'r');
         if($fp)
         {            
             for ($i=0; $i<count($ids); $i++) 
@@ -768,7 +771,7 @@ class Configuration_model extends CI_Model {
         }       
 
         //获取每台逆变器的开关机状态
-        $fp = fopen("/tmp/connectresult.txt", 'r');
+        $fp = @fopen("/tmp/connectresult.txt", 'r');
         if($fp)
         {            
             for ($i=0; $i<count($ids); $i++) 

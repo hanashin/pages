@@ -1,44 +1,57 @@
-
+<?php
+  if(!empty($result)){
+    if(!strncmp($result, "success", 7)){
+      echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
+      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+      echo "<strong>".$this->lang->line("message_success")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("wlan_result_$result")."\n";
+      echo "</div>"."\n";
+    }
+    else{
+      echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">"."\n";
+      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
+      echo "<strong>".$this->lang->line("message_warning")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("wlan_result_$result")."\n";
+      echo "</div>"."\n";
+    }
+  }
+?>
 <form method="post" action="<?php echo base_url('index.php/management/set_wlan_mode');?>" class="form-horizontal" role="form">
   <fieldset>
-    <legend><?php echo $this->lang->line('wlan_mode')?></legend>
-
-    <div class="form-group">    
-      <div class="col-xs-6">
-         <p class="form-control-static"><?php echo $this->lang->line('wlan_mode_ap')?></p>
-      </div>
-      <div class="col-xs-4">
-         <p class="form-control-static"><?php echo $this->lang->line("wlan_ifconnect_$ifopen")?></p>
-      </div>
-      <div class="col-sm-2">
+    <legend><?php echo $this->lang->line('wlan_mode_ap')?>
+      <div class="btn-group">
         <input name="mode" type="hidden" value=2>
-        <button type="submit" class="btn btn-default btn-sm"><?php echo $this->lang->line('wlan_change_mode')?></button>
+        <button type="submit" class="btn btn-default btn-xs"><?php echo $this->lang->line('wlan_change_mode')?></button>
+      </div>
+    </legend>
+
+    <div class="form-group">
+      <label class="col-sm-4 control-label"><?php echo $this->lang->line('wlan_state')?></label>
+      <div class="col-sm-4">
+        <p class="form-control-static"><?php echo $this->lang->line("wlan_ifopen_$ifopen")?></p>
       </div>
     </div>
-  </fieldset>
-</form>
-
-<form method="post" action="<?php echo base_url('index.php/management/set_wlan_ap');?>" class="form-horizontal" role="form">
-  <?php
+    <?php
     //当前连接状态
-    if ($ifopen) {
-      echo "<fieldset>
-              <legend>".$this->lang->line('wlan_state')."</legend>
-
-              <div class=\"form-group\">    
-                <div class=\"col-xs-6\">
-                   <p class=\"form-control-static\">".$ssid."</p>
-                </div>
-                <div class=\"col-xs-4\">
-                   <p class=\"form-control-static\">".$ip."</p>
-                </div>
-                <div class=\"col-sm-2\">
-                  <button type=\"submit\" class=\"btn btn-default btn-sm\">".$this->lang->line('wlan_sta_disconnect')."</button>
-                </div>
+      if ($ifopen) {
+      echo "<div class=\"form-group\">
+              <label class=\"col-sm-4 control-label\">".$this->lang->line('wlan_ssid')."</label>
+              <div class=\"col-sm-4\">
+                <p class=\"form-control-static\">".$ssid."</p>
               </div>
-            </fieldset>";
-     } 
-  ?>
+            </div>
+            <div class=\"form-group\">
+              <label class=\"col-sm-4 control-label\">".$this->lang->line('wlan_ip_address')."</label>
+              <div class=\"col-sm-4\">
+                <p class=\"form-control-static\">".$ip."</p>
+              </div>
+            </div>";
+      } 
+    ?>
+<!--             <div class=\"form-group\">
+              <div class=\"col-sm-offset-4 col-sm-2\">
+                <button type=\"submit\" class=\"btn btn-default\">".$this->lang->line('wlan_sta_disconnect')."</button>
+              </div>
+            </div> -->
+  </fieldset>
 </form>
 
 <form id="defaultForm" method="post" action="<?php echo base_url('index.php/management/set_wlan_ap');?>" class="form-horizontal" role="form">
@@ -107,18 +120,15 @@
       <div class="col-sm-4">
         <input type="text" name="psk_wpa" class="form-control" id="inputdata5" placeholder="<?php echo $ap_info['psk'];?>">
       </div>
-    </div> 	       
+    </div>
   </fieldset>
 
   <div class="form-group">
     <div class="col-sm-offset-4 col-sm-2">
-      <button type="submit" class="btn btn-default"><?php echo $this->lang->line('button_save')?></button>
+      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_save')?></button>
     </div>
   </div>
 </form>
-<center>
-  <?php echo $this->lang->line("wlan_result_$result");?>
-</center>
 
 <script>
     function show_password(value) { 

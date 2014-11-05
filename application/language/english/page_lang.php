@@ -4,7 +4,8 @@
  */
 /* 标题 */
 	$lang['title'] = "Altenergy Power Control Software";
-	$lang['language'] = "English/Chinese";
+	$lang['title_ecu'] = "ENERGY COMMUNICATION UNIT";
+	$lang['language'] = "Language";
 	$lang['energy_control']="ENERGY CONTROL";
 	
 /* 通用 */
@@ -26,6 +27,7 @@
 	$lang['item_2_1'] = "Real-time Data";
 	$lang['item_2_2'] = "Power";
 	$lang['item_2_3'] = "Energy";
+	$lang['item_2_4'] = "Inverter Status";
 	$lang['item_3'] = "configuration";
 	$lang['item_3_1'] = "Protection Parameters";
 	$lang['item_3_2'] = "Ground Fault Protection";
@@ -78,6 +80,9 @@
 	$lang['energy_the_recent_week'] = "The Recent Week";
 	$lang['energy_the_recent_month'] = "The Recent Month";
 	$lang['energy_the_recent_year'] = "The Recent Year";
+	
+	//逆变器工作状态
+	$lang['function_inverter_status'] = "Inverter Status";
 	
 /* 参数配置 */
 
@@ -155,7 +160,7 @@
 	$lang['id_correct'] = "Update success";
 	$lang['id_error'] = "Format error";
 	
-	$lang['id_result_clear_id_success'] = "Clear ID successful";
+	$lang['id_result_clear_id_success'] = "Clear ID success";
 	//$lang['id_result_update_id_success'] = "更新ID成功";
 	
 	//时间管理
@@ -165,10 +170,10 @@
 	$lang['time_timezone'] = "Timezone";
 	$lang['time_ntp'] = "NTP Server";
 
-	$lang['time_result_success_datetime'] = "update datetime successful";
+	$lang['time_result_success_datetime'] = "update datetime success";
 	$lang['time_result_failed_datetime'] = "update datetime failed";	
-	$lang['time_result_success_timezone'] = "update timezone successful";	
-	$lang['time_result_success_ntp'] = "update ntp_server successful";
+	$lang['time_result_success_timezone'] = "update timezone success";	
+	$lang['time_result_success_ntp'] = "update ntp_server success";
 	
 	//语言管理
 	$lang['function_language'] = "Language";
@@ -189,10 +194,10 @@
 	$lang['network_preferred_dns_server'] = "Preferred DNS server";
 	$lang['network_alternate_dns_server'] = "Alternate DNS server";
 	
-	$lang['network_result_gprs_on_success'] = "Set GPRS success";
-	$lang['network_result_gprs_off_success'] = "Set GPRS success";
-	$lang['network_result_success_dhcp'] = "Set IP success";
-	$lang['network_result_success_static_ip'] = "Set IP success";
+	$lang['network_result_success_gprs_on'] = "Set GPRS success";
+	$lang['network_result_success_gprs_off'] = "Cancel GPRS success";
+	$lang['network_result_success_dhcp'] = "Set dynamic IP success";
+	$lang['network_result_success_static_ip'] = "Set static IP success";
 	
 	//用户管理
 	$lang['function_user_info'] = "User";
@@ -228,6 +233,7 @@
 	$lang['wlan_mode_sta'] = "STA mode";
 	$lang['wlan_ifconnect_1'] = "Connected";
 	$lang['wlan_ifconnect_0'] = "Disconnected";
+	$lang['wlan_sta_signals'] = "WLAN Nearby";
 	$lang['wlan_sta_ssid'] = "SSID";
 	$lang['wlan_sta_quality'] = "Quality";
 	$lang['wlan_sta_password'] = "Password";
@@ -238,14 +244,18 @@
 	$lang['wlan_result_success_set_ap'] = "Set Host mode parameter success";
 	$lang['wlan_result_success_connect_sta'] = "Connect WIFI success";
 	$lang['wlan_result_success_disconnect_sta'] = "Disconnect WIFI success";
+	$lang['wlan_result_failed_connect_sta'] = "Connect WIFI failed";
+	$lang['wlan_result_failed_wrong_password'] = "password error";
 	
 /* 显示数据库数据 */
 	//status
+	$lang['function_status'] = "Status";
+	$lang['function_status2'] = "Status2";
 	$lang['display_status_event_id'] = "Event Id";
 	$lang['display_status_event'] = "Event";
 	$lang['display_status_inverter_id'] = "Inverter ID";
 	$lang['display_status_date'] = "Date";
-		$lang['display_status_event_0'] = "AC Frequency under Range";
+	$lang['display_status_event_0'] = "AC Frequency under Range";
 	$lang['display_status_event_1'] = "AC Frequency exceeding Range";
 	$lang['display_status_event_2'] = "AC Voltage exceeding Range";
 	$lang['display_status_event_3'] = "AC Voltage under Range";
@@ -256,8 +266,13 @@
 	$lang['display_status_event_15'] = "HV protection";
 	$lang['display_status_event_16'] = "Over zero protection";
 	
+	//显示数据库
+	$lang['function_database'] = "Database";
+	$lang['function_historical_data'] = "Historical_data";
+	
 /* 隐藏功能 */
 	//debug
+	$lang['function_debug'] = "Debug";
 	$lang['debug_command_input'] = "Please enter a custom command";
 	$lang['debug_command_execute'] = "Execute";
 	$lang['debug_command_success'] = "Command Success";
@@ -265,36 +280,46 @@
 	$lang['debug_command_is_null'] = "Command cannot be empty";	
 	
 	//导数据
+	$lang['function_export_file'] = "Export Historical Data";
 	$lang['export_file_input'] = "Please enter start and end time";
 	$lang['export_file_export'] = "Export Historical Data";
 
 	//EMA服务器地址与端口
+        $lang['function_datacenter'] = "Datacenter";
 	$lang['datacenter_domain'] = "Domain Name";
 	$lang['datacenter_ip'] = "IP Address";
 	$lang['datacenter_port1'] = "Port 1";
 	$lang['datacenter_port2'] = "Port 2";
 	$lang['datacenter_update'] = "Update";
 	
-	$lang['datacenter_result_success'] = "success";
+	$lang['datacenter_result_success'] = "Server address and port has been modified";
 	
 	//自动更新服务器地址与端口
+	$lang['function_updatecenter'] = "Updatecenter";
 	$lang['updatecenter_domain'] = "Domain Name";
 	$lang['updatecenter_ip'] = "IP Address";
 	$lang['updatecenter_port'] = "Port";
 	$lang['updatecenter_update'] = "Update";
+	
+	$lang['updatecenter_result_success'] = "Server address and port has been modified";
 
 	//初始化数据库
+	$lang['function_initialize'] = "Initialize the database";
 	$lang['initialize_clear_energy'] = "Clear Energy";
-	$lang['initialize_success'] = "Clear energy successfully";
+	$lang['initialize_success'] = "Clear energy success";
 	$lang['initialize_failed'] = "Clear energy failed";
 	
 	//串口
+	$lang['function_serial'] = "Serial";
 	$lang['serial_switch'] = "Switch";
 	$lang['serial_switch_on'] = "On";
 	$lang['serial_switch_off'] = "Off";
 	$lang['serial_baud_rate'] = "Serial port baud rate";
 	$lang['serial_ecu_address'] = "ECU address";
 	$lang['serial_update'] = "Update";
+	
+	$lang['serial_result_success'] = "Serial has been modified";
+	$lang['serial_result_failed'] = "Serial modification fails";
 
 	
 ?>

@@ -13,7 +13,7 @@ class Home extends CI_Controller {
 
         /* 设置系统语言 */
         $language = "chinese";
-        $fp = fopen("/etc/yuneng/language.conf",'r');
+        $fp = @fopen("/etc/yuneng/language.conf",'r');
         if($fp)
         {
             $language = fgets($fp);
@@ -32,6 +32,15 @@ class Home extends CI_Controller {
         $data['func'] = "home";
         $this->load->view('templates/header', $data);
         $this->load->view('home', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function faq()
+    {
+        $data['page'] = $this->page;
+        $data['func'] = "faq";
+        $this->load->view('templates/header', $data);
+        $this->load->view('faq');
         $this->load->view('templates/footer');
     }
 

@@ -337,10 +337,11 @@ class Management_model extends CI_Model {
     }
 
     /* 设置语言信息 */
-    public function set_language() 
-    {        
-        $language = "english";
+    public function set_language($value)
+    {       
         $language = $this->input->post('language');
+        if(!strlen($language))
+            $language = $value;
         $fp = fopen("/etc/yuneng/language.conf",'w');
         if ($fp)
         {
@@ -937,7 +938,7 @@ class Management_model extends CI_Model {
 
         //获得要连接的wifi信号的信息
         $ssid_id = $this->input->post('ssid_id');
-        $ifconnect = $this->input->post("ifconnect");
+        $ifconnect = $this->input->post("ifconnect$ssid_id");
         $ssid = $this->input->post("ssid$ssid_id");
         $ifkey = $this->input->post("ifkey$ssid_id");
         $psk = $this->input->post("psk$ssid_id");
@@ -1031,11 +1032,13 @@ class Management_model extends CI_Model {
                 {
                     //分配IP地址失败
                     system("killall wpa_supplicant");
+                    $data['result'] = "failed_connect_sta";
                 }
             }
             else
             {
                 //密码错误
+                $data['result'] = "failed_wrong_password";
             }
 
         }

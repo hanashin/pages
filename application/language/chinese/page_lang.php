@@ -4,7 +4,8 @@
  */
 /* 标题 */
 	$lang['title'] = "昱能科技能量控制软件";
-	$lang['language'] = "中文/英文";
+	$lang['title_ecu'] = "能量通信器 (ECU)";
+	$lang['language'] = "切换语言";
 	$lang['energy_control']="能量控制";
 	
 /* 通用 */
@@ -26,6 +27,7 @@
 	$lang['item_2_1'] = "实时数据";
 	$lang['item_2_2'] = "功率曲线图";
 	$lang['item_2_3'] = "能量柱状图";
+	$lang['item_2_4'] = "逆变器状态";	
 	$lang['item_3'] = "参数配置";
 	$lang['item_3_1'] = "保护参数设置";
 	$lang['item_3_2'] = "接地故障保护";
@@ -37,7 +39,7 @@
 	$lang['item_4_3'] = "语言管理";
 	$lang['item_4_4'] = "网络管理";
 	$lang['item_4_5'] = "用户管理";
-	$lang['item_4_6'] = "无线网络";
+	$lang['item_4_6'] = "无线网络管理";
 	
 /* 主页 */
 	$lang['function_home'] = "主页";
@@ -78,6 +80,9 @@
 	$lang['energy_the_recent_week'] = "最近一周";
 	$lang['energy_the_recent_month'] = "最近一月";
 	$lang['energy_the_recent_year'] = "最近一年";
+	
+	//逆变器工作状态
+	$lang['function_inverter_status'] = "逆变器状态";
 	
 /* 参数配置 */
 
@@ -189,8 +194,8 @@
 	$lang['network_preferred_dns_server'] = "首选 DNS 服务器";
 	$lang['network_alternate_dns_server'] = "备用 DNS 服务器";
 	
-	$lang['network_result_gprs_on'] = "设置GPRS成功";
-	$lang['network_result_gprs_off'] = "取消GPRS成功";
+	$lang['network_result_success_gprs_on'] = "设置GPRS成功";
+	$lang['network_result_success_gprs_off'] = "取消GPRS成功";
 	$lang['network_result_success_dhcp'] = "设置动态IP成功";
 	$lang['network_result_success_static_ip'] = "设置静态IP成功";
 	
@@ -228,6 +233,7 @@
 	$lang['wlan_mode_sta'] = "从机模式";
 	$lang['wlan_ifconnect_1'] = "已连接";
 	$lang['wlan_ifconnect_0'] = "未连接";
+	$lang['wlan_sta_signals'] = "附近的WLAN";
 	$lang['wlan_sta_ssid'] = "信号名称";
 	$lang['wlan_sta_quality'] = "信号强度";
 	$lang['wlan_sta_password'] = "密码";
@@ -238,9 +244,13 @@
 	$lang['wlan_result_success_set_ap'] = "设置主机模式参数成功";
 	$lang['wlan_result_success_connect_sta'] = "连接WIFI成功";
 	$lang['wlan_result_success_disconnect_sta'] = "断开WIFI成功";
+	$lang['wlan_result_failed_connect_sta'] = "连接WIFI失败";
+	$lang['wlan_result_failed_wrong_password'] = "密码错误";
 	
 /* 显示数据库数据 */
 	//status
+	$lang['function_status'] = "状态";
+	$lang['function_status2'] = "状态2";
 	$lang['display_status_event_id'] = "事件编号";
 	$lang['display_status_event'] = "状态";
 	$lang['display_status_inverter_id'] = "逆变器ID";
@@ -256,8 +266,13 @@
 	$lang['display_status_event_15'] = "HV 保护";
 	$lang['display_status_event_16'] = "过零保护";
 	
+	//显示数据库
+	$lang['function_database'] = "数据库";
+	$lang['function_historical_data'] = "历史数据库";
+	
 /* 隐藏功能 */
 	//debug
+	$lang['function_debug'] = "调试";
 	$lang['debug_command_input'] = "请输入自定义命令";
 	$lang['debug_command_execute'] = "执行";
 	$lang['debug_command_success'] = "执行成功";
@@ -265,36 +280,46 @@
 	$lang['debug_command_is_null'] = "命令不能为空";
 
 	//导数据
+	$lang['function_export_file'] = "导出历史数据";
 	$lang['export_file_input'] = "请输入起止时间";
 	$lang['export_file_export'] = "导出历史数据";
 	
 	//EMA服务器地址与端口
+	$lang['function_datacenter'] = "数据服务器";
 	$lang['datacenter_domain'] = "域名";
 	$lang['datacenter_ip'] = "IP 地址";
 	$lang['datacenter_port1'] = "端口 1";
 	$lang['datacenter_port2'] = "端口 2";
 	$lang['datacenter_update'] = "确定";
 	
-	$lang['datacenter_result_success'] = "设置成功";
+	$lang['datacenter_result_success'] = "服务器地址与端口已修改";
 	
 	//自动更新服务器地址与端口
+	$lang['function_updatecenter'] = "自动更新服务器";
 	$lang['updatecenter_domain'] = "域名";
 	$lang['updatecenter_ip'] = "IP 地址";
 	$lang['updatecenter_port'] = "端口";
 	$lang['updatecenter_update'] = "确定";
 	
+	$lang['updatecenter_result_success'] = "服务器地址与端口已修改";
+	
 	//初始化数据库
+	$lang['function_initialize'] = "初始化数据库";
 	$lang['initialize_clear_energy'] = "清除历史发电量";
 	$lang['initialize_success'] = "清除成功";
 	$lang['initialize_failed'] = "清除失败";
 	
 	//串口
+	$lang['function_serial'] = "串口设置";
 	$lang['serial_switch'] = "串口开关";
 	$lang['serial_switch_on'] = "开启";
 	$lang['serial_switch_off'] = "关闭";
 	$lang['serial_baud_rate'] = "串口波特率";
 	$lang['serial_ecu_address'] = "ECU 地址";
 	$lang['serial_update'] = "确定";
+	
+	$lang['serial_result_success'] = "串口已修改";
+	$lang['serial_result_failed'] = "串口修改失败";
 
 	
 ?>

@@ -263,8 +263,8 @@ class Hidden_model extends CI_Model {
         $result = 0;
 
         system("killall main.exe");
-        $this->pdo->exec("UPDATE ltpower SET power=0.0 WHERE item =1");
-        $this->pdo->exec("DELETE FROM tdpower");
+        if(FALSE === $this->pdo->exec("UPDATE ltpower SET power=0.0 WHERE item =1"))$result = 1;
+        if(FALSE === $this->pdo->exec("DELETE FROM tdpower"))$result = 1;        
 
         $data['result'] = $result;
       
@@ -302,7 +302,7 @@ class Hidden_model extends CI_Model {
         $ecu_address = intval($this->input->post('ecu_address'));
         if($ecu_address>0 && $ecu_address<128)
         {
-            $fp = fopen("/etc/yuneng/serial.conf", 'w');
+            $fp = @fopen("/etc/yuneng/serial.conf", 'w');
             if($fp)
             {
                 fwrite($fp, $serial_switch."\n");
@@ -311,6 +311,10 @@ class Hidden_model extends CI_Model {
                 fclose($fp);
 
                 $data['result'] = "success";
+            }
+            else
+            {
+                $data['result'] = "failed";
             }
         }
 
