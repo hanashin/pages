@@ -66,8 +66,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-left">
               <li><a href="<?php echo base_url('index.php/home');?>" class="active"><span class="glyphicon energy-control">&#9728;</span><?php echo $this->lang->line('energy_control')?></a></li>
-              <li><a href="#"><span class="glyphicon">&#9889;</span>...</a></li>
-              <li><a href="<?php echo base_url('index.php/home/faq');?>"<?php if(!strncmp($page, "faq", 3)){echo " class=\"active\"";}?>><span class="glyphicon">?</span>FAQ</a></li>
+              <li><a href="<?php echo base_url('index.php/home/faq');?>"><span class="glyphicon">&#9889;</span>页面测试说明</a></li>
+              <li><a href="#"><span class="glyphicon">?</span>FAQ</a></li>
             </ul>            
           </div>
         </div>

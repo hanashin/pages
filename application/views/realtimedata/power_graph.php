@@ -1,16 +1,19 @@
-<div>
-    <?php echo form_open('realtimedata/power_graph');?>
-    <center>
-        <input class="Wdate" type="text" name="date" value="<?php echo $date;?>" onClick="WdatePicker({maxDate:'%y-%M-%d', <?php echo $this->lang->line('graph_language')?>})">
+<form class="form-horizontal" role="form" action="<?php echo base_url('index.php/realtimedata/power_graph');?>" method="post">
+    <div class="col-sm-offset-3 col-sm-3 has-feedback">
+        <input class="Wdate form-control input-sm" type="text" name="date" value="<?php echo $date;?>" onClick="WdatePicker({maxDate:'%y-%M-%d', <?php echo $this->lang->line('graph_language')?>})">
+        <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+    </div>
+    <div class="col-sm-5">
+      <div>
         <button type="submit" class="btn btn-default btn-sm"><?php echo $this->lang->line('button_query')?></button>
-        <span class="label label-warning"><?php echo $this->lang->line('graph_value_energy').": ".$today_energy." kWh";?></span>
-    </center>
-    </center>
-    </from>
-    <center>
+        <span class="btn-warning btn-sm"><?php echo $this->lang->line('graph_value_energy').": ".$today_energy." kWh";?></span>
+      </div>
+    </div>        
+</from>
+<div class="col-sm-12 mychart">
     <div id="myChart" width="800" height="400"></div>
-</center>
 </div>
+
     <script src="<?php echo base_url('js/datepicker/WdatePicker.js');?>"></script>
     <script src="<?php echo base_url('js/jquery/jquery-1.8.2.min.js');?>"></script>
     <script src="<?php echo base_url('js/highcharts.js');?>"></script>
