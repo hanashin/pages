@@ -625,7 +625,7 @@
   <div class="form-group">    
     <label for="inputtime" class="col-sm-5 control-label"><?php echo $this->lang->line('time_ntp')?></label>
     <div class="col-sm-4">
-      <input type="text" name="date" class="form-control" id="inputtime" value="<?php echo "$ntp";?>">
+      <input type="text" name="ntp" class="form-control" id="inputtime" value="<?php echo "$ntp";?>">
     </div>
   </div>
   <div class="form-group">

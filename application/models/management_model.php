@@ -222,19 +222,20 @@ class Management_model extends CI_Model {
             }
 
             //设置linux系统时间
-            date_default_timezone_set("MST7MDT");
+            date_default_timezone_set("UTC");
             $datetime = getdate($timestamp);
-            $cmd = sprintf("date -s %02d%02d%02d%02d%04d.%02d",
+            $cmd = sprintf("date %02d%02d%02d%02d%04d.%02d > /dev/null &",
                     $datetime['mon'], $datetime['mday'], $datetime['hours'],
                     $datetime['minutes'], $datetime['year'], $datetime['seconds']);
-            echo "<!--";
-            system($cmd);
-            echo "-->";
+             echo "<!--";
+             system($cmd);
+             echo "-->";
 
             $data['result'] = "success_datetime";
         }
         else
         {
+            //格式错误，转换为时间戳失败
             $data['result'] = "failed_datetime";
         }
 
@@ -309,13 +310,18 @@ class Management_model extends CI_Model {
 
         //获取页面输入的NTP服务器地址
         $ntp = $this->input->post('ntp');
-
         //保存NTP服务器地址
         $fp=fopen("/etc/yuneng/ntp_server.conf",'w');
-        fwrite($fp, $ntp);
-        fclose($fp);
-
-        $data['result'] = "success_ntp";
+        if($fp)
+        {
+            fwrite($fp, $ntp);
+            fclose($fp);
+            $data['result'] = "success_ntp";
+        }
+        else 
+        {
+            $data['result'] = "failed_ntp";
+        }
 
         return $data;
     }
@@ -445,8 +451,11 @@ class Management_model extends CI_Model {
 
         //将标志位写入文件
         $fp=fopen("/etc/yuneng/gprs.conf",'w');
-        fwrite($fp, $gprs);
-        fclose($fp);
+        if ($fp)
+        {
+            fwrite($fp, $gprs);
+            fclose($fp);
+        }
 
         //重启主函数
         system("killall main.exe");
@@ -610,7 +619,7 @@ class Management_model extends CI_Model {
         $data['ssid'] = "-";
         $data['ifconnect'] = 0;
         $data['ifopen'] = 0;
-        system("/sbin/iwconfig >/tmp/wifi_temp.conf");
+        system("/bin/iwconfig >/tmp/wifi_temp.conf");
         $fp = fopen("/tmp/wifi_temp.conf", 'r');
         if($fp)
         {
@@ -689,7 +698,7 @@ class Management_model extends CI_Model {
             /* 从机模式 */
 
             //扫描无线信号，筛选出SSID、信号强度、加密方式并保存到临时文件
-            system("/sbin/iwlist scan | grep -E \"SSID|Quality|Encryption|Group\" | sed 's/^ *//' >/tmp/wifi_temp.conf");
+            system("/bin/iwlist scan | grep -E \"SSID|Quality|Encryption|Group\" | sed 's/^ *//' >/tmp/wifi_temp.conf");
 
             //读取扫描到的wifi信号及信息
             $data['wifi_signals'] = "";
@@ -764,7 +773,7 @@ class Management_model extends CI_Model {
             usleep(1000);
 
             //设置模式为主机模式
-            system("/sbin/iwconfig wlan0 mode master");
+            system("/bin/iwconfig wlan0 mode master");
             usleep(1000);
 
             //设置主机IP地址
@@ -773,6 +782,11 @@ class Management_model extends CI_Model {
 
             //建立AP    
             $ret = system("hostapd /etc/yuneng/wifi_ap_info.conf -B");
+            if(NULL != $ret)
+            {
+                $data['result'] = "failed_change_mode";
+                return $data;
+            }
             usleep(10000);
 
             if(!$ret)
@@ -806,7 +820,7 @@ class Management_model extends CI_Model {
             usleep(10000);
             
             //设置模式为从机模式
-            system("/sbin/iwconfig wlan0 mode managed");
+            system("/bin/iwconfig wlan0 mode managed");
             usleep(1000);
 
             //连接路由器
@@ -854,54 +868,57 @@ class Management_model extends CI_Model {
         {
             //保存主机模式参数到"/tmp/hostapd.conf"
             $fp = fopen("/tmp/hostapd.conf", 'w');
-            fwrite($fp, "#SSID=".$ssid."\n");
-            fwrite($fp, "#channel=".$channel."\n");
-            switch ($method) {
-                case '0':
-                    fwrite($fp, "#method=0\n");
-                    break;
-                case '1':
-                    fwrite($fp, "#method=1\n");
-                    fwrite($fp, "#psk=".$psk."\n");
-                    break;
-                case '2':
-                    fwrite($fp, "#method=2\n");
-                    fwrite($fp, "#psk=".$psk."\n");
-                    break;            
-                default:
-                    # code...
-                    break;
+            if($fp)
+            {
+                fwrite($fp, "#SSID=".$ssid."\n");
+                fwrite($fp, "#channel=".$channel."\n");
+                switch ($method) {
+                    case '0':
+                        fwrite($fp, "#method=0\n");
+                        break;
+                    case '1':
+                        fwrite($fp, "#method=1\n");
+                        fwrite($fp, "#psk=".$psk."\n");
+                        break;
+                    case '2':
+                        fwrite($fp, "#method=2\n");
+                        fwrite($fp, "#psk=".$psk."\n");
+                        break;            
+                    default:
+                        # code...
+                        break;
+                }
+                fwrite($fp, "interface=wlan0\n");
+                fwrite($fp, "driver=ar6000\n");
+                fwrite($fp, "ssid=".$ssid."\n");
+                fwrite($fp, "channel=".$channel."\n");
+                fwrite($fp, "ignore_broadcast_ssid=0\n");
+                switch ($method) {
+                    case '0':
+                        # code...
+                        break;
+                    case '1':
+                        //WEP
+                        fwrite($fp, "auth_algs=1\n");
+                        fwrite($fp, "wep_key0=\"".$psk."\"\n");
+                        fwrite($fp, "wep_key1=1111111111\n");
+                        fwrite($fp, "wep_key2=2222222222\n");
+                        fwrite($fp, "wep_key3=3333333333\n");
+                        fwrite($fp, "wep_default_key=0\n");
+                        break;
+                    case '2':
+                        //WPA
+                        fwrite($fp, "wpa=2\n");                
+                        fwrite($fp, "wpa_key_mgmt=WPA-PSK\n");
+                        fwrite($fp, "wpa_pairwise=CCMP TKIP\n");
+                        fwrite($fp, "wpa_passphrase=".$psk."\n");
+                        break;            
+                    default:
+                        # code...
+                        break;
+                }
+                fclose($fp);
             }
-            fwrite($fp, "interface=wlan0\n");
-            fwrite($fp, "driver=ar6000\n");
-            fwrite($fp, "ssid=".$ssid."\n");
-            fwrite($fp, "channel=".$channel."\n");
-            fwrite($fp, "ignore_broadcast_ssid=0\n");
-            switch ($method) {
-                case '0':
-                    # code...
-                    break;
-                case '1':
-                    //WEP
-                    fwrite($fp, "auth_algs=1\n");
-                    fwrite($fp, "wep_key0=\"".$psk."\"\n");
-                    fwrite($fp, "wep_key1=1111111111\n");
-                    fwrite($fp, "wep_key2=2222222222\n");
-                    fwrite($fp, "wep_key3=3333333333\n");
-                    fwrite($fp, "wep_default_key=0\n");
-                    break;
-                case '2':
-                    //WPA
-                    fwrite($fp, "wpa=2\n");                
-                    fwrite($fp, "wpa_key_mgmt=WPA-PSK\n");
-                    fwrite($fp, "wpa_pairwise=CCMP TKIP\n");
-                    fwrite($fp, "wpa_passphrase=".$psk."\n");
-                    break;            
-                default:
-                    # code...
-                    break;
-            }
-            fclose($fp);
 
             //设置主机模式参数
             if($method == 1)
@@ -911,13 +928,17 @@ class Management_model extends CI_Model {
                 sleep(1);
                 system("/sbin/insmod /home/modules/ar6000.ko fwpath=/home/");
                 sleep(1);
-                system("/sbin/iwconfig wlan0 mode master");
+                system("/bin/iwconfig wlan0 mode master");
                 usleep(100000);
             }
             system("/sbin/ifconfig wlan0 192.168.0.1");
             usleep(100000);
             $ret = system("hostapd /tmp/hostapd.conf -B");
-            echo $ret;
+            if(NULL != $ret)
+            {
+                $data['result'] = "failed_set_ap";
+                return $data;
+            }
             sleep(1);
             system("/usr/sbin/udhcpd /etc/yuneng/udhcpd.conf");
             usleep(100000);
@@ -926,7 +947,6 @@ class Management_model extends CI_Model {
 
             $data['result'] = "success_set_ap";
         }
-
         return $data;
     }
 

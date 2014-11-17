@@ -10,7 +10,7 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
 ::-webkit-selection { background:#eb7203; color:#fff;} 
 
 /*------------------------------------------------------
-    导航栏-顶部 
+    顶部导航栏
 --------------------------------------------------------*/
 .navbar-top {
   background-color: #fff;
@@ -102,7 +102,7 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
 }
 
 /*------------------------------------------------------
-    导航栏-橙色 
+    橙色导航栏
 --------------------------------------------------------*/
 .navbar-orange{
   background-color: #eb7203;
@@ -169,7 +169,7 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
 }
 
 /*------------------------------------------------------
-    页面主体 
+    主体内容
 --------------------------------------------------------*/
 .container-main {  
   padding-right: 0px;
@@ -177,7 +177,7 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
 }
 
 /*------------------------------------------------------
-    面板 
+    面板
 --------------------------------------------------------*/
 @media (max-width: 767px) {
   .container-main article {
@@ -224,7 +224,7 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
 
 
 /*------------------------------------------------------
-    列表组 
+    列表
 --------------------------------------------------------*/
 .container-main .list-group .active {
   border-color: #99cc33;
@@ -242,7 +242,7 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
 }
 
 /*------------------------------------------------------
-    隐藏按钮
+    按钮下拉菜单
 --------------------------------------------------------*/
 .container-main .dropdown-menu{
   padding: 0px;
@@ -253,17 +253,7 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
 }
 
 /*------------------------------------------------------
-    路径导航 
---------------------------------------------------------*/
-.container-main .breadcrumb {
-  padding: 0px 15px;
-  margin-bottom: 0px;
-  color: white;
-  background-color: transparent;
-}
-
-/*------------------------------------------------------
-    表格 
+    响应式表格
 --------------------------------------------------------*/
 @-moz-document url-prefix() {
   fieldset { display: table-cell; }
@@ -330,15 +320,15 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
 }
 
 /*------------------------------------------------------
-    图标 
+    图表
 --------------------------------------------------------*/
 .mychart {
-  padding: 15px 0px;
+  padding: 10px 0px;
   margin: 0px;
 }
 
 /*------------------------------------------------------
-    页脚 
+    底部
 --------------------------------------------------------*/
 .footer{
   background-color: #56565a;

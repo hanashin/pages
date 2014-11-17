@@ -1,23 +1,18 @@
 <form class="form-horizontal" role="form" action="<?php echo base_url('index.php/realtimedata/energy_graph');?>" method="post">
-    <div class="col-sm-offset-1 col-sm-3">
-        <select name='period' class="form-control input-sm">
+    <center>
+        <select name="period">
               <option value="weekly" <?php if(!strncmp($period, "weekly", 6))echo "selected=\"selected\"";?>><?php echo $this->lang->line('energy_the_recent_week')?></option>
               <option value="monthly" <?php if(!strncmp($period, "monthly", 7))echo "selected=\"selected\"";?>><?php echo $this->lang->line('energy_the_recent_month')?></option>
               <option value="yearly" <?php if(!strncmp($period, "yearly", 6))echo "selected=\"selected\"";?>><?php echo $this->lang->line('energy_the_recent_year')?></option>
         </select>
-    </div>
-    <div class="col-sm-3 has-feedback">
-        <input class="Wdate form-control input-sm" type="text" name="date" value="<?php echo $date;?>" onClick="WdatePicker({maxDate:'%y-%M-%d', <?php echo $this->lang->line('graph_language')?>})">
-        <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
-    </div>
-    <div class="col-sm-5">
-      <div>
-        <button type="submit" class="btn btn-default btn-sm"><?php echo $this->lang->line('button_query')?></button>
-        <span class="btn-warning btn-sm"><?php echo $this->lang->line('graph_value_energy').": ".$total." kWh";?></span>
-      </div>
-    </div>        
+        <input class="Wdate" type="text" name="date" value="<?php echo $date;?>" onClick="WdatePicker({maxDate:'%y-%M-%d', <?php echo $this->lang->line('graph_language')?>})">
+        <button type="submit" class="btn btn-default btn-xs"><?php echo $this->lang->line('button_query')?></button>
+    </center>
+    <center>
+        <span class="btn-warning btn-xs"><?php echo $this->lang->line('graph_value_energy').": ".$total." kWh";?></span>
+    </center>        
 </from>
-<div class="col-sm-12 mychart">
+<div class="mychart">
     <div id="myChart" width="800" height="400"></div>
 </div>
 
