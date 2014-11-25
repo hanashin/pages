@@ -13,7 +13,7 @@
           <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_update')?></button>
         </div>
         <div class="btn-group">
-          <a href="<?php echo base_url('index.php/management/set_id_clear');?>" class="btn btn-danger btn-sm"><?php echo $this->lang->line('id_clear_id')?></a>
+          <a href="<?php echo base_url('index.php/management/set_id_clear');?>" class="btn btn-primary btn-sm"><?php echo $this->lang->line('id_clear_id')?></a>
         </div>
       </div>
     </div>

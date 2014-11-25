@@ -485,10 +485,13 @@ class Management_model extends CI_Model {
             fwrite($fp, $dhcp);
             fclose($fp);
 
-            echo "<!--";
-            system("killall udhcpc");
-            system("/sbin/udhcpc &");
-            echo "-->";
+//             echo "<!--";
+//             system("killall udhcpc");
+//             system("/sbin/udhcpc &");
+//             echo "-->";
+
+            //重启ECU
+            system("/sbin/reboot");
 
             $data['result'] = "success_dhcp";
         }
@@ -526,14 +529,17 @@ class Management_model extends CI_Model {
             fwrite($fp, $dhcp);
             fclose($fp);
 
-            echo "<!--";
-            system("killall network.exe");
-            system("killall udhcpc");
-            system("/etc/init.d/S40network stop");
-            sleep(1);
-            system("/etc/init.d/S40network start");
-            system("killall main.exe");
-            echo "-->";
+//             echo "<!--";
+//             system("killall network.exe");
+//             system("killall udhcpc");
+//             system("/etc/init.d/S40network stop");
+//             sleep(1);
+//             system("/etc/init.d/S40network start");
+//             system("killall main.exe");
+//             echo "-->";
+
+            //重启ECU
+            system("/sbin/reboot");
 
             $data['result'] = "success_static_ip";        
         }
@@ -619,7 +625,7 @@ class Management_model extends CI_Model {
         $data['ssid'] = "-";
         $data['ifconnect'] = 0;
         $data['ifopen'] = 0;
-        system("/bin/iwconfig >/tmp/wifi_temp.conf");
+        system("/usr/sbin/iwconfig >/tmp/wifi_temp.conf");
         $fp = fopen("/tmp/wifi_temp.conf", 'r');
         if($fp)
         {
@@ -698,7 +704,7 @@ class Management_model extends CI_Model {
             /* 从机模式 */
 
             //扫描无线信号，筛选出SSID、信号强度、加密方式并保存到临时文件
-            system("/bin/iwlist scan | grep -E \"SSID|Quality|Encryption|Group\" | sed 's/^ *//' >/tmp/wifi_temp.conf");
+            system("/usr/sbin/iwlist scan | grep -E \"SSID|Quality|Encryption|Group\" | sed 's/^ *//' >/tmp/wifi_temp.conf");
 
             //读取扫描到的wifi信号及信息
             $data['wifi_signals'] = "";
@@ -768,35 +774,35 @@ class Management_model extends CI_Model {
             fwrite($fp, $mode);
             fclose($fp);
 
-            //断开wifi连接
-            system("killall wpa_supplicant");
-            usleep(1000);
+//             //断开wifi连接
+//             system("killall wpa_supplicant");
+//             usleep(1000);
 
-            //设置模式为主机模式
-            system("/bin/iwconfig wlan0 mode master");
-            usleep(1000);
+//             //设置模式为主机模式
+//             system("/usr/sbin/iwconfig wlan0 mode master");
+//             usleep(1000);
 
-            //设置主机IP地址
-            system("/sbin/ifconfig wlan0 192.168.0.1");
-            usleep(1000);
+//             //设置主机IP地址
+//             system("/sbin/ifconfig wlan0 192.168.0.1");
+//             usleep(1000);
 
-            //建立AP    
-            $ret = system("hostapd /etc/yuneng/wifi_ap_info.conf -B");
-            if(NULL != $ret)
-            {
-                $data['result'] = "failed_change_mode";
-                return $data;
-            }
-            usleep(10000);
+//             //建立AP    
+//             $ret = system("/usr/sbin/hostapd /etc/yuneng/wifi_ap_info.conf -B");
+//             if(NULL != $ret)
+//             {
+//                 $data['result'] = "failed_change_mode";
+//                 return $data;
+//             }
+//             usleep(10000);
 
-            if(!$ret)
-            {
-                //自动为连接的设备分配IP
-                system("/usr/sbin/udhcpd /etc/yuneng/udhcpd.conf");
-                usleep(1000);
+//             if(!$ret)
+//             {
+//                 //自动为连接的设备分配IP
+//                 system("/usr/sbin/udhcpd /etc/yuneng/udhcpd_wlan0.conf");
+//                 usleep(1000);
 
-                $data['result'] = "success_change_mode";
-            }
+//                 $data['result'] = "success_change_mode";
+//             }
         }
 
          if($mode == 2)
@@ -807,41 +813,43 @@ class Management_model extends CI_Model {
             fwrite($fp, $mode);
             fclose($fp);
 
-            //关闭AP
-            system("killall udhcpd");
-            system("killall hostapd");
+//             //关闭AP
+//             system("killall udhcpd");
+//             system("killall hostapd");
 
-            //卸载模块驱动
-            system("/sbin/rmmod ar6000");
-            usleep(10000);
+//             //卸载模块驱动
+//             system("/sbin/rmmod ar6000");
+//             usleep(10000);
 
-            //加载模块驱动
-            system("/sbin/insmod /home/modules/ar6000.ko fwpath=/home/");
-            usleep(10000);
+//             //加载模块驱动
+//             system("/sbin/insmod /home/modules/ar6000.ko fwpath=/home/");
+//             usleep(10000);
             
-            //设置模式为从机模式
-            system("/bin/iwconfig wlan0 mode managed");
-            usleep(1000);
+//             //设置模式为从机模式
+//             system("/usr/sbin/iwconfig wlan0 mode managed");
+//             usleep(1000);
 
-            //连接路由器
-            $ret = system("wpa_supplicant -Dwext -i wlan0 -c /etc/yuneng/wifi_signal_info.conf -B");
-            sleep(1);
+//             //连接路由器
+//             $ret = system("/usr/sbin/wpa_supplicant -Dwext -i wlan0 -c /etc/yuneng/wifi_signal_info.conf -B");
+//             sleep(1);
 
-            if(!$ret)
-            {
-                //向路由器请求分配IP地址
-                echo "<!--";
-                $flag = system("/sbin/udhcpc -nq -i wlan0");
-                echo "-->";
-                sleep(1);
-                if(!$flag)
-                {
-                    //连接成功
-                    $data['result'] = "success_change_mode";
-                }
-            }
+//             if(!$ret)
+//             {
+//                 //向路由器请求分配IP地址
+//                 echo "<!--";
+//                 $flag = system("/sbin/udhcpc -nq -i wlan0");
+//                 echo "-->";
+//                 sleep(1);
+//                 if(!$flag)
+//                 {
+//                     //连接成功
+//                     $data['result'] = "success_change_mode";
+//                 }
+//             }
         }
-
+        //重启ECU
+        system("/sbin/reboot");
+        $data['result'] = "success_change_mode";
         return $data;
     }
 
@@ -851,9 +859,9 @@ class Management_model extends CI_Model {
         $data = array();
         $data['result'] = "";
 
-        //关闭原有AP
-        system("killall udhcpd");
-        system("killall hostapd");
+//         //关闭原有AP
+//         system("killall udhcpd");
+//         system("killall hostapd");
 
         //获取主机模式参数
         $ssid = $this->input->post('SSID');
@@ -921,29 +929,33 @@ class Management_model extends CI_Model {
             }
 
             //设置主机模式参数
-            if($method == 1)
-            {
-                //WEP类型需要重新加载驱动
-                system("/sbin/rmmod ar6000");
-                sleep(1);
-                system("/sbin/insmod /home/modules/ar6000.ko fwpath=/home/");
-                sleep(1);
-                system("/bin/iwconfig wlan0 mode master");
-                usleep(100000);
-            }
-            system("/sbin/ifconfig wlan0 192.168.0.1");
-            usleep(100000);
-            $ret = system("hostapd /tmp/hostapd.conf -B");
-            if(NULL != $ret)
-            {
-                $data['result'] = "failed_set_ap";
-                return $data;
-            }
-            sleep(1);
-            system("/usr/sbin/udhcpd /etc/yuneng/udhcpd.conf");
-            usleep(100000);
+//             if($method == 1)
+//             {
+//                 //WEP类型需要重新加载驱动
+//                 system("/sbin/rmmod ar6000");
+//                 sleep(1);
+//                 system("/sbin/insmod /home/modules/ar6000.ko fwpath=/home/");
+//                 sleep(1);
+//                 system("/usr/sbin/iwconfig wlan0 mode master");
+//                 usleep(100000);
+//             }
+//             system("/sbin/ifconfig wlan0 192.168.0.1");
+//             usleep(100000);
+//             $ret = system("/usr/sbin/hostapd /tmp/hostapd.conf -B");
+//             if(NULL != $ret)
+//             {
+//                 $data['result'] = "failed_set_ap";
+//                 return $data;
+//             }
+//             sleep(1);
+//             system("/usr/sbin/udhcpd /etc/yuneng/udhcpd_wlan0.conf");
+//             usleep(100000);
+
             system("cp /tmp/hostapd.conf /etc/yuneng/wifi_ap_info.conf");
             usleep(100000);
+            
+            //重启ECU
+            system("/sbin/reboot");
 
             $data['result'] = "success_set_ap";
         }
@@ -1021,7 +1033,7 @@ class Management_model extends CI_Model {
                 $flag = system("/sbin/udhcpc -nq -i wlan0");
                 echo "-->";
                 sleep(1);
-                if(!strncmp($flag, "adding dns", 10))
+                if(substr_count($flag, "Adding DNS"))
                 {
                     //连接成功
                     system("cp /tmp/wpa_supplicant.conf /etc/yuneng/wifi_signal_info.conf");
@@ -1038,7 +1050,7 @@ class Management_model extends CI_Model {
                         }
                     }
                     fclose($fp);
-                    $cmd = "/sbin/route add default gw ".$gateway."dev wlan0";
+                    $cmd = "/sbin/route add default gw ".$gateway." dev wlan0";
                     system($cmd);
 
                     //添加无线网络

@@ -2,10 +2,10 @@
   <table class="table table-condensed table-striped table-hover">
     <thead>
       <tr>
-        <th scope="col">逆变器ID</th>
-        <th scope="col">通道</th>
-        <th scope="col">工作情况</th>
-        <th scope="col">当天发电量</th>
+        <th scope="col"><?php echo $this->lang->line('status_inverter_id')?></th>
+        <th scope="col"><?php echo $this->lang->line('status_channel')?></th>
+        <th scope="col"><?php echo $this->lang->line('status_status')?></th>
+        <th scope="col"><?php echo $this->lang->line('status_energy')?></th>
       </tr>
     </thead>
     <tbody>

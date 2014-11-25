@@ -1,3 +1,23 @@
+<!-- Modal 切换路由模式 -->
+<div class="modal fade" id="change_mode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel"><?php echo $this->lang->line('wlan_change_to_sta_mode')?></h4>
+      </div>
+      <div class="modal-body"><?php echo $this->lang->line('wlan_reboot')?>
+      </div>
+      <div class="modal-footer">
+        <form method="post" action="<?php echo base_url('index.php/management/set_wlan_mode');?>" class="form-horizontal" role="form">
+          <input name="mode" type="hidden" value=2>
+          <button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><?php echo $this->lang->line('button_cancel')?></button>
+          <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_ok')?></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php
   if(!empty($result)){
     if(!strncmp($result, "success", 7)){
@@ -18,8 +38,7 @@
   <fieldset>
     <legend><?php echo $this->lang->line('wlan_mode_ap')?>
       <div class="btn-group">
-        <input name="mode" type="hidden" value=2>
-        <button type="submit" class="btn btn-default btn-xs"><?php echo $this->lang->line('wlan_change_mode')?></button>
+        <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#change_mode"  data-backdrop="static"><?php echo $this->lang->line('wlan_change_to_sta_mode')?></button>
       </div>
     </legend>
 
@@ -56,7 +75,7 @@
 
 <form id="defaultForm" method="post" action="<?php echo base_url('index.php/management/set_wlan_ap');?>" class="form-horizontal" role="form">
   <fieldset>
-    <legend>Setting AP</legend>
+    <legend><?php echo $this->lang->line('wlan_ap_setting')?></legend>
 
     <div class="form-group">
       <label for="inputdata1" class="col-sm-4 control-label"><?php echo $this->lang->line('wlan_ap_ssid')?></label>
@@ -125,10 +144,27 @@
 
   <div class="form-group">
     <div class="col-sm-offset-4 col-sm-2">
-      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_save')?></button>
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#change_ap"><?php echo $this->lang->line('button_save')?></button>
     </div>
   </div>
-</form>
+    
+    <!-- Modal 修改AP模式信息 -->
+    <div class="modal fade" id="change_ap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel"><?php echo $this->lang->line('wlan_ap_setting')?></h4>
+          </div>
+          <div class="modal-body"><?php echo $this->lang->line('wlan_reboot')?></div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><?php echo $this->lang->line('button_cancel')?></button>
+              <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_ok')?></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </form>
 
 <script>
     function show_password(value) { 
@@ -196,5 +232,5 @@
             }
         }
     });
-});  
+});
 </script>

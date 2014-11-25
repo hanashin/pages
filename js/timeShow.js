@@ -38,13 +38,13 @@
 						var today=new Date();
 						var w;
 						 switch (today.getDay()){
-						 case 1: w="星期一"; break;
-						 case 2: w="星期二"; break;
-						 case 3: w="星期三"; break;
-						 case 4: w="星期四"; break;
-						 case 5: w="星期五"; break;
-						 case 6: w="星期六"; break;
-						 default: w="星期日";
+						 case 1: w="Monday"; break;
+						 case 2: w="Tuesday"; break;
+						 case 3: w="Wednesday"; break;
+						 case 4: w="Thursday"; break;
+						 case 5: w="Friday"; break;
+						 case 6: w="Saturday"; break;
+						 default: w="Sunday";
 						}
 
 						var y=today.getFullYear();
@@ -59,8 +59,8 @@
 						
 						$("#" + timeShowTxt).html(h+":"+m+":"+s);
 						$(o.weekShow).append(w);						
-						$(o.dayShow).prepend(d+"日");
-						$(o.yearMoon).prepend(y+"年"+ _m+"月");
+						$(o.dayShow).prepend(d+"-");
+						$(o.yearMoon).prepend(y+"-"+ _m+"-");
 						t=setTimeout(startTime,1000);
 					}
 					

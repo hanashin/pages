@@ -137,7 +137,8 @@ class Management extends CI_Controller {
         $data = $this->management_model->set_ip();
 
         //将设置结果传给显示函数
-        $this->network($data['result']);
+        //$this->network($data['result']);
+        $this->ecu_reboot();
     }
 
     /* 显示用户信息 */
@@ -191,14 +192,16 @@ class Management extends CI_Controller {
     public function set_wlan_mode()
     {      
         $data = $this->management_model->set_wlan_mode();
-        $this->wlan($data['result']);
+        //$this->wlan($data['result']);
+        $this->ecu_reboot();
     }
 
     /* 设置主机模式参数 */
     public function set_wlan_ap()
     {      
         $data = $this->management_model->set_wlan_ap();
-        $this->wlan($data['result']);
+        //$this->wlan($data['result']);
+        $this->ecu_reboot();
     }
 
     /* 设置从机模式参数 */
@@ -206,6 +209,12 @@ class Management extends CI_Controller {
     {      
         $data = $this->management_model->set_wlan_sta();
         $this->wlan($data['result']);
+    }
+    
+    /* 重启ECU */
+    public function ecu_reboot()
+    {
+        $this->load->view('templates/reboot');
     }
 
 }

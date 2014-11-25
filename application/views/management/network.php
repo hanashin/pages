@@ -99,9 +99,26 @@
 
   <div class="form-group">
     <div class="col-sm-offset-4 col-sm-2">
-      <button type="submit" name="dhcp_submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_update')?></button>
+      <button type="button" name="dhcp_submit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#change_ip"><?php echo $this->lang->line('button_update')?></button>
     </div>
   </div>
+  
+    <!-- Modal 修改IP -->
+    <div class="modal fade" id="change_ip" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel"><?php echo $this->lang->line('network_set_ip')?></h4>
+          </div>
+          <div class="modal-body"><?php echo $this->lang->line('wlan_reboot')?></div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><?php echo $this->lang->line('button_cancel')?></button>
+              <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_ok')?></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 </form>
 
 <script>

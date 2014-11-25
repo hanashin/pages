@@ -1,3 +1,22 @@
+<!-- Modal 切换路由模式 -->
+<div class="modal fade" id="change_mode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel"><?php echo $this->lang->line('wlan_change_to_ap_mode')?></h4>
+      </div>
+      <div class="modal-body"><?php echo $this->lang->line('wlan_reboot')?></div>
+      <div class="modal-footer">
+        <form method="post" action="<?php echo base_url('index.php/management/set_wlan_mode');?>" class="form-horizontal" role="form">
+          <input name="mode" type="hidden" value=1>
+          <button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><?php echo $this->lang->line('button_cancel')?></button>
+          <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_ok')?></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php
   if(!empty($result)){
     if(!strncmp($result, "success", 7)){
@@ -18,8 +37,7 @@
   <fieldset>
     <legend><?php echo $this->lang->line('wlan_mode_sta')?>
       <div class="btn-group">
-        <input name="mode" type="hidden" value=1>
-        <button type="submit" class="btn btn-default btn-xs"><?php echo $this->lang->line('wlan_change_mode')?></button>
+        <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#change_mode"  data-backdrop="static"><?php echo $this->lang->line('wlan_change_to_ap_mode')?></button>
       </div>
     </legend>
 </form>

@@ -7,6 +7,8 @@
 	$lang['title_ecu'] = "ENERGY COMMUNICATION UNIT";
 	$lang['language'] = "Language";
 	$lang['energy_control']="ENERGY CONTROL";
+	$lang['test']="TEST";
+	$lang['faq']="FAQ";
 	
 /* 通用 */
 	$lang['button_save'] = "Save";
@@ -19,7 +21,10 @@
 	
 	$lang['message_success'] = "Success";
 	$lang['message_warning'] = "Warning";
-	$lang['message_failed'] = "Failed";		
+	$lang['message_failed'] = "Failed";
+
+	$lang['ecu_reboot_title'] = "ECU is restarting ......";
+	$lang['ecu_reboot'] = "Please do not refresh the page, if the page does not automatically jump after the restart , please enter the IP on LCD screen.";
 	
 /* 导航栏 */
 	$lang['item_1'] = "Home";
@@ -83,6 +88,10 @@
 	
 	//逆变器工作状态
 	$lang['function_inverter_status'] = "Inverter Status";
+	$lang['status_inverter_id'] = "Inverter ID";
+	$lang['status_channel'] = "Channel";
+	$lang['status_status'] = "Status";
+	$lang['status_energy'] = "Energy";
 	
 /* 参数配置 */
 
@@ -218,11 +227,14 @@
 	$lang['wlan_ssid'] = "SSID";
 	$lang['wlan_ip_address'] = "IP address";
 	$lang['wlan_state'] = "State";
-	$lang['wlan_change_mode'] = "Change Mode";
+	$lang['wlan_change_to_ap_mode'] = "Change to AP Mode";
+	$lang['wlan_change_to_sta_mode'] = "Change to STA Mode";
+	$lang['wlan_reboot'] = "WARNING : This operation will restart ECU, to determine execution click on the ' OK' , otherwise click 'Cancel' .";
 	  //AP
 	$lang['wlan_mode_ap'] = "AP mode";
 	$lang['wlan_ifopen_1'] = "Opened";
 	$lang['wlan_ifopen_0'] = "Closed";
+	$lang['wlan_ap_setting'] = "Setting AP";
 	$lang['wlan_ap_ssid'] = "SSID";
 	$lang['wlan_ap_channel'] = "Channel";
 	$lang['wlan_ap_channel_auto'] = "Auto";	

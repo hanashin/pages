@@ -23,6 +23,11 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
     display: none;
   }
 }
+@media (max-width: 767px) {
+  .navbar-top .navbar-left > li > a > span > img{
+    display: none;
+  }
+}
 @media (min-width: 768px) {
   .navbar-top .navbar-title > li > a,
   .navbar-top .navbar-title > li > a:hover,
@@ -48,16 +53,15 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
     transition: background-color 1s ease;
   }
   .navbar-top .navbar-left li span {
-    width: 70px;
-	  height: 70px;
-	  display: inline-block;
-    padding-top: 10px;
-    padding-left: 10px;
-	  top: 10px;
-	  left: 25px;
-    font-size: 51px;
-    text-align: center;
-	  position: absolute;
+	width: 70px;
+	height: 70px;
+	display: inline-block;
+	padding-top: 10px;
+	padding-left: 10px;
+	top: 10px;
+	left: 25px;
+	text-align: center;
+	position: absolute;
   }
 }
 .navbar-top .navbar-left li span {
@@ -68,6 +72,19 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
 .navbar-top .navbar-left > li > a:focus {
   color: white;
   background-color: #595959;
+}
+.navbar-top .navbar-left > li > a > span > img{
+position:absolute;
+top:0px;
+left: 2px;
+clip:rect(0px 65px 65px 0px); 
+}
+.navbar-top .navbar-left > li > a.active > span > img,
+.navbar-top .navbar-left > li > a:hover > span > img,
+.navbar-top .navbar-left > li > a:focus > span > img{
+position:absolute; 
+left: -63px;
+clip:rect(0px 130px 65px 65px); 
 }
 .navbar-top .navbar-toggle {
   margin-top: 40px;
@@ -325,6 +342,32 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
 .mychart {
   padding: 10px 0px;
   margin: 0px;
+}
+
+/*------------------------------------------------------
+    模态框
+--------------------------------------------------------*/
+.modal {
+  top:90px;
+}
+
+.modal-header {
+  color: #fff;
+  background-color:#428bca;
+}
+
+/*------------------------------------------------------
+    ECU重启页面
+--------------------------------------------------------*/
+.ecu-reboot {
+  background-color:#e7e7e7;
+}
+.ecu-reboot .content {
+  background-color:#f3f3f3;
+  border-radius: 6px;
+  position: relative;
+  top: 90px;
+  padding: 5px 20px;
 }
 
 /*------------------------------------------------------

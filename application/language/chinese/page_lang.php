@@ -7,6 +7,8 @@
 	$lang['title_ecu'] = "能量通信器 (ECU)";
 	$lang['language'] = "切换语言";
 	$lang['energy_control']="能量控制";
+	$lang['test']="测试";
+	$lang['faq']="常见问题";
 	
 /* 通用 */
 	$lang['button_save'] = "保存";
@@ -20,6 +22,9 @@
 	$lang['message_success'] = "设置成功";
 	$lang['message_warning'] = "警告";
 	$lang['message_failed'] = "登录失败";			
+	
+	$lang['ecu_reboot_title'] = "ECU 正在重启……";
+	$lang['ecu_reboot'] = "请勿刷新页面，重启完毕后若页面未自动跳转，请在地址栏输入液晶屏所显示的IP";
 	
 /* 导航栏 */
 	$lang['item_1'] = "主页";
@@ -83,6 +88,10 @@
 	
 	//逆变器工作状态
 	$lang['function_inverter_status'] = "逆变器状态";
+	$lang['status_inverter_id'] = "逆变器ID";
+	$lang['status_channel'] = "通道";
+	$lang['status_status'] = "工作状态";
+	$lang['status_energy'] = "当天发电量";
 	
 /* 参数配置 */
 
@@ -218,11 +227,14 @@
 	$lang['wlan_ssid'] = "信号名称";
 	$lang['wlan_ip_address'] = "IP 地址";
 	$lang['wlan_state'] = "状态";
-	$lang['wlan_change_mode'] = "更改模式";
+	$lang['wlan_change_to_ap_mode'] = "切换到主机模式";
+	$lang['wlan_change_to_sta_mode'] = "切换到从机模式";
+	$lang['wlan_reboot'] = "警告：此操作会重启ECU，确定执行请点击'确定'，否则点击‘取消’。";
 	  //AP
 	$lang['wlan_mode_ap'] = "主机模式";
 	$lang['wlan_ifopen_1'] = "开启";
 	$lang['wlan_ifopen_0'] = "关闭";
+	$lang['wlan_ap_setting'] = "更改设置";
 	$lang['wlan_ap_ssid'] = "信号名称";
 	$lang['wlan_ap_channel'] = "信道";
 	$lang['wlan_ap_channel_auto'] = "自动";	

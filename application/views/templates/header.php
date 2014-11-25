@@ -62,13 +62,12 @@
                   <li><a href="<?php echo base_url('index.php/management/set_language/chinese');?>"><small><?php echo $this->lang->line('language_chinese');?></small></a></li>
               </ul>
             </li>
-              <!-- <li><a href="<?php echo base_url('index.php/management/language');?>"><?php echo $this->lang->line('language')?></a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-left">
-              <li><a href="<?php echo base_url('index.php/home');?>" class="active"><span class="glyphicon energy-control">&#9728;</span><?php echo $this->lang->line('energy_control')?></a></li>
-              <li><a href="<?php echo base_url('index.php/home/faq');?>"><span class="glyphicon">&#9889;</span>页面测试说明</a></li>
-              <li><a href="#"><span class="glyphicon">?</span>FAQ</a></li>
-            </ul>            
+              <li><a href="<?php echo base_url('index.php/home');?>" class="active"><span class="glyphicon energy-control"><img src="<?php echo base_url('images/icon1.png');?>"></span><?php echo $this->lang->line('energy_control')?></a></li>
+<!--        <li><a href="<?php echo base_url('index.php/home/faq');?>"><span class="glyphicon"><img src="<?php echo base_url('images/icon2.png');?>"></span><?php echo $this->lang->line('test')?></a></li>
+              <li><a href="#"><span class="glyphicon"><img src="<?php echo base_url('images/icon3.png');?>"></span><?php echo $this->lang->line('faq')?></a></li>
+-->       </ul>            
           </div>
         </div>
       </div>     
@@ -88,10 +87,10 @@
           </div>
 
           <div class="navbar-collapse collapse" id="navbar-orange">
-            <ul class="nav navbar-nav navbar-right">
+<!--             <ul class="nav navbar-nav navbar-right"> -->
               <!-- TO BE ADD -->
-              <li><a></a></li>
-            </ul>
+<!--               <li><a></a></li> -->
+<!--             </ul> -->
             <ul class="nav navbar-nav ">
               <li><a href="<?php echo base_url('index.php/home');?>"<?php if(!strncmp($page, "home", 4)){echo " class=\"active\"";}?>><?php echo $this->lang->line('item_1')?></a></li>
               <li><a href="<?php echo base_url('index.php/realtimedata');?>"<?php if(!strncmp($page, "realtimedata", 12)){echo " class=\"active\"";}?>><?php echo $this->lang->line('item_2')?></a><span> </span></li>
