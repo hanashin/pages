@@ -710,7 +710,7 @@ class Management_model extends CI_Model {
             $data['wifi_signals'] = "";
             $num = 0;
             $fp = fopen("/tmp/wifi_temp.conf", 'r');
-            //$fp = fopen(APPPATH.'../../../wifi_temp.conf', 'r');
+            //$fp = fopen(APPPATH.'../../wifi_temp.conf', 'r');
             if($fp)
             {
                 $num = -1;

@@ -89,15 +89,20 @@
                 {
                     echo "<tr>";                     
                     //显示SSID
-                    echo "<td><input type=\"radio\" name=\"ssid_id\" value=\"$key\" onclick=\"show_key(this)\">&nbsp;&nbsp;{$value['ssid']}</td>\n";
-
+                    if($value['ssid'] == $ssid)
+                      echo "<td><input type=\"radio\" name=\"ssid_id\" value=\"$key\" onclick=\"show_key(this)\">&nbsp;&nbsp;<strong>{$value['ssid']}</strong></td>\n";
+                    else
+                      echo "<td><input type=\"radio\" name=\"ssid_id\" value=\"$key\" onclick=\"show_key(this)\">&nbsp;&nbsp;{$value['ssid']}</td>\n";
                     //显示信号强度
                     echo "<td>";
-                    for($i=0; $i<($value['quality']+5)/10+1; $i++)
-                    {
-                      if($i>9)break;
-                      echo "|";
-                    }
+//                     for($i=0; $i<($value['quality']+5)/10+1; $i++)
+//                     {
+//                       if($i>9)break;
+//                       echo "|";
+//                     }
+                    $signal = (int)($value['quality']/5) + 1;
+                    if($signal > 5)$signal = 5;
+                    echo "<span><img src=\"".base_url("images/signal$signal.png")."\"></span>";
                     echo "</td>\n";  
                      //隐藏项
                     echo "<td>\n";
