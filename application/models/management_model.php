@@ -625,12 +625,12 @@ class Management_model extends CI_Model {
         $data['ssid'] = "-";
         $data['ifconnect'] = 0;
         $data['ifopen'] = 0;
-        system("/usr/sbin/iwconfig >/tmp/wifi_temp.conf");
+        system("/usr/sbin/iwconfig | grep -E \"wlan0\">/tmp/wifi_temp.conf");
         $fp = fopen("/tmp/wifi_temp.conf", 'r');
         if($fp)
         {
             $temp = fgets($fp);
-            $temp = substr($temp, 27);
+            $temp = strstr($temp, "ESSID");
             if(!strncmp($temp, "ESSID", 5))
             {
                 $temp = substr($temp, 7);
@@ -995,7 +995,7 @@ class Management_model extends CI_Model {
                     fwrite($fp, "ap_scan=1\n");
                     fwrite($fp, "network={\n\tssid=\"".$ssid."\"\n");
                     fwrite($fp, "\tkey_mgmt=WPA-PSK\n");
-                    fwrite($fp, "\tproto=WPA\n");
+                    fwrite($fp, "\tproto=WPA RSN\n");
                     fwrite($fp, "\tpairwise=TKIP CCMP\n");
                     fwrite($fp, "\tgroup=TKIP CCMP\n");
                     fwrite($fp, "\tpsk=\"".$psk."\"\n}\n");
