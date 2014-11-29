@@ -222,9 +222,9 @@ class Management_model extends CI_Model {
             }
 
             //设置linux系统时间
-            date_default_timezone_set("UTC");
+            //date_default_timezone_set("UTC");
             $datetime = getdate($timestamp);
-            $cmd = sprintf("date %02d%02d%02d%02d%04d.%02d > /dev/null &",
+            $cmd = sprintf("date %02d%02d%02d%02d%04d.%02d",
                     $datetime['mon'], $datetime['mday'], $datetime['hours'],
                     $datetime['minutes'], $datetime['year'], $datetime['seconds']);
              echo "<!--";
