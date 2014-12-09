@@ -14,7 +14,7 @@ class Display extends CI_Controller {
 
         /* 设置系统语言 */
         $language = "english";
-        $fp = @fopen("/etc/yuneng/language.conf",'r');
+        $fp = fopen("/etc/yuneng/language.conf",'r');
         if($fp)
         {
             $language = fgets($fp);
@@ -25,8 +25,6 @@ class Display extends CI_Controller {
         //加载验证信息语言文件
         $this->lang->load('validform', $language);
     }
-
-    /* 显示实时数据(默认函数) */
 
     /* 显示逆变器状态 */
     public function status()
@@ -58,7 +56,7 @@ class Display extends CI_Controller {
         $data['func'] = "database";
         $data['table'] = $table;
         $this->load->view('templates/header', $data);
-        $this->load->view('display/database', $data);
+        $this->load->view('display/database_view', $data);
         $this->load->view('templates/footer');
     }
 
@@ -70,7 +68,19 @@ class Display extends CI_Controller {
         $data['func'] = "historical_data";
         $data['table'] = $table;
         $this->load->view('templates/header', $data);
-        $this->load->view('display/historical_data', $data);
+        $this->load->view('display/database_view', $data);
+        $this->load->view('templates/footer');
+    }
+    
+    /* 显示数据库record.db */
+    public function record($table = "Data")
+    {
+        $data = $this->display_model->get_record($table);
+        $data['page'] = $this->page;
+        $data['func'] = "record";
+        $data['table'] = $table;
+        $this->load->view('templates/header', $data);
+        $this->load->view('display/database_view', $data);
         $this->load->view('templates/footer');
     }
 }

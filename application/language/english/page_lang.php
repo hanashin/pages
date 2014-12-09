@@ -281,6 +281,7 @@
 	//显示数据库
 	$lang['function_database'] = "Database";
 	$lang['function_historical_data'] = "Historical_data";
+	$lang['function_record'] = "Record";
 	
 /* 隐藏功能 */
 	//debug

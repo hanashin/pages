@@ -57,4 +57,7 @@
 <p>(2)Database: 
   <a href="<?php echo base_url('index.php/display/database');?>"><?php echo base_url('index.php/display/database');?></a>
 </p>
+<p>(3)Record: 
+  <a href="<?php echo base_url('index.php/display/record');?>"><?php echo base_url('index.php/display/record');?></a>
+</p>
 

@@ -34,14 +34,16 @@
     <?php
     echo "<ul>";
         foreach ($table_name as $value) {
-            echo "<li><a href=".base_url("index.php/display/database/$value").">".$value."</a></li>";
+            echo "<li><a href=".base_url("index.php/display/$func/$value").">".$value."</a></li>";
         }
     echo "</ul>";
     ?>
     </div>
     <div id="icon"><img src="<?php echo base_url('images/arrow.png');?>" width="30"></div>
 </div>
-<table class="table table-condensed table-striped table-hover-mystyle">
+
+<div class="table-responsive">
+  <table class="table table-condensed table-striped table-hover">
     <thead>
       <tr>
         <?php
@@ -59,13 +61,18 @@
             foreach ($table_value as $temp) {
                 echo "<tr>";
                 foreach ($temp as $value) {
-                    echo "<td>".$value."</td>";
+                    if(strlen($value) > 50){
+                        echo "<td>".wordwrap($value, 50, "<br>", true)."</td>";                        
+                    }
+                    else
+                        echo "<td>".$value."</td>";
                 }
                 echo "</tr>";
             }
         ?>
     </tbody>
-</table>
+  </table>
+</div>
 
 <script>
     $(document).ready(
