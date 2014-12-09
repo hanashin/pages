@@ -95,12 +95,7 @@
                       echo "<td><input type=\"radio\" name=\"ssid_id\" value=\"$key\" onclick=\"show_key(this)\">&nbsp;&nbsp;{$value['ssid']}</td>\n";
                     //显示信号强度
                     echo "<td>";
-//                     for($i=0; $i<($value['quality']+5)/10+1; $i++)
-//                     {
-//                       if($i>9)break;
-//                       echo "|";
-//                     }
-                    $signal = (int)($value['quality']/5) + 1;
+                    $signal = (int)log($value['quality'], 2);
                     if($signal > 5)$signal = 5;
                     echo "<span><img src=\"".base_url("images/signal$signal.png")."\"></span>";
                     echo "</td>\n";  

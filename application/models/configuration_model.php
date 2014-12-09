@@ -65,6 +65,9 @@ class Configuration_model extends CI_Model {
         }
 
         //如果set_protection_parameters表不存在，则创建
+        $this->pdo->exec("CREATE TABLE IF NOT EXISTS set_protection_parameters 
+            (parameter_name VARCHAR(256), parameter_value REAL, set_flag INTEGER,
+                primary key(parameter_name))");
 
         //获取5项交流保护参数的值
         $query = "SELECT * FROM set_protection_parameters";

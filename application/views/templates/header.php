@@ -16,12 +16,9 @@
     <link href="<?php echo base_url('css/ecu-style.css');?>" rel="stylesheet">  
     <link href="<?php echo base_url('css/bootstrapValidator.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('css/bootstrap-datetimepicker.min.css');?>" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn"t work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->    
+    <!--[if lt IE 8]>
+      <link href="<?php echo base_url('css/bootstrap-ie7.css');?>" rel="stylesheet">
+    <![endif]-->
     <script src="<?php echo base_url('js/jquery-1.8.2.min.js');?>"></script>
     <script src="<?php echo base_url('js/bootstrap.min.js');?>"></script>
     <script src="<?php echo base_url('js/bootstrapValidator.min.js');?>"></script>
@@ -32,6 +29,12 @@
         $("#txt").timeShow({dayShow:'#txt',yearMoon:'#txt',weekShow:'#txt'});
       });
     </script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn"t work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->    
   </head>
 
   <body>

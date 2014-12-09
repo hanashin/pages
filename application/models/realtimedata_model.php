@@ -15,7 +15,7 @@ class Realtimedata_model extends CI_Model {
     {
         $curdata = array();
         $num = 0;
-        $fp = @fopen("/tmp/parameters.conf",'r');
+        $fp = fopen("/tmp/parameters.conf",'r');
         if ($fp)
         {
             while(!feof($fp))
@@ -34,6 +34,7 @@ class Realtimedata_model extends CI_Model {
         return $data;
     }
 
+    //获取发电功率
     public function get_power_graph() 
     {
         $power = array();
@@ -92,6 +93,7 @@ class Realtimedata_model extends CI_Model {
         return $data;
     }
 
+    //获取发电能量
     public function get_energy_graph() 
     {
         $energy = array();
