@@ -1,8 +1,4 @@
-<form id="defaultForm" method="post" action="<?php echo base_url('index.php/configuration/set_protection');?>" class="form-horizontal" role="form">
-  <fieldset>
-    <legend><?php echo $this->lang->line('protection_set')?></legend>
-
-    <?php
+ <?php
       if(!empty($result)){
         if(!strncmp($result, "success", 7)){
           echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
@@ -18,11 +14,19 @@
         }
       }
     ?>
+ 
+<div class="alert alert-success alert-dismissible" id="result">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <strong id="res"></strong>
+</div>
 
-    <div class="form-group">    
-      <label class="col-sm-5 control-label"><?php echo $this->lang->line('protection_select_inverter')?></label>
+<form id="defaultForm" method="ajax" class="form-horizontal">
+  <fieldset>
+    <legend><?php echo $this->lang->line('protection_set')?></legend>
+      <div class="form-group">    
+      <label for="inputdata0" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_select_inverter')?></label>
       <div class="col-sm-4">
-        <select name='inverter' class="form-control">";
+        <select name='inverter' class="form-control" id="inputdata0">";
           <option value="all"><?php echo $this->lang->line('protection_select_inverter_all')?></option>
           <?php
             foreach ($ids as $key => $value) {
@@ -71,7 +75,7 @@
 
   <div class="form-group">
     <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_save')?></button>
+      <button type="submit" class="btn btn-primary btn-sm" id="button_save"><?php echo $this->lang->line('button_save')?></button>
     </div>
   </div>
 </form>
@@ -124,6 +128,11 @@
 
 <script>
 $(document).ready(function() {
+
+	//隐藏设置结果栏
+	$("#result").hide();
+	
+	//表单验证
     $('#defaultForm').bootstrapValidator({
         message: 'This value is not valid',
         fields: {
@@ -193,6 +202,35 @@ $(document).ready(function() {
                 }
             }
         }
+    })
+    .on('success.form.bv', function(e) {
+        //防止默认表单提交，采用ajax提交
+        e.preventDefault();
+    });
+
+    //ajax表单处理
+    $("#button_save").click(function(){
+	    $.ajax({
+    		url : "<?php echo base_url('index.php/configuration/set_protection');?>",
+    		type : "post",
+            dataType : "text",//以后使用json传数据
+    		data: "inverter=" + $("#inputdata0").val()
+    			  + "&under_voltage_slow=" + $("#inputdata1").val() 
+    		      + "&over_voltage_slow=" + $("#inputdata2").val() 
+    		      + "&under_frequency_slow=" + $("#inputdata3").val() 
+    		      + "&over_frequency_slow=" + $("#inputdata4").val() 
+    		      + "&grid_recovery_time=" + $("#inputdata5").val(),
+            success : function(Message){
+                if(Message != "success"){
+             	   $("#result").removeClass("alert-success").addClass("alert-warning"); 
+                }
+          		$("#res").text(Message);  
+            	$("#result").show();
+    		},
+    		error : function(){
+    			alert("Error");
+    		}
+        })
     });
 });
 </script>

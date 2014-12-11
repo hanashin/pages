@@ -43,7 +43,7 @@ class Configuration extends CI_Controller {
     public function check_login()
     {
         $data = $this->configuration_model->check_login();
-        if(!strncmp($data['result'], "failed", 6))
+        if(!strncmp($data['result'], "failed", 6)  && !$this->session->userdata('logged_in'))
         {
             //用户名密码错误
             $this->login($data['result']);
@@ -93,9 +93,11 @@ class Configuration extends CI_Controller {
 
     /* 设置5项交流保护参数 */
     public function set_protection()
-    { 
-        $data = $this->configuration_model->set_protection();
-        $this->index($data['result']);
+    {
+        //print_r($_POST);
+        $data = $this->configuration_model->set_protection();       
+        //print_r($data);
+        echo $data['result'];       
     }
 
     /* 读取逆变器交流保护参数 */

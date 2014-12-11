@@ -28,7 +28,7 @@ class Display extends CI_Controller {
 
     /* 显示逆变器状态 */
     public function status()
-    {      
+    {     
         $data = $this->display_model->get_status();
         $data['page'] = $this->page;
         $data['func'] = "status";
