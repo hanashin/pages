@@ -14,12 +14,12 @@ class Configuration_model extends CI_Model {
     /* 登陆验证 */
     public function check_login() 
     {
-        $data = array();
+        $results = array();
 
         //获取用户名与密码
-        $data['username'] = "root";
-        $data['password'] = "123456";
-        $fp=fopen("/etc/yuneng/userinfo.conf",'r');
+        $data["username"] = "root";
+        $data["password"] = "123456";
+        $fp=@fopen("/etc/yuneng/userinfo.conf",'r');
         if ($fp)
         {
           $data['username'] = fgets($fp);
@@ -30,12 +30,14 @@ class Configuration_model extends CI_Model {
 
         $username = $this->input->post('username');
         $password = $this->input->post('password');
-        if ($username == $data['username'] && $password == $data['password'])
-            $data['result'] = "success";
+        if ($username == $data['username'] && $password == $data['password']){
+            $this->session->set_userdata('logged_in',TRUE);
+            $results["value"] = 0;
+        }
         else
-            $data['result'] = "failed";
+            $results["value"] = 1;
 
-        return $data;
+        return $results;
     }
 
     /* 获取5项交流保护参数 */
@@ -147,7 +149,7 @@ class Configuration_model extends CI_Model {
     /* 设置5项交流保护参数 */
     public function set_protection()
     {
-        $data = array();
+        $results = array();
 
         //获取设置参数
         $parameters = array();
@@ -166,7 +168,7 @@ class Configuration_model extends CI_Model {
         if(empty($parameters))
         {
             //输入保护参数全为空
-            $data['result'] = "null_protection";
+            $results["value"] = 1;
         }
         else
         {
@@ -305,27 +307,27 @@ class Configuration_model extends CI_Model {
             $sql = "REPLACE INTO process_result (item, result, flag) VALUES(120, '$record', 1)";
             $this->pdo->exec($sql);
 
-            $data['result'] = "success";
+            $results["value"] = 0;
         }
-
-        return $data;
+        return $results;
     }
 
     /* 读取逆变器交流保护参数 */
     public function read_inverter_parameters()
     {
-        $flag = intval($this->input->post('flag'));
+        $results = array();
 
+        //将读取命令写入配置文件
         $fp = @fopen("/tmp/presetdata.conf", 'w');
-        if ($fp)
-        {
-            fwrite($fp, "2");
-            fclose($fp);
+        if (!$fp) {
+            $results["value"] = 2;//文件打开失败
+            return $results;
         }
-
-        $data['flag'] = $flag;
-
-        return $data;
+        fwrite($fp, "2");
+        fclose($fp);
+        $results["value"] = 0;
+        
+        return $results;
     }
 
     /* 获取13项交流保护参数 */
@@ -498,7 +500,7 @@ class Configuration_model extends CI_Model {
     /* 设置13项交流保护参数 */
     public function set_protection2()
     {
-        $data = array();
+        $results = array();
 
         //获取设置参数
         $inverter = $this->input->post('inverter');
@@ -532,7 +534,7 @@ class Configuration_model extends CI_Model {
          if(empty($parameters))
         {
             //输入保护参数全为空
-            $data['result'] = "null_protection";
+            $results["value"] = 1;
         }
         else
         {
@@ -564,7 +566,7 @@ class Configuration_model extends CI_Model {
             /* 将ECU本地页面变动数据存入数据库 */
             //ECU_id
             $ecuid = "000000000000";        
-            $fp = fopen("/etc/yuneng/ecuid.conf",'r');
+            $fp = @fopen("/etc/yuneng/ecuid.conf",'r');
             if($fp)
             {
                 $ecuid = fgets($fp);
@@ -670,10 +672,10 @@ class Configuration_model extends CI_Model {
             $sql = "REPLACE INTO process_result (item, result, flag) VALUES(120, '$record', 1)";
             $this->pdo->exec($sql);
 
-            $data['result'] = "success_set_protection";
+           $results["value"] = 0;
         }
 
-        return $data;
+        return $results;
     }
 
     /* 获取逆变器GFDI状态 */
@@ -724,12 +726,13 @@ class Configuration_model extends CI_Model {
     /* 设置逆变器GFDI状态 */
     public function set_gfdi_state() 
     {
-        $data = array();
-
+        $results = array();
+        
         //获取需要清除锁定状态的逆变器号
         $ids = array();
         $ids = $this->input->post('ids');
 
+        //若数据表不存在，则创建
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS clear_gfdi 
             (id VARCHAR(256), set_flag INTEGER, primary key (id))");
 
@@ -739,15 +742,14 @@ class Configuration_model extends CI_Model {
             {
                 $this->pdo->exec("REPLACE INTO clear_gfdi (id, set_flag) VALUES ('$value', 1)");
             }
-
-            $data['result'] = "success";
+            $results["value"] = 0;
         }
         else
         {
-            $data['result'] = "null";
+            //没有逆变器被选中
+            $results["value"] = 1;
         }
-
-        return $data;
+        return $results;
     }
 
     /* 获取逆变器开关机状态 */
@@ -798,12 +800,13 @@ class Configuration_model extends CI_Model {
     /* 设置逆变器开关机状态 */
     public function set_switch_state() 
     {
-        $data = array();
+        $results = array();
 
         //获取需要开关机的逆变器ID号
         $ids = array();
         $ids = $this->input->post('ids');
 
+        //若数据表不存在，则创建
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS turn_on_off 
             (id VARCHAR(256), set_flag INTEGER, primary key (id))");
 
@@ -816,21 +819,23 @@ class Configuration_model extends CI_Model {
                 $this->pdo->exec("REPLACE INTO turn_on_off (id, set_flag) VALUES ('$inverter', $flag)");
             }
 
-            $data['result'] = "success";
+            $results["value"] = 0;
         }
         else
         {
-            $data['result'] = "null";
+            //没有逆变器被选中
+            $results["value"] = 1;
         }
 
-        return $data;
+        return $results;
     }
 
     /* 设置所有逆变器为开机状态 */
     public function set_switch_all_on()
     { 
-        $data = array();
+        $results = array();
 
+        //若数据表不存在，则创建
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS turn_on_off 
             (id VARCHAR(256), set_flag INTEGER, primary key (id))");
 
@@ -845,17 +850,17 @@ class Configuration_model extends CI_Model {
                 $this->pdo->exec("REPLACE INTO turn_on_off (id, set_flag) VALUES ('$value[0]', 1)");
             }
         }
+        $results["value"] = 0;
 
-        $data['result'] = "success";
-
-        return $data;
+        return $results;
     }
 
     /* 设置所有逆变器为关机状态 */
     public function set_switch_all_off()
     {
-        $data = array();
+        $results = array();
 
+        //若数据表不存在，则创建
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS turn_on_off 
             (id VARCHAR(256), set_flag INTEGER, primary key (id))");
 
@@ -870,10 +875,9 @@ class Configuration_model extends CI_Model {
                 $this->pdo->exec("REPLACE INTO turn_on_off (id, set_flag) VALUES ('$value[0]', 2)");
             }
         }
+        $results["value"] = 0;
 
-        $data['result'] = "success";
-
-        return $data;
+        return $results;
     }
 
     /* 获取逆变器最大功率 */
@@ -896,23 +900,23 @@ class Configuration_model extends CI_Model {
     /* 设置逆变器最大功率 */
     public function set_maxpower() 
     {
-        $data = array();
+        $results = array();
 
         //获取页面输入的最大功率
         $maxpower = intval($this->input->post('maxpower'));
         $id = $this->input->post('id');
-        if ($maxpower < 20 || $maxpower >270) 
+        if ($maxpower < 20 || $maxpower >300) 
         {
             //超出范围
-            $data['result'] = "failed";
+            $results["value"] = 1;
         }
         else
         {   
             $this->pdo->exec("UPDATE power SET limitedpower=$maxpower,flag=1 WHERE id=\"$id\"");
-            $data['result'] = "success";
+            $results["value"] = 0;
         }
 
-        return $data;
+        return $results;
     }
 }
 

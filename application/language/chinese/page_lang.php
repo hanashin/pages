@@ -101,8 +101,8 @@
 	$lang['login_username'] = "用户名";
 	$lang['login_password'] = "密码";
 	$lang['login_login'] = "登录";	
-	$lang['login_result_success'] = "登录成功";
-	$lang['login_result_failed'] = "用户名或密码错误";
+	$lang['login_result_0'] = "登录成功";
+	$lang['login_result_1'] = "用户名或密码错误";
 	
 	//交流保护参数
 	$lang['function_protection'] = "保护参数";
@@ -126,8 +126,8 @@
 	$lang['protection_frequency_triptime_slow'] = "内围过欠频延迟保护时间";
 	$lang['protection_grid_recovery_time'] = "并网恢复时间";
 	
-	$lang['protection_result_set_protection_success'] = "请过5分钟之后查看结果";
-	$lang['protection_result_null_protection'] = "请至少输入一个保护参数";	
+	$lang['protection_result_0'] = "请过5分钟之后查看结果";
+	$lang['protection_result_1'] = "请至少输入一个保护参数";	
 
 	//GFDI设置
 	$lang['function_gfdi'] = "接地故障保护";
@@ -135,8 +135,8 @@
 	$lang['gfdi_state'] = "状态";
 	$lang['gfdi_unlock'] = "GFDI 解锁";
 	
-	$lang['gfdi_result_success'] = "请过5分钟之后查看结果";
-	$lang['gfdi_result_null'] = "请选择需要解锁的逆变器";
+	$lang['gfdi_result_0'] = "请过5分钟之后查看结果";
+	$lang['gfdi_result_1'] = "请选择需要解锁的逆变器";
 	
 	//远程控制开关机
 	$lang['function_switch'] = "远程控制";
@@ -148,17 +148,17 @@
 	$lang['switch_turn_on_all'] = "开启所有逆变器";
 	$lang['switch_turn_off_all'] = "关闭所有逆变器";
 	
-	$lang['switch_result_success'] = "请过5分钟之后查看结果";
-	$lang['switch_result_null'] = "请选择逆变器";
+	$lang['switch_result_0'] = "请过5分钟之后查看结果";
+	$lang['switch_result_1'] = "请选择逆变器";
 	
 	//最大功率设置
 	$lang['function_maxpower'] = "功率设置";
 	$lang['maxpower_inverter_id'] = "逆变器 ID";
-	$lang['maxpower_maxpower'] = "最大功率(20-270W)";
+	$lang['maxpower_maxpower'] = "最大功率(20-300W)";
 	$lang['maxpower_actual_maxpower'] = "实际最大功率";
 	
-	$lang['maxpower_result_success'] = "请过5分钟之后查看结果看";
-	$lang['maxpower_result_failed'] = "请输入20-270之间的整数";
+	$lang['maxpower_result_0'] = "请过5分钟之后查看结果看";
+	$lang['maxpower_result_1'] = "请输入20-300之间的整数";
 	
 /* 系统管理 */	
 	//ID管理
@@ -189,6 +189,8 @@
 	$lang['language_current_language'] = "当前语言";
 	$lang['language_english'] = "英文";
 	$lang['language_chinese'] = "中文";
+	$lang['language_result_0'] = "切换语言成功";
+	$lang['language_result_1'] = "语言配置文件打开失败";
 	
 	//网络管理
 	$lang['function_network'] = "网络管理";

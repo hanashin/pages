@@ -24,10 +24,28 @@
     <script src="<?php echo base_url('js/bootstrapValidator.min.js');?>"></script>
     <script src="<?php echo base_url('js/bootstrap-datetimepicker.min.js');?>"></script>
     <script src="<?php echo base_url('js/timeShow.js');?>"></script>
-    <script type="text/javascript">
+    <script>
       $(document).ready(function(){
         $("#txt").timeShow({dayShow:'#txt',yearMoon:'#txt',weekShow:'#txt'});
       });
+      
+      $(document).ready(function() {
+  	    //切换语言
+  		$(".chlang").click(function(){
+  		    $.ajax({
+  	    		url : "<?php echo base_url('index.php/management/set_language');?>",
+  	    		type : "post",
+  	            dataType : "json",
+  	    		data: "language=" + $(this).attr("id"),
+  	  	    	success : function(Results){	    	
+  	    		},
+  	  	    	error : function(){
+  	  	    		alert("Error");
+  	  	    	}
+  	        })
+            setTimeout("location.reload();",500);//刷新页面
+  	    });
+  	});
     </script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn"t work if you view the page via file:// -->
@@ -58,13 +76,8 @@
               <li><a><?php echo $this->lang->line('title_ecu');?></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><small><?php echo $this->lang->line('language');?></small> <span class="caret"></span></button>
-              <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                  <li><a href="<?php echo base_url('index.php/management/set_language/english');?>"><small><?php echo $this->lang->line('language_english');?></small></a></li>
-                  <li><a href="<?php echo base_url('index.php/management/set_language/chinese');?>"><small><?php echo $this->lang->line('language_chinese');?></small></a></li>
-              </ul>
-            </li>
+            <a class="chlang" id="english" ><?php echo $this->lang->line('language_english');?></a> |
+            <a class="chlang" id="chinese" ><?php echo $this->lang->line('language_chinese');?></a>
             </ul>
             <ul class="nav navbar-nav navbar-left">
               <li><a href="<?php echo base_url('index.php/home');?>" class="active"><span class="glyphicon energy-control"><img src="<?php echo base_url('images/icon1.png');?>"></span><?php echo $this->lang->line('energy_control')?></a></li>
@@ -150,9 +163,9 @@
               if(!strncmp($func, "switch", 6))echo " active";
               echo "\">".$this->lang->line('item_3_3')."</a>"."\n";
 
-              echo "<a href=\"".base_url('index.php/configuration/maxpower')."\" class=\"list-group-item";
-              if(!strncmp($func, "maxpower", 8))echo " active";
-              echo "\">".$this->lang->line('item_3_4')."</a>"."\n";
+//               echo "<a href=\"".base_url('index.php/configuration/maxpower')."\" class=\"list-group-item";
+//               if(!strncmp($func, "maxpower", 8))echo " active";
+//               echo "\">".$this->lang->line('item_3_4')."</a>"."\n";
             }
             //系统管理 
             if(!strncmp($page, "management", 10))
@@ -243,9 +256,9 @@ EOF;
                     if(!strncmp($func, "switch", 6))echo " active";
                     echo "\">".$this->lang->line('item_3_3')."</a>"."\n";
 
-                    echo "<a href=\"".base_url('index.php/configuration/maxpower')."\" class=\"list-group-item";
-                    if(!strncmp($func, "maxpower", 8))echo " active";
-                    echo "\">".$this->lang->line('item_3_4')."</a>"."\n";
+//                     echo "<a href=\"".base_url('index.php/configuration/maxpower')."\" class=\"list-group-item";
+//                     if(!strncmp($func, "maxpower", 8))echo " active";
+//                     echo "\">".$this->lang->line('item_3_4')."</a>"."\n";
                   }
                   //系统管理 
                   if(!strncmp($page, "management", 10))

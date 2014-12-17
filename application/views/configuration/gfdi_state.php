@@ -1,22 +1,11 @@
-<?php
-  if(!empty($result)){
-    if(!strncmp($result, "success", 7)){
-      echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
-      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
-      echo "<strong>".$this->lang->line("message_success")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("gfdi_result_$result")."\n";
-      echo "</div>"."\n";
-    }
-    else{
-      echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">"."\n";
-      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
-      echo "<strong>".$this->lang->line("message_warning")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("gfdi_result_$result")."\n";
-      echo "</div>"."\n";
-    }
-  }
-?>
+<!-- 设置结果显示框 -->
+<div class="alert alert-success alert-dismissible" id="result">
+    <button class="close" type="button" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <strong></strong><small></small>
+</div>
 
-<!-- 载入表单辅助函数创建一个开始form标签 -->
-<?php echo form_open('configuration/set_gfdi_state');?>
+<!-- GFDI设置表单 -->
+<form class="form-horizontal" id="defaultForm" method="ajax">
   <table class="table table-condensed table-striped table-hover">
     <thead>
       <tr>
@@ -32,7 +21,7 @@
         echo "<tr>";
         echo "<td>".$value."</td>";
         echo "<td>".$gfdi_state[$key]."</td>";
-        echo "<td><input type=\"checkbox\" name=\"ids[]\" value=\"".$value."\"></td>";
+        echo "<td><input type=\"checkbox\" name=\"ids\" value=\"".$value."\"></td>";
         echo "</tr>";
       }
     ?>
@@ -40,9 +29,58 @@
   </table>
     <div class="form-group">
       <div class="col-sm-offset-5 col-sm-2">
-        <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('gfdi_unlock')?></button>
+        <button class="btn btn-primary btn-sm" id="gfdi_unlock" type="submit"><?php echo $this->lang->line('gfdi_unlock')?></button>
       </div>
     </div>
 </form>
+
+<script>
+$(document).ready(function() {
+
+	//隐藏设置结果栏
+	$("#result").hide();
+	
+	//表单验证
+    $('#defaultForm').bootstrapValidator({
+    })
+    .on('success.form.bv', function(e) {
+        //防止默认表单提交，采用ajax提交
+        e.preventDefault();
+    });
+
+    //设置表单处理
+    $("#gfdi_unlock").click(function(){
+        //保存选中的逆变器ID
+        var ids = new Array();
+        $('input[name="ids"]:checked').each(function(){    
+        	ids.push($(this).val());    
+        });    
+        
+	    $.ajax({
+    		url : "<?php echo base_url('index.php/configuration/set_gfdi_state');?>",
+    		type : "post",
+            dataType : "json",
+    		data: {"ids":ids},
+  	    	success : function(Results){
+                if(Results.value == 0){
+  	                $("#result").removeClass().addClass("alert alert-success alert-dismissible");
+  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
+  	            }
+                else{
+                    $("#result").removeClass().addClass("alert alert-warning alert-dismissible");
+                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");
+                    $('#gfdi_unlock').removeAttr("disabled"); 
+                }
+                $("#result small").text(Results.message);        		 
+            	$("#result").show();
+    		},
+  	    	error : function(){
+  	    		alert("Error");
+  	    	}
+        })
+        window.scrollTo(0,0);//页面置顶
+    });
+});
+</script>
 
 

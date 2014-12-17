@@ -1,22 +1,11 @@
-<?php
-  if(!empty($result)){
-    if(!strncmp($result, "success", 7)){
-      echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
-      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
-      echo "<strong>".$this->lang->line("message_success")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("switch_result_$result")."\n";
-      echo "</div>"."\n";
-    }
-    else{
-      echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">"."\n";
-      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
-      echo "<strong>".$this->lang->line("message_warning")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("switch_result_$result")."\n";
-      echo "</div>"."\n";
-    }
-  }
-?>
+<!-- 设置结果显示框 -->
+<div class="alert alert-success alert-dismissible" id="result">
+    <button class="close" type="button" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <strong></strong><small></small>
+</div>
 
-<!-- 载入表单辅助函数创建一个开始form标签 -->
-<?php echo form_open('configuration/set_switch_state');?>
+<!-- 开关机设置表单 -->
+<form class="form-horizontal" id="defaultForm" method="ajax">
   <table class="table table-condensed table-striped table-hover">
     <thead>
       <tr>
@@ -42,31 +31,128 @@
   </table>
   <div class="col-sm-offset-5 col-sm-4">
     <div class="btn-group">
-      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('switch_turn_on_off')?></button>
+      <button class="btn btn-primary btn-sm" id="switch_turn_on_off" type="submit"><?php echo $this->lang->line('switch_turn_on_off')?></button>
       <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
         <span class="caret"></span>
-        <span class="sr-only">Toggle Dropdown</span>
       </button>
       <ul class="dropdown-menu" role="menu">
-        <li><a href="<?php echo base_url('index.php/configuration/set_switch_all_on');?>"><?php echo $this->lang->line('switch_turn_on_all')?></a></li>
-        <li><a href="<?php echo base_url('index.php/configuration/set_switch_all_off');?>"><?php echo $this->lang->line('switch_turn_off_all')?></a></li>
+        <li><a class="btn btn-sm" id="switch_turn_on_all"><?php echo $this->lang->line('switch_turn_on_all')?></a></li>
+        <li><a class="btn btn-sm" id="switch_turn_off_all"><?php echo $this->lang->line('switch_turn_off_all')?></a></li>
       </ul>
     </div>
   </div>
 </form>
 
-<script language="javascript">  
-    var tempradio = null;    
-    function check(checkedRadio)    
-    {    
-        if(tempradio == checkedRadio)
-        {  
-            tempradio.checked = false;  
-            tempradio = null;  
-        }   
-        else
-        {  
-            tempradio= checkedRadio;    
-        }  
-    }    
+<script>
+//取消单选按钮选中
+var tempradio = null;    
+function check(checkedRadio)    
+{    
+    if(tempradio == checkedRadio)
+    {  
+        tempradio.checked = false;  
+        tempradio = null;  
+    }   
+    else
+    {  
+        tempradio= checkedRadio;    
+    }  
+} 
+
+$(document).ready(function() {
+
+	//隐藏设置结果栏
+	$("#result").hide();   
+	
+	//表单验证
+    $('#defaultForm').bootstrapValidator({
+    })
+    .on('success.form.bv', function(e) {
+        //防止默认表单提交，采用ajax提交
+        e.preventDefault();
+    });
+
+    //设置表单处理(指定开关机)
+    $("#switch_turn_on_off").click(function(){
+        //保存选中的逆变器ID
+        var ids = new Array();
+        $('input[type="radio"]:checked').each(function(){    
+        	ids.push($(this).val());    
+        });
+        
+	    $.ajax({
+    		url : "<?php echo base_url('index.php/configuration/set_switch_state');?>",
+    		type : "post",
+            dataType : "json",
+    		data: {"ids":ids},
+  	    	success : function(Results){
+                if(Results.value == 0){
+  	                $("#result").removeClass().addClass("alert alert-success alert-dismissible");
+  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
+  	            }
+                else{
+                    $("#result").removeClass().addClass("alert alert-warning alert-dismissible");
+                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");
+                    $('#switch_turn_on_off').removeAttr("disabled"); 
+                }
+                $("#result small").text(Results.message);        		 
+            	$("#result").show();
+    		},
+  	    	error : function(){
+  	    		alert("Error");
+  	    	}
+        })
+        window.scrollTo(0,0);//页面置顶
+    });
+    //设置表单处理(打开所有)
+    $("#switch_turn_on_all").click(function(){
+	    $.ajax({
+    		url : "<?php echo base_url('index.php/configuration/set_switch_all_on');?>",
+    		type : "post",
+            dataType : "json",
+    		data: "switch_turn_on_all",
+  	    	success : function(Results){
+                if(Results.value == 0){
+  	                $("#result").removeClass().addClass("alert alert-success alert-dismissible");
+  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
+  	            }
+                else{
+                    $("#result").removeClass().addClass("alert alert-warning alert-dismissible");
+                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");
+                }
+                $("#result small").text(Results.message);        		 
+            	$("#result").show();
+    		},
+  	    	error : function(){
+  	    		alert("Error");
+  	    	}
+        })
+        window.scrollTo(0,0);//页面置顶
+    });
+    //设置表单处理(关闭所有)
+    $("#switch_turn_off_all").click(function(){
+	    $.ajax({
+    		url : "<?php echo base_url('index.php/configuration/set_switch_all_off');?>",
+    		type : "post",
+            dataType : "json",
+    		data: "switch_turn_off_all",
+  	    	success : function(Results){
+                if(Results.value == 0){
+  	                $("#result").removeClass().addClass("alert alert-success alert-dismissible");
+  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
+  	            }
+                else{
+                    $("#result").removeClass().addClass("alert alert-warning alert-dismissible");
+                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");
+                }
+                $("#result small").text(Results.message);        		 
+            	$("#result").show();
+    		},
+  	    	error : function(){
+  	    		alert("Error");
+  	    	}
+        })
+        window.scrollTo(0,0);//页面置顶
+    });
+});
 </script>

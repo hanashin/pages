@@ -101,8 +101,8 @@
 	$lang['login_username'] = "Username";
 	$lang['login_password'] = "Password";
 	$lang['login_login'] = "Login";	
-	$lang['login_result_success'] = "Login successful";
-	$lang['login_result_failed'] = "Incorrect username or password";
+	$lang['login_result_0'] = "Login successful";
+	$lang['login_result_1'] = "Incorrect username or password";
 	
 	//交流保护参数
 	$lang['function_protection'] = "Protection Parameters";
@@ -126,8 +126,8 @@
 	$lang['protection_frequency_triptime_slow'] = "Frequency Triptime Slow";
 	$lang['protection_grid_recovery_time'] = "Grid Recovery Time";
 	
-	$lang['protection_result_set_protection_success'] = "See the results 5 minutes later";
-	$lang['protection_result_null_protection'] = "Please enter at least one protection parameters";
+	$lang['protection_result_0'] = "See the results 5 minutes later";
+	$lang['protection_result_1'] = "Please enter at least one protection parameters";
 
 	//GFDI设置
 	$lang['function_gfdi'] = "Ground Fault Protection";
@@ -135,8 +135,8 @@
 	$lang['gfdi_state'] = "Status";
 	$lang['gfdi_unlock'] = "Unlock GFDI";
 	
-	$lang['gfdi_result_success'] = "See the results 5 minutes later";
-	$lang['gfdi_result_null'] = "Please select inverters need to be unlocked";
+	$lang['gfdi_result_0'] = "See the results 5 minutes later";
+	$lang['gfdi_result_1'] = "Please select inverters need to be unlocked";
 	
 	//远程控制开关机
 	$lang['function_switch'] = "Remote Control";
@@ -148,17 +148,17 @@
 	$lang['switch_turn_on_all'] = "Turn on all inverters";
 	$lang['switch_turn_off_all'] = "Turn off all inverters";
 	
-	$lang['switch_result_success'] = "See the results 5 minutes later";
-	$lang['switch_result_null'] = "Please select inverters";
+	$lang['switch_result_0'] = "See the results 5 minutes later";
+	$lang['switch_result_1'] = "Please select inverters";
 	
 	//最大功率设置
 	$lang['function_maxpower'] = "Power Setting";
 	$lang['maxpower_inverter_id'] = "Inverter ID";
-	$lang['maxpower_maxpower'] = "Maximum Power(20-270W)";
+	$lang['maxpower_maxpower'] = "Maximum Power(20-300W)";
 	$lang['maxpower_actual_maxpower'] = "Actual Maximum Power";
 	
-	$lang['maxpower_result_success'] = "See the results 5 minutes later";
-	$lang['maxpower_result_failed'] = "Please enter an integer between 20-270";
+	$lang['maxpower_result_0'] = "See the results 5 minutes later";
+	$lang['maxpower_result_1'] = "Please enter an integer between 20-300";
 
 /* 系统管理 */
 	//ID管理
@@ -189,6 +189,8 @@
 	$lang['language_current_language'] = "Current Language";
 	$lang['language_english'] = "English";
 	$lang['language_chinese'] = "Chinese";
+	$lang['language_result_0'] = "Change Language Success";
+	$lang['language_result_1'] = "Language configuration file open failed";
 	
 	//网络管理
 	$lang['function_network'] = "Network ";

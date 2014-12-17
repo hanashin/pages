@@ -1,29 +1,15 @@
- <?php
-      if(!empty($result)){
-        if(!strncmp($result, "success", 7)){
-          echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
-          echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
-          echo "<strong>".$this->lang->line("message_success")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("protection_result_set_protection_success")."\n";
-          echo "</div>"."\n";
-        }
-        else{
-          echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">"."\n";
-          echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
-          echo "<strong>".$this->lang->line("message_warning")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("protection_result_$result")."\n";
-          echo "</div>"."\n";
-        }
-      }
-    ?>
- 
+<!-- 设置结果显示框 -->
 <div class="alert alert-success alert-dismissible" id="result">
-    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <strong id="res"></strong>
+    <button class="close" type="button" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <strong></strong><small></small>
 </div>
 
-<form id="defaultForm" method="ajax" class="form-horizontal">
+<!-- 交流保护参数设置表单 -->
+<form class="form-horizontal" id="defaultForm" method="ajax">
   <fieldset>
     <legend><?php echo $this->lang->line('protection_set')?></legend>
-      <div class="form-group">    
+    
+    <div class="form-group">    
       <label for="inputdata0" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_select_inverter')?></label>
       <div class="col-sm-4">
         <select name='inverter' class="form-control" id="inputdata0">";
@@ -75,18 +61,16 @@
 
   <div class="form-group">
     <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" class="btn btn-primary btn-sm" id="button_save"><?php echo $this->lang->line('button_save')?></button>
+      <button class="btn btn-primary btn-sm" id="button_save" type="submit"><?php echo $this->lang->line('button_save')?></button>
     </div>
   </div>
 </form>
 
+<!-- 交流保护参数实际值显示表格 -->
 <fieldset>
   <legend><?php echo $this->lang->line('protection_actual_value')?>
     <div class="btn-group">
-      <?php echo form_open('configuration/read_inverter_parameters');?>
-        <input name="flag" type="hidden" value="1">
-        <button type="submit" class="btn btn-default btn-xs"><?php echo $this->lang->line('button_refresh')?></button>
-      </form>
+        <button class="btn btn-default btn-xs" id="refresh" type="button"><?php echo $this->lang->line('button_refresh')?></button>
     </div>
   </legend>
   
@@ -208,30 +192,62 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    //ajax表单处理
+    //设置表单处理
     $("#button_save").click(function(){
 	    $.ajax({
     		url : "<?php echo base_url('index.php/configuration/set_protection');?>",
     		type : "post",
-            dataType : "text",//以后使用json传数据
+            dataType : "json",
     		data: "inverter=" + $("#inputdata0").val()
     			  + "&under_voltage_slow=" + $("#inputdata1").val() 
     		      + "&over_voltage_slow=" + $("#inputdata2").val() 
     		      + "&under_frequency_slow=" + $("#inputdata3").val() 
     		      + "&over_frequency_slow=" + $("#inputdata4").val() 
     		      + "&grid_recovery_time=" + $("#inputdata5").val(),
-            success : function(Message){
-                if(Message != "success"){
-             	   $("#result").removeClass("alert-success").addClass("alert-warning"); 
+  	    	success : function(Results){
+                if(Results.value == 0){
+  	                $("#result").removeClass().addClass("alert alert-success alert-dismissible");
+  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
+  	            }
+                else{
+                    $("#result").removeClass().addClass("alert alert-warning alert-dismissible");
+                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
                 }
-          		$("#res").text(Message);  
+                $("#result small").text(Results.message);        		 
             	$("#result").show();
     		},
-    		error : function(){
-    			alert("Error");
-    		}
+  	    	error : function(){
+  	    		alert("Error");
+  	    	}
         })
+        window.scrollTo(0,0);//页面置顶
     });
+
+    //读取逆变器保护参数
+    $("#refresh").click(function(){
+	    $.ajax({
+    		url : "<?php echo base_url('index.php/configuration/read_inverter_parameters');?>",
+    		type : "post",
+            dataType : "json",
+    		data: "read_inverter_parameters",
+    		success : function(Results){
+                if(Results.value == 0){
+  	                $("#result").removeClass().addClass("alert alert-success alert-dismissible");
+  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");
+  	            }
+                else{
+                    $("#result").removeClass().addClass("alert alert-warning alert-dismissible");
+                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
+                }
+                $("#result small").text(Results.message);        		 
+            	$("#result").show();
+    		},
+  	    	error : function(){
+  	    		alert("Error");
+  	    	}
+        })
+        window.scrollTo(0,0);//页面置顶
+    });    
 });
 </script>
 

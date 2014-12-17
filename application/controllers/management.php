@@ -21,6 +21,10 @@ class Management extends CI_Controller {
             $language = fgets($fp);
             fclose($fp);
         }
+        else
+        {
+            $language = $this->session->userdata("language");
+        }
         //加载页面显示语言文件
         $this->lang->load('page', $language);
         //加载验证信息语言文件
@@ -104,10 +108,11 @@ class Management extends CI_Controller {
     }
 
     /* 设置语言 */
-    public function set_language($language = "english")
+    public function set_language()
     {      
-        $data = $this->management_model->set_language($language);
-        $this->language($data['result']);
+        $results = $this->management_model->set_language();
+        $results["message"] = $this->lang->line("language_result_{$results["value"]}");
+        echo json_encode($results);
     }
 
     /* 显示网络配置信息 */

@@ -343,22 +343,25 @@ class Management_model extends CI_Model {
     }
 
     /* 设置语言信息 */
-    public function set_language($value)
-    {       
+    public function set_language()
+    {
+        $results = array();
+               
         $language = $this->input->post('language');
-        if(!strlen($language))
-            $language = $value;
-        $fp = fopen("/etc/yuneng/language.conf",'w');
-        if ($fp)
-        {
+        $this->session->set_userdata("language", $language);
+        
+        $fp = @fopen("/etc/yuneng/language.conf",'w');
+        if ($fp){
           fwrite($fp, $language);
           fclose($fp);
+          $results["value"] = 0;
         }
+        else{
+            //文件打开失败
+            $results["value"] = 1;
+        }       
 
-        $data['language'] = $language;
-        $data['result'] = "1";
-
-        return $data;
+        return $results;
     }
 
     /* 获取ECU网络配置 */
