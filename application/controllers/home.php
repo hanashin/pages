@@ -8,16 +8,21 @@ class Home extends CI_Controller {
     {
         parent::__construct();
 
+        $this->load->library('session');
         $this->load->helper('url');
         $this->load->model('home_model');
 
-        /* 设置系统语言 */
-        $language = "chinese";
+       /* 设置系统语言 */
+        $language = "english";
         $fp = @fopen("/etc/yuneng/language.conf",'r');
         if($fp)
         {
             $language = fgets($fp);
             fclose($fp);
+        }
+        else if($this->session->userdata("language"))
+        {
+            $language = $this->session->userdata("language");
         }
         //加载页面显示语言文件
         $this->lang->load('page', $language);

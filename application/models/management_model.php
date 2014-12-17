@@ -338,6 +338,10 @@ class Management_model extends CI_Model {
           $data['language'] = fgets($fp);
           fclose($fp);
         }
+        else if($this->session->userdata("language"))
+        {
+            $data['language'] = $this->session->userdata("language");
+        }
 
         return $data;
     }

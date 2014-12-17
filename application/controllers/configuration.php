@@ -21,7 +21,7 @@ class Configuration extends CI_Controller {
             $language = fgets($fp);
             fclose($fp);
         }
-        else
+        else if($this->session->userdata("language"))
         {
             $language = $this->session->userdata("language");
         }

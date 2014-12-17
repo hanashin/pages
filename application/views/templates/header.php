@@ -24,12 +24,9 @@
     <script src="<?php echo base_url('js/bootstrapValidator.min.js');?>"></script>
     <script src="<?php echo base_url('js/bootstrap-datetimepicker.min.js');?>"></script>
     <script src="<?php echo base_url('js/timeShow.js');?>"></script>
-    <script>
-      $(document).ready(function(){
-        $("#txt").timeShow({dayShow:'#txt',yearMoon:'#txt',weekShow:'#txt'});
-      });
-      
+    <script>   
       $(document).ready(function() {
+    	  $("#txt").timeShow({dayShow:'#txt',yearMoon:'#txt',weekShow:'#txt'});
   	    //切换语言
   		$(".chlang").click(function(){
   		    $.ajax({
