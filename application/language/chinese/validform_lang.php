@@ -19,7 +19,11 @@
 	$lang['validform_frequency_triptime_slow'] = "请输入0-99之间的小数(精确到小数点后两位)";//内围过欠频延迟保护时间
 	$lang['validform_grid_recovery_time'] = "请输入0-99999之间的整数";//并网恢复时间
 
-/* 系统管理 */	
+/* 系统管理 */
+	//时间管理
+	$lang['validform_datetime'] = "日期时间格式 YYYY/MM/DD hh:mm:ss";
+	$lang['validform_null_datetime'] = "请输入日期时间";
+	
 	//网络管理
 	$lang['validform_ip_address'] = "请输入格式正确的 IP地址";
 	$lang['validform_subnet_mask'] = "请输入格式正确的 子网掩码";

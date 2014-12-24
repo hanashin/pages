@@ -29,7 +29,7 @@
 </p>
 <p>3.隐藏功能</p>
 <p>(1)Updatecenter: 
-  <a href="<?php echo base_url('index.php/hidden/updatecenter');?>"><?php echo base_url('index.php/configuration/updatecenter');?></a>
+  <a href="<?php echo base_url('index.php/hidden/updatecenter');?>"><?php echo base_url('index.php/hidden/updatecenter');?></a>
 </p>
 <p>(2)Datacenter: 
   <a href="<?php echo base_url('index.php/hidden/datacenter');?>"><?php echo base_url('index.php/hidden/datacenter');?></a>
@@ -45,6 +45,12 @@
 </p>
 <p>(6)Debug: 
   <a href="<?php echo base_url('index.php/hidden/debug');?>"><?php echo base_url('index.php/hidden/debug');?></a>
+</p>
+<p>(7)电网环境: 
+  <a href="<?php echo base_url('index.php/hidden/grid_environment');?>"><?php echo base_url('index.php/hidden/grid_environment');?></a>
+</p>
+<p>(8)IRD模式: 
+  <a href="<?php echo base_url('index.php/hidden/ird');?>"><?php echo base_url('index.php/hidden/ird');?></a>
 </p>
 <p>4.查看status</p>
 <p>(1)Status: 

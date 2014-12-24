@@ -320,6 +320,160 @@ class Hidden_model extends CI_Model {
 
         return $data;
     }
+    
+    /* 显示电网环境信息 */
+    public function get_grid_environment()
+    {
+        $data = array();
+        
+        //若数据表不存在，则创建
+        $this->pdo->exec("CREATE TABLE IF NOT EXISTS grid_environment
+            (id VARCHAR(256), result INTEGER, set_value INTEGER, set_flag INTEGER, primary key (id))");
+        
+        $query = "SELECT id.ID, grid_environment.result 
+            FROM id LEFT JOIN grid_environment ON id.ID=grid_environment.id";
+        $result = $this->pdo->prepare($query);
+        if(!empty($result))
+        {
+            $result->execute();
+            $res = $result->fetchAll();
+        }
+        $data['ids'] = $res;
+        
+        return $data;
+    }
+    
+    /* 设置电网环境 */
+    public function set_grid_environment()
+    {
+        $results = array();
+    
+        //获取页面输入的电网环境信息
+        $id = $this->input->post('id');
+        $grid_environment = $this->input->post('grid_environment');
+        if($grid_environment == -1){
+            //未选择选项
+            $results["value"] = 1;
+        }
+        else{
+            if(strlen($id) == 12)
+            {
+                //设置单个逆变器
+                //$this->pdo->exec("REPLACE INTO grid_environment (id, result, set_value, set_flag) VALUES ('$id', 0, $grid_environment, 1)");
+                $this->pdo->exec("REPLACE INTO grid_environment (id, result, set_value, set_flag) VALUES ('$id', (SELECT result FROM grid_environment WHERE id='$id'), $grid_environment, 1)");
+                $results["value"] = 0;
+            }
+            else{
+                //设置所有逆变器
+                $fp = @fopen("/tmp/set_grid_environment.conf", "w");
+                if($fp)
+                {
+                    fwrite($fp, "ALL,".$grid_environment);
+                    fclose($fp);
+                    $results["value"] = 0;
+                }
+                else{
+                    $results["value"] = 2;
+                }                
+            }
+        }
+        return $results;
+    }
+    
+    /* 读取电网环境 */
+    public function read_grid_environment()
+    {
+        $results = array();
+    
+        $fp = @fopen("/tmp/get_grid_environment.conf", "w");
+        if($fp)
+        {
+            fwrite($fp, "ALL");
+            fclose($fp);
+            $results["value"] = 0;
+        }
+        else{
+            $results["value"] = 3;
+        }
+        return $results;
+    }
+    
+    /* 显示IRD控制 */
+    public function get_ird()
+    {
+        $data = array();
+    
+        //若数据表不存在，则创建
+        $this->pdo->exec("CREATE TABLE IF NOT EXISTS ird
+            (id VARCHAR(256), result INTEGER, set_value INTEGER, set_flag INTEGER, primary key (id))");
+    
+        $query = "SELECT id.ID, ird.result
+            FROM id LEFT JOIN ird ON id.ID=ird.id";
+        $result = $this->pdo->prepare($query);
+        if(!empty($result))
+        {
+            $result->execute();
+            $res = $result->fetchAll();
+        }
+        $data['ids'] = $res;
+    
+        return $data;
+    }
+    
+    /* 设置IRD控制 */
+    public function set_ird()
+    {
+        $results = array();
+    
+        //获取页面输入的IRD信息
+        $id = $this->input->post('id');
+        $ird = $this->input->post('ird');
+        if($ird == -1){
+            //未选择选项
+            $results["value"] = 1;
+        }
+        else{
+            if(strlen($id) == 12)
+            {
+                //设置单个逆变器
+                //$this->pdo->exec("REPLACE INTO ird (id, result, set_value, set_flag) VALUES ('$id', 3, $ird, 1)");
+                $this->pdo->exec("REPLACE INTO ird (id, result, set_value, set_flag) VALUES ('$id', (SELECT result FROM ird WHERE id='$id'), $ird, 1)");
+                $results["value"] = 0;
+            }
+            else{
+                //设置所有逆变器
+                $fp = @fopen("/tmp/set_ird.conf", "w");
+                if($fp)
+                {
+                    fwrite($fp, "ALL,".$ird);
+                    fclose($fp);
+                    $results["value"] = 0;
+                }
+                else{
+                    $results["value"] = 2;
+                }
+            }
+        }
+        return $results;
+    }
+    
+    /* 读取IRD控制 */
+    public function read_ird()
+    {
+        $results = array();
+          
+        $fp = @fopen("/tmp/get_ird.conf", "w");
+        if($fp)
+        {
+            fwrite($fp, "ALL");
+            fclose($fp);
+            $results["value"] = 0;
+        }
+        else{
+            $results["value"] = 3;
+        }           
+        return $results;
+    }
 
 }
 

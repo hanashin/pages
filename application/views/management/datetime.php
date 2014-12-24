@@ -1,63 +1,30 @@
-<?php
-  if(!empty($result)){
-    if(!strncmp($result, "success", 7)){
-      echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
-      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
-      echo "<strong>".$this->lang->line("message_success")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("time_result_$result")."\n";
-      echo "</div>"."\n";
-    }
-    else{
-      echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">"."\n";
-      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
-      echo "<strong>".$this->lang->line("message_warning")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("time_result_$result")."\n";
-      echo "</div>"."\n";
-    }
-  }
-?>
+<!-- 设置结果显示框 -->
+<div class="alert alert-success" id="result">
+    <button class="close" type="button"><span aria-hidden="true">&times;</span></button>
+    <strong></strong><small></small>
+</div>
 
-<?php date_default_timezone_set($timezone);?>      
-<form class="form-horizontal" role="form" action="<?php echo base_url('index.php/management/set_datetime');?>" method="post">
-<!--   <div class="form-group">    
-    <label for="inputdate" class="col-sm-5 control-label"><?php echo $this->lang->line('time_date')?></label>
+<!-- 设置日期时间  -->
+<form class="form-horizontal" id="defaultForm" method="ajax">
+  <div class="form-group">    
+    <label for="inputdatetime" class="col-sm-5 control-label"><?php echo $this->lang->line('time_datetime')?></label>
     <div class="col-sm-4">
-      <input type="text" name="date" class="form-control" id="inputdate" value="<?php echo date("Y-m-d",time());?>">
+      <input type="text" name="datetime" class="form-control" id="inputdatetime" value="<?php echo date("Y/m/d",time())." ".date("H:i:s",time());?>">
     </div>
   </div>
   <div class="form-group">
-    <label for="inputtime" class="col-sm-5 control-label"><?php echo $this->lang->line('time_time')?></label>
-      <div class="col-sm-4">
-        <input type="text" name="time" class="form-control" id="inputtime" value="<?php echo date("H:i:s",time());?>">
-      </div>
-  </div> -->
-
-<!-- ceshi -->
-<div class="form-group">
-    <label for="inputdate" class="col-sm-5 control-label"><?php echo $this->lang->line('time_date')?></label>
-    <div class="input-group date form_date col-sm-4">
-        <input type="text" name="date" class="form-control" id="inputdate" value="<?php echo date("Y-m-d",time());?>">
-        <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-    </div>
-</div>
-<div class="form-group">
-    <label for="inputtime" class="col-sm-5 control-label"><?php echo $this->lang->line('time_time')?></label>
-    <div class="input-group date form_time col-sm-4">
-        <input type="text" name="time" class="form-control" id="inputtime" value="<?php echo date("H:i:s",time());?>">
-        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-    </div>
-</div>
-
-  <div class="form-group">
     <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_update')?></button>
+      <button class="btn btn-primary btn-sm" id="button_update_datetime" type="submit"><?php echo $this->lang->line('button_update')?></button>
     </div>
   </div>
 </form>
 <br>
-<form class="form-horizontal" role="form" action="<?php echo base_url('index.php/management/set_timezone');?>" method="post">
+<!-- 设置时区 -->
+<form class="form-horizontal">
   <div class="form-group">    
     <label class="col-sm-5 control-label"><?php echo $this->lang->line('time_timezone')?></label>
     <div class="col-sm-4">
-      <select name="timezone" class="form-control">
+      <select name="timezone" class="form-control" id="timezone">
         <?php
           echo "<option value=".$timezone.">".$timezone."</option>";
         ?>
@@ -616,43 +583,132 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_update')?></button>
+      <button class="btn btn-primary btn-sm" id="button_update_timezone" type="button"><?php echo $this->lang->line('button_update')?></button>
     </div>
   </div>
 </form>
 <br>
-<form class="form-horizontal" role="form" action="<?php echo base_url('index.php/management/set_ntp_server');?>" method="post">
+<!-- 设置NTP服务器 -->
+<form class="form-horizontal">
   <div class="form-group">    
-    <label for="inputtime" class="col-sm-5 control-label"><?php echo $this->lang->line('time_ntp')?></label>
+    <label for="inputntp" class="col-sm-5 control-label"><?php echo $this->lang->line('time_ntp')?></label>
     <div class="col-sm-4">
-      <input type="text" name="ntp" class="form-control" id="inputtime" value="<?php echo "$ntp";?>">
+      <input type="text" name="ntp" class="form-control" id="inputntp" value="<?php echo "$ntp";?>">
     </div>
   </div>
   <div class="form-group">
     <div class="col-sm-offset-5 col-sm-2">
-      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_update')?></button>
+      <button class="btn btn-primary btn-sm" id="button_update_ntp" type="button"><?php echo $this->lang->line('button_update')?></button>
     </div>
   </div>
 </form>
 
-<script type="text/javascript">
-    $('.form_date').datetimepicker({
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        minView: 2,
-        forceParse: 0,
-        format: "yyyy-mm-dd"
+<script>
+$(document).ready(function() {
+
+	//隐藏设置结果栏
+	$("#result").hide();
+	$(".close").click(function(){
+		$("#result").hide();
+    }); 
+	
+	//时间设置表单验证
+    $('#defaultForm').bootstrapValidator({
+        fields: {
+        	datetime: {
+                validators: {
+                    notEmpty: {
+                        message: '<?php echo $this->lang->line('validform_null_datetime')?>'
+                    },
+                    date: {
+                        format: 'YYYY/MM/DD h:m:s',
+                        message: '<?php echo $this->lang->line('validform_datetime')?>'
+                    }
+                }
+            },
+        }
+    })
+    .on('success.form.bv', function(e) {
+        //防止默认表单提交，采用ajax提交
+        e.preventDefault();
     });
-    $('.form_time').datetimepicker({
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 1,
-        minView: 0,
-        maxView: 1,
-        forceParse: 0,
-        format: "hh:ii:ss"
+    
+    //设置日期时间
+    $("#button_update_datetime").click(function(){
+	    $.ajax({
+    		url : "<?php echo base_url('index.php/management/set_datetime');?>",
+    		type : "post",
+            dataType : "json",
+    		data: "datetime=" + $("#inputdatetime").val(),
+  	    	success : function(Results){
+                if(Results.value == 0){
+  	                $("#result").removeClass().addClass("alert alert-success");
+  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
+  	            }
+                else{
+                    $("#result").removeClass().addClass("alert alert-warning");
+                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
+                }
+                $("#result small").text(Results.message);    		 
+            	$("#result").show();
+    		},
+  	    	error : function(){
+  	    		alert("Error");
+  	    	}
+        })
+        window.scrollTo(0,0);//页面置顶
     });
+
+    //设置时区
+    $("#button_update_timezone").click(function(){
+	    $.ajax({
+    		url : "<?php echo base_url('index.php/management/set_timezone');?>",
+    		type : "post",
+            dataType : "json",
+    		data: "timezone=" + $("#timezone").val(),
+  	    	success : function(Results){
+                if(Results.value == 0){
+  	                $("#result").removeClass().addClass("alert alert-success");
+  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
+  	            }
+                else{
+                    $("#result").removeClass().addClass("alert alert-warning");
+                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
+                }
+                $("#result small").text(Results.message);    		 
+            	$("#result").show();
+    		},
+  	    	error : function(){
+  	    		alert("Error");
+  	    	}
+        })
+        window.scrollTo(0,0);//页面置顶
+    });
+    
+    //设置NTP服务器
+    $("#button_update_ntp").click(function(){
+	    $.ajax({
+    		url : "<?php echo base_url('index.php/management/set_ntp_server');?>",
+    		type : "post",
+            dataType : "json",
+    		data: "ntp=" + $("#inputntp").val(),
+  	    	success : function(Results){
+                if(Results.value == 0){
+  	                $("#result").removeClass().addClass("alert alert-success");
+  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
+  	            }
+                else{
+                    $("#result").removeClass().addClass("alert alert-warning");
+                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
+                }
+                $("#result small").text(Results.message);        		 
+            	$("#result").show();
+    		},
+  	    	error : function(){
+  	    		alert("Error");
+  	    	}
+        })
+        window.scrollTo(0,0);//页面置顶
+    }); 
+});
 </script>

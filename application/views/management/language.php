@@ -3,7 +3,7 @@
     <label class="col-sm-5 control-label"><?php echo $this->lang->line('language_current_language')?></label>
     <div class="col-sm-4">
       <select name="language" class="form-control" id="lang_value">";
-        <option value="english" <?php if(!strncmp($language, "chinese", 7))
+        <option value="english" <?php if(!strncmp($language, "english", 7))
                                     echo "selected=\"selected\"";
                                 ?>><?php echo $this->lang->line('language_english');?></option>
         <option value="chinese" <?php if(!strncmp($language, "chinese", 7))

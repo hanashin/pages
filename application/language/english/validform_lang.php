@@ -19,7 +19,11 @@
 	$lang['validform_frequency_triptime_slow'] = "Please enter a decimal number between 0-99(precision to 2nd decimal)";//内围过欠频延迟保护时间
 	$lang['validform_grid_recovery_time'] = "Please enter an integer between 0-99999";//并网恢复时间
 	
-/* 系统管理 */	
+/* 系统管理 */
+	//时间管理
+	$lang['validform_datetime'] = "Format: YYYY/MM/DD hh:mm:ss";
+	$lang['validform_null_datetime'] = "Please enter Date Time";
+	
 	//网络管理
 	$lang['validform_ip_address'] = "The IP address format error";
 	$lang['validform_subnet_mask'] = "The Subnet mask format error";

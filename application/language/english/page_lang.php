@@ -18,10 +18,14 @@
 	$lang['button_reset'] = "Reset";
 	$lang['button_query'] = "Query";
 	$lang['button_refresh'] = "Refresh";
+	$lang['button_save_all'] = "Read All Inverters";
+	$lang['button_read_all'] = "Save All Inverters";
 	
 	$lang['message_success'] = "Success";
 	$lang['message_warning'] = "Warning";
 	$lang['message_failed'] = "Failed";
+	
+	$lang['inverter_id'] = "Inverter ID";
 
 	$lang['ecu_reboot_title'] = "ECU is restarting ......";
 	$lang['ecu_reboot'] = "Please do not refresh the page, if the page does not automatically jump after the restart , please enter the IP on LCD screen.";
@@ -174,15 +178,16 @@
 	
 	//时间管理
 	$lang['function_time'] = "Time ";
-	$lang['time_date'] = "Date";
-	$lang['time_time'] = "Time";
+	$lang['time_datetime'] = "Date Time";
 	$lang['time_timezone'] = "Timezone";
 	$lang['time_ntp'] = "NTP Server";
 
-	$lang['time_result_success_datetime'] = "update datetime success";
-	$lang['time_result_failed_datetime'] = "update datetime failed";	
-	$lang['time_result_success_timezone'] = "update timezone success";	
-	$lang['time_result_success_ntp'] = "update ntp_server success";
+	$lang['datetime_result_0'] = "update datetime success";
+	$lang['datetime_result_1'] = "update datetime failed";	
+	$lang['timezone_result_0'] = "update timezone success";
+	$lang['timezone_result_1'] = "update timezone failed";
+	$lang['ntp_result_0'] = "update ntp_server success";
+	$lang['ntp_result_1'] = "update ntp_server failed";
 	
 	//语言管理
 	$lang['function_language'] = "Language";
@@ -205,8 +210,8 @@
 	$lang['network_preferred_dns_server'] = "Preferred DNS server";
 	$lang['network_alternate_dns_server'] = "Alternate DNS server";
 	
-	$lang['network_result_success_gprs_on'] = "Set GPRS success";
-	$lang['network_result_success_gprs_off'] = "Cancel GPRS success";
+	$lang['gprs_result_0'] = "Set GPRS success";
+	$lang['gprs_result_1'] = "Cancel GPRS success";
 	$lang['network_result_success_dhcp'] = "Set dynamic IP success";
 	$lang['network_result_success_static_ip'] = "Set static IP success";
 	
@@ -335,6 +340,28 @@
 	
 	$lang['serial_result_success'] = "Serial has been modified";
 	$lang['serial_result_failed'] = "Serial modification fails";
+	
+	//电网环境
+	$lang['function_grid_environment'] = "Grid Environment";
+	$lang['grid_environment_result'] = "Result";
+	$lang['grid_environment_setting'] = "Grid Environment";
+	$lang['grid_environment_select'] = "--Select Grid Environment--";
 
+	$lang['grid_environment_result_0'] = "Set Grid Environment Success";
+	$lang['grid_environment_result_1'] = "Please Select Grid Environment";
+	$lang['grid_environment_result_2'] = "Set Grid Environment Failed";
+	
+	//IRD控制
+	$lang['function_ird'] = "IRD";
+	$lang['ird_result'] = "Result";
+	$lang['ird_setting'] = "IRD Mode";
+	$lang['ird_select'] = "--Select a IRD Mode--";
+	$lang['ird_select_1'] = "Turn off IRD";
+	$lang['ird_select_2'] = "Turn on IRD with locked";
+	$lang['ird_select_3'] = "Turn on IRD without locked";
+	
+	$lang['ird_result_0'] = "Set IRD Mode Success";
+	$lang['ird_result_1'] = "Please Select a IRD Mode";
+	$lang['ird_result_2'] = "Set IRD Mode Failed";
 	
 ?>

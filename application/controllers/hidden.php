@@ -31,8 +31,6 @@ class Hidden extends CI_Controller {
         $this->lang->load('validform', $language);
     }
 
-    /* 显示实时数据(默认函数) */
-
     /* 显示DEBUG页面 */
     public function debug($result = "")
     {
@@ -141,6 +139,60 @@ class Hidden extends CI_Controller {
     {
         $data = $this->hidden_model->set_serial();
         $this->serial($data['result']);  
+    }
+    
+    /* 显示电网环境页面 */
+    public function grid_environment()
+    {
+        $data = $this->hidden_model->get_grid_environment();
+        $data['page'] = $this->page;
+        $data['func'] = "grid_environment";
+        $this->load->view('templates/header', $data);
+        $this->load->view('hidden/grid_environment', $data);
+        $this->load->view('templates/footer');
+    }
+    
+    /* 设置电网环境 */
+    public function set_grid_environment()
+    {
+        $results = $this->hidden_model->set_grid_environment();
+        $results["message"] = $this->lang->line("grid_environment_result_{$results["value"]}");
+        echo json_encode($results);
+    }
+    
+    /* 读取电网环境 */
+    public function read_grid_environment()
+    {
+        $results = $this->hidden_model->read_grid_environment();
+        $results["message"] = $this->lang->line("grid_environment_result_{$results["value"]}");
+        echo json_encode($results);
+    }
+    
+    /* 显示IRD控制页面 */
+    public function ird()
+    {
+        $data = $this->hidden_model->get_ird();
+        $data['page'] = $this->page;
+        $data['func'] = "ird";
+        $this->load->view('templates/header', $data);
+        $this->load->view('hidden/ird', $data);
+        $this->load->view('templates/footer');
+    }
+    
+    /* 设置IRD控制 */
+    public function set_ird()
+    {
+        $results = $this->hidden_model->set_ird();
+        $results["message"] = $this->lang->line("ird_result_{$results["value"]}");
+        echo json_encode($results);
+    }
+    
+    /* 读取IRD控制 */
+    public function read_ird()
+    {
+        $results = $this->hidden_model->read_ird();
+        $results["message"] = $this->lang->line("ird_result_{$results["value"]}");
+        echo json_encode($results);
     }
 
 }

@@ -1,40 +1,35 @@
-<?php
-  if(!empty($result)){
-    if(!strncmp($result, "success", 7)){
-      echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
-      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
-      echo "<strong>".$this->lang->line("message_success")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("network_result_$result")."\n";
-      echo "</div>"."\n";
-    }
-    else{
-      echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">"."\n";
-      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
-      echo "<strong>".$this->lang->line("message_warning")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("network_result_$result")."\n";
-      echo "</div>"."\n";
-    }
-  }
-?>
-<form method="post" action="<?php echo base_url('index.php/management/set_gprs');?>" class="form-horizontal" role="form">
-  <fieldset>
+<!-- 设置结果显示框 -->
+<div class="alert alert-success" id="result">
+    <button class="close" type="button"><span aria-hidden="true">&times;</span></button>
+    <strong></strong><small></small>
+</div>
+
+<!-- 设置GPRS -->
+<form class="form-horizontal">
+<fieldset>
     <legend><?php echo $this->lang->line('network_set_gprs')?></legend>   
 
     <div class="form-group">    
       <div class="col-sm-4 col-sm-offset-4">
-        <input type='checkbox' name="gprs" value="1"<?php 
-                        if ($gprs==1){
-                            echo "checked='checked'";
-                    }?>> <?php echo $this->lang->line('network_use_gprs')?>
+        <input id="gprs_status" type="checkbox" name="gprs" 
+        <?php 
+            if ($gprs==1){
+                echo "checked='checked'";
+            }
+        ?>>
+        <?php echo $this->lang->line('network_use_gprs')?>
       </div>
     </div>
   </fieldset>
 
   <div class="form-group">
     <div class="col-sm-offset-4 col-sm-2">
-      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('button_update')?></button>
+      <button class="btn btn-primary btn-sm" id="button_update_gprs" type="button"><?php echo $this->lang->line('button_update')?></button>
     </div>
   </div>
 </form>
 
+<!-- 设置IP地址 -->
 <form id="defaultForm" method="post" action="<?php echo base_url('index.php/management/set_ip');?>" class="form-horizontal" role="form">
   <fieldset>
     <legend><?php echo $this->lang->line('network_set_ip')?></legend>
@@ -129,9 +124,15 @@
         if (value == 0) 
             document.getElementById('network_ip').style.display= ''; 
     }
-</script>
-<script>
-$(document).ready(function() {
+
+$(document).ready(function() {	
+
+	//隐藏设置结果栏
+	$("#result").hide();
+	$(".close").click(function(){
+		$("#result").hide();
+    }); 
+	
     $('#defaultForm').bootstrapValidator({
         fields: {
             ip: {
@@ -203,15 +204,57 @@ $(document).ready(function() {
             },
         }
     });
-    // $('input[name="dhcp"]').on('change', function() {
-    //     var bootstrapValidator = $('#defaultForm').data('bootstrapValidator'),
-    //         shipNetwork_ip     = ($(this).val() == '1');
 
-    //     shipNetwork_ip ? $('#network_ip').find('.btn-default').removeAttr('disabled')
-    //                    : $('#network_ip').find('.btn-default').attr('disabled', 'disabled');
-
-    //     bootstrapValidator.enableFieldValidators('dhcp_submit', shipNetwork_ip);
-    //     alert(shipNetwork_ip);
-    // });
+    //设置GPRS
+    $("#button_update_gprs").click(function(){
+	    $.ajax({
+    		url : "<?php echo base_url('index.php/management/set_gprs');?>",
+    		type : "post",
+            dataType : "json",
+    		data: "gprs=" + $('#gprs_status').is(':checked'),
+  	    	success : function(Results){
+                if(Results.value == 0){
+  	                $("#result").removeClass().addClass("alert alert-success");
+  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
+  	            }
+                else{
+                    $("#result").removeClass().addClass("alert alert-warning");
+                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
+                }
+                $("#result small").text(Results.message);        		 
+            	$("#result").show();
+    		},
+  	    	error : function(){
+  	    		alert("Error");
+  	    	}
+        })
+        window.scrollTo(0,0);//页面置顶
+    });
+    
+    //设置IP
+    $("#button_update_gprs").click(function(){
+	    $.ajax({
+    		url : "<?php echo base_url('index.php/management/set_gprs');?>",
+    		type : "post",
+            dataType : "json",
+    		data: "gprs=" + $('#gprs_status').is(':checked'),
+  	    	success : function(Results){
+                if(Results.value == 0){
+  	                $("#result").removeClass().addClass("alert alert-success");
+  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
+  	            }
+                else{
+                    $("#result").removeClass().addClass("alert alert-warning");
+                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
+                }
+                $("#result small").text(Results.message);        		 
+            	$("#result").show();
+    		},
+  	    	error : function(){
+  	    		alert("Error");
+  	    	}
+        })
+        window.scrollTo(0,0);//页面置顶
+    }); 
 });
 </script>

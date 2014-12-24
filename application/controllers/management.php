@@ -63,12 +63,11 @@ class Management extends CI_Controller {
     }
 
     /* 显示时间时区信息 */
-    public function datetime($result = "")
+    public function datetime()
     {  
         $data = $this->management_model->get_datetime();
         $data['page'] = $this->page;
         $data['func'] = "time";
-        $data['result'] = $result;
         $this->load->view('templates/header', $data);
         $this->load->view('management/datetime', $data);
         $this->load->view('templates/footer');
@@ -77,31 +76,33 @@ class Management extends CI_Controller {
     /* 设置日期时间 */
     public function set_datetime()
     { 
-        $data = $this->management_model->set_datetime();
-        $this->datetime($data['result']);
+        $results = $this->management_model->set_datetime();
+        $results["message"] = $this->lang->line("datetime_result_{$results["value"]}");
+        echo json_encode($results);
     }
 
     /* 设置时区 */
     public function set_timezone()
     {  
-        $data = $this->management_model->set_timezone(); 
-        $this->datetime($data['result']);
+        $results = $this->management_model->set_timezone(); 
+        $results["message"] = $this->lang->line("timezone_result_{$results["value"]}");
+        echo json_encode($results);
     }
 
     /* 设置NTP服务器 */
     public function set_ntp_server()
     {  
-        $data = $this->management_model->set_ntp_server();
-        $this->datetime($data['result']);
+        $results = $this->management_model->set_ntp_server();
+        $results["message"] = $this->lang->line("ntp_result_{$results["value"]}");
+        echo json_encode($results);
     }
 
     /* 显示语言信息 */
-    public function language($result = "")
+    public function language()
     {      
         $data = $this->management_model->get_language();
         $data['page'] = $this->page;
         $data['func'] = "language";
-        $data['result'] = $result;
         $this->load->view('templates/header', $data);
         $this->load->view('management/language', $data);
         $this->load->view('templates/footer');
@@ -129,17 +130,16 @@ class Management extends CI_Controller {
 
     /* 设置GPRS */
     public function set_gprs()
-    {      
-        $data = $this->management_model->set_gprs();
-
-        //将设置结果传给显示函数
-        $this->network($data['result']);
+    {
+        $results = $this->management_model->set_gprs();
+        $results["message"] = $this->lang->line("gprs_result_{$results["value"]}");
+        echo json_encode($results);
     }
 
     /* 设置IP */
     public function set_ip()
     {
-        $data = $this->management_model->set_ip();
+        $results = $this->management_model->set_ip();
 
         //将设置结果传给显示函数
         //$this->network($data['result']);

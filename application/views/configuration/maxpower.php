@@ -1,6 +1,6 @@
 <!-- 设置结果显示框 -->
-<div class="alert alert-success alert-dismissible" id="result">
-    <button class="close" type="button" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<div class="alert alert-success" id="result">
+    <button class="close" type="button"><span aria-hidden="true">&times;</span></button>
     <strong></strong><small></small>
 </div>
 
@@ -37,6 +37,9 @@ $(document).ready(function() {
 
 	//隐藏设置结果栏
 	$("#result").hide();
+	$(".close").click(function(){
+		$("#result").hide();
+    }); 
 
     //设置最大功率处理	
 	$(".btn").click(function(){        
@@ -48,11 +51,11 @@ $(document).ready(function() {
 			  + "&maxpower=" + $("input[name='"+$(this).attr("id")+"']").val(),
   	    	success : function(Results){
                 if(Results.value == 0){
-  	                $("#result").removeClass().addClass("alert alert-success alert-dismissible");
+  	                $("#result").removeClass().addClass("alert alert-success");
   	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
   	            }
                 else{
-                    $("#result").removeClass().addClass("alert alert-warning alert-dismissible");
+                    $("#result").removeClass().addClass("alert alert-warning");
                     $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");
                 }
                 $("#result small").text(Results.message);        		 

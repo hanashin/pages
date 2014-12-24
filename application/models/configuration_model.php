@@ -885,14 +885,15 @@ class Configuration_model extends CI_Model {
     {
         $data = array();
 
-        $query = "SELECT id, limitedpower, limitedresult FROM power";
+        $query = "SELECT power.id, power.limitedpower, power.limitedresult 
+            FROM id LEFT JOIN power ON id.ID=power.id";
         $result = $this->pdo->prepare($query);
         if(!empty($result))
         {
             $result->execute();
             $res = $result->fetchAll();
         }
-        $data['ids'] = $res; 
+        $data['ids'] = $res;
 
         return $data;
     }

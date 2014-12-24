@@ -18,10 +18,14 @@
 	$lang['button_reset'] = "重置";
 	$lang['button_query'] = "查询";
 	$lang['button_refresh'] = "刷新";
+	$lang['button_save_all'] = "保存所有逆变器";
+	$lang['button_read_all'] = "读取所有逆变器";
 	
 	$lang['message_success'] = "设置成功";
 	$lang['message_warning'] = "警告";
-	$lang['message_failed'] = "登录失败";			
+	$lang['message_failed'] = "登录失败";	
+
+	$lang['inverter_id'] = "逆变器 ID";
 	
 	$lang['ecu_reboot_title'] = "ECU 正在重启……";
 	$lang['ecu_reboot'] = "请勿刷新页面，重启完毕后若页面未自动跳转，请在地址栏输入液晶屏所显示的IP";
@@ -174,15 +178,16 @@
 	
 	//时间管理
 	$lang['function_time'] = "时间管理";
-	$lang['time_date'] = "日期";
-	$lang['time_time'] = "时间";
+	$lang['time_datetime'] = "日期 时间";
 	$lang['time_timezone'] = "时区";
 	$lang['time_ntp'] = "NTP服务器";
 	
-	$lang['time_result_success_datetime'] = "更改时间成功";
-	$lang['time_result_failed_datetime'] = "更改时间失败";
-	$lang['time_result_success_timezone'] = "更改时区成功";	
-	$lang['time_result_success_ntp'] = "更改NTP服务器成功";
+	$lang['datetime_result_0'] = "更改时间成功";
+	$lang['datetime_result_1'] = "更改时间失败";
+	$lang['timezone_result_0'] = "更改时区成功";
+	$lang['timezone_result_1'] = "更改时区失败";
+	$lang['ntp_result_0'] = "更改NTP服务器成功";
+	$lang['ntp_result_1'] = "更改NTP服务器失败";
 	
 	//语言管理
 	$lang['function_language'] = "语言管理";
@@ -205,8 +210,8 @@
 	$lang['network_preferred_dns_server'] = "首选 DNS 服务器";
 	$lang['network_alternate_dns_server'] = "备用 DNS 服务器";
 	
-	$lang['network_result_success_gprs_on'] = "设置GPRS成功";
-	$lang['network_result_success_gprs_off'] = "取消GPRS成功";
+	$lang['gprs_result_0'] = "设置GPRS成功";
+	$lang['gprs_result_1'] = "取消GPRS成功";
 	$lang['network_result_success_dhcp'] = "设置动态IP成功";
 	$lang['network_result_success_static_ip'] = "设置静态IP成功";
 	
@@ -336,5 +341,27 @@
 	$lang['serial_result_success'] = "串口已修改";
 	$lang['serial_result_failed'] = "串口修改失败";
 
+	//电网环境
+	$lang['function_grid_environment'] = "电网环境设置";
+	$lang['grid_environment_result'] = "设置结果";
+	$lang['grid_environment_setting'] = "电网环境设置值";
+	$lang['grid_environment_select'] = "--选择电网环境值--";
+	
+	$lang['grid_environment_result_0'] = "设置成功";
+	$lang['grid_environment_result_1'] = "请选择电网环境值";
+	$lang['grid_environment_result_2'] = "设置失败";
+	
+	//IRD控制
+	$lang['function_ird'] = "IRD模式设置";
+	$lang['ird_result'] = "设置结果";
+	$lang['ird_setting'] = "IRD模式设置值";
+	$lang['ird_select'] = "--选择IRD模式--";
+	$lang['ird_select_1'] = "关闭IRD";
+	$lang['ird_select_2'] = "开启IRD带锁存";
+	$lang['ird_select_3'] = "开启IRD不带锁存";
+	
+	$lang['ird_result_0'] = "设置成功";
+	$lang['ird_result_1'] = "请选择IRD模式";
+	$lang['ird_result_2'] = "设置失败";
 	
 ?>
