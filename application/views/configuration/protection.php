@@ -45,7 +45,7 @@
     </div>
 
     <div class="form-group">
-      <label for="inputdata4" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_under_frequency_slow')?></label>
+      <label for="inputdata4" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_over_frequency_slow')?></label>
       <div class="col-sm-4">
         <input type="text" name="over_frequency_slow" class="form-control" id="inputdata4" placeholder="<?php echo $over_frequency_slow;?>">
       </div>

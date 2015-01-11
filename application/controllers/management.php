@@ -147,12 +147,11 @@ class Management extends CI_Controller {
     }
 
     /* 显示用户信息 */
-    public function user_info($result = "")
+    public function user_info()
     {      
         $data = $this->management_model->get_user_info();
         $data['page'] = $this->page;
         $data['func'] = "user_info";
-        $data['result'] = $result;
         $this->load->view('templates/header', $data);
         $this->load->view('management/user_info', $data);
         $this->load->view('templates/footer');
@@ -160,15 +159,10 @@ class Management extends CI_Controller {
 
     /* 设置用户信息 */
     public function set_user_info()
-    {      
-        $data = $this->management_model->set_user_info();
-
-        //成功修改密码后需要重新登录
-        if(!strncmp($data['result'], "success", 7))
-            $this->session->set_userdata('logged_in',FALSE);
-
-        //将设置结果传给显示函数
-        $this->user_info($data['result']);
+    {
+        $results = $this->management_model->set_user_info();
+        $results["message"] = $this->lang->line("user_info_result_{$results["value"]}");
+        echo json_encode($results);
     }
 
     /* 显示无线局域网 */

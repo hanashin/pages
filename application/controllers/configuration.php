@@ -78,7 +78,7 @@ class Configuration extends CI_Controller {
     public function read_inverter_parameters()
     {
         $results = $this->configuration_model->read_inverter_parameters();
-        $results["message"] = $this->lang->line("");
+        $results["message"] = $this->lang->line("read_protection_result_{$results["value"]}");
         echo json_encode($results);
     }
 

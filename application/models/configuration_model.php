@@ -320,7 +320,7 @@ class Configuration_model extends CI_Model {
         //将读取命令写入配置文件
         $fp = @fopen("/tmp/presetdata.conf", 'w');
         if (!$fp) {
-            $results["value"] = 2;//文件打开失败
+            $results["value"] = 1;//文件打开失败
             return $results;
         }
         fwrite($fp, "2");

@@ -606,10 +606,12 @@ class Management_model extends CI_Model {
     /* 设置用户信息 */
     public function set_user_info()
     {
+        $results =array();
+                
         //系统默认用户名密码
         $data['username'] = "root";
         $data['password'] = "123456"; 
-        $fp=fopen("/etc/yuneng/userinfo.conf",'r');
+        $fp = @fopen("/etc/yuneng/userinfo.conf",'r');
         if ($fp)
         {
           $data['username'] = fgets($fp);
@@ -631,29 +633,33 @@ class Management_model extends CI_Model {
             {
                 if(strlen($new_password))
                 {
-                    $fp=fopen("/etc/yuneng/userinfo.conf",'w');
-                    fwrite($fp, $username."\n".$new_password);
-                    fclose($fp);
-                    $data['result'] = "success";
+                    $fp = @fopen("/etc/yuneng/userinfo.conf",'w');
+                    if($fp){
+                        fwrite($fp, $username."\n".$new_password);
+                        fclose($fp);
+                    }                    
+                    $results["value"] = 0;
+                    //成功修改密码后需要重新登录
+                    $this->session->set_userdata('logged_in',FALSE);
                 }
                 else
                 {
                     //新输入密码为空
-                    $data['result'] = "null_password";
+                    $results["value"] = 2;
                 }
             }
             else
             {
                 //两次输入的密码不相同
-                $data['result'] = "different_password";
+                $results["value"] = 3;
             }
         }
         else
         {
             //用户名密码错误
-            $data['result'] = "wrong_password";
+            $results["value"] = 1;
         }
-        return $data;        
+        return $results;        
     }
 
     /* 获取无线局域网信息 */

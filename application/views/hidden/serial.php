@@ -1,24 +1,15 @@
-<?php
-  if(!empty($result)){
-    if(!strncmp($result, "success", 7)){
-      echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
-      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
-      echo "<strong>".$this->lang->line("message_success")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("serial_result_$result")."\n";
-      echo "</div>"."\n";
-    }
-    else{
-      echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">"."\n";
-      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
-      echo "<strong>".$this->lang->line("message_warning")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("serial_result_$result")."\n";
-      echo "</div>"."\n";
-    }
-  }
-?>
-<form id="defaultForm" method="post" action="<?php echo base_url('index.php/hidden/set_serial');?>" class="form-horizontal" role="form">
+<!-- 设置结果显示框 -->
+<div class="alert alert-success" id="result">
+    <button class="close" type="button"><span aria-hidden="true">&times;</span></button>
+    <strong></strong><small></small>
+</div>
+
+<!-- 串口设置表单 -->
+<form class="form-horizontal" id="defaultForm" method="ajax">
   <div class="form-group">    
     <label class="col-sm-5 control-label"><?php echo $this->lang->line('serial_switch')?></label>
     <div class="col-sm-4">
-      <select name='serial_switch' class="form-control">";
+      <select name='serial_switch' class="form-control" id="inputdata1">";
         <option value="on" <?php if(!strncmp($serial_switch, "on", 2))
                                     echo "selected=\"selected\"";
                                 ?>><?php echo $this->lang->line('serial_switch_on')?></option>
@@ -32,7 +23,7 @@
   <div class="form-group">    
     <label class="col-sm-5 control-label"><?php echo $this->lang->line('serial_baud_rate')?></label>
     <div class="col-sm-4">
-      <select name='baud_rate' class="form-control">";
+      <select name='baud_rate' class="form-control" id="inputdata2">";
         <option value="2400" <?php if(!strncmp($baud_rate, "2400", 4))
                                     echo "selected=\"selected\"";?>>2400</option>
         <option value="4800" <?php if(!strncmp($baud_rate, "4800", 4))
@@ -67,6 +58,13 @@
 
 <script>
 $(document).ready(function() {
+	//隐藏设置结果栏
+	$("#result").hide();
+	$(".close").click(function(){
+		$("#result").hide();
+    }); 
+
+	//表单验证
     $('#defaultForm').bootstrapValidator({
         message: 'This value is not valid',
         fields: {
@@ -87,6 +85,35 @@ $(document).ready(function() {
                 }
             }
         }
+    })
+    .on('success.form.bv', function(e) {
+        //防止默认表单提交，采用ajax提交
+        e.preventDefault();
+        //验证成功，采用ajax提交表单
+	    $.ajax({
+    		url : "<?php echo base_url('index.php/hidden/set_serial');?>",
+    		type : "post",
+            dataType : "json",
+    		data: "serial_switch=" + $("#inputdata1").val()
+    			  + "&baud_rate=" + $("#inputdata2").val() 
+    		      + "&ecu_address=" + $("#inputdata3").val(),
+  	    	success : function(Results){
+                if(Results.value == 0){
+  	                $("#result").removeClass().addClass("alert alert-success alert-dismissible");
+  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
+  	            }
+                else{
+                    $("#result").removeClass().addClass("alert alert-warning alert-dismissible");
+                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
+                }
+                $("#result small").text(Results.message);        		 
+            	$("#result").show();
+    		},
+  	    	error : function(){
+  	    		alert("Error");
+  	    	}
+        })
+        window.scrollTo(0,0);//页面置顶        
     });
 });
 </script>

@@ -18,8 +18,8 @@
 	$lang['button_reset'] = "Reset";
 	$lang['button_query'] = "Query";
 	$lang['button_refresh'] = "Refresh";
-	$lang['button_save_all'] = "Read All Inverters";
-	$lang['button_read_all'] = "Save All Inverters";
+	$lang['button_save_all'] = "Save All Inverters";
+	$lang['button_read_all'] = "Read All Inverters";
 	
 	$lang['message_success'] = "Success";
 	$lang['message_warning'] = "Warning";
@@ -132,7 +132,9 @@
 	
 	$lang['protection_result_0'] = "See the results 5 minutes later";
 	$lang['protection_result_1'] = "Please enter at least one protection parameters";
-
+	$lang['read_protection_result_0'] = "Read inverter protection success, See the results 5 minutes later";
+	$lang['read_protection_result_1'] = "Read inverter protection failed";
+	
 	//GFDI设置
 	$lang['function_gfdi'] = "Ground Fault Protection";
 	$lang['gfdi_inverter_id'] = "Inverter ID";
@@ -223,10 +225,10 @@
 	$lang['user_info_confirm_password'] = "Confirm password";
 	$lang['user_info_change_password'] = "Change password";
 	
-	$lang['user_info_result_null_password'] = "Please input new password";
-	$lang['user_info_result_different_password'] = "Enter the new password twice inconsistent";
-	$lang['user_info_result_wrong_password'] = "Username or old password is wrong";
-	$lang['user_info_result_success'] = "Password updated successfully!";
+	$lang['user_info_result_0'] = "Password updated successfully!";
+	$lang['user_info_result_1'] = "Username or old password is wrong";
+	$lang['user_info_result_2'] = "Please input new password";
+	$lang['user_info_result_3'] = "Enter the new password twice inconsistent";
 	
 	//无线网络管理
 	$lang['function_wlan'] = "WLAN ";
@@ -301,7 +303,8 @@
 	
 	//导数据
 	$lang['function_export_file'] = "Export Historical Data";
-	$lang['export_file_input'] = "Please enter start and end time";
+	$lang['export_file_start_time'] = "Start Time";
+	$lang['export_file_end_time'] = "End Time";
 	$lang['export_file_export'] = "Export Historical Data";
 
 	//EMA服务器地址与端口
@@ -312,7 +315,7 @@
 	$lang['datacenter_port2'] = "Port 2";
 	$lang['datacenter_update'] = "Update";
 	
-	$lang['datacenter_result_success'] = "Server address and port has been modified";
+	$lang['datacenter_result_0'] = "Server address and port has been modified";
 	
 	//自动更新服务器地址与端口
 	$lang['function_updatecenter'] = "Updatecenter";
@@ -321,7 +324,7 @@
 	$lang['updatecenter_port'] = "Port";
 	$lang['updatecenter_update'] = "Update";
 	
-	$lang['updatecenter_result_success'] = "Server address and port has been modified";
+	$lang['updatecenter_result_0'] = "Server address and port has been modified";
 
 	//初始化数据库
 	$lang['function_initialize'] = "Initialize the database";
@@ -338,8 +341,8 @@
 	$lang['serial_ecu_address'] = "ECU address";
 	$lang['serial_update'] = "Update";
 	
-	$lang['serial_result_success'] = "Serial has been modified";
-	$lang['serial_result_failed'] = "Serial modification fails";
+	$lang['serial_result_0'] = "Serial has been modified";
+	$lang['serial_result_1'] = "Serial modification fails";
 	
 	//电网环境
 	$lang['function_grid_environment'] = "Grid Environment";

@@ -73,8 +73,8 @@
               <li><a><?php echo $this->lang->line('title_ecu');?></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-            <a class="chlang" id="english" ><?php echo $this->lang->line('language_english');?></a> |
-            <a class="chlang" id="chinese" ><?php echo $this->lang->line('language_chinese');?></a>
+            <a class="btn chlang" id="english" ><?php echo $this->lang->line('language_english');?></a>|
+            <a class="btn chlang" id="chinese" ><?php echo $this->lang->line('language_chinese');?></a>
             </ul>
             <ul class="nav navbar-nav navbar-left">
               <li><a href="<?php echo base_url('index.php/home');?>" class="active"><span class="glyphicon energy-control"><img src="<?php echo base_url('images/icon1.png');?>"></span><?php echo $this->lang->line('energy_control')?></a></li>

@@ -14,38 +14,36 @@ class Hidden_model extends CI_Model {
     /* 执行DEBUG操作 */
     public function exec_command() 
     {
-        $result = "";
+        $results = array();
 
         $cmd = $this->input->post('command');
 
         if(strlen($cmd))
-        {
-            echo "<!--";
-            system($cmd, $result);
-            echo "-->";
+        {            
+            $results["value"] = passthru($cmd, $result);
         }
         else
-            $result = "empty";
-
-        $data['result'] = $result;
+            $results["value"] = 1;        
       
-        return $data;
+        return $results;
     }
 
     /* 获取导出数据的起止时间 */
     public function get_export_time()
     {
         $data = array();
+        
+        $timezone = "Asia/Shanghai";
         //读取当前时区
-        $fp = fopen("/etc/yuneng/timezone.conf",'r');
+        $fp = @fopen("/etc/yuneng/timezone.conf",'r');
         if ($fp)
         {
           $timezone = fgets($fp);
           fclose($fp);
         }
         date_default_timezone_set($timezone);
-        $data['start_time'] = date("Y-m-d H:i:s",time()-3600*12)."\n";
-        $data['end_time'] = date("Y-m-d H:i:s",time());
+        $data['start_time'] = date("Y/m/d H:i:s",time()-3600*12)."\n";
+        $data['end_time'] = date("Y/m/d H:i:s",time());
 
         return $data;
     }
@@ -153,7 +151,7 @@ class Hidden_model extends CI_Model {
         $data['ip'] = "";
         $data['port'] = "";
 
-        $fp = fopen("/etc/yuneng/updatecenter.conf", 'r');
+        $fp = @fopen("/etc/yuneng/updatecenter.conf", 'r');
         if($fp)
         {
             while(!feof($fp))
@@ -175,25 +173,27 @@ class Hidden_model extends CI_Model {
     /* 设置自动更新的服务器的地址和端口 */
     public function set_updatecenter()
     {
-        $data = array();
+        $results = array();
 
         //获取Updatecenter的信息
         $domain = $this->input->post('domain');
         $ip = $this->input->post('ip');
         $port = $this->input->post('port');
+        
 
-        $fp = fopen("/etc/yuneng/updatecenter.conf", 'w');
-        fwrite($fp, "Domain=".$domain."\n");
-        fwrite($fp, "IP=".$ip."\n");
-        fwrite($fp, "Port=".$port."\n");
-        fclose($fp);
-
+        $fp = @fopen("/etc/yuneng/updatecenter.conf", 'w');
+        if($fp){
+            fwrite($fp, "Domain=".$domain."\n");
+            fwrite($fp, "IP=".$ip."\n");
+            fwrite($fp, "Port=".$port."\n");
+            fclose($fp);
+        }
         system("killall autoupdate");
         system("killall single_update");
 
-        $data['result'] = "success";
+        $results["value"] = 0;
 
-        return $data;
+        return $results;
     }
         
 
@@ -207,7 +207,7 @@ class Hidden_model extends CI_Model {
         $data['port1'] = "";
         $data['port2'] = "";
 
-        $fp = fopen("/etc/yuneng/datacenter.conf", 'r');
+        $fp = @fopen("/etc/yuneng/datacenter.conf", 'r');
         if($fp)
         {
             while(!feof($fp))
@@ -231,7 +231,7 @@ class Hidden_model extends CI_Model {
     /* 设置EMA的地址和端口 */
     public function set_datacenter()
     {
-        $data = array();
+        $results = array();
 
         //获取Datacenter的信息
         $domain = $this->input->post('domain');
@@ -239,7 +239,7 @@ class Hidden_model extends CI_Model {
         $port1 = $this->input->post('port1');
         $port2 = $this->input->post('port2');
 
-        $fp = fopen("/etc/yuneng/datacenter.conf", 'w');
+        $fp = @fopen("/etc/yuneng/datacenter.conf", 'w');
         if($fp)
         {
             fwrite($fp, "Domain=".$domain."\n");
@@ -251,9 +251,9 @@ class Hidden_model extends CI_Model {
 
         system("killall client");
 
-        $data['result'] = "success";
+        $results["value"] = 0;
 
-        return $data;
+        return $results;
     }
 
 
@@ -278,7 +278,7 @@ class Hidden_model extends CI_Model {
         $data['serial_switch'] = "off";
         $data['baud_rate'] = "9600";
         $data['ecu_address'] = "8";
-        $fp = fopen("/etc/yuneng/serial.conf", 'r');
+        $fp = @fopen("/etc/yuneng/serial.conf", 'r');
         if($fp)
         {
             $data['serial_switch'] = fgets($fp);
@@ -293,8 +293,7 @@ class Hidden_model extends CI_Model {
     /* 设置串口信息 */
     public function set_serial()
     {
-        $data = array();
-        $data['result'] = "";
+        $results = array();
 
         //获取页面输入的串口信息
         $serial_switch = $this->input->post('serial_switch');
@@ -310,15 +309,15 @@ class Hidden_model extends CI_Model {
                 fwrite($fp, $ecu_address);
                 fclose($fp);
 
-                $data['result'] = "success";
+                $results["value"] = 0;
             }
             else
             {
-                $data['result'] = "failed";
+                $results["value"] = 1;
             }
         }
 
-        return $data;
+        return $results;
     }
     
     /* 显示电网环境信息 */

@@ -1,36 +1,61 @@
-<?php
- if("" !== $result){
-    if(!strncmp($result, "empty", 5)){
-      echo "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">"."\n";
-      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
-      echo "<strong>".$this->lang->line("message_warning")."&nbsp;!&nbsp;&nbsp;</strong>".$this->lang->line("debug_command_is_null")."\n";
-      echo "</div>"."\n";
-    }
-    else if($result == 0){
-      echo "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">"."\n";
-      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
-      echo "<strong>".$this->lang->line("debug_command_success")."&nbsp;&nbsp;&nbsp;</strong>"."\n";
-      echo "</div>"."\n";
-    }
-    else{
-      echo "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">"."\n";
-      echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>"."\n";
-      echo "<strong>".$this->lang->line("debug_command_failed")."&nbsp;:&nbsp;&nbsp;</strong>".$result."\n";
-      echo "</div>"."\n";
-    }
-  }
-?>
-<?php echo form_open('hidden/exec_command');?>
+<!-- 设置结果显示框 -->
+<div class="alert" id="result">
+    <button class="close" type="button"><span aria-hidden="true">&times;</span></button>
+    <strong></strong><small></small>
+</div>
+
   <div class="form-group">    
     <label class="col-sm-12 control-label"><?php echo $this->lang->line('debug_command_input')?></label>
     <div class="col-sm-10">
-      <input type="text" name="command" class="form-control" value="">
+      <input type="text" name="command" class="form-control" id="inputdata1" value="">
     </div>
   </div>
 
   <div class="form-group">
     <div class="col-sm-2">
-      <button type="submit" class="btn btn-primary btn-sm"><?php echo $this->lang->line('debug_command_execute')?></button>
+      <button class="btn btn-primary btn-sm" id="button_execute" type="button"><?php echo $this->lang->line('debug_command_execute')?></button>
     </div>
   </div>
-</from>
+  
+  <script>
+$(document).ready(function() {
+
+	//隐藏设置结果栏
+	$("#result").hide();
+	$(".close").click(function(){
+		$("#result").hide();
+    }); 
+
+    //设置表单处理
+    $("#button_execute").click(function(){
+	    $.ajax({
+    		url : "<?php echo base_url('index.php/hidden/exec_command');?>",
+    		type : "post",
+            dataType : "text",
+    		data: "command=" + $("#inputdata1").val(),
+  	    	success : function(Results){
+  	  	    	alert(Results);
+                if(Results.value == 0){
+  	                $("#result").removeClass().addClass("alert alert-success");
+  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
+  	            }
+                else if(Results.value == 1){
+  	                $("#result").removeClass().addClass("alert alert-warning");
+  	                $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
+  	            }
+                else{
+                    $("#result").removeClass().addClass("alert alert-danger");
+                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
+                }
+                $("#result small").text(Results.message);        		 
+            	$("#result").show();
+    		},
+  	    	error : function(){
+  	    		alert("Error");
+  	    	}
+        })
+        window.scrollTo(0,0);//页面置顶
+    });
+    
+});
+</script>

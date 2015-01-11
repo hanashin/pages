@@ -131,7 +131,9 @@
 	$lang['protection_grid_recovery_time'] = "并网恢复时间";
 	
 	$lang['protection_result_0'] = "请过5分钟之后查看结果";
-	$lang['protection_result_1'] = "请至少输入一个保护参数";	
+	$lang['protection_result_1'] = "请至少输入一个保护参数";
+	$lang['read_protection_result_0'] = "读取逆变器保护参数成功，请过5分钟之后查看结果";
+	$lang['read_protection_result_1'] = "读取逆变器保护参数失败";
 
 	//GFDI设置
 	$lang['function_gfdi'] = "接地故障保护";
@@ -223,10 +225,10 @@
 	$lang['user_info_confirm_password'] = "确认密码";
 	$lang['user_info_change_password'] = "更改密码";
 	
-	$lang['user_info_result_null_password'] = "密码不能为空";
-	$lang['user_info_result_different_password'] = "两次输入的密码不一致";
-	$lang['user_info_result_wrong_password'] = "原用户名密码错误";
-	$lang['user_info_result_success'] = "密码修改成功！";
+	$lang['user_info_result_0'] = "密码修改成功！";
+	$lang['user_info_result_1'] = "原用户名密码错误";
+	$lang['user_info_result_2'] = "密码不能为空";
+	$lang['user_info_result_3'] = "两次输入的密码不一致";
 	
 	//无线网络管理
 	$lang['function_wlan'] = "无线网络管理";
@@ -301,7 +303,8 @@
 
 	//导数据
 	$lang['function_export_file'] = "导出历史数据";
-	$lang['export_file_input'] = "请输入起止时间";
+	$lang['export_file_start_time'] = "起始时间";
+	$lang['export_file_end_time'] = "结束时间";
 	$lang['export_file_export'] = "导出历史数据";
 	
 	//EMA服务器地址与端口
@@ -312,7 +315,7 @@
 	$lang['datacenter_port2'] = "端口 2";
 	$lang['datacenter_update'] = "确定";
 	
-	$lang['datacenter_result_success'] = "服务器地址与端口已修改";
+	$lang['datacenter_result_0'] = "服务器地址与端口已修改";
 	
 	//自动更新服务器地址与端口
 	$lang['function_updatecenter'] = "自动更新服务器";
@@ -321,7 +324,7 @@
 	$lang['updatecenter_port'] = "端口";
 	$lang['updatecenter_update'] = "确定";
 	
-	$lang['updatecenter_result_success'] = "服务器地址与端口已修改";
+	$lang['updatecenter_result_0'] = "服务器地址与端口已修改";
 	
 	//初始化数据库
 	$lang['function_initialize'] = "初始化数据库";
@@ -338,8 +341,8 @@
 	$lang['serial_ecu_address'] = "ECU 地址";
 	$lang['serial_update'] = "确定";
 	
-	$lang['serial_result_success'] = "串口已修改";
-	$lang['serial_result_failed'] = "串口修改失败";
+	$lang['serial_result_0'] = "串口已修改";
+	$lang['serial_result_1'] = "串口修改失败";
 
 	//电网环境
 	$lang['function_grid_environment'] = "电网环境设置";

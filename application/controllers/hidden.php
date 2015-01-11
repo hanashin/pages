@@ -45,8 +45,9 @@ class Hidden extends CI_Controller {
      /* 执行DEBUG命令 */
     public function exec_command()
     {      
-        $data = $this->hidden_model->exec_command();
-        $this->debug($data['result']);
+        $results = $this->hidden_model->exec_command();
+        $results["message"] = $this->lang->line("updatecenter_result_{$results["value"]}");
+        echo json_encode($results);
     }
 
     /* 显示导数据页面 */
@@ -67,12 +68,11 @@ class Hidden extends CI_Controller {
     }
 
     /* 显示自动更新的服务器的地址和端口 */
-    public function updatecenter($result = "")
+    public function updatecenter()
     {        
         $data = $this->hidden_model->get_updatecenter();
         $data['page'] = $this->page;
         $data['func'] = "updatecenter";
-        $data['result'] = $result;
         $this->load->view('templates/header', $data);
         $this->load->view('hidden/updatecenter', $data);
         $this->load->view('templates/footer'); 
@@ -81,8 +81,9 @@ class Hidden extends CI_Controller {
     /* 设置自动更新的服务器的地址和端口 */
     public function set_updatecenter()
     {
-        $data = $this->hidden_model->set_updatecenter();  
-        $this->updatecenter($data['result']);
+        $results = $this->hidden_model->set_updatecenter();
+        $results["message"] = $this->lang->line("updatecenter_result_{$results["value"]}");
+        echo json_encode($results);
     }
 
     /* 显示EMA的地址和端口 */
@@ -100,8 +101,9 @@ class Hidden extends CI_Controller {
     /* 设置EMA的地址和端口 */
     public function set_datacenter()
     {
-        $data = $this->hidden_model->set_datacenter();
-        $this->datacenter($data['result']);  
+        $results = $this->hidden_model->set_datacenter();
+        $results["message"] = $this->lang->line("datacenter_result_{$results["value"]}");
+        echo json_encode($results);
     }
 
     /* 显示初始化页面 */
@@ -136,9 +138,10 @@ class Hidden extends CI_Controller {
 
     /* 设置串口信息 */
     public function set_serial()
-    {
-        $data = $this->hidden_model->set_serial();
-        $this->serial($data['result']);  
+    {        
+        $results = $this->hidden_model->set_serial();
+        $results["message"] = $this->lang->line("serial_result_{$results["value"]}");
+        echo json_encode($results);
     }
     
     /* 显示电网环境页面 */
