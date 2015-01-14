@@ -32,10 +32,14 @@
             });
         $('#myChart').highcharts({
             chart: {
-                zoomType: 'x'
+                zoomType: 'x',
+                margin:[45, 10,50,65],//上右下左
             },
             title: {
-                text: '<?php echo $this->lang->line('graph_title')?>'
+                text: '<?php echo $this->lang->line('graph_title')?>',
+                style: {
+                    fontSize: "22px",
+                }
             },
             // subtitle: {
             //     text: document.ontouchstart === undefined ?
@@ -48,7 +52,10 @@
             },
             yAxis: {
                 title: {
-                    text: '<?php echo $this->lang->line('graph_y_label_power')?>'
+                    text: '<?php echo $this->lang->line('graph_y_label_power')?>',
+                    style: {
+                        fontSize: "16px",
+                    }
                 },
                 min:0
             },

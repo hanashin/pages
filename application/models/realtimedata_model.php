@@ -83,7 +83,7 @@ class Realtimedata_model extends CI_Model {
             $result->execute();
             $res = $result->fetchAll();
             if(!empty($res))
-                $data['today_energy'] = $res[0][0];
+                $data['today_energy'] = number_format($res[0][0], 2);
         }
 
         //将数据赋值到data数组传给控制器
@@ -157,11 +157,13 @@ class Realtimedata_model extends CI_Model {
                     { 
                         if(!strncmp($value['date'], $res[$i]['date'], 8))
                         {
-                            $energy[$key]['energy'] = floatval($res[$i]['daily_energy']);
+                            $energy[$key]['energy'] = number_format(floatval($res[$i]['daily_energy']), 2);
                             $flag_start++;
                             break;
                         }
-                    }        
+                    }
+                    sscanf($energy[$key]['date'], "%04d%02d%02d", $year, $month, $day);
+                    $energy[$key]['date'] = sprintf("%02d/%02d", $month, $day);
                 }
             }
         }
@@ -203,11 +205,13 @@ class Realtimedata_model extends CI_Model {
                     { 
                         if(!strncmp($value['date'], substr($res[$i]['date'], 4), 4))
                         {
-                            $energy[$key]['energy'] = floatval($res[$i]['daily_energy']);
+                            $energy[$key]['energy'] = number_format(floatval($res[$i]['daily_energy']), 2);
                             $flag_start++;
                             break;
                         }
                     }
+                    sscanf($energy[$key]['date'], "%02d%02d", $month, $day);
+                    $energy[$key]['date'] = sprintf("%02d/%02d", $month, $day);
                 }
             }
         }
@@ -254,11 +258,13 @@ class Realtimedata_model extends CI_Model {
                     { 
                         if(!strncmp($value['date'], $res[$i]['date'], 6))
                         {
-                            $energy[$key]['energy'] = floatval($res[$i]['monthly_energy']);
+                            $energy[$key]['energy'] = number_format(floatval($res[$i]['monthly_energy']), 2);
                             $flag_start++;
                             break;
                         }
                     }
+                    sscanf($energy[$key]['date'], "%04d%02d", $year, $month);
+                    $energy[$key]['date'] = sprintf("%04d/%02d", $year, $month);
                 }
             }
         }
@@ -267,7 +273,7 @@ class Realtimedata_model extends CI_Model {
         $total = 0;
         foreach ($energy as $key => $value) {
               $total = $total + $value['energy'];
-          }  
+          }
 
         //将数据赋值到data数组传给控制器
         $data['energy'] = $energy;

@@ -33,30 +33,31 @@
         $(function () {
         $('#myChart').highcharts({
             chart: {
-                type: 'column'
+                type: 'column',
+                margin:[45, 10,50,65],//上右下左                  
             },
             title: {
-                text: '<?php echo $this->lang->line('graph_title')?>'
+                text: '<?php echo $this->lang->line('graph_title')?>',
+                style: {
+                    fontSize: "22px",
+                }
             },
-            // subtitle: {
-            //     text: 'Source: WorldClimate.com'
-            // },
             xAxis: {
-                categories: [<?php echo $x_label;?>]
+            	<?php if(count($energy) > 12) {echo 	"tickInterval: 2, tickPixelInterval: 10,";}?>
+                categories: [<?php echo $x_label;?>],
+                labels: {
+                    rotation: -30,
+                }
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: '<?php echo $this->lang->line('graph_y_label_energy')?>'
-                }
+                    text: '<?php echo $this->lang->line('graph_y_label_energy')?>',
+                    style: {
+                        fontSize: "16px",
+                    }
+                },
             },
-            // tooltip: {
-            //     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            //     pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            //         '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-            //     footerFormat: '</table>',
-            //     shared: true,
-            // },
             legend: {
                 enabled: false
             },
