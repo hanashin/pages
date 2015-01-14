@@ -22,63 +22,42 @@
     <script src="<?php echo base_url('js/jquery-1.8.2.min.js');?>"></script>
     <script src="<?php echo base_url('js/bootstrap.min.js');?>"></script>
     <script src="<?php echo base_url('js/bootstrapValidator.min.js');?>"></script>
-    
+    <script src="<?php echo base_url('js/bootstrap-datetimepicker.min.js');?>"></script>
+    <script src="<?php echo base_url('js/timeShow.js');?>"></script>
     <script>   
-    $(document).ready(function() {
+      $(document).ready(function() {
           
-    /* 显示实时时间 */
-	var weekday_en = new Array(7)
-	weekday_en[0]="Sunday"
-	weekday_en[1]="Monday"
-	weekday_en[2]="Tuesday"
-	weekday_en[3]="Wednesday"
-	weekday_en[4]="Thursday"
-	weekday_en[5]="Friday"
-	weekday_en[6]="Saturday"
-	var weekday_ch = new Array(7)
-	weekday_ch[0]="星期日"
-    weekday_ch[1]="星期一"
-    weekday_ch[2]="星期二"
-    weekday_ch[3]="星期三"
-	weekday_ch[4]="星期四"
-	weekday_ch[5]="星期五"
-	weekday_ch[6]="星期六"
-    var today = new Date();
-    today.setFullYear(<?php echo date("Y");?>);
-    today.setMonth(<?php echo date("n")."-1";?>);
-    today.setDate(<?php echo date("j");?>); 
-    today.setHours(<?php echo date("H");?>);
-    today.setMinutes(<?php echo date("i");?>);
-    today.setSeconds(<?php echo date("s");?>);
-    var timestamp =  today.getTime();
-    runTime();     
+      /* 显示实时时间 */
+      var today = new Date();
+      today.setFullYear(<?php echo date("Y");?>);
+      today.setMonth(<?php echo date("n")."-1";?>);
+      today.setDate(<?php echo date("j");?>); 
+      today.setHours(<?php echo date("H");?>);
+      today.setMinutes(<?php echo date("i");?>);
+      today.setSeconds(<?php echo date("s");?>);
+      var timestamp =  today.getTime() + 500;
+      runTime();     
         	  
-    function runTime() {
-      setTimeout(runTime, 1000);
-   	  timestamp  = timestamp + 1000;
-      today.setTime(timestamp);     
-      showTime();
-    }
+      function runTime() {
+        today.setTime(timestamp);        
+        showTime();
+        setTimeout(runTime, 1000);
+        timestamp  = timestamp + 1000;
+      }
       
       function showTime() {
-    	  var year, month, date, hour, minute, second, day;
+    	  var year, month, day, hour, minute, second;
     	  year = today.getFullYear();
     	  month = today.getMonth() + 1; 
-    	  date = today.getDate(); 
+    	  day = today.getDate(); 
     	  hour = today.getHours(); 
     	  minute = today.getMinutes(); 
-    	  second = today.getSeconds();
-    	  day = today.getDay();  
+    	  second = today.getSeconds();  
           if (month < 10) { month = "0" + month;}  
           if (hour < 10) { hour = "0" + hour;}
           if (minute < 10) { minute = "0" + minute;}
-          if (second < 10) { second = "0" + second;}
-          if (/[\u4E00-\u9FA5]/i.test($("#ecu_title").html())){
-        	  $('#ecu_time').html(year + "年" + month + "月" + date + "日 " + hour + ":" + minute + ":" + second + " " + weekday_ch[day]); 
-          }
-          else{
-              $('#ecu_time').html(year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second + " " + weekday_en[day]); 
-          }
+          if (second < 10) { second = "0" + second;} 
+          $('#ecu_time').html(year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second); 
       }
      	
   	  //切换语言
@@ -124,7 +103,7 @@
 
           <div class="navbar-collapse collapse" id="navbar-header">
             <ul class="nav navbar-nav navbar-title">
-              <li><a id="ecu_title"><?php echo $this->lang->line('title_ecu');?></a></li>
+              <li><a><?php echo $this->lang->line('title_ecu');?></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             <a class="btn chlang" id="english" ><?php echo $this->lang->line('language_english');?></a>|
@@ -178,7 +157,7 @@
             //主页 
             if(!strncmp($page, "home", 4))
             {
-              echo "<center><a id=\"ecu_time\" class=\"list-group-item active\"></a></center>";
+              echo "<a id=\"ecu_time\" class=\"list-group-item active\"></a>";
             }
             //实时数据 
             if(!strncmp($page, "realtimedata", 12))

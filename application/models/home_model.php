@@ -16,6 +16,16 @@ class Home_model extends CI_Model {
         echo "<!--";
         $data = array();
         
+        //获取ECU当前设置的时区
+        $data['timezone'] = "Asia/Shanghai";
+        $fp = @fopen("/etc/yuneng/timezone.conf",'r');
+        if ($fp)
+        {
+            $data['timezone'] = fgets($fp);
+            fclose($fp);
+        }
+        date_default_timezone_set($data['timezone']);//设置默认时区
+        
         /* 查询ECU_ID */
         $data['ecuid'] = "000000000000";
         $fp = fopen("/etc/yuneng/ecuid.conf",'r');
