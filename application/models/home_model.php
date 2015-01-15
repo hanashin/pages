@@ -28,7 +28,7 @@ class Home_model extends CI_Model {
         
         /* 查询ECU_ID */
         $data['ecuid'] = "000000000000";
-        $fp = fopen("/etc/yuneng/ecuid.conf",'r');
+        $fp = @fopen("/etc/yuneng/ecuid.conf",'r');
         if($fp){
          $data['ecuid'] = fgets($fp);
          fclose($fp);
@@ -47,7 +47,7 @@ class Home_model extends CI_Model {
 
         /* 查询最近一次系统功率 */
         $data['systemp'] = "0";
-        $fp = fopen("/tmp/system_p_display.conf",'r');
+        $fp = @fopen("/tmp/system_p_display.conf",'r');
         if($fp){
              $data['systemp'] = fgets($fp);
              fclose($fp);
@@ -55,7 +55,7 @@ class Home_model extends CI_Model {
 
         /* 查询最近一次连接服务器时间 */
         $data['datetime'] = "Never connected";
-        $fp = fopen("/etc/yuneng/connect_time.conf",'r');
+        $fp = @fopen("/etc/yuneng/connect_time.conf",'r');
         if($fp){
             $data['datetime'] = fgets($fp);
             fclose($fp);
@@ -77,7 +77,7 @@ class Home_model extends CI_Model {
 
         /* 查询最近一次逆变器连接台数 */
         $data['curnum'] = "0";
-        $fp = fopen("/tmp/current_number.conf",'r');
+        $fp = @fopen("/tmp/current_number.conf",'r');
         if($fp){
             $data['curnum'] = fgets($fp);
             fclose($fp);
@@ -85,18 +85,18 @@ class Home_model extends CI_Model {
 
         /* 查询软件版本号 */
         $data['version'] = "";
-        $fp = fopen("/etc/yuneng/version.conf",'r');
+        $fp = @fopen("/etc/yuneng/version.conf",'r');
         if($fp){
             $data['version'] = fgets($fp);
             fclose($fp);
         }
 
         /* 查询数据库使用量 */
-        $data['file_size'] = filesize("/home/record.db")/1024;
+        $data['file_size'] = @filesize("/home/record.db")/1024;
 
         /* 查询当前时区 */
         $data['timezone'] = "Asia/Shanghai";
-        $fp = fopen("/etc/yuneng/timezone.conf",'r');
+        $fp = @fopen("/etc/yuneng/timezone.conf",'r');
         if($fp){
          $data['timezone'] = fgets($fp);
          fclose($fp);
@@ -104,7 +104,7 @@ class Home_model extends CI_Model {
 
         /* 查询ECU_Mac地址 */
         $data['mac'] = "";
-        $fp = fopen("/etc/yuneng/ecumac.conf",'r');
+        $fp = @fopen("/etc/yuneng/ecumac.conf",'r');
         if($fp){
          $data['mac'] = fgets($fp);
          fclose($fp);

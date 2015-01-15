@@ -43,10 +43,11 @@
                 }
             },
             xAxis: {
-            	<?php if(count($energy) > 12) {echo 	"tickInterval: 2, tickPixelInterval: 10,";}?>
+            	<?php if(count($energy) > 12) {echo 	"tickInterval: 2,";}?>
                 categories: [<?php echo $x_label;?>],
                 labels: {
                     rotation: -30,
+                    x: 18
                 }
             },
             yAxis: {

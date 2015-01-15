@@ -340,8 +340,9 @@ clip:rect(0px 130px 65px 65px);
     图表
 --------------------------------------------------------*/
 @media (max-width: 767px) {
-.mychart {
-  margin: 0px -15px;
+  .mychart {
+    margin: 0px -15px;
+  }
 }
 .mychart {
   padding: 5px 0px;
