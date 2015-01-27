@@ -238,7 +238,9 @@ clip:rect(0px 130px 65px 65px);
   font-size: 16px;
   font-weight: bold;
 }
-
+.unit {
+	width:15px;
+}
 
 /*------------------------------------------------------
     列表

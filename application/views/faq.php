@@ -52,6 +52,9 @@
 <p>(8)IRD模式: 
   <a href="<?php echo base_url('index.php/hidden/ird');?>"><?php echo base_url('index.php/hidden/ird');?></a>
 </p>
+<p>(9)逆变器信号强度: 
+  <a href="<?php echo base_url('index.php/hidden/signal_strength');?>"><?php echo base_url('index.php/hidden/signal_strength');?></a>
+</p>
 <p>4.查看status</p>
 <p>(1)Status: 
   <a href="<?php echo base_url('index.php/display/status');?>"><?php echo base_url('index.php/display/status');?></a>

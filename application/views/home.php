@@ -43,6 +43,10 @@
     <th scope="row"><?php echo $this->lang->line('home_mac')?></th>
     <td><?php echo "$mac";?></td>
   </tr>
+  <tr>
+    <th scope="row"><?php echo $this->lang->line('home_grid_quality')?></th>
+    <td><?php echo "$grid_quality";?></td>
+  </tr>
 </table>
 
 <script>

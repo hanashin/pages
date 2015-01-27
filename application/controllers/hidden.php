@@ -197,9 +197,27 @@ class Hidden extends CI_Controller {
         $results["message"] = $this->lang->line("ird_result_{$results["value"]}");
         echo json_encode($results);
     }
+    
+    /* 显示逆变器信号强度页面 */
+    public function signal_strength()
+    {
+        $data = $this->hidden_model->get_signal_strength();
+        $data['page'] = $this->page;
+        $data['func'] = "signal_strength";
+        $this->load->view('templates/header', $data);
+        $this->load->view('hidden/signal_strength', $data);
+        $this->load->view('templates/footer');
+    }
+    
+    /* 读取逆变器信号强度 */
+    public function read_signal_strength()
+    {
+        $results = $this->hidden_model->read_signal_strength();
+        $results["message"] = $this->lang->line("signal_strength_result_{$results["value"]}");
+        echo json_encode($results);
+    }
 
 }
-
 
 /* End of file hidden.php */
 /* Location: ./application/controllers/hidden.php */

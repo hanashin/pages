@@ -36,15 +36,15 @@ class Management_model extends CI_Model {
     public function set_id() 
     {
         //用于保存逆变器ID的数组
-        $data = array();
+        $results = array();
         $ids = array();
         $error_ids = array();
-
-    	//将textarea中的每一行数据存入数组(注：windows下为\r\n而linux中只有\n)
+        
+    	//将textarea中的每一行数据存入数组
 		$temp = preg_split('/\n/', $this->input->post('ids'));
-		if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
-		    $temp = preg_split('/\r\n/', $this->input->post('ids'));
-		}
+// 		if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
+// 		    $temp = preg_split('/\r\n/', $this->input->post('ids'));
+// 		}
 
         //检验数据格式(是否为12位纯数字)
         foreach ($temp as $key => $id) 
@@ -60,16 +60,16 @@ class Management_model extends CI_Model {
         }
 
         //保存ID并删除重复的ID
-        $data['ids'] = array_unique($ids);
+        $results['ids'] = array_unique($ids);
 
         //保存格式错误的ID
-        $data['error_ids'] = $error_ids;
+        $results['error_ids'] = $error_ids;
 
         //将正确的ID加入数据库
-        if(count($data['ids']))
+        if(count($results['ids']))
         {
             $this->pdo->exec("DELETE FROM id");
-            foreach ($data['ids'] as $key => $id) 
+            foreach ($results['ids'] as $key => $id) 
             {
                 $this->pdo->exec("INSERT INTO id VALUES($key, \"$id\", 0)");
             }     
@@ -81,8 +81,8 @@ class Management_model extends CI_Model {
                 $res = $result->fetchAll();
                 $item = count($res);
             }
-            foreach ($data['ids'] as $key => $id) {
-                $query = "SELECT id FROM power WHERE id=$id";
+            foreach ($results['ids'] as $key => $id) {
+                $query = "SELECT id FROM power WHERE id='$id'";
                 $result = $this->pdo->prepare($query);
                 if(!empty($result)){
                     $result->execute();
@@ -140,7 +140,7 @@ class Management_model extends CI_Model {
             }
 
             //当前逆变器数量
-            $num = sprintf("%03d", count($data['ids']));
+            $num = sprintf("%03d", count($results['ids']));
 
             //初始化消息体
             if(strlen($version_number))
@@ -155,7 +155,7 @@ class Management_model extends CI_Model {
             }
 
             //当前逆变器ID
-            foreach ($data['ids'] as $value) {
+            foreach ($results['ids'] as $value) {
                 $record = $record.$value."00"."00000"."END";
             }
 
@@ -169,9 +169,9 @@ class Management_model extends CI_Model {
             $this->pdo->exec($sql);
         }
 
-        $data['result'] = "update_id_success";  
+        $results["value"] = 1;  
 
-        return $data;
+        return $results;
     }
 
      /* 清空逆变器列表 */
@@ -257,6 +257,10 @@ class Management_model extends CI_Model {
             exec($cmd);
 
             $results["value"] = 0;
+            
+            //重启主函数和客户端函数
+            system("killall main.exe");
+            system("killall client");
         }
         else
         {
@@ -669,7 +673,7 @@ class Management_model extends CI_Model {
 
         //获取wifi模块工作模式
         $data['mode'] = 1;//默认为主机模式
-        $fp = fopen("/etc/yuneng/wifi_stat.conf", 'r');
+        $fp = @fopen("/etc/yuneng/wifi_stat.conf", 'r');
         if($fp)
         {
             $data['mode'] = intval(fgets($fp));
@@ -681,7 +685,7 @@ class Management_model extends CI_Model {
         $data['ifconnect'] = 0;
         $data['ifopen'] = 0;
         system("/usr/sbin/iwconfig | grep -E \"wlan0\">/tmp/wifi_temp.conf");
-        $fp = fopen("/tmp/wifi_temp.conf", 'r');
+        $fp = @fopen("/tmp/wifi_temp.conf", 'r');
         if($fp)
         {
             $temp = fgets($fp);
@@ -723,7 +727,7 @@ class Management_model extends CI_Model {
             $data['ap_info']['channel'] = 0;
             $data['ap_info']['method'] = 0;
             $data['ap_info']['psk'] = "";
-            $fp = fopen("/etc/yuneng/wifi_ap_info.conf", 'r');
+            $fp = @fopen("/etc/yuneng/wifi_ap_info.conf", 'r');
             if($fp)
             {
                 while(!feof($fp))

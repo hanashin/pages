@@ -18,6 +18,7 @@
 	$lang['button_reset'] = "重置";
 	$lang['button_query'] = "查询";
 	$lang['button_refresh'] = "刷新";
+	$lang['button_read'] = "读取";
 	$lang['button_save_all'] = "保存所有逆变器";
 	$lang['button_read_all'] = "读取所有逆变器";
 	
@@ -63,6 +64,7 @@
 	$lang['home_file_size'] = "数据库使用量";
 	$lang['home_timezone'] = "当前时区";
 	$lang['home_mac'] = "ECU Mac地址";
+	$lang['home_grid_quality'] = "电网质量";
 	
 /* 实时数据 */
 	$lang['function_data'] = "实时数据";
@@ -366,5 +368,12 @@
 	$lang['ird_result_0'] = "设置成功";
 	$lang['ird_result_1'] = "请选择IRD模式";
 	$lang['ird_result_2'] = "设置失败";
+	
+	//逆变器信号强度
+	$lang['function_signal_strength'] = "信号强度";
+	$lang['signal_strength'] = "信号强度";
+	
+	$lang['signal_strength_result_0'] = "读取成功";
+	$lang['signal_strength_result_1'] = "读取失败";
 	
 ?>

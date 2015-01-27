@@ -473,6 +473,61 @@ class Hidden_model extends CI_Model {
         }           
         return $results;
     }
+    
+    /* 显示逆变器信号强度 */
+    public function get_signal_strength()
+    {
+        $data = array();
+    
+        //若数据表不存在，则创建
+        $this->pdo->exec("CREATE TABLE IF NOT EXISTS signal_strength
+            (id VARCHAR(256), signal_strength INTEGER, set_flag INTEGER, primary key (id))");
+    
+        $query = "SELECT id.ID, signal_strength.signal_strength
+            FROM id LEFT JOIN signal_strength ON id.ID=signal_strength.id";
+        $result = $this->pdo->prepare($query);
+        if(!empty($result))
+        {
+            $result->execute();
+            $res = $result->fetchAll();
+        }
+        $data['ids'] = $res;
+    
+        return $data;
+    }
+    
+    /* 读取逆变器信号强度 */
+    public function read_signal_strength()
+    {
+        $results = array();
+
+        //获取页面输入的IRD信息
+        $id = $this->input->post('id');
+        
+        if(!strncmp($id, "ALL", 3))
+        {
+            //读取所有逆变器的信号强度
+            $fp = @fopen("/tmp/read_all_signal_strength.conf", "w");
+            if($fp)
+            {
+                fwrite($fp, "ALL");
+                fclose($fp);
+                $results["value"] = 0;
+            }
+            else{
+                $results["value"] = 1;
+            }
+            
+        }
+        else if(strlen($id) == 12)
+        {
+            //读取单个逆变器
+            $this->pdo->exec("REPLACE INTO signal_strength (id,  set_flag) VALUES ('$id', 1)");
+            $results["value"] = 0;
+        }
+       
+        return $results;
+    }
 
 }
 

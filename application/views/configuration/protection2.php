@@ -26,91 +26,130 @@
     <div class="form-group">
       <label for="inputdata1" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_under_voltage_fast')?></label>
       <div class="col-sm-4">
-        <input type="text" name="under_voltage_fast" class="form-control" id="inputdata1" placeholder="<?php echo $under_voltage_fast;?>">
+        <div class="input-group">
+          <input type="text" name="under_voltage_fast" class="form-control" id="inputdata1" placeholder="<?php echo $under_voltage_fast;?>">
+          <span class="input-group-addon"><div class="unit">V</div></span>
+        </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputdata2" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_over_voltage_fast')?></label>
       <div class="col-sm-4">
-        <input type="text" name="over_voltage_fast" class="form-control" id="inputdata2" placeholder="<?php echo $over_voltage_fast;?>">
+        <div class="input-group">
+          <input type="text" name="over_voltage_fast" class="form-control" id="inputdata2" placeholder="<?php echo $over_voltage_fast;?>">
+          <span class="input-group-addon"><div class="unit">V</div></span>
+        </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputdata3" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_under_voltage_slow')?></label>
       <div class="col-sm-4">
-        <input type="text" name="under_voltage_slow" class="form-control" id="inputdata3" placeholder="<?php echo $under_voltage_slow;?>">
+        <div class="input-group">
+          <input type="text" name="under_voltage_slow" class="form-control" id="inputdata3" placeholder="<?php echo $under_voltage_slow;?>">
+          <span class="input-group-addon"><div class="unit">V</div></span>
+        </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputdata4" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_over_voltage_slow')?></label>
       <div class="col-sm-4">
-        <input type="text" name="over_voltage_slow" class="form-control" id="inputdata4" placeholder="<?php echo $over_voltage_slow;?>">
+        <div class="input-group">
+          <input type="text" name="over_voltage_slow" class="form-control" id="inputdata4" placeholder="<?php echo $over_voltage_slow;?>">
+          <span class="input-group-addon"><div class="unit">V</div></span>
+        </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputdata5" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_under_frequency_fast')?></label>
       <div class="col-sm-4">
-        <input type="text" name="under_frequency_fast" class="form-control" id="inputdata5" placeholder="<?php echo $under_frequency_fast;?>">
+        <div class="input-group">
+          <input type="text" name="under_frequency_fast" class="form-control" id="inputdata5" placeholder="<?php echo $under_frequency_fast;?>">
+          <span class="input-group-addon"><div class="unit">Hz</div></span>
+        </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputdata6" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_over_frequency_fast')?></label>
       <div class="col-sm-4">
-        <input type="text" name="over_frequency_fast" class="form-control" id="inputdata6" placeholder="<?php echo $over_frequency_fast;?>">
+        <div class="input-group">
+          <input type="text" name="over_frequency_fast" class="form-control" id="inputdata6" placeholder="<?php echo $over_frequency_fast;?>">
+          <span class="input-group-addon"><div class="unit">Hz</div></span>
+        </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputdata7" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_under_frequency_slow')?></label>
       <div class="col-sm-4">
-        <input type="text" name="under_frequency_slow" class="form-control" id="inputdata7" placeholder="<?php echo $under_frequency_slow;?>">
+        <div class="input-group">
+          <input type="text" name="under_frequency_slow" class="form-control" id="inputdata7" placeholder="<?php echo $under_frequency_slow;?>">
+          <span class="input-group-addon"><div class="unit">Hz</div></span>
+        </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputdata8" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_over_frequency_slow')?></label>
       <div class="col-sm-4">
-        <input type="text" name="over_frequency_slow" class="form-control" id="inputdata8" placeholder="<?php echo $over_frequency_slow;?>">
+        <div class="input-group">
+          <input type="text" name="over_frequency_slow" class="form-control" id="inputdata8" placeholder="<?php echo $over_frequency_slow;?>">
+          <span class="input-group-addon"><div class="unit">Hz</div></span>
+        </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputdata9" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_voltage_triptime_fast')?></label>
       <div class="col-sm-4">
-        <input type="text" name="voltage_triptime_fast" class="form-control" id="inputdata9" placeholder="<?php echo $voltage_triptime_fast;?>">
+        <div class="input-group">
+          <input type="text" name="voltage_triptime_fast" class="form-control" id="inputdata9" placeholder="<?php echo $voltage_triptime_fast;?>">
+          <span class="input-group-addon"><div class="unit">s</div></span>
+        </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputdata10" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_voltage_triptime_slow')?></label>
       <div class="col-sm-4">
-        <input type="text" name="voltage_triptime_slow" class="form-control" id="inputdata10" placeholder="<?php echo $voltage_triptime_slow;?>">
+        <div class="input-group">
+          <input type="text" name="voltage_triptime_slow" class="form-control" id="inputdata10" placeholder="<?php echo $voltage_triptime_slow;?>">
+          <span class="input-group-addon"><div class="unit">s</div></span>
+        </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputdata11" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_frequency_triptime_fast')?></label>
       <div class="col-sm-4">
-        <input type="text" name="frequency_triptime_fast" class="form-control" id="inputdata11" placeholder="<?php echo $frequency_triptime_fast;?>">
+        <div class="input-group">
+          <input type="text" name="frequency_triptime_fast" class="form-control" id="inputdata11" placeholder="<?php echo $frequency_triptime_fast;?>">
+          <span class="input-group-addon"><div class="unit">s</div></span>
+        </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputdata12" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_frequency_triptime_slow')?></label>
       <div class="col-sm-4">
-        <input type="text" name="frequency_triptime_slow" class="form-control" id="inputdata12" placeholder="<?php echo $frequency_triptime_slow;?>">
+        <div class="input-group">
+          <input type="text" name="frequency_triptime_slow" class="form-control" id="inputdata12" placeholder="<?php echo $frequency_triptime_slow;?>">
+          <span class="input-group-addon"><div class="unit">s</div></span>
+        </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="inputdata13" class="col-sm-5 control-label"><?php echo $this->lang->line('protection_grid_recovery_time')?></label>
       <div class="col-sm-4">
-        <input type="text" name="grid_recovery_time" class="form-control" id="inputdata13" placeholder="<?php echo $grid_recovery_time;?>">
+        <div class="input-group">
+          <input type="text" name="grid_recovery_time" class="form-control" id="inputdata13" placeholder="<?php echo $grid_recovery_time;?>">
+          <span class="input-group-addon"><div class="unit">s</div></span>
+        </div>      
       </div>
     </div>
   </fieldset>

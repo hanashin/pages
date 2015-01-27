@@ -13,7 +13,6 @@ class Home_model extends CI_Model {
 
     public function get_data() 
     {
-        echo "<!--";
         $data = array();
         
         //获取ECU当前设置的时区
@@ -134,7 +133,14 @@ class Home_model extends CI_Model {
                 $data['todaypower'] = "0";
             }
         }
-        echo "-->";
+        
+        /* 查询电网质量 */
+        $data['grid_quality'] = "";
+        $fp = @fopen("/etc/yuneng/plc_grid_quality.txt",'r');
+        if($fp){
+            $data['grid_quality'] = fgets($fp);
+            fclose($fp);
+        }
 
         return $data;
     }

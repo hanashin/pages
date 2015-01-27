@@ -18,6 +18,7 @@
 	$lang['button_reset'] = "Reset";
 	$lang['button_query'] = "Query";
 	$lang['button_refresh'] = "Refresh";
+	$lang['button_read'] = "Read";
 	$lang['button_save_all'] = "Save All Inverters";
 	$lang['button_read_all'] = "Read All Inverters";
 	
@@ -62,7 +63,8 @@
 	$lang['home_version'] = "Current Software Version";
 	$lang['home_file_size'] = "Database Size";
 	$lang['home_timezone'] = "Current Timezone";
-	$lang['home_mac'] = "ECU Mac Address";	
+	$lang['home_mac'] = "ECU Mac Address";
+	$lang['home_grid_quality'] = "Grid Quality";
 	
 /* 实时数据 */
 	$lang['function_data'] = "Real-time Data";
@@ -366,5 +368,12 @@
 	$lang['ird_result_0'] = "Set IRD Mode Success";
 	$lang['ird_result_1'] = "Please Select a IRD Mode";
 	$lang['ird_result_2'] = "Set IRD Mode Failed";
+	
+	//逆变器信号强度
+	$lang['function_signal_strength'] = "Signal Strength";
+	$lang['signal_strength'] = "Signal Strength";
+	
+	$lang['signal_strength_result_0'] = "Read Signal Strength Success";
+	$lang['signal_strength_result_1'] = "Read Signal Strength Failed";
 	
 ?>

@@ -15,7 +15,7 @@ class Realtimedata_model extends CI_Model {
     {
         $curdata = array();
         $num = 0;
-        $fp = fopen("/tmp/parameters.conf",'r');
+        $fp = @fopen("/tmp/parameters.conf",'r');
         if ($fp)
         {
             while(!feof($fp))
@@ -42,7 +42,7 @@ class Realtimedata_model extends CI_Model {
 
         //读取当前时区
         $timezone = "Asia/Shanghai";
-        $fp = fopen("/etc/yuneng/timezone.conf",'r');
+        $fp = @fopen("/etc/yuneng/timezone.conf",'r');
         if ($fp)
         {
           $timezone = fgets($fp);
@@ -100,7 +100,7 @@ class Realtimedata_model extends CI_Model {
 
         //读取当前时区
         $timezone = "Asia/Shanghai";
-        $fp = fopen("/etc/yuneng/timezone.conf",'r');
+        $fp = @fopen("/etc/yuneng/timezone.conf",'r');
         if ($fp)
         {
           $timezone = fgets($fp);

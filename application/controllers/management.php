@@ -46,13 +46,9 @@ class Management extends CI_Controller {
 	/* 设置逆变器列表 */
     public function set_id()
     { 
-        $data = $this->management_model->set_id();
-        $data['page'] = $this->page;
-        $data['func'] = "id";
-        $this->load->view('templates/header', $data);
-        $this->load->view('management/id', $data);
-        $this->load->view('templates/footer');
-        //$this->index($data['result']);
+        $results = $this->management_model->set_id();
+        $results["message"] = $this->lang->line("set_id_result_{$results["value"]}");
+        echo json_encode($results);
     }
 
     /* 清空逆变器列表 */
