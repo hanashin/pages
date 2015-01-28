@@ -141,6 +141,11 @@ class Home_model extends CI_Model {
             $data['grid_quality'] = fgets($fp);
             fclose($fp);
         }
+        
+        /* 环保效益 */
+        $data['gallon'] = (int)($data['lifetimepower']/12);
+        $data['tree'] = (int)($data['lifetimepower']/27.2);
+        $data['kg'] = (int)($data['lifetimepower']/1.36);
 
         return $data;
     }

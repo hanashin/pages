@@ -8,13 +8,15 @@
         <input class="Wdate" type="text" name="date" value="<?php echo $date;?>" onClick="WdatePicker({maxDate:'%y-%M-%d', <?php echo $this->lang->line('graph_language')?>})">
         <button type="submit" class="btn btn-default btn-xs"><?php echo $this->lang->line('button_query')?></button>
     </center>
-    <center>
-        <span class="btn-warning btn-xs"><?php echo $this->lang->line('graph_value_energy').": ".$total." kWh";?></span>
-    </center>        
 </from>
+
+<!-- 显示图表 -->
 <div class="mychart">
     <div id="myChart" width="800" height="400"></div>
 </div>
+
+<!-- 总能量 -->
+    <h4><span class="label label-warning pull-right"><?php echo $this->lang->line("graph_{$period}_energy").": ".$total;?>kWh</span></h4>
 
     <script src="<?php echo base_url('js/datepicker/WdatePicker.js');?>"></script>
     <script src="<?php echo base_url('js/jquery/jquery-1.8.2.min.js');?>"></script>
@@ -34,10 +36,12 @@
         $('#myChart').highcharts({
             chart: {
                 type: 'column',
-                margin:[45, 10,50,65],//上右下左                  
+                margin:[10, 10, 45, 65],//上右下左 
+                height:400,                 
             },
             title: {
-                text: '<?php echo $this->lang->line('graph_title')?>',
+            	text: '',
+                //text: '<?php echo $this->lang->line('graph_title')?>',
                 style: {
                     fontSize: "22px",
                 }

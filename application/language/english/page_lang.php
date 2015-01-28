@@ -65,6 +65,12 @@
 	$lang['home_timezone'] = "Current Timezone";
 	$lang['home_mac'] = "ECU Mac Address";
 	$lang['home_grid_quality'] = "Grid Quality";
+	//环保效益
+	$lang['home_environment_benefits'] = "ENVIRONMENTAL BENEFITS";
+	$lang['home_equivalent'] = "C02 Offset Equivalent to";
+	$lang['home_gallons'] = "GALLONS";
+	$lang['home_trees'] = "TREES";
+	$lang['home_kg'] = "KG";
 	
 /* 实时数据 */
 	$lang['function_data'] = "Real-time Data";
@@ -82,7 +88,11 @@
 	$lang['graph_y_label_energy'] = "Energy(kWh)";
 	$lang['graph_value_power'] = "Power";
 	$lang['graph_value_energy'] = "Energy";
-	
+	$lang['graph_daily_energy'] = "TODAY SOLAR GENERATED";
+	$lang['graph_weekly_energy'] = "WEEK SOLAR GENERATED";
+	$lang['graph_monthly_energy'] = "MONTH SOLAR GENERATED";
+	$lang['graph_yearly_energy'] = "YEAR SOLAR GENERATED";
+		
 	//功率曲线图
 	$lang['function_power'] = "Power";
 	

@@ -65,6 +65,12 @@
 	$lang['home_timezone'] = "当前时区";
 	$lang['home_mac'] = "ECU Mac地址";
 	$lang['home_grid_quality'] = "电网质量";
+	//环保效益
+	$lang['home_environment_benefits'] = "系统环保效益";
+	$lang['home_equivalent'] = "等量折算";
+	$lang['home_gallons'] = "加仑";
+	$lang['home_trees'] = "棵";
+	$lang['home_kg'] = "千克";
 	
 /* 实时数据 */
 	$lang['function_data'] = "实时数据";
@@ -82,6 +88,10 @@
 	$lang['graph_y_label_energy'] = "能量(kWh)";
 	$lang['graph_value_power'] = "功率";
 	$lang['graph_value_energy'] = "能量";
+	$lang['graph_daily_energy'] = "当天的总发电量";
+	$lang['graph_weekly_energy'] = "一周的总发电量";
+	$lang['graph_monthly_energy'] = "一月的总发电量";
+	$lang['graph_yearly_energy'] = "一年的总发电量";
 	
 	//功率曲线图
 	$lang['function_power'] = "功率曲线图";
