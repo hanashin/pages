@@ -90,7 +90,7 @@
   </legend>
   
   <div class="table-responsive">
-    <table class="table table-condensed table-striped table-hover">
+    <table class="table table-condensed table-striped table-hover table-bordered">
       <thead>
         <tr>
           <?php

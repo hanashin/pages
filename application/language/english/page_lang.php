@@ -64,7 +64,7 @@
 	$lang['home_file_size'] = "Database Size";
 	$lang['home_timezone'] = "Current Timezone";
 	$lang['home_mac'] = "ECU Mac Address";
-	$lang['home_grid_quality'] = "Grid Quality";
+	$lang['home_grid_quality'] = "Signal Level";
 	//环保效益
 	$lang['home_environment_benefits'] = "ENVIRONMENTAL BENEFITS";
 	$lang['home_equivalent'] = "C02 Offset Equivalent to";
@@ -187,8 +187,10 @@
 	$lang['id_correct'] = "Update success";
 	$lang['id_error'] = "Format error";
 	
-	$lang['id_result_clear_id_success'] = "Clear ID success";
-	//$lang['id_result_update_id_success'] = "更新ID成功";
+	$lang['clear_id_result_0'] = "Clear ID success";
+	$lang['set_id_result_0'] = "Update ID Success";
+	$lang['set_id_result_1'] = "The following error IDs have not been added:";
+	$lang['set_id_result_2'] = "Please enter inverter ID";
 	
 	//时间管理
 	$lang['function_time'] = "Time ";
@@ -380,10 +382,10 @@
 	$lang['ird_result_2'] = "Set IRD Mode Failed";
 	
 	//逆变器信号强度
-	$lang['function_signal_strength'] = "Signal Strength";
-	$lang['signal_strength'] = "Signal Strength";
+	$lang['function_signal_level'] = "Signal Level";
+	$lang['signal_level'] = "Signal Level";
 	
-	$lang['signal_strength_result_0'] = "Read Signal Strength Success";
-	$lang['signal_strength_result_1'] = "Read Signal Strength Failed";
+	$lang['signal_level_result_0'] = "Read Signal Level Success";
+	$lang['signal_level_result_1'] = "Read Signal Level Failed";
 	
 ?>

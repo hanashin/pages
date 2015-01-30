@@ -6,12 +6,12 @@
 
 <!-- GFDI设置表单 -->
 <form class="form-horizontal" id="defaultForm" method="ajax">
-  <table class="table table-condensed table-striped table-hover">
+  <table class="table table-condensed table-striped table-hover table-bordered">
     <thead>
       <tr>
-        <th><?php echo $this->lang->line('gfdi_inverter_id')?></th>
-        <th><?php echo $this->lang->line('gfdi_state')?></th>
-        <th><?php echo $this->lang->line('gfdi_unlock')?></th>
+        <th class="col-xs-4"><?php echo $this->lang->line('gfdi_inverter_id')?></th>
+        <th class="col-xs-4"><?php echo $this->lang->line('gfdi_state')?></th>
+        <th class="col-xs-4"><?php echo $this->lang->line('gfdi_unlock')?></th>
       </tr>
     </thead>
     <tbody>

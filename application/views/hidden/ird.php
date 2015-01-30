@@ -5,7 +5,7 @@
 </div>
 
 <!-- 电网环境设置表格 -->
-<table class="table table-condensed table-striped table-hover">
+<table class="table table-condensed table-striped table-hover table-bordered">
   <thead>
     <tr>
       <th><?php echo $this->lang->line('inverter_id')?></th>

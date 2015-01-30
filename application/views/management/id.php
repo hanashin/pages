@@ -8,7 +8,7 @@
 <form class="form-horizontal" method="ajax">
   <div class="form-group">    
     <div class="col-sm-offset-4 col-sm-4">
-       <textarea class="form-control" name="ids" id="inverter_list" rows="10" autofocus><?php foreach ($ids as $value) {
+       <textarea class="form-control" name="ids" id="inverter_list" rows="12"><?php foreach ($ids as $value) {
           echo $value."\n";
         }?></textarea>
     </div>
@@ -20,7 +20,7 @@
           <button class="btn btn-primary btn-sm" id="update_id" type="button"><?php echo $this->lang->line('button_update')?></button>
         </div>
         <div class="btn-group">
-          <a href="<?php echo base_url('index.php/management/set_id_clear');?>" class="btn btn-primary btn-sm"><?php echo $this->lang->line('id_clear_id')?></a>
+          <button class="btn btn-primary btn-sm" id="clear_id" type="button"><?php echo $this->lang->line('id_clear_id')?></button>
         </div>
       </div>
     </div>
@@ -30,26 +30,30 @@
 <script>
 $(document).ready(function() {
 
-	// 网上找到的 http://web.archive.org/web/20080214051356/http://www.csie.ntu.edu.tw/~b88039/html/jslib/caret.html
-	// 获取光标位置
-	function caret(node) {
-	 //node.focus(); 
-	 /* without node.focus() IE will returns -1 when focus is not on node */
-	 if(node.selectionStart) return node.selectionStart;
-	 else if(!document.selection) return 0;
-	 var c		= "\001";
-	 var sel	= document.selection.createRange();
-	 var dul	= sel.duplicate();
-	 var len	= 0;
-	 dul.moveToElementText(node);
-	 sel.text	= c;
-	 len		= (dul.text.indexOf(c));
-	 sel.moveStart('character',-1);
-	 sel.text	= "";
-	 return len;
-	}
+	//隐藏设置结果栏
+	$("#result").hide();
+	$(".close").click(function(){
+		$("#result").hide();
+    }); 
 
-	// 网上找到的 http://stackoverflow.com/questions/512528/set-cursor-position-in-html-textbox
+	// 获取光标位置
+    function caret(node) {
+        //node.focus(); 
+        /* without node.focus() IE will returns -1 when focus is not on node */
+        if(node.selectionStart) return node.selectionStart;
+        else if(!document.selection) return 0;
+        var c		= "\001";
+        var sel	= document.selection.createRange();
+        var dul	= sel.duplicate();
+        var len	= 0;
+        dul.moveToElementText(node);
+        sel.text	= c;
+        len		= (dul.text.indexOf(c));
+        sel.moveStart('character',-1);
+        sel.text	= "";
+        return len;
+    }
+
 	// 设置光标位置
 	function setCaretPosition(elem, caretPos) {
 	    if(elem != null) {
@@ -69,68 +73,73 @@ $(document).ready(function() {
 	    }
 	}
 
+	// 只返回数字
 	function onlyNumbers(e) {
-	    var keynum
-	    var keychar
-	    var numcheck
+	    var keynum;
+	    var keychar;
+	    var numcheck;
 
 	    if(window.event) // IE
 	    {
-	        keynum = e.keyCode
+	        keynum = e.keyCode;
 	    }
 	    else if(e.which) // Netscape/Firefox/Opera
 	    {
-	        keynum = e.which
+	        keynum = e.which;
 	    }
-	    keychar = String.fromCharCode(keynum)
-	    numcheck = /\d/
-	    return numcheck.test(keychar)
+	    keychar = String.fromCharCode(keynum);
+	    numcheck = /\d/;
+	    return numcheck.test(keychar);
 	}
 
-	var textarea = document.getElementsByTagName('textarea')[0],
-	    timer,
+	var textarea = document.getElementsByTagName('textarea')[0], // 获取页面上textarea的值
+	    timer, // 计时器
 	    fn = function () {
 	        var cp = caret(textarea),
-	            v = textarea.value,
-	            beforeValue = v.substr(0, cp).replace(/[^\d\n]/g, ''),
-	            value = v.replace(/[^\d]/g, ''),
-	            newValue = [];
+	            v = textarea.value, // 当前显示值
+	            value = v.replace(/[^\d\n]/g, '').split('\n'), // 除去纯数字和回车以外的字符，并按回车分组存入数组
+	            tmpValue = []; // 临时数组
 
-	        while (value) {
-	            newValue.push(value.substr(0, 12));
-	            value = value.substr(12);
+	        //遍历数组，取前12位
+	        for(var i = 0; i < value.length; i++) {
+	            //while (value[i]) {
+	            tmpValue.push(value[i].substr(0, 12));
+	            //    value[i] = value[i].substr(12);
+	            //}
 	        }
 
-	      newValue = newValue.join('\n');
-	      if (v != newValue) {
-	        textarea.value = newValue;
-	        if (cp < v.length) {
-	            setCaretPosition(textarea, beforeValue.length);
+	        //将数组组合为一个字符串，以回车符分隔
+	        newValue = tmpValue.join('\n');
+
+	        //如果当前最后一行到达12位，则加上回车符换行
+	        if (tmpValue.pop().length == 12) {
+	            newValue = newValue + '\n';
 	        }
-	      }
+
+	        //更新页面显示
+	        if (v != newValue) {
+	            textarea.value = newValue;
+	            if (cp < v.length) {
+	                setCaretPosition(textarea, cp);
+	            }
+	        }        
 	    };
-	    
+
 	// 获得焦点时每隔100ms调用一次fn函数
-    textarea.onfocus = function () {
-        timer = setInterval(fn, 100);
-    };
+	textarea.onfocus = function () {
+	    timer = setInterval(fn, 100);
+	};
 
-    // 失去焦点时清除timer，取消对fn的调用
-    textarea.onblur = function () {
-        clearInterval(timer);
-        fn();
-    };
+	// 失去焦点时清除timer，取消对fn的调用
+	textarea.onblur = function () {
+	    clearInterval(timer);
+	    fn();
+	};
 
-    // 按键被按下是检测是否为纯数字，否则无法输入
-    textarea.onkeypress = function () {
-        return onlyNumbers(event);
-    };
-
-	//隐藏设置结果栏
-	$("#result").hide();
-	$(".close").click(function(){
-		$("#result").hide();
-    }); 
+	// 按键被按下是检测是否为纯数字，否则无法输入
+	textarea.onkeypress = function () {
+	    return onlyNumbers(event);
+	};
     
     //设置逆变器列表
     $("#update_id").click(function(){
@@ -140,17 +149,47 @@ $(document).ready(function() {
             dataType : "json",
     		data: "ids=" + $("#inverter_list").val(),
     	    success : function(Results){
-    	    	
                 if(Results.value == 0){
     	                $("#result").removeClass().addClass("alert alert-success");
     	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
+    	                $("#result small").text(Results.message);
     	        }
                 else{
                     $("#result").removeClass().addClass("alert alert-warning");
                     $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");
-                    $("#result small").text(Results.message +"<p>"+ Results.error_ids + "</p>");//显示错误的逆变器号
-                }		 
-            	$("#result").show();   	
+                    if(Results.error_ids)
+                        $("#result small").text(Results.message +" "+ Results.error_ids); // 显示错误的逆变器号
+                    else
+                    	$("#result small").text(Results.message);
+                }
+            	$("#result").show();
+    		},
+    	    	error : function(){
+    	    		alert("Error");
+    	    	}
+        })
+        window.scrollTo(0,0);//页面置顶
+    });
+
+    //清空逆变器列表
+    $("#clear_id").click(function(){
+        $.ajax({
+    		url : "<?php echo base_url('index.php/management/set_id_clear');?>",
+    		type : "post",
+            dataType : "json",
+    		data: "clear_id",
+    	    success : function(Results){
+                if(Results.value == 0){
+	                $("#result").removeClass().addClass("alert alert-success");
+	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");
+	                $("#inverter_list").val("");	                    	                
+    	        }
+                else{
+                    $("#result").removeClass().addClass("alert alert-warning");
+                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");
+                }
+                $("#result small").text(Results.message);
+            	$("#result").show();
     		},
     	    	error : function(){
     	    		alert("Error");
@@ -160,27 +199,3 @@ $(document).ready(function() {
     });
 });
 </script>
-
-<center>
-  <?php
-    echo $this->lang->line("id_result_$result");
-    if(!strncmp($result, "update_id_success", 17))
-    {
-        echo $this->lang->line('id_total')." : ".count($ids)."<br><br>";               
-        if(!empty($error_ids))
-        {
-          echo $this->lang->line('id_error')." : "."<br>";
-          foreach ($error_ids as $value) {
-            echo $value."<br>";
-          }
-        }
-        if(count($ids))
-        {
-          echo $this->lang->line('id_correct')." : "."<br>";
-          foreach ($ids as $value) {
-            echo $value."<br>";
-          }
-        }
-    } 
-  ?>
-</center>

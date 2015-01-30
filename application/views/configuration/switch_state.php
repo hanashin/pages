@@ -6,13 +6,13 @@
 
 <!-- 开关机设置表单 -->
 <form class="form-horizontal" id="defaultForm" method="ajax">
-  <table class="table table-condensed table-striped table-hover">
+  <table class="table table-condensed table-striped table-hover table-bordered">
     <thead>
       <tr>
-        <th><?php echo $this->lang->line('switch_inverter_id')?></th>
-        <th><?php echo $this->lang->line('switch_state')?></th>
-        <th><?php echo $this->lang->line('switch_turn_on')?></th>
-        <th><?php echo $this->lang->line('switch_turn_off')?></th>
+        <th class="col-xs-3"><?php echo $this->lang->line('switch_inverter_id')?></th>
+        <th class="col-xs-3"><?php echo $this->lang->line('switch_state')?></th>
+        <th class="col-xs-3"><?php echo $this->lang->line('switch_turn_on')?></th>
+        <th class="col-xs-3"><?php echo $this->lang->line('switch_turn_off')?></th>
       </tr>
     </thead>
     <tbody>

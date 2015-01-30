@@ -74,7 +74,7 @@ $(document).ready(function() {
                         message: '<?php echo $this->lang->line('validform_null_old_password')?>'
                     },
                     stringLength: {
-                        min: 6,
+                        min: 5,
                         max: 18,
                         message: '<?php echo $this->lang->line('validform_old_password')?>'
                     }
@@ -87,7 +87,7 @@ $(document).ready(function() {
                         message: '<?php echo $this->lang->line('validform_null_new_password')?>'
                     },
                     stringLength: {
-                        min: 6,
+                        min: 5,
                         max: 18,
                         message: '<?php echo $this->lang->line('validform_new_password')?>'
                     }
@@ -98,6 +98,11 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: '<?php echo $this->lang->line('validform_null_confirm_password')?>'
+                    },
+                    stringLength: {
+                        min: 5,
+                        max: 18,
+                        message: '<?php echo $this->lang->line('validform_new_password')?>'
                     },
                     identical: {
                         field: 'new_password',

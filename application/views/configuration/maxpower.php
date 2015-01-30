@@ -5,7 +5,7 @@
 </div>
 
 <!-- 最大功率设置表格 -->
-<table class="table table-condensed table-striped table-hover">
+<table class="table table-condensed table-striped table-hover table-bordered">
   <thead>
     <tr>
       <th><?php echo $this->lang->line('maxpower_inverter_id')?></th>

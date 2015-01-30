@@ -199,21 +199,21 @@ class Hidden extends CI_Controller {
     }
     
     /* 显示逆变器信号强度页面 */
-    public function signal_strength()
+    public function signal_level()
     {
-        $data = $this->hidden_model->get_signal_strength();
+        $data = $this->hidden_model->get_signal_level();
         $data['page'] = $this->page;
-        $data['func'] = "signal_strength";
+        $data['func'] = "signal_level";
         $this->load->view('templates/header', $data);
-        $this->load->view('hidden/signal_strength', $data);
+        $this->load->view('hidden/signal_level', $data);
         $this->load->view('templates/footer');
     }
     
     /* 读取逆变器信号强度 */
-    public function read_signal_strength()
+    public function read_signal_level()
     {
-        $results = $this->hidden_model->read_signal_strength();
-        $results["message"] = $this->lang->line("signal_strength_result_{$results["value"]}");
+        $results = $this->hidden_model->read_signal_level();
+        $results["message"] = $this->lang->line("signal_level_result_{$results["value"]}");
         echo json_encode($results);
     }
 

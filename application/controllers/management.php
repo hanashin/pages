@@ -54,8 +54,9 @@ class Management extends CI_Controller {
     /* 清空逆变器列表 */
     public function set_id_clear()
     { 
-        $data = $this->management_model->set_id_clear();
-        $this->index($data['result']);
+        $results = $this->management_model->set_id_clear();
+        $results["message"] = $this->lang->line("clear_id_result_{$results["value"]}");
+        echo json_encode($results);
     }
 
     /* 显示时间时区信息 */

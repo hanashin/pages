@@ -150,7 +150,7 @@ clip:rect(0px 130px 65px 65px);
 }
 .navbar-orange .navbar-nav > li > a:hover,
 .navbar-orange .navbar-nav > li > a:focus {
-  text-shadow: 0px 0px 15px #FFC125;
+  text-shadow: 0px 0px 10px #FFCC99;
 }
 .navbar-orange .container > p {
   margin-top: 10px;
@@ -294,7 +294,7 @@ clip:rect(0px 130px 65px 65px);
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
-  border: 0px;
+  /*border: 0px;*/
 }
 .container-main .table-responsive > .table {
   margin-bottom: 0;
@@ -308,7 +308,7 @@ clip:rect(0px 130px 65px 65px);
   white-space: nowrap;
 }
 .table-responsive > .table-bordered {
-  border: 0;
+  /*border: 0;*/
 }
 .container-main .table-responsive > .table-bordered > thead > tr > th:first-child,
 .container-main .table-responsive > .table-bordered > tbody > tr > th:first-child,

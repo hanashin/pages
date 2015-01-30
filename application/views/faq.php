@@ -53,7 +53,7 @@
   <a href="<?php echo base_url('index.php/hidden/ird');?>"><?php echo base_url('index.php/hidden/ird');?></a>
 </p>
 <p>(9)逆变器信号强度: 
-  <a href="<?php echo base_url('index.php/hidden/signal_strength');?>"><?php echo base_url('index.php/hidden/signal_strength');?></a>
+  <a href="<?php echo base_url('index.php/hidden/signal_level');?>"><?php echo base_url('index.php/hidden/signal_level');?></a>
 </p>
 <p>4.查看status</p>
 <p>(1)Status: 

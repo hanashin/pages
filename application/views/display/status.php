@@ -1,4 +1,4 @@
-<table class="table table-condensed table-striped table-hover-mystyle">
+<table class="table table-condensed table-striped table-hover table-bordered">
     <thead>
       <tr>
         <th><?php echo $this->lang->line('display_status_event_id')?></th>

@@ -64,7 +64,7 @@
 	$lang['home_file_size'] = "数据库使用量";
 	$lang['home_timezone'] = "当前时区";
 	$lang['home_mac'] = "ECU Mac地址";
-	$lang['home_grid_quality'] = "电网质量";
+	$lang['home_grid_quality'] = "信号强度";
 	//环保效益
 	$lang['home_environment_benefits'] = "系统环保效益";
 	$lang['home_equivalent'] = "等量折算";
@@ -187,8 +187,10 @@
 	$lang['id_correct'] = "更新成功";
 	$lang['id_error'] = "格式错误";
 	
-	$lang['id_result_clear_id_success'] = "清空ID成功";
-	//$lang['id_result_update_id_success'] = "更新ID成功";
+	$lang['clear_id_result_0'] = "清空ID成功";
+	$lang['set_id_result_0'] = "更新ID成功";
+	$lang['set_id_result_1'] = "以下错误的ID没有被添加：";
+	$lang['set_id_result_2'] = "请输入逆变器ID";
 	
 	//时间管理
 	$lang['function_time'] = "时间管理";
@@ -380,10 +382,10 @@
 	$lang['ird_result_2'] = "设置失败";
 	
 	//逆变器信号强度
-	$lang['function_signal_strength'] = "信号强度";
-	$lang['signal_strength'] = "信号强度";
+	$lang['function_signal_level'] = "信号强度";
+	$lang['signal_level'] = "信号强度";
 	
-	$lang['signal_strength_result_0'] = "读取成功";
-	$lang['signal_strength_result_1'] = "读取失败";
+	$lang['signal_level_result_0'] = "读取成功";
+	$lang['signal_level_result_1'] = "读取失败";
 	
 ?>

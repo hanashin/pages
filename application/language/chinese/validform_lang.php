@@ -37,8 +37,8 @@
 	
 	//用户管理
 	$lang['validform_username'] = "请输入4-18位任意字符";
-	$lang['validform_old_password'] = "请输入6-18位任意字符";
-	$lang['validform_new_password'] = "请输入6-18位任意字符";
+	$lang['validform_old_password'] = "请输入5-18位任意字符";
+	$lang['validform_new_password'] = "请输入5-18位任意字符";
 	$lang['validform_confirm_password'] = "两次输入的密码不一致";
 	$lang['validform_null_username'] = "请输入用户名";
 	$lang['validform_null_old_password'] = "请输入旧密码";

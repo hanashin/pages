@@ -40,6 +40,11 @@ class Management_model extends CI_Model {
         $ids = array();
         $error_ids = array();
         
+    	//若输入为空，则保存错误标志，退出该函数
+    	if(!($this->input->post('ids'))) {
+    	    $results["value"] = 2; // 输入为空
+    	    return $results;
+    	}
     	//将textarea中的每一行数据存入数组
 		$temp = preg_split('/\n/', $this->input->post('ids'));
 // 		if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
@@ -110,6 +115,14 @@ class Management_model extends CI_Model {
             if($fp){
                 fclose($fp);
             }
+            
+            if(!empty( $results['error_ids'])) {
+                $results["value"] = 1; // 存在错误ID
+            }
+            else {
+                $results["value"] = 0; // 保存逆变器成功,没有错误的ID
+            }
+            
 
         /* 将ECU本地页面变动数据存入数据库 */
             //ECU_id
@@ -122,7 +135,7 @@ class Management_model extends CI_Model {
             }
 
             //ECU_version
-            $version = "V3.9.1";        
+            $version = "unkonw";        
             $fp = @fopen("/etc/yuneng/version.conf",'r');
             if($fp)
             {
@@ -169,23 +182,21 @@ class Management_model extends CI_Model {
             $this->pdo->exec($sql);
         }
 
-        $results["value"] = 1;  
-
         return $results;
     }
 
      /* 清空逆变器列表 */
     public function set_id_clear()
     {
-        $data = array();
+        $results = array();
 
         //清空逆变器列表 
         $this->pdo->exec("DELETE FROM id");
         system('killall main.exe');
 
-        $data['result'] = "success_clear_id";
+        $results["value"] = 0;
 
-        return $data;   
+        return $results;   
     }
 
     /* 获取时间信息 */
@@ -613,14 +624,15 @@ class Management_model extends CI_Model {
         $results =array();
                 
         //系统默认用户名密码
-        $data['username'] = "root";
-        $data['password'] = "123456"; 
+        $data['username'] = "admin";
+        $data['password'] = "admin"; 
         $fp = @fopen("/etc/yuneng/userinfo.conf",'r');
         if ($fp)
         {
           $data['username'] = fgets($fp);
           $data['username'] = str_replace("\n", "", $data['username']);
           $data['password'] = fgets($fp); 
+          $data['password'] = str_replace("\n", "", $data['password']);
           fclose($fp);
         }
 

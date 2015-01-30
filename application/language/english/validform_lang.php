@@ -37,8 +37,8 @@
 	
 	//用户管理
 	$lang['validform_username'] = "Please enter 4-18 bit arbitrary character";
-	$lang['validform_old_password'] = "Please enter 6-18 bit arbitrary character";
-	$lang['validform_new_password'] = "Please enter 6-18 bit arbitrary character";
+	$lang['validform_old_password'] = "Please enter 5-18 bit arbitrary character";
+	$lang['validform_new_password'] = "Please enter 5-18 bit arbitrary character";
 	$lang['validform_confirm_password'] = "The two passwords do not match";
 	$lang['validform_null_username'] = "Please enter the username";
 	$lang['validform_null_old_password'] = "Please enter the old password";

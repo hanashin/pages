@@ -5,11 +5,11 @@
 </div>
 
 <!-- 逆变器信号强度显示表格 -->
-<table class="table table-condensed table-striped table-hover">
+<table class="table table-condensed table-striped table-hover table-bordered">
   <thead>
     <tr>
       <th><?php echo $this->lang->line('inverter_id')?></th>
-      <th><?php echo $this->lang->line('signal_strength')?></th>
+      <th><?php echo $this->lang->line('signal_level')?></th>
       <th></th>
     </tr>
   </thead>
@@ -53,7 +53,7 @@ $(document).ready(function() {
 	$(".btn-default").click(function(){
 		//alert("id=" + $(this).attr("id") + "&grid_environment=" + $("select[name='"+$(this).attr("id")+"']").val());     
 	    $.ajax({
-    		url : "<?php echo base_url('index.php/hidden/read_signal_strength');?>",
+    		url : "<?php echo base_url('index.php/hidden/read_signal_level');?>",
     		type : "post",
             dataType : "json",
     		data: "id=" + $(this).attr("id"),
@@ -80,7 +80,7 @@ $(document).ready(function() {
 	//读取所有逆变器的电网环境
 	$("#read_all").click(function(){
 	    $.ajax({
-    		url : "<?php echo base_url('index.php/hidden/read_signal_strength');?>",
+    		url : "<?php echo base_url('index.php/hidden/read_signal_level');?>",
     		type : "post",
             dataType : "json",
     		data: "id=ALL",

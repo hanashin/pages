@@ -17,14 +17,15 @@ class Configuration_model extends CI_Model {
         $results = array();
 
         //获取用户名与密码
-        $data["username"] = "root";
-        $data["password"] = "123456";
+        $data["username"] = "admin";
+        $data["password"] = "admin";
         $fp=@fopen("/etc/yuneng/userinfo.conf",'r');
         if ($fp)
         {
           $data['username'] = fgets($fp);
           $data['username'] = str_replace("\n", "", $data['username']);
-          $data['password'] = fgets($fp); 
+          $data['password'] = fgets($fp);
+          $data['password'] = str_replace("\n", "", $data['password']);
           fclose($fp);
         }
 

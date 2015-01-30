@@ -475,7 +475,7 @@ class Hidden_model extends CI_Model {
     }
     
     /* 显示逆变器信号强度 */
-    public function get_signal_strength()
+    public function get_signal_level()
     {
         $data = array();
     
@@ -497,7 +497,7 @@ class Hidden_model extends CI_Model {
     }
     
     /* 读取逆变器信号强度 */
-    public function read_signal_strength()
+    public function read_signal_level()
     {
         $results = array();
 
