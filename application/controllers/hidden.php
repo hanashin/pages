@@ -46,8 +46,8 @@ class Hidden extends CI_Controller {
     public function exec_command()
     {      
         $results = $this->hidden_model->exec_command();
-        $results["message"] = $this->lang->line("updatecenter_result_{$results["value"]}");
-        echo json_encode($results);
+//        $results["message"] = $this->lang->line("updatecenter_result_{$results["value"]}");
+        echo json_encode($results);        
     }
 
     /* 显示导数据页面 */

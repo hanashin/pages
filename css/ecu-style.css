@@ -243,6 +243,10 @@ clip:rect(0px 130px 65px 65px);
 .unit {
 	width:15px;
 }
+#res_array {
+	border: 0px;
+    background-color: #fdfdfd;
+}
 
 /*------------------------------------------------------
     列表

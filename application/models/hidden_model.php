@@ -19,11 +19,13 @@ class Hidden_model extends CI_Model {
         $cmd = $this->input->post('command');
 
         if(strlen($cmd))
-        {            
-            $results["value"] = passthru($cmd, $result);
+        {
+            //将外部程序原始输出存入res_array
+            //将外部程序返回值存入value
+            exec($cmd, $results["res_array"], $results["value"]);
         }
         else
-            $results["value"] = 1;        
+            $results["value"] = -1;        
       
         return $results;
     }
