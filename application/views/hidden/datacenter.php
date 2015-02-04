@@ -120,6 +120,8 @@ $(document).ready(function() {
         }
     })
     .on('success.form.bv', function(e) {
+    	$("#result").hide();
+    	
         //防止默认表单提交，采用ajax提交
         e.preventDefault();
         //验证成功，采用ajax提交表单

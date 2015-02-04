@@ -24,6 +24,7 @@
 </form>
 
 <script>
+	
 $(document).ready(function() {
 	//隐藏设置结果栏
 	$("#result").hide();
@@ -38,9 +39,19 @@ $(document).ready(function() {
         //防止默认表单提交，采用ajax提交
         e.preventDefault();
     });
+
+    //按下回车触发点击事件
+    $("body").keydown(function() {
+        if (event.keyCode == "13") {
+            //keyCode=13是回车键
+            $('#button_login').click();
+        }
+    }); 
     
     //登录表单处理
     $("#button_login").click(function(){
+    	$("#result").hide();
+    	
 	    $.ajax({
     		url : "<?php echo base_url('index.php/configuration/check_login');?>",
     		type : "post",

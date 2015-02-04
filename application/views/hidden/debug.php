@@ -5,24 +5,24 @@
 </div>
 
 <!-- 输入自定义命令 -->
-  <div class="form-group">    
+<div class="form-group">    
     <label class="col-sm-12 control-label"><?php echo $this->lang->line('debug_command_input')?></label>
     <div class="col-sm-10">
-      <input type="text" name="command" class="form-control" id="inputdata1" value="">
+        <input type="text" name="command" class="form-control" id="inputdata1" value="">
     </div>
-  </div>
-  <div class="form-group">
+</div>
+<div class="form-group">
     <div class="col-sm-2">
-      <button class="btn btn-primary btn-sm" id="button_execute" type="button"><?php echo $this->lang->line('debug_command_execute')?></button>
+        <button class="btn btn-primary btn-sm" id="button_execute" type="button"><?php echo $this->lang->line('debug_command_execute')?></button>
     </div>
-  </div>
+</div>
  
  <!-- 外部程序执行结果原始输出区域 --> 
-  <div class="col-sm-12">
+<div class="col-sm-12">
     <p><pre id="res_array"></pre></p>
-  </div>
+</div>
   
-  <script>
+<script>
 $(document).ready(function() {
 
 	//隐藏设置结果栏

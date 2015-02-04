@@ -399,6 +399,8 @@ $(document).ready(function() {
 
     //设置表单处理
     $("#button_save").click(function(){
+    	$("#result").hide();
+    	
 	    $.ajax({
     		url : "<?php echo base_url('index.php/configuration/set_protection2');?>",
     		type : "post",
@@ -438,6 +440,8 @@ $(document).ready(function() {
 
     //读取逆变器保护参数
     $("#refresh").click(function(){
+    	$("#result").hide();
+    	
 	    $.ajax({
     		url : "<?php echo base_url('index.php/configuration/read_inverter_parameters');?>",
     		type : "post",

@@ -119,6 +119,8 @@ $(document).ready(function() {
 
     //设置表单处理
     $("#button_update").click(function(){
+    	$("#result").hide();
+    	
 	    $.ajax({
     		url : "<?php echo base_url('index.php/management/set_user_info');?>",
     		type : "post",

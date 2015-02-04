@@ -28,8 +28,8 @@
 	
 	$lang['inverter_id'] = "Inverter ID";
 
-	$lang['ecu_reboot_title'] = "ECU is restarting ......";
-	$lang['ecu_reboot'] = "Please do not refresh the page, if the page does not automatically jump after the restart , please enter the IP on LCD screen.";
+	$lang['ecu_reboot_title'] = "ECU is rebooting ......";
+	$lang['ecu_reboot'] = "Please do not refresh the page, if the page does not automatically jump after the reboot , please enter the IP on LCD screen.";
 	
 /* 导航栏 */
 	$lang['item_1'] = "Home";
@@ -189,7 +189,7 @@
 	
 	$lang['clear_id_result_0'] = "Clear ID success";
 	$lang['set_id_result_0'] = "Update ID Success";
-	$lang['set_id_result_1'] = "The following error IDs have not been added:";
+	$lang['set_id_result_1'] = "The following error ID(s) has(have) not been added:";
 	$lang['set_id_result_2'] = "Please enter inverter ID";
 	
 	//时间管理
@@ -252,7 +252,7 @@
 	$lang['wlan_state'] = "State";
 	$lang['wlan_change_to_ap_mode'] = "Change to AP Mode";
 	$lang['wlan_change_to_sta_mode'] = "Change to STA Mode";
-	$lang['wlan_reboot'] = "WARNING : This operation will restart ECU, to determine execution click on the ' OK' , otherwise click 'Cancel' .";
+	$lang['wlan_reboot'] = "WARNING : This operation will reboot ECU, to determine execution click on the ' OK' , otherwise click 'Cancel' .";
 	  //AP
 	$lang['wlan_mode_ap'] = "AP mode";
 	$lang['wlan_ifopen_1'] = "Opened";

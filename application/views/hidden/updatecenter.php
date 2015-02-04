@@ -97,6 +97,8 @@ $(document).ready(function() {
         }
     })
     .on('success.form.bv', function(e) {
+    	$("#result").hide();
+    	
         //防止默认表单提交，采用ajax提交
         e.preventDefault();
         //验证成功，采用ajax提交表单
@@ -105,7 +107,7 @@ $(document).ready(function() {
     		type : "post",
             dataType : "json",
     		data: "domain=" + $("#inputdata1").val()
-    			  + "&ip=" + $("#inputdata2").val() 
+    			  + "&ip=" + $("#inputdata2").val()
     		      + "&port=" + $("#inputdata3").val(),
   	    	success : function(Results){
                 if(Results.value == 0){

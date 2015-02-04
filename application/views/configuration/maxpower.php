@@ -42,7 +42,9 @@ $(document).ready(function() {
     }); 
 
     //设置最大功率处理	
-	$(".btn").click(function(){        
+	$(".btn").click(function(){
+		$("#result").hide();
+			
 	    $.ajax({
     		url : "<?php echo base_url('index.php/configuration/set_maxpower');?>",
     		type : "post",

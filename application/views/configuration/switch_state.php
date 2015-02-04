@@ -77,6 +77,8 @@ $(document).ready(function() {
 
     //设置表单处理(指定开关机)
     $("#switch_turn_on_off").click(function(){
+    	$("#result").hide();
+    	
         //保存选中的逆变器ID
         var ids = new Array();
         $('input[type="radio"]:checked').each(function(){    
@@ -109,6 +111,8 @@ $(document).ready(function() {
     });
     //设置表单处理(打开所有)
     $("#switch_turn_on_all").click(function(){
+    	$("#result").hide();
+        
 	    $.ajax({
     		url : "<?php echo base_url('index.php/configuration/set_switch_all_on');?>",
     		type : "post",
@@ -134,6 +138,8 @@ $(document).ready(function() {
     });
     //设置表单处理(关闭所有)
     $("#switch_turn_off_all").click(function(){
+    	$("#result").hide();
+    	
 	    $.ajax({
     		url : "<?php echo base_url('index.php/configuration/set_switch_all_off');?>",
     		type : "post",

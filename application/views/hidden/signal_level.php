@@ -8,9 +8,9 @@
 <table class="table table-condensed table-striped table-hover table-bordered">
   <thead>
     <tr>
-      <th><?php echo $this->lang->line('inverter_id')?></th>
-      <th><?php echo $this->lang->line('signal_level')?></th>
-      <th></th>
+      <th class="col-xs-5"><?php echo $this->lang->line('inverter_id')?></th>
+      <th class="col-xs-5"><?php echo $this->lang->line('signal_level')?></th>
+      <th class="col-xs-1"></th>
     </tr>
   </thead>
   <tbody>
@@ -37,7 +37,7 @@
 </table>
 
 <div class="col-sm-4 col-sm-offset-4">
-<button class="btn btn-primary btn-sm" id="read_all" type="button"><?php echo $this->lang->line('button_read_all')?></button>
+    <button class="btn btn-primary btn-sm" id="read_all" type="button"><?php echo $this->lang->line('button_read_all')?></button>
 </div>
 
 <script>
@@ -51,7 +51,8 @@ $(document).ready(function() {
 
     //读取单台逆变器的电网环境
 	$(".btn-default").click(function(){
-		//alert("id=" + $(this).attr("id") + "&grid_environment=" + $("select[name='"+$(this).attr("id")+"']").val());     
+		$("#result").hide();
+		
 	    $.ajax({
     		url : "<?php echo base_url('index.php/hidden/read_signal_level');?>",
     		type : "post",
@@ -79,6 +80,8 @@ $(document).ready(function() {
 
 	//读取所有逆变器的电网环境
 	$("#read_all").click(function(){
+		$("#result").hide();
+		
 	    $.ajax({
     		url : "<?php echo base_url('index.php/hidden/read_signal_level');?>",
     		type : "post",

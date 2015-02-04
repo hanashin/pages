@@ -143,6 +143,8 @@ $(document).ready(function() {
     
     //设置逆变器列表
     $("#update_id").click(function(){
+    	$("#result").hide();
+    	
         $.ajax({
     		url : "<?php echo base_url('index.php/management/set_id');?>",
     		type : "post",
@@ -173,6 +175,8 @@ $(document).ready(function() {
 
     //清空逆变器列表
     $("#clear_id").click(function(){
+    	$("#result").hide();
+    	
         $.ajax({
     		url : "<?php echo base_url('index.php/management/set_id_clear');?>",
     		type : "post",

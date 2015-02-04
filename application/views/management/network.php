@@ -207,6 +207,8 @@ $(document).ready(function() {
 
     //设置GPRS
     $("#button_update_gprs").click(function(){
+    	$("#result").hide();
+    	
 	    $.ajax({
     		url : "<?php echo base_url('index.php/management/set_gprs');?>",
     		type : "post",
@@ -233,6 +235,8 @@ $(document).ready(function() {
     
     //设置IP
     $("#button_update_gprs").click(function(){
+    	$("#result").hide();
+    	
 	    $.ajax({
     		url : "<?php echo base_url('index.php/management/set_gprs');?>",
     		type : "post",

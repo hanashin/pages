@@ -53,6 +53,8 @@ $(document).ready(function() {
 
     //设置表单处理
     $("#gfdi_unlock").click(function(){
+    	$("#result").hide();
+    	
         //保存选中的逆变器ID
         var ids = new Array();
         $('input[name="ids"]:checked').each(function(){    

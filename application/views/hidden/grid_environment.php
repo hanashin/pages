@@ -8,10 +8,10 @@
 <table class="table table-condensed table-striped table-hover table-bordered">
   <thead>
     <tr>
-      <th><?php echo $this->lang->line('inverter_id')?></th>
-      <th><?php echo $this->lang->line('grid_environment_result')?></th>
-      <th><?php echo $this->lang->line('grid_environment_setting')?></th>
-      <th></th>
+      <th class="col-xs-3"><?php echo $this->lang->line('inverter_id')?></th>
+      <th class="col-xs-3"><?php echo $this->lang->line('grid_environment_result')?></th>
+      <th class="col-xs-4"><?php echo $this->lang->line('grid_environment_setting')?></th>
+      <th class="col-xs-1"></th>
     </tr>
   </thead>
   <tbody>
@@ -71,7 +71,8 @@ $(document).ready(function() {
 
     //设置电网环境处理	
 	$(".btn-default").click(function(){
-		//alert("id=" + $(this).attr("id") + "&grid_environment=" + $("select[name='"+$(this).attr("id")+"']").val());     
+		$("#result").hide();
+
 	    $.ajax({
     		url : "<?php echo base_url('index.php/hidden/set_grid_environment');?>",
     		type : "post",
@@ -100,7 +101,8 @@ $(document).ready(function() {
 
 	//设置所有逆变器
 	$("#save_all li a").click(function(){
-		//alert("id=ALL" + "&ird=" + $(this).attr("value"));
+		$("#result").hide();
+		
 	    $.ajax({
     		url : "<?php echo base_url('index.php/hidden/set_grid_environment');?>",
     		type : "post",
@@ -128,6 +130,8 @@ $(document).ready(function() {
 
 	//读取所有逆变器的电网环境
 	$("#read_all").click(function(){
+		$("#result").hide();
+		
 	    $.ajax({
     		url : "<?php echo base_url('index.php/hidden/read_grid_environment');?>",
     		type : "post",

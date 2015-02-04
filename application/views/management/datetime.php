@@ -635,6 +635,8 @@ $(document).ready(function() {
     
     //设置日期时间
     $("#button_update_datetime").click(function(){
+    	$("#result").hide();
+    	
 	    $.ajax({
     		url : "<?php echo base_url('index.php/management/set_datetime');?>",
     		type : "post",
@@ -661,6 +663,8 @@ $(document).ready(function() {
 
     //设置时区
     $("#button_update_timezone").click(function(){
+    	$("#result").hide();
+    	
 	    $.ajax({
     		url : "<?php echo base_url('index.php/management/set_timezone');?>",
     		type : "post",
@@ -687,6 +691,8 @@ $(document).ready(function() {
     
     //设置NTP服务器
     $("#button_update_ntp").click(function(){
+    	$("#result").hide();
+    	
 	    $.ajax({
     		url : "<?php echo base_url('index.php/management/set_ntp_server');?>",
     		type : "post",
