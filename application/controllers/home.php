@@ -40,15 +40,6 @@ class Home extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
-    public function faq()
-    {
-        $data['page'] = $this->page;
-        $data['func'] = "faq";
-        $this->load->view('templates/header', $data);
-        $this->load->view('faq');
-        $this->load->view('templates/footer');
-    }
-
 }
 
 /* End of file home.php */

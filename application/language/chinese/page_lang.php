@@ -307,6 +307,7 @@
 	$lang['function_record'] = "Record数据库";
 	
 /* 隐藏功能 */
+	$lang['function_hidden_index'] = "隐藏页面";
 	//debug
 	$lang['function_debug'] = "调试";
 	$lang['debug_command_input'] = "请输入自定义命令";

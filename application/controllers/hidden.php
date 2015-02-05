@@ -30,6 +30,15 @@ class Hidden extends CI_Controller {
         //加载验证信息语言文件
         $this->lang->load('validform', $language);
     }
+    
+    public function index()
+    {
+        $data['page'] = $this->page;
+        $data['func'] = "hidden_index";
+        $this->load->view('templates/header', $data);
+        $this->load->view('hidden/hidden_index');
+        $this->load->view('templates/footer');
+    }
 
     /* 显示DEBUG页面 */
     public function debug($result = "")

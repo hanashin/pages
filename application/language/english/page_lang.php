@@ -307,6 +307,7 @@
 	$lang['function_record'] = "Record";
 	
 /* 隐藏功能 */
+	$lang['function_hidden_index'] = "Hidden Pages List";
 	//debug
 	$lang['function_debug'] = "Debug";
 	$lang['debug_command_input'] = "Please enter a custom command";
