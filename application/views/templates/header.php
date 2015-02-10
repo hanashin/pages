@@ -10,39 +10,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">   
 
     <title><?php echo $this->lang->line('title')?></title>
-
     <link type="image/x-icon" href="<?php echo base_url('images/logo-icon.png');?>" rel="shortcut icon">    
     <link href="<?php echo base_url('css/bootstrap.min.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('css/ecu-style.css');?>" rel="stylesheet">  
     <link href="<?php echo base_url('css/bootstrapValidator.css');?>" rel="stylesheet">
-    <link href="<?php echo base_url('css/bootstrap-datetimepicker.min.css');?>" rel="stylesheet">
     <!--[if lt IE 8]>
       <link href="<?php echo base_url('css/bootstrap-ie7.css');?>" rel="stylesheet">
     <![endif]-->
     <script src="<?php echo base_url('js/jquery-1.8.2.min.js');?>"></script>
     <script src="<?php echo base_url('js/bootstrap.min.js');?>"></script>
     <script src="<?php echo base_url('js/bootstrapValidator.min.js');?>"></script>
-    
-    <script>   
-    $(document).ready(function() {
-     	
-  	  //切换语言
-      $(".chlang").click(function(){
-          $.ajax({
-    		  url : "<?php echo base_url('index.php/management/set_language');?>",
-    		  type : "post",
-              dataType : "json",
-    		  data: "language=" + $(this).attr("id"),
-        	  success : function(Results){	    	
-    		  },
-        	  error : function(){
-        		  alert("Error");
-        	  }
-          })
-          setTimeout("location.reload();",500);//刷新页面
-      });
-  	});
-    </script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn"t work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -72,14 +49,14 @@
               <li><a id="ecu_title"><?php echo $this->lang->line('title_ecu');?></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-            <a class="btn chlang" id="english" ><?php echo $this->lang->line('language_english');?></a>|
-            <a class="btn chlang" id="chinese" ><?php echo $this->lang->line('language_chinese');?></a>
+              <a class="btn chlang" id="english" ><?php echo $this->lang->line('language_english');?></a>|
+              <a class="btn chlang" id="chinese" ><?php echo $this->lang->line('language_chinese');?></a>
             </ul>
-            <ul class="nav navbar-nav navbar-left">
-<!--              <li><a href="<?php echo base_url('index.php/home');?>" class="active"><span class="glyphicon energy-control"><img src="<?php echo base_url('images/icon1.png');?>"></span><?php echo $this->lang->line('energy_control')?></a></li>
+<!--        <ul class="nav navbar-nav navbar-left">
+              <li><a href="<?php echo base_url('index.php/home');?>" class="active"><span class="glyphicon energy-control"><img src="<?php echo base_url('images/icon1.png');?>"></span><?php echo $this->lang->line('energy_control')?></a></li>
               <li><a href="<?php echo base_url('index.php/home/faq');?>"><span class="glyphicon"><img src="<?php echo base_url('images/icon2.png');?>"></span><?php echo $this->lang->line('test')?></a></li>
               <li><a href="#"><span class="glyphicon"><img src="<?php echo base_url('images/icon3.png');?>"></span><?php echo $this->lang->line('faq')?></a></li>
--->       </ul>            
+            </ul>  -->
           </div>
         </div>
       </div>     
@@ -89,7 +66,7 @@
     <nav>
       <div class="navbar navbar-default navbar-orange">
         <div class="container">
-          <p><?php echo $this->lang->line('energy_control')?></p>          
+            <p class="navbar-orange-title"><?php echo $this->lang->line('energy_control')?></p>     
           <div class="navbar-header">            
             <button class="navbar-toggle" data-target="#navbar-orange" data-toggle="collapse" type="button">
             <span class="icon-bar"></span>
@@ -99,10 +76,7 @@
           </div>
 
           <div class="navbar-collapse collapse" id="navbar-orange">
-<!--             <ul class="nav navbar-nav navbar-right"> -->
-              <!-- TO BE ADD -->
-<!--               <li><a></a></li> -->
-<!--             </ul> -->
+<!--      <ul class="nav navbar-nav navbar-right"><li><a></a></li></ul> -->
             <ul class="nav navbar-nav ">
               <li><a href="<?php echo base_url('index.php/home');?>"<?php if(!strncmp($page, "home", 4)){echo " class=\"active\"";}?>><?php echo $this->lang->line('item_1')?></a></li>
               <li><a href="<?php echo base_url('index.php/realtimedata');?>"<?php if(!strncmp($page, "realtimedata", 12)){echo " class=\"active\"";}?>><?php echo $this->lang->line('item_2')?></a><span> </span></li>
@@ -294,3 +268,4 @@ EOF;
             </div>
 
             <div class="panel-body">
+            <!-- 设置结果显示框 -->

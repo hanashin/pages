@@ -3,7 +3,7 @@
         <input class="Wdate" type="text" name="date" value="<?php echo $date;?>" onClick="WdatePicker({maxDate:'%y-%M-%d', <?php echo $this->lang->line('graph_language')?>})">
         <button type="submit" class="btn btn-default btn-xs"><?php echo $this->lang->line('button_query')?></button>
     </center>
-</from>
+</form>
 
 <!-- 显示图表 -->
 <div class="mychart">

@@ -17,6 +17,7 @@ body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
   border: none;
   border-radius: 0px;
   margin-bottom: 0px;
+  min-height: 110px;
 }
 @media (max-width: 1200px) {
   .navbar-top .navbar-title > li > a{
@@ -141,7 +142,7 @@ clip:rect(0px 130px 65px 65px);
 }
 .navbar-orange .navbar-nav > li > a {
     color: #494949;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -172,7 +173,7 @@ clip:rect(0px 130px 65px 65px);
 }
 @media (min-width: 768px) {
   .navbar-orange{
-    min-height: 90px;
+    min-height: 50px;
   }
   .navbar-orange .navbar-nav li span {
     width: 1px;
@@ -184,6 +185,12 @@ clip:rect(0px 130px 65px 65px);
     -webkit-box-shadow: 1px 0 5px rgba(1, 1, 1, 0.25);
     -moz-box-shadow: 1px 0 1px rgba(1, 1, 1, 0.25);
     box-shadow: 1px 0 1px rgba(1, 1, 1, 0.25);
+  }
+  .navbar-orange-title {
+	display: none;
+  }
+  .navbar-orange .navbar-nav {
+  	margin-left: -15px;
   }
 }
 

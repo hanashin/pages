@@ -37,8 +37,9 @@ class Realtimedata extends CI_Controller {
         $data = $this->realtimedata_model->get_data();
         $data['page'] = $this->page;
         $data['func'] = "data";
+        //当一次性载入多个视图的时候，只需在第一个视图传入数据就可以了
         $this->load->view('templates/header', $data);
-        $this->load->view('realtimedata/realtimedata', $data);
+        $this->load->view('realtimedata/realtimedata');
         $this->load->view('templates/footer');
     }
 
