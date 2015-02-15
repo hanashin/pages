@@ -159,15 +159,15 @@
 
               echo "<a href=\"".base_url('index.php/management/network')."\" class=\"list-group-item";
               if(!strncmp($func, "network", 7))echo " active";
-              echo "\">".$this->lang->line('item_4_4')."</a>"."\n";
-
-              // echo "<a href=\"".base_url('index.php/management/user_info')."\" class=\"list-group-item";
-              // if(!strncmp($func, "user_info", 9))echo " active";
-              // echo "\">".$this->lang->line('item_4_5')."</a>"."\n";
+              echo "\">".$this->lang->line('item_4_4')."</a>"."\n";             
 
               echo "<a href=\"".base_url('index.php/management/wlan')."\" class=\"list-group-item";
               if(!strncmp($func, "wlan", 4))echo " active";
               echo "\">".$this->lang->line('item_4_6')."</a>"."\n";
+              
+              echo "<a href=\"".base_url('index.php/management/user_info')."\" class=\"list-group-item";
+              if(!strncmp($func, "user_info", 9))echo " active";
+              echo "\">".$this->lang->line('item_4_5')."</a>"."\n";
             }
           ?>
           </div>
@@ -252,15 +252,15 @@ EOF;
 
                     echo "<a href=\"".base_url('index.php/management/network')."\" class=\"list-group-item";
                     if(!strncmp($func, "network", 7))echo " active";
-                    echo "\">".$this->lang->line('item_4_4')."</a>"."\n";
-
-                    // echo "<a href=\"".base_url('index.php/management/user_info')."\" class=\"list-group-item";
-                    // if(!strncmp($func, "user_info", 9))echo " active";
-                    // echo "\">".$this->lang->line('item_4_5')."</a>"."\n";
+                    echo "\">".$this->lang->line('item_4_4')."</a>"."\n";                   
 
                     echo "<a href=\"".base_url('index.php/management/wlan')."\" class=\"list-group-item";
                     if(!strncmp($func, "wlan", 4))echo " active";
                     echo "\">".$this->lang->line('item_4_6')."</a>"."\n";
+                    
+                    echo "<a href=\"".base_url('index.php/management/user_info')."\" class=\"list-group-item";
+                    if(!strncmp($func, "user_info", 9))echo " active";
+                    echo "\">".$this->lang->line('item_4_5')."</a>"."\n";
                   }                              
               ?>
                 </ul>

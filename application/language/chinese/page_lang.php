@@ -39,12 +39,12 @@
 	$lang['item_2_3'] = "能量柱状图";
 	$lang['item_2_4'] = "逆变器状态";	
 	$lang['item_3'] = "参数配置";
-	$lang['item_3_1'] = "保护参数设置";
-	$lang['item_3_2'] = "接地故障保护";
+	$lang['item_3_1'] = "参数配置";
+	$lang['item_3_2'] = "GFDI";
 	$lang['item_3_3'] = "远程控制";
 	$lang['item_3_4'] = "功率设置";
 	$lang['item_4'] = "系统管理";
-	$lang['item_4_1'] = "逆变器ID";
+	$lang['item_4_1'] = "ID管理";
 	$lang['item_4_2'] = "时间管理";
 	$lang['item_4_3'] = "语言管理";
 	$lang['item_4_4'] = "网络管理";
@@ -121,8 +121,8 @@
 	$lang['login_result_1'] = "用户名或密码错误";
 	
 	//交流保护参数
-	$lang['function_protection'] = "保护参数";
-	$lang['function_protection2'] = "保护参数(13项)";
+	$lang['function_protection'] = "参数配置";
+	$lang['function_protection2'] = "参数配置(13项)";
 	$lang['protection_set'] = "参数设置";
 	$lang['protection_actual_value'] = "逆变器实际值";	
 	$lang['protection_select_inverter'] = "请选择逆变器";
@@ -148,7 +148,7 @@
 	$lang['read_protection_result_1'] = "读取逆变器保护参数失败";
 
 	//GFDI设置
-	$lang['function_gfdi'] = "接地故障保护";
+	$lang['function_gfdi'] = "GFDI";
 	$lang['gfdi_inverter_id'] = "逆变器 ID";
 	$lang['gfdi_state'] = "状态";
 	$lang['gfdi_unlock'] = "GFDI 解锁";
@@ -250,11 +250,11 @@
 	$lang['wlan_ssid'] = "信号名称";
 	$lang['wlan_ip_address'] = "IP 地址";
 	$lang['wlan_state'] = "状态";
-	$lang['wlan_change_to_ap_mode'] = "切换到主机模式";
-	$lang['wlan_change_to_sta_mode'] = "切换到从机模式";
+	$lang['wlan_change_to_ap_mode'] = "切换为无线热点";
+	$lang['wlan_change_to_sta_mode'] = "连接到附近的WLAN";
 	$lang['wlan_reboot'] = "警告：此操作会重启ECU，确定执行请点击'确定'，否则点击‘取消’。";
 	  //AP
-	$lang['wlan_mode_ap'] = "主机模式";
+	$lang['wlan_mode_ap'] = "无线热点";
 	$lang['wlan_ifopen_1'] = "开启";
 	$lang['wlan_ifopen_0'] = "关闭";
 	$lang['wlan_ap_setting'] = "更改设置";
@@ -265,7 +265,7 @@
 	$lang['wlan_ap_password'] = "安全密钥";
 	$lang['wlan_ap_update'] = "确定";
       //STA	
-	$lang['wlan_mode_sta'] = "从机模式";
+	$lang['wlan_mode_sta'] = "连接的WLAN";
 	$lang['wlan_ifconnect_1'] = "已连接";
 	$lang['wlan_ifconnect_0'] = "未连接";
 	$lang['wlan_sta_signals'] = "附近的WLAN";
@@ -275,8 +275,8 @@
 	$lang['wlan_sta_connect'] = "连接";
 	$lang['wlan_sta_disconnect'] = "断开";
 	
-	$lang['wlan_result_success_change_mode'] = "更改模式成功";
-	$lang['wlan_result_success_set_ap'] = "设置主机模式参数成功";
+	$lang['wlan_result_success_change_mode'] = "设置成功";
+	$lang['wlan_result_success_set_ap'] = "设置无线热点参数成功";
 	$lang['wlan_result_success_connect_sta'] = "连接WIFI成功";
 	$lang['wlan_result_success_disconnect_sta'] = "断开WIFI成功";
 	$lang['wlan_result_failed_connect_sta'] = "连接WIFI失败";

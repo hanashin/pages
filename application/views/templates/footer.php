@@ -16,7 +16,7 @@
     <!--       </small> -->
     <!--       】   -->
     </footer>
-    </body>
+    
 
     <script>   
     $(document).ready(function() {
@@ -31,12 +31,12 @@
         	  success : function(Results){	    	
     		  },
         	  error : function(){
-        		  alert("Error");
+        		  //alert("Error");
         	  }
           })
           setTimeout("location.reload();",500);//刷新页面
       });
     });
     </script>
-    
+    </body>
 </html>

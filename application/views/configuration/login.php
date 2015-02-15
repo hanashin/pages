@@ -5,19 +5,24 @@
 </div>
 
 <!-- 登录表单 -->
-<form class="form-signin" id="defaultForm" method="ajax">
+<form class="form-horizontal" id="defaultForm" method="ajax">
   <div class="col-sm-offset-4 col-sm-5">
     <h2 class="form-signin-heading"><?php echo $this->lang->line('login_title')?></h2>
+  </div>  
+  <div class="form-group">    
+    <label for="inputdata1" class="col-sm-4 control-label"><?php echo $this->lang->line('login_username')?></label>
+    <div class="col-sm-4">
+      <input class="form-control" id="inputdata1"  type="text" name="username" autofocus>
+    </div>
+  </div>  
+  <div class="form-group">    
+    <label for="inputdata2" class="col-sm-4 control-label"><?php echo $this->lang->line('login_password')?></label>
+    <div class="col-sm-4">
+      <input class="form-control" id="inputdata2"  type="password" name="password">
+    </div>
   </div>
-  <div class="form-group">
-    <div class="col-sm-offset-4 col-sm-4">
-      <input class="form-control" id="inputdata1" type="text" name="username"  placeholder="<?php echo $this->lang->line('login_username')?>" required oninvalid="setCustomValidity('please input username');" oninput="setCustomValidity('');" autofocus>
-      <input class="form-control" id="inputdata2" type="password" name="password"  placeholder="<?php echo $this->lang->line('login_password')?>" required oninvalid="setCustomValidity('please input password');" oninput="setCustomValidity('');">      
-    </div>
-    <div class="col-sm-12">
-     <br>
-    </div>
-    <div class="col-sm-offset-4 col-sm-4">
+  <div class="form-group">    
+    <div class="col-sm-4 col-sm-offset-4">
       <button class="btn btn-primary" id="button_login" type="submit"><?php echo $this->lang->line('login_login')?></button>
     </div>
   </div>
@@ -66,7 +71,8 @@ $(document).ready(function() {
   	            }
                 else{
                     $("#result").removeClass().addClass("alert alert-danger");
-                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
+                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");
+                    $('#button_login').removeAttr("disabled");   
                 }
                 $("#result small").text(Results.message);        		 
             	$("#result").show();

@@ -33,22 +33,22 @@
 	
 /* 导航栏 */
 	$lang['item_1'] = "Home";
-	$lang['item_2'] = "Real-time Data";
-	$lang['item_2_1'] = "Real-time Data";
+	$lang['item_2'] = "Real Time Data";
+	$lang['item_2_1'] = "Real Time Data";
 	$lang['item_2_2'] = "Power";
 	$lang['item_2_3'] = "Energy";
 	$lang['item_2_4'] = "Inverter Status";
-	$lang['item_3'] = "configuration";
-	$lang['item_3_1'] = "Protection Parameters";
-	$lang['item_3_2'] = "Ground Fault Protection";
+	$lang['item_3'] = "Configuration";
+	$lang['item_3_1'] = "Parameters";
+	$lang['item_3_2'] = "GFDI";
 	$lang['item_3_3'] = "Remote Control";
 	$lang['item_3_4'] = "Power Setting";
-	$lang['item_4'] = "administration";
-	$lang['item_4_1'] = "Inverter ID";
-	$lang['item_4_2'] = "Time ";
+	$lang['item_4'] = "Administration";
+	$lang['item_4_1'] = "ID Management";
+	$lang['item_4_2'] = "Date,Time,Timezone";
 	$lang['item_4_3'] = "Language";
-	$lang['item_4_4'] = "Network ";
-	$lang['item_4_5'] = "User";
+	$lang['item_4_4'] = "Network Connectivity";
+	$lang['item_4_5'] = "User Management";
 	$lang['item_4_6'] = "WLAN ";
 	
 /* 主页 */
@@ -73,7 +73,7 @@
 	$lang['home_kg'] = "KG";
 	
 /* 实时数据 */
-	$lang['function_data'] = "Real-time Data";
+	$lang['function_data'] = "Real Time Data";
 	$lang['data_inverter_id'] = "Inverter ID";
 	$lang['data_current_power'] = "Current Power";
 	$lang['data_grid_frequency'] = "Grid Frequency";
@@ -121,8 +121,8 @@
 	$lang['login_result_1'] = "Incorrect username or password";
 	
 	//交流保护参数
-	$lang['function_protection'] = "Protection Parameters";
-	$lang['function_protection2'] = "Protection Parameters";
+	$lang['function_protection'] = "Parameters";
+	$lang['function_protection2'] = "Parameters";
 	$lang['protection_set'] = "Settings";
 	$lang['protection_actual_value'] = "Actual value";	
 	$lang['protection_select_inverter'] = "Please select inverter";
@@ -148,7 +148,7 @@
 	$lang['read_protection_result_1'] = "Read inverter protection failed";
 	
 	//GFDI设置
-	$lang['function_gfdi'] = "Ground Fault Protection";
+	$lang['function_gfdi'] = "GFDI";
 	$lang['gfdi_inverter_id'] = "Inverter ID";
 	$lang['gfdi_state'] = "Status";
 	$lang['gfdi_unlock'] = "Unlock GFDI";
@@ -180,7 +180,7 @@
 
 /* 系统管理 */
 	//ID管理
-	$lang['function_id'] = "Inverter ID";
+	$lang['function_id'] = "ID Management";
 	$lang['id_inverter_id'] = "Inverter ID";
 	$lang['id_clear_id'] = "Clear ID";
 	$lang['id_total'] = "Total";
@@ -193,7 +193,7 @@
 	$lang['set_id_result_2'] = "Please enter inverter ID";
 	
 	//时间管理
-	$lang['function_time'] = "Time ";
+	$lang['function_time'] = "Date,Time,Timezone";
 	$lang['time_datetime'] = "Date Time";
 	$lang['time_timezone'] = "Timezone";
 	$lang['time_ntp'] = "NTP Server";
@@ -214,7 +214,7 @@
 	$lang['language_result_1'] = "Language configuration file open failed";
 	
 	//网络管理
-	$lang['function_network'] = "Network ";
+	$lang['function_network'] = "Network Connectivity";
 	$lang['network_set_gprs'] = "GPRS Settings";
 	$lang['network_use_gprs'] = "Use GPRS Module";
 	$lang['network_set_ip'] = "IP Settings";
@@ -232,7 +232,7 @@
 	$lang['network_result_success_static_ip'] = "Set static IP success";
 	
 	//用户管理
-	$lang['function_user_info'] = "User";
+	$lang['function_user_info'] = "User Management";
 	$lang['user_info_username'] = "Username";
 	$lang['user_info_old_password'] = "Old password";
 	$lang['user_info_new_password'] = "New password";
@@ -250,14 +250,14 @@
 	$lang['wlan_ssid'] = "SSID";
 	$lang['wlan_ip_address'] = "IP address";
 	$lang['wlan_state'] = "State";
-	$lang['wlan_change_to_ap_mode'] = "Change to AP Mode";
-	$lang['wlan_change_to_sta_mode'] = "Change to STA Mode";
+	$lang['wlan_change_to_ap_mode'] = "Change to a Hotspot";
+	$lang['wlan_change_to_sta_mode'] = "Connect to WLAN nearby";
 	$lang['wlan_reboot'] = "WARNING : This operation will reboot ECU, to determine execution click on the ' OK' , otherwise click 'Cancel' .";
 	  //AP
-	$lang['wlan_mode_ap'] = "AP mode";
+	$lang['wlan_mode_ap'] = "Hotspot";
 	$lang['wlan_ifopen_1'] = "Opened";
 	$lang['wlan_ifopen_0'] = "Closed";
-	$lang['wlan_ap_setting'] = "Setting AP";
+	$lang['wlan_ap_setting'] = "Setting Hotspot";
 	$lang['wlan_ap_ssid'] = "SSID";
 	$lang['wlan_ap_channel'] = "Channel";
 	$lang['wlan_ap_channel_auto'] = "Auto";	
@@ -265,7 +265,7 @@
 	$lang['wlan_ap_password'] = "Password";
 	$lang['wlan_ap_update'] = "Update";	
 	  //STA	
-	$lang['wlan_mode_sta'] = "STA mode";
+	$lang['wlan_mode_sta'] = "WLAN Connected";
 	$lang['wlan_ifconnect_1'] = "Connected";
 	$lang['wlan_ifconnect_0'] = "Disconnected";
 	$lang['wlan_sta_signals'] = "WLAN Nearby";
@@ -275,8 +275,8 @@
 	$lang['wlan_sta_connect'] = "Connect";
 	$lang['wlan_sta_disconnect'] = "Disconnect";
 	
-	$lang['wlan_result_success_change_mode'] = "Change Mode success";
-	$lang['wlan_result_success_set_ap'] = "Set Host mode parameter success";
+	$lang['wlan_result_success_change_mode'] = "Setting success";
+	$lang['wlan_result_success_set_ap'] = "Set Hotspot parameter success";
 	$lang['wlan_result_success_connect_sta'] = "Connect WIFI success";
 	$lang['wlan_result_success_disconnect_sta'] = "Disconnect WIFI success";
 	$lang['wlan_result_failed_connect_sta'] = "Connect WIFI failed";

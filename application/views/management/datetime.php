@@ -607,7 +607,6 @@
 $(document).ready(function() {
 
 	//隐藏设置结果栏
-	$("#result").hide();
 	$(".close").click(function(){
 		$("#result").hide();
     }); 

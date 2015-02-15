@@ -3,7 +3,7 @@
 /*-----------------------------------------------------------------------------------*/
 html { font-size: 1em; }
 
-body { font-family: 'Comfortaa', Arial, sans-serif; overflow-x: hidden; }
+body { font-family: Arial, 'Microsoft YaHei', sans-serif; overflow-x: hidden; }
 
 ::selection { background:#eb7203; color:#fff;}
 ::-moz-selection { background:#eb7203; color:#fff;}
@@ -142,9 +142,9 @@ clip:rect(0px 130px 65px 65px);
 }
 .navbar-orange .navbar-nav > li > a {
     color: #494949;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
-    text-transform: uppercase;
+/*text-transform: uppercase;*/
 }
 .navbar-orange .navbar-nav > li > a.active {
   color: white;
@@ -200,6 +200,9 @@ clip:rect(0px 130px 65px 65px);
 .container-main {  
   padding-right: 0px;
   padding-left: 0px;
+}
+#result {
+	display: none;
 }
 
 /*------------------------------------------------------

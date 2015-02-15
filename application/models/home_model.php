@@ -82,11 +82,17 @@ class Home_model extends CI_Model {
             fclose($fp);
         }
 
-        /* 查询软件版本号 */
+        /* 查询软件版本号(软件版本号+地区) */
         $data['version'] = "";
         $fp = @fopen("/etc/yuneng/version.conf",'r');
         if($fp){
             $data['version'] = fgets($fp);
+            $data['version'] = str_replace("\n", "", $data['version']);
+            fclose($fp);
+        }
+        $fp = @fopen("/etc/yuneng/area.conf",'r');
+        if($fp){
+            $data['version'] = $data['version'].fgets($fp);
             fclose($fp);
         }
 

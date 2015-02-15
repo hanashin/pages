@@ -35,7 +35,7 @@
         $('#myChart').highcharts({
             chart: {
                 zoomType: 'x',
-                margin:[10, 10, 25, 65],//上右下左 
+                margin:[10, 10, 25, 70],//上右下左 
                 height:400, 
             },
             title: {
