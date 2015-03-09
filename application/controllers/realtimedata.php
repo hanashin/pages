@@ -39,6 +39,7 @@ class Realtimedata extends CI_Controller {
         $data['func'] = "data";
         //当一次性载入多个视图的时候，只需在第一个视图传入数据就可以了
         $this->load->view('templates/header', $data);
+        $this->load->view('templates/nav');
         $this->load->view('realtimedata/realtimedata');
         $this->load->view('templates/footer');
     }
@@ -50,7 +51,8 @@ class Realtimedata extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "power";
         $this->load->view('templates/header', $data);
-        $this->load->view('realtimedata/power_graph', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('realtimedata/power_graph');
         $this->load->view('templates/footer');
     }
 
@@ -61,7 +63,8 @@ class Realtimedata extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "energy";
         $this->load->view('templates/header', $data);
-        $this->load->view('realtimedata/energy_graph', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('realtimedata/energy_graph');
         $this->load->view('templates/footer');
     }
 
@@ -72,10 +75,10 @@ class Realtimedata extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "inverter_status";
         $this->load->view('templates/header', $data);
-        $this->load->view('realtimedata/inverter_status', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('realtimedata/inverter_status');
         $this->load->view('templates/footer');
     }
-
 
 }
 

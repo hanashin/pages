@@ -36,7 +36,8 @@ class Home extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "home";
         $this->load->view('templates/header', $data);
-        $this->load->view('home', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('home');
         $this->load->view('templates/footer');
     }
 

@@ -37,7 +37,8 @@ class Configuration extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "login";
         $this->load->view('templates/header', $data);
-        $this->load->view('configuration/login', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('configuration/login');
         $this->load->view('templates/footer');
        
     }
@@ -61,7 +62,8 @@ class Configuration extends CI_Controller {
             $data['page'] = $this->page;
             $data['func'] = "protection";
             $this->load->view('templates/header', $data);
-            $this->load->view('configuration/protection', $data);
+            $this->load->view('templates/nav');
+            $this->load->view('configuration/protection');
             $this->load->view('templates/footer');
         }   
     } 
@@ -95,7 +97,8 @@ class Configuration extends CI_Controller {
             $data['page'] = $this->page;
             $data['func'] = "protection2";
             $this->load->view('templates/header', $data);
-            $this->load->view('configuration/protection2', $data);
+            $this->load->view('templates/nav');
+            $this->load->view('configuration/protection2');
             $this->load->view('templates/footer');
         }   
     } 
@@ -121,7 +124,8 @@ class Configuration extends CI_Controller {
             $data['page'] = $this->page;
             $data['func'] = "gfdi";
             $this->load->view('templates/header', $data);
-            $this->load->view('configuration/gfdi_state', $data);
+            $this->load->view('templates/nav');
+            $this->load->view('configuration/gfdi_state');
             $this->load->view('templates/footer');
         }      
     }
@@ -147,7 +151,8 @@ class Configuration extends CI_Controller {
             $data['page'] = $this->page;
             $data['func'] = "switch";
             $this->load->view('templates/header', $data);
-            $this->load->view('configuration/switch_state', $data);
+            $this->load->view('templates/nav');
+            $this->load->view('configuration/switch_state');
             $this->load->view('templates/footer');
         }
     }
@@ -189,7 +194,8 @@ class Configuration extends CI_Controller {
             $data['page'] = $this->page;
             $data['func'] = "maxpower"; 
             $this->load->view('templates/header', $data);
-            $this->load->view('configuration/maxpower', $data);
+            $this->load->view('templates/nav');
+            $this->load->view('configuration/maxpower');
             $this->load->view('templates/footer');
         }
     }

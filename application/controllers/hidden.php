@@ -36,6 +36,7 @@ class Hidden extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "hidden_index";
         $this->load->view('templates/header', $data);
+        $this->load->view('templates/nav');
         $this->load->view('hidden/hidden_index');
         $this->load->view('templates/footer');
     }
@@ -47,7 +48,8 @@ class Hidden extends CI_Controller {
         $data['func'] = "debug";
         $data['result'] = $result;      
         $this->load->view('templates/header', $data);
-        $this->load->view('hidden/debug', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('hidden/debug');
         $this->load->view('templates/footer');
     }
 
@@ -66,7 +68,8 @@ class Hidden extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "export_file";  
         $this->load->view('templates/header', $data);
-        $this->load->view('hidden/export_file', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('hidden/export_file');
         $this->load->view('templates/footer');
     }
 
@@ -83,7 +86,8 @@ class Hidden extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "updatecenter";
         $this->load->view('templates/header', $data);
-        $this->load->view('hidden/updatecenter', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('hidden/updatecenter');
         $this->load->view('templates/footer'); 
     }
 
@@ -103,7 +107,8 @@ class Hidden extends CI_Controller {
         $data['func'] = "datacenter";
         $data['result'] = $result;
         $this->load->view('templates/header', $data);
-        $this->load->view('hidden/datacenter', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('hidden/datacenter');
         $this->load->view('templates/footer');  
     }
 
@@ -122,7 +127,8 @@ class Hidden extends CI_Controller {
         $data['func'] = "initialize";
         $data['result'] = $result;      
         $this->load->view('templates/header', $data);
-        $this->load->view('hidden/initialize', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('hidden/initialize');
         $this->load->view('templates/footer');
     }
 
@@ -141,7 +147,8 @@ class Hidden extends CI_Controller {
         $data['func'] = "serial";
         $data['result'] = $result;  
         $this->load->view('templates/header', $data);
-        $this->load->view('hidden/serial', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('hidden/serial');
         $this->load->view('templates/footer');  
     }
 
@@ -160,7 +167,8 @@ class Hidden extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "grid_environment";
         $this->load->view('templates/header', $data);
-        $this->load->view('hidden/grid_environment', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('hidden/grid_environment');
         $this->load->view('templates/footer');
     }
     
@@ -187,7 +195,8 @@ class Hidden extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "ird";
         $this->load->view('templates/header', $data);
-        $this->load->view('hidden/ird', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('hidden/ird');
         $this->load->view('templates/footer');
     }
     
@@ -214,7 +223,8 @@ class Hidden extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "signal_level";
         $this->load->view('templates/header', $data);
-        $this->load->view('hidden/signal_level', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('hidden/signal_level');
         $this->load->view('templates/footer');
     }
     

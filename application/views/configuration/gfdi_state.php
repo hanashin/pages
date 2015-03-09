@@ -1,8 +1,5 @@
 <!-- 设置结果显示框 -->
-<div class="alert alert-success" id="result">
-    <button class="close" type="button"><span aria-hidden="true">&times;</span></button>
-    <strong></strong><small></small>
-</div>
+<div class="alert alert-success" id="result"></div>
 
 <!-- GFDI设置表单 -->
 <form class="form-horizontal" id="defaultForm" method="ajax">
@@ -35,14 +32,8 @@
 </form>
 
 <script>
-$(document).ready(function() {
-
-	//隐藏设置结果栏
-	$("#result").hide();
-	$(".close").click(function(){
-		$("#result").hide();
-    });
-	
+$(document).ready(function() 
+{	
 	//表单验证
     $('#defaultForm').bootstrapValidator({
     })
@@ -54,7 +45,7 @@ $(document).ready(function() {
     //设置表单处理
     $("#gfdi_unlock").click(function(){
     	$("#result").hide();
-    	
+    	    	
         //保存选中的逆变器ID
         var ids = new Array();
         $('input[name="ids"]:checked').each(function(){    
@@ -66,24 +57,21 @@ $(document).ready(function() {
     		type : "post",
             dataType : "json",
     		data: {"ids":ids},
-  	    	success : function(Results){
+            success : function(Results){
+            	$("#result").text(Results.message);
                 if(Results.value == 0){
-  	                $("#result").removeClass().addClass("alert alert-success");
-  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
-  	            }
+                    $("#result").removeClass().addClass("alert alert-success");
+                    setTimeout('$("#result").fadeToggle("slow")', 3000);
+                }
                 else{
                     $("#result").removeClass().addClass("alert alert-warning");
-                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");
-                    $('#gfdi_unlock').removeAttr("disabled"); 
+            		$('#gfdi_unlock').removeAttr("disabled"); 
                 }
-                $("#result small").text(Results.message);        		 
-            	$("#result").show();
-    		},
-  	    	error : function(){
-  	    		alert("Error");
-  	    	}
+                $("#result").fadeToggle("slow");
+                window.scrollTo(0,0);//页面置顶 
+            },
+            error : function() { alert("Error"); }
         })
-        window.scrollTo(0,0);//页面置顶
     });
 });
 </script>

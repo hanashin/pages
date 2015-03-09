@@ -28,8 +28,8 @@
 	
 	$lang['inverter_id'] = "Inverter ID";
 
-	$lang['ecu_reboot_title'] = "ECU is rebooting ......";
-	$lang['ecu_reboot'] = "Please do not refresh the page, if the page does not automatically jump after the reboot , please enter the IP on LCD screen.";
+	$lang['ecu_reboot_title'] = "ECU is rebooting ...";
+	$lang['ecu_reboot'] = "Please do not refresh, if the page does not jump automatically, please enter the IP on LCD screen.";
 	
 /* 导航栏 */
 	$lang['item_1'] = "Home";
@@ -63,8 +63,9 @@
 	$lang['home_version'] = "Current Software Version";
 	$lang['home_file_size'] = "Database Size";
 	$lang['home_timezone'] = "Current Timezone";
-	$lang['home_mac'] = "ECU Mac Address";
-	$lang['home_grid_quality'] = "Signal Level";
+	$lang['home_eth0_mac'] = "ECU Eth0 Mac Address";
+	$lang['home_wlan0_mac'] = "ECU Wlan0 Mac Address";
+	$lang['home_grid_quality'] = "Inverter Comm. signal level";
 	//环保效益
 	$lang['home_environment_benefits'] = "ENVIRONMENTAL BENEFITS";
 	$lang['home_equivalent'] = "C02 Offset Equivalent to";
@@ -117,8 +118,8 @@
 	$lang['login_username'] = "Username";
 	$lang['login_password'] = "Password";
 	$lang['login_login'] = "Login";	
-	$lang['login_result_0'] = "Login successful";
-	$lang['login_result_1'] = "Incorrect username or password";
+	$lang['login_result_0'] = "Login successful !";
+	$lang['login_result_1'] = "Incorrect username or password !";
 	
 	//交流保护参数
 	$lang['function_protection'] = "Parameters";
@@ -141,11 +142,12 @@
 	$lang['protection_frequency_triptime_fast'] = "Frequency Triptime Fast";
 	$lang['protection_frequency_triptime_slow'] = "Frequency Triptime Slow";
 	$lang['protection_grid_recovery_time'] = "Grid Recovery Time";
+	$lang['protection_read_parameters'] = "Read parameters";
 	
-	$lang['protection_result_0'] = "See the results 5 minutes later";
-	$lang['protection_result_1'] = "Please enter at least one protection parameters";
-	$lang['read_protection_result_0'] = "Read inverter protection success, See the results 5 minutes later";
-	$lang['read_protection_result_1'] = "Read inverter protection failed";
+	$lang['protection_result_0'] = "Parameters saved successfully ! (See the results 5 minutes later)";
+	$lang['protection_result_1'] = "Please enter at least one protection parameters !";
+	$lang['read_protection_result_0'] = "Parameter read successfully ! (See the results 5 minutes later)";
+	$lang['read_protection_result_1'] = "Parameter read failed !";
 	
 	//GFDI设置
 	$lang['function_gfdi'] = "GFDI";
@@ -187,10 +189,10 @@
 	$lang['id_correct'] = "Update success";
 	$lang['id_error'] = "Format error";
 	
-	$lang['clear_id_result_0'] = "Clear ID success";
-	$lang['set_id_result_0'] = "Update ID Success";
-	$lang['set_id_result_1'] = "The following error ID(s) has(have) not been added:";
-	$lang['set_id_result_2'] = "Please enter inverter ID";
+	$lang['clear_id_result_0'] = "ID cleared successfully !";
+	$lang['set_id_result_0'] = "ID updated successfully !";
+	$lang['set_id_result_1'] = "Malformed ID(s): ";
+	$lang['set_id_result_2'] = "Please enter an inverter ID !";
 	
 	//时间管理
 	$lang['function_time'] = "Date,Time,Timezone";
@@ -198,12 +200,12 @@
 	$lang['time_timezone'] = "Timezone";
 	$lang['time_ntp'] = "NTP Server";
 
-	$lang['datetime_result_0'] = "update datetime success";
-	$lang['datetime_result_1'] = "update datetime failed";	
-	$lang['timezone_result_0'] = "update timezone success";
-	$lang['timezone_result_1'] = "update timezone failed";
-	$lang['ntp_result_0'] = "update ntp_server success";
-	$lang['ntp_result_1'] = "update ntp_server failed";
+	$lang['datetime_result_0'] = "Datetime updated successfully !";
+	$lang['datetime_result_1'] = "Datetime updated failed !";	
+	$lang['timezone_result_0'] = "Timezone updated successfully !";
+	$lang['timezone_result_1'] = "Timezone updated failed !";
+	$lang['ntp_result_0'] = "Ntp_server updated successfully !";
+	$lang['ntp_result_1'] = "Ntp_server updated failed !";
 	
 	//语言管理
 	$lang['function_language'] = "Language";
@@ -226,23 +228,26 @@
 	$lang['network_preferred_dns_server'] = "Preferred DNS server";
 	$lang['network_alternate_dns_server'] = "Alternate DNS server";
 	
-	$lang['gprs_result_0'] = "Set GPRS success";
-	$lang['gprs_result_1'] = "Cancel GPRS success";
-	$lang['network_result_success_dhcp'] = "Set dynamic IP success";
-	$lang['network_result_success_static_ip'] = "Set static IP success";
+	$lang['gprs_result_0_1'] = "GPRS enabled successfully !";
+	$lang['gprs_result_0_0'] = "GPRS disabled successfully !";
+	$lang['gprs_result_1_1'] = "GPRS enabled failed !";
+	$lang['gprs_result_1_0'] = "GPRS disabled failed !";
+	$lang['network_result_success_dhcp'] = "Dynamic IP updated successfully !";
+	$lang['network_result_success_static_ip'] = "Static IP updated successfully !";
 	
 	//用户管理
 	$lang['function_user_info'] = "User Management";
 	$lang['user_info_username'] = "Username";
+	$lang['user_info_new_username'] = "New username";
 	$lang['user_info_old_password'] = "Old password";
 	$lang['user_info_new_password'] = "New password";
 	$lang['user_info_confirm_password'] = "Confirm password";
 	$lang['user_info_change_password'] = "Change password";
 	
-	$lang['user_info_result_0'] = "Password updated successfully!";
-	$lang['user_info_result_1'] = "Username or old password is wrong";
-	$lang['user_info_result_2'] = "Please input new password";
-	$lang['user_info_result_3'] = "Enter the new password twice inconsistent";
+	$lang['user_info_result_0'] = "Password updated successfully !";
+	$lang['user_info_result_1'] = "Incorrect username or old password !";
+	$lang['user_info_result_2'] = "Please enter the new password !";
+	$lang['user_info_result_3'] = "The passwords you entered do not match !";
 	
 	//无线网络管理
 	$lang['function_wlan'] = "WLAN ";
@@ -257,7 +262,7 @@
 	$lang['wlan_mode_ap'] = "Hotspot";
 	$lang['wlan_ifopen_1'] = "Opened";
 	$lang['wlan_ifopen_0'] = "Closed";
-	$lang['wlan_ap_setting'] = "Setting Hotspot";
+	$lang['wlan_ap_setting'] = "Set up hotspot";
 	$lang['wlan_ap_ssid'] = "SSID";
 	$lang['wlan_ap_channel'] = "Channel";
 	$lang['wlan_ap_channel_auto'] = "Auto";	
@@ -265,16 +270,28 @@
 	$lang['wlan_ap_password'] = "Password";
 	$lang['wlan_ap_update'] = "Update";	
 	  //STA	
-	$lang['wlan_mode_sta'] = "WLAN Connected";
+	$lang['wlan_mode_sta'] = "Connected";
 	$lang['wlan_ifconnect_1'] = "Connected";
 	$lang['wlan_ifconnect_0'] = "Disconnected";
-	$lang['wlan_sta_signals'] = "WLAN Nearby";
+	$lang['wlan_sta_signals'] = "Available networks";
 	$lang['wlan_sta_ssid'] = "SSID";
 	$lang['wlan_sta_quality'] = "Quality";
 	$lang['wlan_sta_password'] = "Password";
 	$lang['wlan_sta_connect'] = "Connect";
 	$lang['wlan_sta_disconnect'] = "Disconnect";
-	
+	//wlan
+	$lang['wlan_open'] = "Enable WLAN";
+	$lang['wlan_open_info'] = "Are you sure you want to enable WLAN? This will disable hotspot and reboot ECU.";
+	$lang['wlan_close'] = "Disable WLAN";
+	$lang['wlan_close_info'] = "Are you sure you want to disable WLAN?";
+	// hotspot
+	$lang['hotspot_open'] = "Enable hotspot";
+	$lang['hotspot_open_info'] = "Are you sure you want to enable hotspot? This will disable WLAN and reboot ECU.";
+	$lang['hotspot_close'] = "Disable hotspot";
+	$lang['hotspot_close_info'] = "Are you sure you want to disable hotspot?";
+	$lang['hotspot_set'] = "Change hotspot settings";
+	$lang['hotspot_set_info'] = "Are you sure you want to change hotspot settings? This will reboot ECU.";
+		
 	$lang['wlan_result_success_change_mode'] = "Setting success";
 	$lang['wlan_result_success_set_ap'] = "Set Hotspot parameter success";
 	$lang['wlan_result_success_connect_sta'] = "Connect WIFI success";
@@ -383,8 +400,8 @@
 	$lang['ird_result_2'] = "Set IRD Mode Failed";
 	
 	//逆变器信号强度
-	$lang['function_signal_level'] = "Signal Level";
-	$lang['signal_level'] = "Signal Level";
+	$lang['function_signal_level'] = "Inverter Comm. signal level";
+	$lang['signal_level'] = "Inverter Comm. signal level";
 	
 	$lang['signal_level_result_0'] = "Read Signal Level Success";
 	$lang['signal_level_result_1'] = "Read Signal Level Failed";

@@ -39,8 +39,9 @@
 	$lang['validform_username'] = "Please enter 4-18 bit arbitrary character";
 	$lang['validform_old_password'] = "Please enter 5-18 bit arbitrary character";
 	$lang['validform_new_password'] = "Please enter 5-18 bit arbitrary character";
-	$lang['validform_confirm_password'] = "The two passwords do not match";
+	$lang['validform_confirm_password'] = "The passwords you entered do not match";
 	$lang['validform_null_username'] = "Please enter the username";
+	$lang['validform_null_password'] = "Please enter the password";
 	$lang['validform_null_old_password'] = "Please enter the old password";
 	$lang['validform_null_new_password'] = "Please enter the new password";
 	$lang['validform_null_confirm_password'] = "Please confirm the new password";
@@ -49,7 +50,7 @@
 	  //AP
 	$lang['validform_ap_ssid'] = "Please enter 4-18 bit arbitrary character";
 	$lang['validform_ap_password_wep'] = "Please enter the 5 or 13 characters";
-	$lang['validform_ap_password_wpa'] = "-Please enter 8-18 bit arbitrary character";
+	$lang['validform_ap_password_wpa'] = "Please enter 8-18 bit arbitrary character";
 	$lang['validform_null_ap_ssid'] = "Please enter signal name";
 	$lang['validform_null_ap_password'] = "Please enter password";
       //STA	

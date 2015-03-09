@@ -1,8 +1,5 @@
 <!-- 设置结果显示框 -->
-<div class="alert alert-success" id="result">
-    <button class="close" type="button"><span aria-hidden="true">&times;</span></button>
-    <strong></strong><small></small>
-</div>
+<div class="alert alert-success" id="result"></div>
 
 <!--13项交流保护参数设置表单 -->
 <form class="form-horizontal" id="defaultForm" method="ajax">
@@ -222,14 +219,8 @@
 </fieldset>
 
 <script>
-$(document).ready(function() {
-
-	//隐藏设置结果栏
-	$("#result").hide();
-	$(".close").click(function(){
-		$("#result").hide();
-    }); 
-
+$(document).ready(function() 
+{
 	//表单验证
     $('#defaultForm').bootstrapValidator({
         message: 'This value is not valid',
@@ -399,8 +390,7 @@ $(document).ready(function() {
 
     //设置表单处理
     $("#button_save").click(function(){
-    	$("#result").hide();
-    	
+    	$("#result").hide();    	
 	    $.ajax({
     		url : "<?php echo base_url('index.php/configuration/set_protection2');?>",
     		type : "post",
@@ -419,51 +409,44 @@ $(document).ready(function() {
     		      + "&frequency_triptime_fast=" + $("#inputdata11").val() 
     		      + "&frequency_triptime_slow=" + $("#inputdata12").val() 
     		      + "&grid_recovery_time=" + $("#inputdata13").val(),
-  	    	success : function(Results){
+            success : function(Results){
+            	$("#result").text(Results.message);
                 if(Results.value == 0){
-  	                $("#result").removeClass().addClass("alert alert-success");
-  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
-  	            }
+                    $("#result").removeClass().addClass("alert alert-success");
+                    setTimeout('$("#result").fadeToggle("slow")', 3000);
+                }
                 else{
                     $("#result").removeClass().addClass("alert alert-warning");
-                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
                 }
-                $("#result small").text(Results.message);        		 
-            	$("#result").show();
-    		},
-  	    	error : function(){
-  	    		alert("Error");
-  	    	}
+                $("#result").fadeToggle("slow");
+                window.scrollTo(0,0);//页面置顶 
+            },
+            error : function() { alert("Error"); }
         })
-        window.scrollTo(0,0);//页面置顶
     });
 
     //读取逆变器保护参数
     $("#refresh").click(function(){
-    	$("#result").hide();
-    	
+    	$("#result").hide();    	
 	    $.ajax({
     		url : "<?php echo base_url('index.php/configuration/read_inverter_parameters');?>",
     		type : "post",
             dataType : "json",
     		data: "read_inverter_parameters",
     		success : function(Results){
+            	$("#result").text(Results.message);
                 if(Results.value == 0){
-  	                $("#result").removeClass().addClass("alert alert-success");
-  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");
-  	            }
+                    $("#result").removeClass().addClass("alert alert-success");
+                    setTimeout('$("#result").fadeToggle("slow")', 3000);
+                }
                 else{
                     $("#result").removeClass().addClass("alert alert-warning");
-                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
                 }
-                $("#result small").text(Results.message);        		 
-            	$("#result").show();
-    		},
-  	    	error : function(){
-  	    		alert("Error");
-  	    	}
+                $("#result").fadeToggle("slow");
+                window.scrollTo(0,0);//页面置顶 
+            },
+            error : function() { alert("Error"); }
         })
-        window.scrollTo(0,0);//页面置顶
     });  
 });
 </script>

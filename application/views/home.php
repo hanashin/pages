@@ -31,17 +31,23 @@
     <th scope="row"><?php echo $this->lang->line('home_version')?></th>
     <td><?php echo "$version"; ?></td>
   </tr>
-  <tr>
+<!--   
+<tr> 
     <th scope="row"><?php echo $this->lang->line('home_file_size')?></th>
     <td><?php echo "$file_size kB";?></td>
-  </tr>
+</tr> 
+-->
   <tr>
     <th scope="row"><?php echo $this->lang->line('home_timezone')?></th>
     <td><?php echo "$timezone"; ?></td>
   </tr>
   <tr>
-    <th scope="row"><?php echo $this->lang->line('home_mac')?></th>
-    <td><?php echo "$mac";?></td>
+    <th scope="row"><?php echo $this->lang->line('home_eth0_mac')?></th>
+    <td><?php echo "$eth0_mac";?></td>
+  </tr>
+  <tr>
+    <th scope="row"><?php echo $this->lang->line('home_wlan0_mac')?></th>
+    <td><?php echo "$wlan0_mac";?></td>
   </tr>
   <tr>
     <th scope="row"><?php echo $this->lang->line('home_grid_quality')?></th>

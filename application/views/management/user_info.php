@@ -1,8 +1,5 @@
 <!-- 设置结果显示框 -->
-<div class="alert alert-success" id="result">
-    <button class="close" type="button"><span aria-hidden="true">&times;</span></button>
-    <strong></strong><small></small>
-</div>
+<div class="alert alert-success" id="result"></div>
 
 <form class="form-horizontal" id="defaultForm" method="ajax">
 
@@ -17,6 +14,13 @@
     <label for="inputdata2" class="col-sm-5 control-label"><?php echo $this->lang->line('user_info_old_password')?></label>
     <div class="col-sm-4">
       <input type="password" name="old_password" class="form-control" id="inputdata2" value="">
+    </div>
+  </div>
+  
+  <div class="form-group">    
+    <label for="inputdata5" class="col-sm-5 control-label"><?php echo $this->lang->line('user_info_new_username')?></label>
+    <div class="col-sm-4">
+      <input type="text" name="new_username" class="form-control" id="inputdata5" value="">
     </div>
   </div>
 
@@ -42,14 +46,8 @@
 </form>
 
 <script>
-$(document).ready(function() {
-
-	//隐藏设置结果栏
-	$("#result").hide();
-	$(".close").click(function(){
-		$("#result").hide();
-    }); 
-
+$(document).ready(function() 
+{
     //表单验证
     $('#defaultForm').bootstrapValidator({
         message: 'This value is not valid',
@@ -109,18 +107,25 @@ $(document).ready(function() {
                         message: '<?php echo $this->lang->line('validform_confirm_password')?>'
                     }
                 }
-            }
+            },
+            new_username: {
+                message: 'The new_username is not valid',
+                validators: {
+                    stringLength: {
+                        min: 4,
+                        max: 18,
+                        message: '<?php echo $this->lang->line('validform_username')?>'
+                    },
+                }
+            },
         }
     })
     .on('success.form.bv', function(e) {
         //防止默认表单提交，采用ajax提交
         e.preventDefault();
-    });
 
-    //设置表单处理
-    $("#button_update").click(function(){
-    	$("#result").hide();
-    	
+        //设置表单处理
+        $("#result").hide();       	
 	    $.ajax({
     		url : "<?php echo base_url('index.php/management/set_user_info');?>",
     		type : "post",
@@ -128,25 +133,23 @@ $(document).ready(function() {
     		data: "username=" + $("#inputdata1").val()
     			  + "&old_password=" + $("#inputdata2").val() 
     		      + "&new_password=" + $("#inputdata3").val() 
-    		      + "&confirm_password=" + $("#inputdata4").val(),
-  	    	success : function(Results){
+    		      + "&confirm_password=" + $("#inputdata4").val()
+    		      + "&new_username=" + $("#inputdata5").val(),
+            success : function(Results){
+                $("#result").text(Results.message);
                 if(Results.value == 0){
-  	                $("#result").removeClass().addClass("alert alert-success alert-dismissible");
-  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
-  	            }
-                else{
-                    $("#result").removeClass().addClass("alert alert-warning alert-dismissible");
-                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
+                    $("#result").removeClass().addClass("alert alert-success");
+                    setTimeout('$("#result").fadeToggle("slow")', 3000);
                 }
-                $("#result small").text(Results.message);        		 
-            	$("#result").show();
-    		},
-  	    	error : function(){
-  	    		alert("Error");
-  	    	}
-        })
-        window.scrollTo(0,0);//页面置顶
-    });
+                else{
+                    $("#result").removeClass().addClass("alert alert-warning");
+                }
+                $("#result").fadeToggle("slow");
+                window.scrollTo(0,0);//页面置顶 
+            },
+            error : function() { alert("Error"); }
+        })        
+    });    
     
 });
 </script>

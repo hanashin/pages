@@ -107,12 +107,20 @@ class Home_model extends CI_Model {
          fclose($fp);
         }
 
-        /* 查询ECU_Mac地址 */
-        $data['mac'] = "";
-        $fp = @fopen("/etc/yuneng/ecumac.conf",'r');
+        /* 查询ECU_有线网络Mac地址 */
+        $data['eth0_mac'] = "";
+        $fp = @fopen("/etc/yuneng/ecu_eth0_mac.conf",'r');
         if($fp){
-         $data['mac'] = fgets($fp);
+         $data['eth0_mac'] = fgets($fp);
          fclose($fp);
+        }
+        
+        /* 查询ECU_无线网络Mac地址 */
+        $data['wlan0_mac'] = "";
+        $fp = @fopen("/etc/yuneng/ecu_wlan0_mac.conf",'r');
+        if($fp){
+            $data['wlan0_mac'] = fgets($fp);
+            fclose($fp);
         }
 
         /* 查询系统当天累计发电量 */
@@ -130,7 +138,7 @@ class Home_model extends CI_Model {
         {      
             $result->execute();     
             $res = $result->fetchAll();
-            if(!strcmp($date, $res[0][0]))
+            if(!@strcmp($date, $res[0][0]))
             {
                 $data['todaypower'] = number_format($res[0][1], 2);
             }
@@ -140,7 +148,7 @@ class Home_model extends CI_Model {
             }
         }
         
-        /* 查询电网质量 */
+        /* 查询逆变器通信信号强度 */
         $data['grid_quality'] = "";
         $fp = @fopen("/etc/yuneng/plc_grid_quality.txt",'r');
         if($fp){

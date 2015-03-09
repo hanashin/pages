@@ -1,8 +1,5 @@
 <!-- 设置结果显示框 -->
-<div class="alert alert-success" id="result">
-    <button class="close" type="button"><span aria-hidden="true">&times;</span></button>
-    <strong></strong><small></small>
-</div>
+<div class="alert alert-success" id="result"></div>
 
 <!-- 设置日期时间  -->
 <form class="form-horizontal" id="defaultForm" method="ajax">
@@ -604,13 +601,8 @@
 </form>
 
 <script>
-$(document).ready(function() {
-
-	//隐藏设置结果栏
-	$(".close").click(function(){
-		$("#result").hide();
-    }); 
-	
+$(document).ready(function() 
+{
 	//时间设置表单验证
     $('#defaultForm').bootstrapValidator({
         fields: {
@@ -626,94 +618,80 @@ $(document).ready(function() {
                 }
             },
         }
-    })
-    .on('success.form.bv', function(e) {
+    })    
+    .on('success.form.bv', function(e) { //表单验证成功
         //防止默认表单提交，采用ajax提交
         e.preventDefault();
-    });
-    
-    //设置日期时间
-    $("#button_update_datetime").click(function(){
-    	$("#result").hide();
-    	
+        
+        //设置日期时间
+        $("#result").hide();    
 	    $.ajax({
     		url : "<?php echo base_url('index.php/management/set_datetime');?>",
     		type : "post",
             dataType : "json",
     		data: "datetime=" + $("#inputdatetime").val(),
   	    	success : function(Results){
+  	    		$("#result").text(Results.message);
                 if(Results.value == 0){
   	                $("#result").removeClass().addClass("alert alert-success");
-  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
-  	            }
+                    setTimeout('$("#result").fadeToggle("slow")', 3000);
+                }
                 else{
                     $("#result").removeClass().addClass("alert alert-warning");
-                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
                 }
-                $("#result small").text(Results.message);    		 
-            	$("#result").show();
+                $("#result").fadeToggle("slow");
+                window.scrollTo(0,0);//页面置顶 
     		},
-  	    	error : function(){
-  	    		alert("Error");
-  	    	}
-        })
-        window.scrollTo(0,0);//页面置顶
+  	    	error : function() { alert("Error"); }
+        })        
     });
 
     //设置时区
     $("#button_update_timezone").click(function(){
-    	$("#result").hide();
-    	
+    	$("#result").hide();        	
 	    $.ajax({
     		url : "<?php echo base_url('index.php/management/set_timezone');?>",
     		type : "post",
             dataType : "json",
     		data: "timezone=" + $("#timezone").val(),
   	    	success : function(Results){
+  	    		$("#result").text(Results.message);
                 if(Results.value == 0){
   	                $("#result").removeClass().addClass("alert alert-success");
-  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
+                    setTimeout('$("#result").fadeToggle("slow")', 3000);
   	            }
                 else{
                     $("#result").removeClass().addClass("alert alert-warning");
-                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
-                }
-                $("#result small").text(Results.message);    		 
-            	$("#result").show();
+                }              		 
+                $("#result").fadeToggle("slow");
+            	window.scrollTo(0,0);//页面置顶
     		},
-  	    	error : function(){
-  	    		alert("Error");
-  	    	}
-        })
-        window.scrollTo(0,0);//页面置顶
+  	    	error : function() { alert("Error"); }
+        })        
     });
     
     //设置NTP服务器
     $("#button_update_ntp").click(function(){
-    	$("#result").hide();
-    	
+    	$("#result").hide();    	
 	    $.ajax({
     		url : "<?php echo base_url('index.php/management/set_ntp_server');?>",
     		type : "post",
             dataType : "json",
     		data: "ntp=" + $("#inputntp").val(),
-  	    	success : function(Results){
+    		success : function(Results){
+  	    		$("#result").text(Results.message);
                 if(Results.value == 0){
   	                $("#result").removeClass().addClass("alert alert-success");
-  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
+                    setTimeout('$("#result").fadeToggle("slow")', 3000);
   	            }
                 else{
                     $("#result").removeClass().addClass("alert alert-warning");
-                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");  
-                }
-                $("#result small").text(Results.message);        		 
-            	$("#result").show();
+                }              		 
+                $("#result").fadeToggle("slow");
+            	window.scrollTo(0,0);//页面置顶
     		},
-  	    	error : function(){
-  	    		alert("Error");
-  	    	}
+  	    	error : function() { alert("Error"); }
         })
-        window.scrollTo(0,0);//页面置顶
     }); 
 });
 </script>

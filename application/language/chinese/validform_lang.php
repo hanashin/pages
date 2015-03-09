@@ -41,6 +41,7 @@
 	$lang['validform_new_password'] = "请输入5-18位任意字符";
 	$lang['validform_confirm_password'] = "两次输入的密码不一致";
 	$lang['validform_null_username'] = "请输入用户名";
+	$lang['validform_null_password'] = "请输入密码";
 	$lang['validform_null_old_password'] = "请输入旧密码";
 	$lang['validform_null_new_password'] = "请输入新密码";
 	$lang['validform_null_confirm_password'] = "请确认新密码";

@@ -38,7 +38,8 @@ class Display extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "status";
         $this->load->view('templates/header', $data);
-        $this->load->view('display/status', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('display/status');
         $this->load->view('templates/footer');
     }
 
@@ -49,7 +50,8 @@ class Display extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "status2";
         $this->load->view('templates/header', $data);
-        $this->load->view('display/status', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('display/status');
         $this->load->view('templates/footer');
     }
 
@@ -61,7 +63,8 @@ class Display extends CI_Controller {
         $data['func'] = "database";
         $data['table'] = $table;
         $this->load->view('templates/header', $data);
-        $this->load->view('display/database_view', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('display/database_view');
         $this->load->view('templates/footer');
     }
 
@@ -73,7 +76,8 @@ class Display extends CI_Controller {
         $data['func'] = "historical_data";
         $data['table'] = $table;
         $this->load->view('templates/header', $data);
-        $this->load->view('display/database_view', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('display/database_view');
         $this->load->view('templates/footer');
     }
     
@@ -85,7 +89,8 @@ class Display extends CI_Controller {
         $data['func'] = "record";
         $data['table'] = $table;
         $this->load->view('templates/header', $data);
-        $this->load->view('display/database_view', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('display/database_view');
         $this->load->view('templates/footer');
     }
 }

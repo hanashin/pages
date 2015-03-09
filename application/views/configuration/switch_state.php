@@ -1,8 +1,5 @@
 <!-- 设置结果显示框 -->
-<div class="alert alert-success" id="result">
-    <button class="close" type="button"><span aria-hidden="true">&times;</span></button>
-    <strong></strong><small></small>
-</div>
+<div class="alert alert-success" id="result"></div>
 
 <!-- 开关机设置表单 -->
 <form class="form-horizontal" id="defaultForm" method="ajax">
@@ -59,14 +56,8 @@ function check(checkedRadio)
     }  
 } 
 
-$(document).ready(function() {
-
-	//隐藏设置结果栏
-	$("#result").hide();
-	$(".close").click(function(){
-		$("#result").hide();
-    });
-	
+$(document).ready(function() 
+{	
 	//表单验证
     $('#defaultForm').bootstrapValidator({
     })
@@ -90,25 +81,23 @@ $(document).ready(function() {
     		type : "post",
             dataType : "json",
     		data: {"ids":ids},
-  	    	success : function(Results){
+            success : function(Results){
+            	$("#result").text(Results.message);
                 if(Results.value == 0){
-  	                $("#result").removeClass().addClass("alert alert-success");
-  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
-  	            }
+                    $("#result").removeClass().addClass("alert alert-success");
+                    setTimeout('$("#result").fadeToggle("slow")', 3000);
+                }
                 else{
                     $("#result").removeClass().addClass("alert alert-warning");
-                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");
+            		$('#switch_turn_on_all').removeAttr("disabled"); 
                 }
-                $('#switch_turn_on_off').removeAttr("disabled"); 
-                $("#result small").text(Results.message);        		 
-            	$("#result").show();
-    		},
-  	    	error : function(){
-  	    		alert("Error");
-  	    	}
+                $("#result").fadeToggle("slow");
+                window.scrollTo(0,0);//页面置顶 
+            },
+            error : function() { alert("Error"); }
         })
-        window.scrollTo(0,0);//页面置顶
     });
+    
     //设置表单处理(打开所有)
     $("#switch_turn_on_all").click(function(){
     	$("#result").hide();
@@ -118,24 +107,22 @@ $(document).ready(function() {
     		type : "post",
             dataType : "json",
     		data: "switch_turn_on_all",
-  	    	success : function(Results){
+    		success : function(Results){
+            	$("#result").text(Results.message);
                 if(Results.value == 0){
-  	                $("#result").removeClass().addClass("alert alert-success");
-  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
-  	            }
+                    $("#result").removeClass().addClass("alert alert-success");
+                    setTimeout('$("#result").fadeToggle("slow")', 3000);
+                }
                 else{
                     $("#result").removeClass().addClass("alert alert-warning");
-                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");
                 }
-                $("#result small").text(Results.message);        		 
-            	$("#result").show();
-    		},
-  	    	error : function(){
-  	    		alert("Error");
-  	    	}
+                $("#result").fadeToggle("slow");
+                window.scrollTo(0,0);//页面置顶 
+            },
+            error : function() { alert("Error"); }
         })
-        window.scrollTo(0,0);//页面置顶
     });
+    
     //设置表单处理(关闭所有)
     $("#switch_turn_off_all").click(function(){
     	$("#result").hide();
@@ -145,23 +132,20 @@ $(document).ready(function() {
     		type : "post",
             dataType : "json",
     		data: "switch_turn_off_all",
-  	    	success : function(Results){
+    		success : function(Results){
+            	$("#result").text(Results.message);
                 if(Results.value == 0){
-  	                $("#result").removeClass().addClass("alert alert-success");
-  	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
-  	            }
+                    $("#result").removeClass().addClass("alert alert-success");
+                    setTimeout('$("#result").fadeToggle("slow")', 3000);
+                }
                 else{
                     $("#result").removeClass().addClass("alert alert-warning");
-                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");
                 }
-                $("#result small").text(Results.message);        		 
-            	$("#result").show();
-    		},
-  	    	error : function(){
-  	    		alert("Error");
-  	    	}
+                $("#result").fadeToggle("slow");
+                window.scrollTo(0,0);//页面置顶 
+            },
+            error : function() { alert("Error"); }
         })
-        window.scrollTo(0,0);//页面置顶
     });
 });
 </script>

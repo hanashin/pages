@@ -28,11 +28,8 @@ $(document).ready(function() {
       		type : "post",
       	    dataType : "json",
       		data: "language=" + $("#lang_value").val(),
-        	success : function(Results){
-        	},
-        	error : function(){
-        		alert("Error");
-        	}
+        	success : function(Results){ },
+        	error : function() { }
 	    })
         setTimeout("location.reload();",500);//刷新页面
   });

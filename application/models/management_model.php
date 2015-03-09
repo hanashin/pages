@@ -181,6 +181,9 @@ class Management_model extends CI_Model {
             $sql = "REPLACE INTO process_result (item, result, flag) VALUES(102, '$record', 1)";
             $this->pdo->exec($sql);
         }
+        else {
+            $results["value"] = 1; // 存在错误ID
+        }
 
         return $results;
     }
@@ -501,6 +504,7 @@ class Management_model extends CI_Model {
             $gprs = "1";
         else
             $gprs = "0";
+        $results["gprs"] = $gprs;
 
         //将标志位写入文件
         $fp = @fopen("/etc/yuneng/gprs.conf",'w');
@@ -508,31 +512,24 @@ class Management_model extends CI_Model {
         {
             fwrite($fp, $gprs);
             fclose($fp);
+            $results["value"] = 0;
         }
         else{
             $results["value"] = 1;
         }
-
         //重启主函数
-        //system("killall main.exe");
-
-        if ($gprs == "0") {
-            $results["value"] = 0;
-        }else{
-            $results["value"] = 0;
-        }
-
+        //system("killall main.exe");      
         return $results;
     }
 
     /* 设置IP */
     public function set_ip() 
     {
-        $data = array();
-
+        $results = array();
+        
         //获取DHCP设置选项
         $dhcp = $this->input->post('dhcp');
-
+        
         if($dhcp == "1")
         {   
             //使用动态IP地址       
@@ -541,8 +538,7 @@ class Management_model extends CI_Model {
             if($fp){
                 fwrite($fp, $dhcp);
                 fclose($fp);
-            }            
-
+            }
 //             echo "<!--";
 //             system("killall udhcpc");
 //             system("/sbin/udhcpc &");
@@ -550,8 +546,7 @@ class Management_model extends CI_Model {
 
             //重启ECU
             system("/sbin/reboot");
-
-            $data['result'] = "success_dhcp";
+            $results["value"] = 0;            
         }
         else if($dhcp == "0")
         {
@@ -592,7 +587,6 @@ class Management_model extends CI_Model {
                 fwrite($fp, $dhcp);
                 fclose($fp);
             }
-
 //             echo "<!--";
 //             system("killall network.exe");
 //             system("killall udhcpc");
@@ -604,11 +598,9 @@ class Management_model extends CI_Model {
 
             //重启ECU
             system("/sbin/reboot");
-
-            $data['result'] = "success_static_ip";        
-        }
-
-        return $data;
+            $results["value"] = 0;
+        }       
+        return $results;
     }
 
     /* 获取用户信息 */
@@ -641,6 +633,7 @@ class Management_model extends CI_Model {
         $old_password =  $this->input->post('old_password');
         $new_password = $this->input->post('new_password');
         $confirm_password = $this->input->post('confirm_password');
+        $new_username = $this->input->post('new_username');
 
         //判断原密码是否正确并修改密码
         if($data['username'] == $username && $data['password'] == $old_password)
@@ -651,12 +644,18 @@ class Management_model extends CI_Model {
                 {
                     $fp = @fopen("/etc/yuneng/userinfo.conf",'w');
                     if($fp){
-                        fwrite($fp, $username."\n".$new_password);
+                        //若新用户名不为空，则保存新用户名
+                        if(strlen($new_username)) {
+                            fwrite($fp, $new_username."\n".$new_password);
+                        }
+                        else {
+                            fwrite($fp, $username."\n".$new_password);
+                        }
                         fclose($fp);
                     }                    
                     $results["value"] = 0;
                     //成功修改密码后需要重新登录
-                    $this->session->set_userdata('logged_in',FALSE);
+                    $this->session->set_userdata('logged_in',FALSE);                    
                 }
                 else
                 {
@@ -682,6 +681,15 @@ class Management_model extends CI_Model {
     public function get_wlan()
     {      
         $data = array();
+        $data['ssid'] = "-";
+        $data['ifconnect'] = 0;
+        $data['ifopen'] = 0;
+        $data['ap_info']['ssid'] = "";
+        $data['ap_info']['channel'] = 0;
+        $data['ap_info']['method'] = 0;
+        $data['ap_info']['psk'] = "";
+        $data['wifi_signals'] = "";
+        $data['num'] = 0;
 
         //获取wifi模块工作模式
         $data['mode'] = 1;//默认为主机模式
@@ -692,43 +700,6 @@ class Management_model extends CI_Model {
             fclose($fp);
         }
 
-        //获取wifi信号名称
-        $data['ssid'] = "-";
-        $data['ifconnect'] = 0;
-        $data['ifopen'] = 0;
-        system("/usr/sbin/iwconfig | grep -E \"wlan0\">/tmp/wifi_temp.conf");
-        $fp = @fopen("/tmp/wifi_temp.conf", 'r');
-        if($fp)
-        {
-            $temp = fgets($fp);
-            $temp = strstr($temp, "ESSID");
-            if(!strncmp($temp, "ESSID", 5))
-            {
-                $temp = substr($temp, 7);
-                sscanf($temp, "%[^\"]", $data['ssid']);
-                $data['ifconnect'] = 1;
-                $data['ifopen'] = 1;
-            }
-            fclose($fp);
-        }
-
-        //获取ip
-        $data['ip'] = "-";
-        if(strncmp($data['ssid'], "-", 1))
-        {
-            system("/sbin/ifconfig wlan0 | grep -E \"inet addr\" >/tmp/wifi_temp.conf");
-            $fp = fopen("/tmp/wifi_temp.conf", 'r');
-            if($fp)
-            {
-                $temp = fgets($fp);
-                if(strlen($temp))
-                {
-                    $temp = substr($temp, 20);
-                    sscanf($temp, "%[^ ]", $data['ip']);
-                }
-                fclose($fp);
-            }
-        }
 
         if($data['mode'] == 1)
         {
@@ -773,6 +744,41 @@ class Management_model extends CI_Model {
         else if($data['mode'] == 2)
         {   
             /* 从机模式 */
+            
+            //获取wifi信号名称
+            system("/usr/sbin/iwconfig | grep -E \"wlan0\">/tmp/wifi_temp.conf");
+            $fp = @fopen("/tmp/wifi_temp.conf", 'r');
+            if($fp)
+            {
+                $temp = fgets($fp);
+                $temp = strstr($temp, "ESSID");
+                if(!strncmp($temp, "ESSID", 5))
+                {
+                    $temp = substr($temp, 7);
+                    sscanf($temp, "%[^\"]", $data['ssid']);
+                    $data['ifconnect'] = 1;
+                    $data['ifopen'] = 1;
+                }
+                fclose($fp);
+            }
+            
+            //获取ip
+            $data['ip'] = "-";
+            if(strncmp($data['ssid'], "-", 1))
+            {
+                system("/sbin/ifconfig wlan0 | grep -E \"inet addr\" >/tmp/wifi_temp.conf");
+                $fp = fopen("/tmp/wifi_temp.conf", 'r');
+                if($fp)
+                {
+                    $temp = fgets($fp);
+                    if(strlen($temp))
+                    {
+                        $temp = substr($temp, 20);
+                        sscanf($temp, "%[^ ]", $data['ip']);
+                    }
+                    fclose($fp);
+                }
+            }
 
             //扫描无线信号，筛选出SSID、信号强度、加密方式并保存到临时文件
             system("/usr/sbin/iwlist scan | grep -E \"SSID|Quality|Encryption|Group\" | sed 's/^ *//' >/tmp/wifi_temp.conf");
@@ -780,7 +786,7 @@ class Management_model extends CI_Model {
             //读取扫描到的wifi信号及信息
             $data['wifi_signals'] = "";
             $num = 0;
-            $fp = fopen("/tmp/wifi_temp.conf", 'r');
+            $fp = @fopen("/tmp/wifi_temp.conf", 'r');
             //$fp = fopen(APPPATH.'../../wifi_temp.conf', 'r');
             if($fp)
             {
@@ -833,17 +839,33 @@ class Management_model extends CI_Model {
     /* 设置wifi模块工作模式 */
     public function set_wlan_mode()
     {
-        $data = array();
-        $data['result'] = "";
+        $results =array();
         //获取wifi工作模式      
         $mode = $this->input->post('mode');
-        if($mode == 1)
-        {   /* 将wifi工作切换至AP模式 */
+        if($mode == 0) {
+            
+            //断开wifi连接
+            system("killall wpa_supplicant");
+            //关闭AP
+            system("killall udhcpd");
+            system("killall hostapd");
+            
+            //将工作模式记录到配置文件
+            $fp = @fopen("/etc/yuneng/wifi_stat.conf", 'w');
+            if ($fp) {
+                fwrite($fp, $mode);
+                fclose($fp);
+            }
+        }
+        if($mode == 1) {   
+        /* 将wifi工作切换至AP模式 */
 
             //将工作模式记录到配置文件
-            $fp = fopen("/etc/yuneng/wifi_stat.conf", 'w');
-            fwrite($fp, $mode);
-            fclose($fp);
+            $fp = @fopen("/etc/yuneng/wifi_stat.conf", 'w');
+            if ($fp) {
+                fwrite($fp, $mode);
+                fclose($fp);
+            }
 
 //             //断开wifi连接
 //             system("killall wpa_supplicant");
@@ -874,16 +896,20 @@ class Management_model extends CI_Model {
 
 //                 $data['result'] = "success_change_mode";
 //             }
+            //重启ECU
+            system("/sbin/reboot");
         }
 
-         if($mode == 2)
-        {   /* 将wifi工作切换至STA模式 */
+         if($mode == 2) {
+         /* 将wifi工作切换至STA模式 */
 
             //将工作模式记录到配置文件
-            $fp = fopen("/etc/yuneng/wifi_stat.conf", 'w');
-            fwrite($fp, $mode);
-            fclose($fp);
-
+            $fp = @fopen("/etc/yuneng/wifi_stat.conf", 'w');
+            if ($fp) {
+                fwrite($fp, $mode);
+                fclose($fp);
+            }
+            
 //             //关闭AP
 //             system("killall udhcpd");
 //             system("killall hostapd");
@@ -917,18 +943,18 @@ class Management_model extends CI_Model {
 //                     $data['result'] = "success_change_mode";
 //                 }
 //             }
+            //重启ECU
+            system("/sbin/reboot");
         }
-        //重启ECU
-        system("/sbin/reboot");
-        $data['result'] = "success_change_mode";
-        return $data;
+        
+        $results["value"] = 0;
+        return $results;
     }
 
     /* 设置主机模式参数 */
     public function set_wlan_ap()
     {
-        $data = array();
-        $data['result'] = "";
+        $results =array();
 
 //         //关闭原有AP
 //         system("killall udhcpd");
@@ -946,7 +972,7 @@ class Management_model extends CI_Model {
         if(strlen($ssid))
         {
             //保存主机模式参数到"/tmp/hostapd.conf"
-            $fp = fopen("/tmp/hostapd.conf", 'w');
+            $fp = @fopen("/tmp/hostapd.conf", 'w');
             if($fp)
             {
                 fwrite($fp, "#SSID=".$ssid."\n");
@@ -1023,14 +1049,16 @@ class Management_model extends CI_Model {
 //             usleep(100000);
 
             system("cp /tmp/hostapd.conf /etc/yuneng/wifi_ap_info.conf");
-            usleep(100000);
-            
+                        
             //重启ECU
             system("/sbin/reboot");
 
-            $data['result'] = "success_set_ap";
+            $results["value"] = 0;
         }
-        return $data;
+        else {
+            $results["value"] = 1;
+        }
+        return $results;
     }
 
     /* 设置从机模式参数 */
@@ -1055,7 +1083,7 @@ class Management_model extends CI_Model {
 
         if(strlen($ssid) && !$ifconnect)
         {
-            $fp = fopen("/tmp/wpa_supplicant.conf", 'w');
+            $fp = @fopen("/tmp/wpa_supplicant.conf", 'w');
             fwrite($fp, "ctrl_interface=/var/run/wpa_supplicant\n");
             if($ifkey)
             {

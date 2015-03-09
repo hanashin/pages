@@ -1,8 +1,5 @@
 <!-- 设置结果显示框 -->
-<div class="alert alert-success" id="result">
-    <button class="close" type="button"><span aria-hidden="true">&times;</span></button>
-    <strong></strong><small></small>
-</div>
+<div class="alert alert-success" id="result"></div>
 
 <!-- 设置逆变器列表 -->
 <form class="form-horizontal" method="ajax">
@@ -28,14 +25,8 @@
 </form>
 
 <script>
-$(document).ready(function() {
-
-	//隐藏设置结果栏
-	$("#result").hide();
-	$(".close").click(function(){
-		$("#result").hide();
-    }); 
-
+$(document).ready(function() 
+{	
 	// 获取光标位置
     function caret(node) {
         //node.focus(); 
@@ -73,7 +64,7 @@ $(document).ready(function() {
 	    }
 	}
 
-	// 只返回数字
+	// 只返回数字（和回车）
 	function onlyNumbers(e) {
 	    var keynum;
 	    var keychar;
@@ -88,8 +79,13 @@ $(document).ready(function() {
 	        keynum = e.which;
 	    }
 	    keychar = String.fromCharCode(keynum);
-	    numcheck = /\d/;
-	    return numcheck.test(keychar);
+	    if(keynum == 13) {
+	    	return TRUE;
+	    }
+	    else {
+		    numcheck = /\d/;
+	    	return numcheck.test(keychar);
+	    }	    
 	}
 
 	var textarea = document.getElementsByTagName('textarea')[0], // 获取页面上textarea的值
@@ -102,10 +98,7 @@ $(document).ready(function() {
 
 	        //遍历数组，取前12位
 	        for(var i = 0; i < value.length; i++) {
-	            //while (value[i]) {
 	            tmpValue.push(value[i].substr(0, 12));
-	            //    value[i] = value[i].substr(12);
-	            //}
 	        }
 
 	        //将数组组合为一个字符串，以回车符分隔
@@ -143,63 +136,52 @@ $(document).ready(function() {
     
     //设置逆变器列表
     $("#update_id").click(function(){
-    	$("#result").hide();
-    	
+    	$("#result").hide();    
         $.ajax({
     		url : "<?php echo base_url('index.php/management/set_id');?>",
     		type : "post",
             dataType : "json",
     		data: "ids=" + $("#inverter_list").val(),
-    	    success : function(Results){
+  	    	success : function(Results){  	    		
                 if(Results.value == 0){
-    	                $("#result").removeClass().addClass("alert alert-success");
-    	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");  
-    	                $("#result small").text(Results.message);
-    	        }
-                else{
-                    $("#result").removeClass().addClass("alert alert-warning");
-                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");
-                    if(Results.error_ids)
-                        $("#result small").text(Results.message +" "+ Results.error_ids); // 显示错误的逆变器号
-                    else
-                    	$("#result small").text(Results.message);
+                	$("#result").text(Results.message);
+  	                $("#result").removeClass().addClass("alert alert-success");
+                    setTimeout('$("#result").fadeToggle("slow")', 3000);
                 }
-            	$("#result").show();
+                else{
+                	$("#result").text(Results.message+Results.error_ids);
+                    $("#result").removeClass().addClass("alert alert-warning");
+                }
+                $("#result").fadeToggle("slow");
+                window.scrollTo(0,0);//页面置顶 
     		},
-    	    	error : function(){
-    	    		alert("Error");
-    	    	}
+  	    	error : function() { alert("Error"); }
         })
-        window.scrollTo(0,0);//页面置顶
     });
 
     //清空逆变器列表
     $("#clear_id").click(function(){
-    	$("#result").hide();
-    	
+        $("#result").hide();        	
         $.ajax({
     		url : "<?php echo base_url('index.php/management/set_id_clear');?>",
     		type : "post",
             dataType : "json",
     		data: "clear_id",
-    	    success : function(Results){
+    		success : function(Results){
+    			$("#result").text(Results.message);  		
                 if(Results.value == 0){
-	                $("#result").removeClass().addClass("alert alert-success");
-	                $("#result strong").text("<?php echo $this->lang->line('message_success')?>" + "：");
-	                $("#inverter_list").val("");	                    	                
-    	        }
+  	                $("#result").removeClass().addClass("alert alert-success");
+                    setTimeout('$("#result").fadeToggle("slow")', 3000);
+                    $("#inverter_list").text("");
+                }
                 else{
                     $("#result").removeClass().addClass("alert alert-warning");
-                    $("#result strong").text("<?php echo $this->lang->line('message_warning')?>" + "：");
                 }
-                $("#result small").text(Results.message);
-            	$("#result").show();
+                $("#result").fadeToggle("slow");
+                window.scrollTo(0,0);//页面置顶
     		},
-    	    	error : function(){
-    	    		alert("Error");
-    	    	}
+  	    	error : function() { alert("Error"); }
         })
-        window.scrollTo(0,0);//页面置顶
     });
 });
 </script>

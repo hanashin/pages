@@ -28,7 +28,7 @@
 
 	$lang['inverter_id'] = "逆变器 ID";
 	
-	$lang['ecu_reboot_title'] = "ECU 正在重启……";
+	$lang['ecu_reboot_title'] = "ECU 正在重启 ……";
 	$lang['ecu_reboot'] = "请勿刷新页面，重启完毕后若页面未自动跳转，请在地址栏输入液晶屏所显示的IP";
 	
 /* 导航栏 */
@@ -63,8 +63,9 @@
 	$lang['home_version'] = "软件版本号";
 	$lang['home_file_size'] = "数据库使用量";
 	$lang['home_timezone'] = "当前时区";
-	$lang['home_mac'] = "ECU Mac地址";
-	$lang['home_grid_quality'] = "信号强度";
+	$lang['home_eth0_mac'] = "ECU有线网络Mac地址";
+	$lang['home_wlan0_mac'] = "ECU无线网络Mac地址";
+	$lang['home_grid_quality'] = "逆变器通信信号强度";
 	//环保效益
 	$lang['home_environment_benefits'] = "系统环保效益";
 	$lang['home_equivalent'] = "等量折算";
@@ -141,11 +142,12 @@
 	$lang['protection_frequency_triptime_fast'] = "外围过欠频延迟保护时间";
 	$lang['protection_frequency_triptime_slow'] = "内围过欠频延迟保护时间";
 	$lang['protection_grid_recovery_time'] = "并网恢复时间";
+	$lang['protection_read_parameters'] = "读取参数";
 	
-	$lang['protection_result_0'] = "请过5分钟之后查看结果";
-	$lang['protection_result_1'] = "请至少输入一个保护参数";
-	$lang['read_protection_result_0'] = "读取逆变器保护参数成功，请过5分钟之后查看结果";
-	$lang['read_protection_result_1'] = "读取逆变器保护参数失败";
+	$lang['protection_result_0'] = "参数保存成功！（请过5分钟之后查看结果）";
+	$lang['protection_result_1'] = "请至少输入一个保护参数！";
+	$lang['read_protection_result_0'] = "参数读取成功！（请过5分钟之后查看结果）";
+	$lang['read_protection_result_1'] = "参数读取失败！";
 
 	//GFDI设置
 	$lang['function_gfdi'] = "GFDI";
@@ -226,14 +228,17 @@
 	$lang['network_preferred_dns_server'] = "首选 DNS 服务器";
 	$lang['network_alternate_dns_server'] = "备用 DNS 服务器";
 	
-	$lang['gprs_result_0'] = "设置GPRS成功";
-	$lang['gprs_result_1'] = "取消GPRS成功";
+	$lang['gprs_result_0_1'] = "GPRS enabled successfully";
+	$lang['gprs_result_0_0'] = "GPRS disabled successfully";
+	$lang['gprs_result_1_1'] = "GPRS enabled failed";
+	$lang['gprs_result_1_0'] = "GPRS disabled failed";
 	$lang['network_result_success_dhcp'] = "设置动态IP成功";
 	$lang['network_result_success_static_ip'] = "设置静态IP成功";
 	
 	//用户管理
 	$lang['function_user_info'] = "用户管理";
 	$lang['user_info_username'] = "用户名";
+	$lang['user_info_new_username'] = "新用户名";
 	$lang['user_info_old_password'] = "旧密码";
 	$lang['user_info_new_password'] = "新密码";
 	$lang['user_info_confirm_password'] = "确认密码";
@@ -274,6 +279,18 @@
 	$lang['wlan_sta_password'] = "密码";
 	$lang['wlan_sta_connect'] = "连接";
 	$lang['wlan_sta_disconnect'] = "断开";
+	//wlan
+	$lang['wlan_open'] = "开启 WLAN";
+	$lang['wlan_open_info'] = "开启 WLAN 会关闭无线热点并重启ECU，确定开启？";
+	$lang['wlan_close'] = "关闭 WLAN";
+	$lang['wlan_close_info'] = "确定关闭 WLAN ？";
+	// hotspot
+	$lang['hotspot_open'] = "开启无线热点";
+	$lang['hotspot_open_info'] = "开启无线热点会断开 WLAN 并重启ECU，确定开启？";
+	$lang['hotspot_close'] = "关闭无线热点";
+	$lang['hotspot_close_info'] = "确定关闭无线热点？";
+	$lang['hotspot_set'] = "设置无线热点";
+	$lang['hotspot_set_info'] = "修改无线热点需要重启ECU，是否确认修改？";
 	
 	$lang['wlan_result_success_change_mode'] = "设置成功";
 	$lang['wlan_result_success_set_ap'] = "设置无线热点参数成功";

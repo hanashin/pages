@@ -32,14 +32,14 @@ class Management extends CI_Controller {
     }
 
     /* 显示逆变器列表(默认函数) */
-    public function index($result = "")
+    public function index()
     {      
         $data = $this->management_model->get_id();
         $data['page'] = $this->page;
         $data['func'] = "id";
-        $data['result'] = $result;
         $this->load->view('templates/header', $data);
-        $this->load->view('management/id', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('management/id');
         $this->load->view('templates/footer');
     }
 
@@ -66,7 +66,8 @@ class Management extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "time";
         $this->load->view('templates/header', $data);
-        $this->load->view('management/datetime', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('management/datetime');
         $this->load->view('templates/footer');
     }
 
@@ -101,7 +102,8 @@ class Management extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "language";
         $this->load->view('templates/header', $data);
-        $this->load->view('management/language', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('management/language');
         $this->load->view('templates/footer');
     }
 
@@ -114,14 +116,14 @@ class Management extends CI_Controller {
     }
 
     /* 显示网络配置信息 */
-    public function network($result = "")
+    public function network()
     {      
         $data = $this->management_model->get_network();
         $data['page'] = $this->page;
         $data['func'] = "network";
-        $data['result'] = $result;
         $this->load->view('templates/header', $data);
-        $this->load->view('management/network', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('management/network');
         $this->load->view('templates/footer');
     }
 
@@ -129,7 +131,7 @@ class Management extends CI_Controller {
     public function set_gprs()
     {
         $results = $this->management_model->set_gprs();
-        $results["message"] = $this->lang->line("gprs_result_{$results["value"]}");
+        $results["message"] = $this->lang->line("gprs_result_{$results["value"]}_{$results["gprs"]}");
         echo json_encode($results);
     }
 
@@ -137,10 +139,7 @@ class Management extends CI_Controller {
     public function set_ip()
     {
         $results = $this->management_model->set_ip();
-
-        //将设置结果传给显示函数
-        //$this->network($data['result']);
-        $this->ecu_reboot();
+        echo json_encode($results);
     }
 
     /* 显示用户信息 */
@@ -150,7 +149,8 @@ class Management extends CI_Controller {
         $data['page'] = $this->page;
         $data['func'] = "user_info";
         $this->load->view('templates/header', $data);
-        $this->load->view('management/user_info', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('management/user_info');
         $this->load->view('templates/footer');
     }
 
@@ -163,41 +163,29 @@ class Management extends CI_Controller {
     }
 
     /* 显示无线局域网 */
-    public function wlan($result = "")
+    public function wlan()
     {      
         $data = $this->management_model->get_wlan();
         $data['page'] = $this->page;
         $data['func'] = "wlan";
-        $data['result'] = $result;
-        if($data['mode'] == 2)
-        {
-            $this->load->view('templates/header', $data);
-            $this->load->view('management/wlan_sta', $data);
-            $this->load->view('templates/footer');
-        }
-        else
-        {
-            //默认为AP模式
-            $this->load->view('templates/header', $data);
-            $this->load->view('management/wlan_ap', $data);
-            $this->load->view('templates/footer');
-        }
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('management/wlan');
+        $this->load->view('templates/footer');
     }
 
     /* 设置wifi模块工作模式 */
     public function set_wlan_mode()
     {      
-        $data = $this->management_model->set_wlan_mode();
-        //$this->wlan($data['result']);
-        $this->ecu_reboot();
+        $results = $this->management_model->set_wlan_mode();
+        echo json_encode($results);
     }
 
     /* 设置主机模式参数 */
     public function set_wlan_ap()
-    {      
-        $data = $this->management_model->set_wlan_ap();
-        //$this->wlan($data['result']);
-        $this->ecu_reboot();
+    {
+        $results = $this->management_model->set_wlan_ap();
+        echo json_encode($results);
     }
 
     /* 设置从机模式参数 */

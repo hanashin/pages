@@ -5,7 +5,7 @@
     </section>
     
     <footer class="footer">
-      &copy; 2014 Altenergy Power System Inc.
+      &copy; 2015 Altenergy Power System Inc.
     <!-- 基准测试benchmark -->
     <!--       【Debug： -->
     <!--       <small> -->
