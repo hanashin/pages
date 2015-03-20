@@ -99,9 +99,9 @@
 	
 	//能量柱状图
 	$lang['function_energy'] = "Energy";
-	$lang['energy_the_recent_week'] = "The Recent Week";
-	$lang['energy_the_recent_month'] = "The Recent Month";
-	$lang['energy_the_recent_year'] = "The Recent Year";
+	$lang['energy_weekly'] = "The Recent Week";
+	$lang['energy_monthly'] = "The Recent Month";
+	$lang['energy_yearly'] = "The Recent Year";
 	
 	//逆变器工作状态
 	$lang['function_inverter_status'] = "Inverter Status";
@@ -168,8 +168,9 @@
 	$lang['switch_turn_on_all'] = "Turn on all inverters";
 	$lang['switch_turn_off_all'] = "Turn off all inverters";
 	
-	$lang['switch_result_0'] = "See the results 5 minutes later";
-	$lang['switch_result_1'] = "Please select inverters";
+	$lang['switch_result_0'] = "See the results 5 minutes later !";
+	$lang['switch_result_1'] = "Please select inverters !";
+	$lang['switch_result_2'] = "Settings saved failed !";
 	
 	//最大功率设置
 	$lang['function_maxpower'] = "Power Setting";
@@ -405,5 +406,14 @@
 	
 	$lang['signal_level_result_0'] = "Read Signal Level Success";
 	$lang['signal_level_result_1'] = "Read Signal Level Failed";
+	
+	//上传文件到ECU临时目录
+	$lang['function_upload'] = "Upload";
+	$lang['upload_filename'] = "Filename";
+	$lang['upload_browse'] = "Browse";
+	
+	$lang['upload_result_0'] = "Your file was successfully uploaded!";
+	$lang['upload_result_1'] = "Your file was uploaded failed!";
+	$lang['upload_result_2'] = "Your file was already exists!";
 	
 ?>

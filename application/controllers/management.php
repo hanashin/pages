@@ -142,26 +142,6 @@ class Management extends CI_Controller {
         echo json_encode($results);
     }
 
-    /* 显示用户信息 */
-    public function user_info()
-    {      
-        $data = $this->management_model->get_user_info();
-        $data['page'] = $this->page;
-        $data['func'] = "user_info";
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/nav');
-        $this->load->view('management/user_info');
-        $this->load->view('templates/footer');
-    }
-
-    /* 设置用户信息 */
-    public function set_user_info()
-    {
-        $results = $this->management_model->set_user_info();
-        $results["message"] = $this->lang->line("user_info_result_{$results["value"]}");
-        echo json_encode($results);
-    }
-
     /* 显示无线局域网 */
     public function wlan()
     {      

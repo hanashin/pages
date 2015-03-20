@@ -310,6 +310,12 @@ input:checked + .slider::after {
 	border: 0px;
     background-color: #fdfdfd;
 }
+.form-control[readonly]{
+    background-color: #fdfdfd;
+}
+.btn_upload:hover{
+	cursor: pointer;
+}
 
 /*------------------------------------------------------
     列表
@@ -425,6 +431,13 @@ input:checked + .slider::after {
 }
 .mychart {
   padding: 5px 0px;
+  height:410px;
+}
+.datepicker {
+	background:#fff url(../images/datePicker.gif) no-repeat right;
+}
+.datepicker[readonly]{
+	cursor: Pointer;
 }
 
 /*------------------------------------------------------

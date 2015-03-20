@@ -835,23 +835,30 @@ class Configuration_model extends CI_Model {
     public function set_switch_all_on()
     { 
         $results = array();
+//         //若数据表不存在，则创建
+//         $this->pdo->exec("CREATE TABLE IF NOT EXISTS turn_on_off 
+//             (id VARCHAR(256), set_flag INTEGER, primary key (id))");
 
-        //若数据表不存在，则创建
-        $this->pdo->exec("CREATE TABLE IF NOT EXISTS turn_on_off 
-            (id VARCHAR(256), set_flag INTEGER, primary key (id))");
+//         $query = "SELECT id FROM id";
+//         $result = $this->pdo->prepare($query);
+//         if(!empty($result))
+//         {
+//             $result->execute();
+//             $res = $result->fetchAll();
 
-        $query = "SELECT id FROM id";
-        $result = $this->pdo->prepare($query);
-        if(!empty($result))
-        {
-            $result->execute();
-            $res = $result->fetchAll();
-
-            foreach ($res as $key => $value) {
-                $this->pdo->exec("REPLACE INTO turn_on_off (id, set_flag) VALUES ('$value[0]', 1)");
-            }
+//             foreach ($res as $key => $value) {
+//                 $this->pdo->exec("REPLACE INTO turn_on_off (id, set_flag) VALUES ('$value[0]', 1)");
+//             }
+//         }
+        $fp = @fopen("/tmp/connect.conf", 'w');
+        if($fp){
+            fwrite($fp, "connect all");
+            fclose($fp);
+            $results["value"] = 0;
         }
-        $results["value"] = 0;
+        else {
+            $results["value"] = 2;
+        }       
 
         return $results;
     }
@@ -860,23 +867,30 @@ class Configuration_model extends CI_Model {
     public function set_switch_all_off()
     {
         $results = array();
+//         //若数据表不存在，则创建
+//         $this->pdo->exec("CREATE TABLE IF NOT EXISTS turn_on_off 
+//             (id VARCHAR(256), set_flag INTEGER, primary key (id))");
 
-        //若数据表不存在，则创建
-        $this->pdo->exec("CREATE TABLE IF NOT EXISTS turn_on_off 
-            (id VARCHAR(256), set_flag INTEGER, primary key (id))");
+//         $query = "SELECT id FROM id";
+//         $result = $this->pdo->prepare($query);
+//         if(!empty($result))
+//         {
+//             $result->execute();
+//             $res = $result->fetchAll();
 
-        $query = "SELECT id FROM id";
-        $result = $this->pdo->prepare($query);
-        if(!empty($result))
-        {
-            $result->execute();
-            $res = $result->fetchAll();
-
-            foreach ($res as $key => $value) {
-                $this->pdo->exec("REPLACE INTO turn_on_off (id, set_flag) VALUES ('$value[0]', 2)");
-            }
+//             foreach ($res as $key => $value) {
+//                 $this->pdo->exec("REPLACE INTO turn_on_off (id, set_flag) VALUES ('$value[0]', 2)");
+//             }
+//         }
+        $fp = @fopen("/tmp/connect.conf", 'w');
+        if($fp){
+            fwrite($fp, "disconnect all");
+            fclose($fp);
+            $results["value"] = 0;
         }
-        $results["value"] = 0;
+        else {
+            $results["value"] = 2;
+        }   
 
         return $results;
     }
@@ -920,8 +934,82 @@ class Configuration_model extends CI_Model {
 
         return $results;
     }
+    
+    /* 获取用户信息 */
+    public function get_user_info()
+    {
+        $data = array();
+        return $data;
+    }
+    
+    /* 设置用户信息 */
+    public function set_user_info()
+    {
+        $results =array();
+    
+        //系统默认用户名密码
+        $data['username'] = "admin";
+        $data['password'] = "admin";
+        $fp = @fopen("/etc/yuneng/userinfo.conf",'r');
+        if ($fp)
+        {
+            $data['username'] = fgets($fp);
+            $data['username'] = str_replace("\n", "", $data['username']);
+            $data['password'] = fgets($fp);
+            $data['password'] = str_replace("\n", "", $data['password']);
+            fclose($fp);
+        }
+    
+        //获取页面输入用户名密码
+        $username = $this->input->post('username');
+        $old_password =  $this->input->post('old_password');
+        $new_password = $this->input->post('new_password');
+        $confirm_password = $this->input->post('confirm_password');
+        $new_username = $this->input->post('new_username');
+    
+        //判断原密码是否正确并修改密码
+        if($data['username'] == $username && $data['password'] == $old_password)
+        {
+            if(!strcmp($new_password, $confirm_password))
+            {
+                if(strlen($new_password))
+                {
+                    $fp = @fopen("/etc/yuneng/userinfo.conf",'w');
+                    if($fp){
+                        //若新用户名不为空，则保存新用户名
+                        if(strlen($new_username)) {
+                            fwrite($fp, $new_username."\n".$new_password);
+                        }
+                        else {
+                            fwrite($fp, $username."\n".$new_password);
+                        }
+                        fclose($fp);
+                    }
+                    $results["value"] = 0;
+                    //成功修改密码后需要重新登录
+                    $this->session->set_userdata('logged_in',FALSE);
+                }
+                else
+                {
+                    //新输入密码为空
+                    $results["value"] = 2;
+                }
+            }
+            else
+            {
+                //两次输入的密码不相同
+                $results["value"] = 3;
+            }
+        }
+        else
+        {
+            //用户名密码错误
+            $results["value"] = 1;
+        }
+        return $results;
+    }
+    
 }
-
 
 /* End of file configuration_model.php */
 /* Location: ./application/models/configuration_model.php */

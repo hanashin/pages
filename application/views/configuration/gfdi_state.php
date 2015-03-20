@@ -33,7 +33,8 @@
 
 <script>
 $(document).ready(function() 
-{	
+{
+ 	$('#gfdi_unlock').removeAttr("disabled"); 
 	//表单验证
     $('#defaultForm').bootstrapValidator({
     })
@@ -44,8 +45,7 @@ $(document).ready(function()
 
     //设置表单处理
     $("#gfdi_unlock").click(function(){
-    	$("#result").hide();
-    	    	
+    	$("#result").hide();    	    	
         //保存选中的逆变器ID
         var ids = new Array();
         $('input[name="ids"]:checked').each(function(){    
@@ -62,18 +62,17 @@ $(document).ready(function()
                 if(Results.value == 0){
                     $("#result").removeClass().addClass("alert alert-success");
                     setTimeout('$("#result").fadeToggle("slow")', 3000);
+                    setTimeout('$("#gfdi_unlock").removeAttr("disabled")', 3000);
                 }
                 else{
                     $("#result").removeClass().addClass("alert alert-warning");
             		$('#gfdi_unlock').removeAttr("disabled"); 
                 }
                 $("#result").fadeToggle("slow");
-                window.scrollTo(0,0);//页面置顶 
+                window.scrollTo(0,0);//页面置顶
             },
             error : function() { alert("Error"); }
         })
     });
 });
 </script>
-
-

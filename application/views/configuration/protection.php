@@ -224,7 +224,8 @@ $(document).ready(function()
                     $("#result").removeClass().addClass("alert alert-warning");
                 }
                 $("#result").fadeToggle("slow");
-                window.scrollTo(0,0);//页面置顶 
+                window.scrollTo(0,0);//页面置顶
+                $("#button_save").attr('disabled',false);
             },
             error : function() { alert("Error"); }
         })

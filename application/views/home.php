@@ -49,10 +49,15 @@
     <th scope="row"><?php echo $this->lang->line('home_wlan0_mac')?></th>
     <td><?php echo "$wlan0_mac";?></td>
   </tr>
+  <?php 
+  if (strlen($grid_quality) > 0)
+      echo "  
   <tr>
-    <th scope="row"><?php echo $this->lang->line('home_grid_quality')?></th>
-    <td><?php echo "$grid_quality";?></td>
-  </tr>
+    <th scope=\"row\">".$this->lang->line('home_grid_quality')."</th>
+    <td>".$grid_quality."</td>
+  </tr>";
+  ?>
+  
 </table>
 
 <script>

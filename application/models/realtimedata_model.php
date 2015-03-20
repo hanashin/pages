@@ -11,7 +11,7 @@ class Realtimedata_model extends CI_Model {
         $this->pdo = new PDO($dsn);          
     }
 
-    public function get_data() 
+    public function get_data()
     {
         $curdata = array();
         $num = 0;
@@ -52,11 +52,8 @@ class Realtimedata_model extends CI_Model {
 
         //获取选择日期（默认为今天）
         $date = date("Y-m-d",time());
-
-        //echo strtotime($date);
         if(strlen($this->input->post('date')))
             $date = $this->input->post('date');
-
         sscanf($date, "%d-%d-%d", $year, $month, $day);
         $query_date = sprintf("%04d%02d%02d", $year, $month, $day);
 
@@ -69,9 +66,7 @@ class Realtimedata_model extends CI_Model {
         {
             $result->execute();
             $res = $result->fetchAll();
-
             foreach ($res as $key => $value) {
-                //$power[$key]['time'] = intval($value['time']);
                 $power[$key]['time'] = strtotime($query_date.$value['time'])*1000;
                 $power[$key]['each_system_power'] = intval($value['each_system_power']);
             }
@@ -83,7 +78,7 @@ class Realtimedata_model extends CI_Model {
             $result->execute();
             $res = $result->fetchAll();
             if(!empty($res))
-                $data['today_energy'] = number_format($res[0][0], 2);
+                $data['today_energy'] = number_format(floatval($res[0][0]), 2);//保留两位小数
         }
 
         //将数据赋值到data数组传给控制器
@@ -132,8 +127,6 @@ class Realtimedata_model extends CI_Model {
             $energy = array();
             for ($i=6; $i >= 0; $i--) 
             {
-                //$energy[6-$i]['time'] = (strtotime($date)-$i*3600*24)*1000;
-
                 $energy[6-$i]['date'] = date("Y-m-d", strtotime($date)-$i*3600*24);
                 sscanf($energy[6-$i]['date'], "%d-%d-%d", $year, $month, $day);
                 $energy[6-$i]['date'] = sprintf("%04d%02d%02d", $year, $month, $day);
@@ -180,8 +173,6 @@ class Realtimedata_model extends CI_Model {
             $energy = array();
             for ($i=29; $i >= 0; $i--) 
             {
-                //$energy[29-$i]['time'] = (strtotime($date)-$i*3600*24)*1000;
-
                 $energy[29-$i]['date'] = date("Y-m-d", strtotime($date)-$i*3600*24);
                 sscanf($energy[29-$i]['date'], "%d-%d-%d", $year, $month, $day);
                 $energy[29-$i]['date'] = sprintf("%02d%02d", $month, $day);
@@ -233,10 +224,8 @@ class Realtimedata_model extends CI_Model {
                 {
                    $year--;
                    $month = 12;
-                }
-                                  
+                }                                  
                 $energy[$i]['date'] = sprintf("%04d%02d", $year, $month--);
-                //$energy[$i]['time'] = (strtotime($energy[$i]['date']."00000000"))*1000;
                 $energy[$i]['energy'] = 0;
             }
             $energy = array_reverse($energy);//将数组倒序
@@ -273,7 +262,7 @@ class Realtimedata_model extends CI_Model {
         $total = 0;
         foreach ($energy as $key => $value) {
               $total = $total + $value['energy'];
-          }
+        }
 
         //将数据赋值到data数组传给控制器
         $data['energy'] = $energy;

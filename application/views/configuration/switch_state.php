@@ -58,6 +58,7 @@ function check(checkedRadio)
 
 $(document).ready(function() 
 {	
+	$('#switch_turn_on_off').removeAttr("disabled"); 
 	//表单验证
     $('#defaultForm').bootstrapValidator({
     })
@@ -68,8 +69,7 @@ $(document).ready(function()
 
     //设置表单处理(指定开关机)
     $("#switch_turn_on_off").click(function(){
-    	$("#result").hide();
-    	
+    	$("#result").hide();    	
         //保存选中的逆变器ID
         var ids = new Array();
         $('input[type="radio"]:checked').each(function(){    
@@ -86,10 +86,11 @@ $(document).ready(function()
                 if(Results.value == 0){
                     $("#result").removeClass().addClass("alert alert-success");
                     setTimeout('$("#result").fadeToggle("slow")', 3000);
+                    setTimeout('$("#switch_turn_on_off").removeAttr("disabled")', 3000);
                 }
                 else{
                     $("#result").removeClass().addClass("alert alert-warning");
-            		$('#switch_turn_on_all').removeAttr("disabled"); 
+            		$('#switch_turn_on_off').removeAttr("disabled"); 
                 }
                 $("#result").fadeToggle("slow");
                 window.scrollTo(0,0);//页面置顶 

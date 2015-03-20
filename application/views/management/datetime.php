@@ -6,7 +6,12 @@
   <div class="form-group">    
     <label for="inputdatetime" class="col-sm-5 control-label"><?php echo $this->lang->line('time_datetime')?></label>
     <div class="col-sm-4">
-      <input type="text" name="datetime" class="form-control" id="inputdatetime" value="<?php echo date("Y/m/d",time())." ".date("H:i:s",time());?>">
+      <input id="inputdatetime" class="form-control datepicker" type="text" name="datetime" value="<?php echo date("Y/m/d",time())." ".date("H:i:s",time());?>" 
+            onClick="WdatePicker({
+                maxDate:'%y-%M-%d',
+                dateFmt:'yyyy/MM/dd HH:mm:ss',
+                <?php echo $this->lang->line('graph_language')?>})" 
+            readonly>
     </div>
   </div>
   <div class="form-group">
@@ -600,6 +605,7 @@
   </div>
 </form>
 
+<script src="<?php echo base_url('js/datepicker/WdatePicker.js');?>"></script>
 <script>
 $(document).ready(function() 
 {

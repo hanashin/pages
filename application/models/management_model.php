@@ -125,6 +125,11 @@ class Management_model extends CI_Model {
             
 
         /* 将ECU本地页面变动数据存入数据库 */
+            //创建表单
+            $this->pdo->exec("CREATE TABLE IF NOT EXISTS process_result
+                (item INTEGER, result VARCHAR, flag INTEGER, 
+                primary key(item))");
+            
             //ECU_id
             $ecuid = "000000000000";
             $fp = @fopen("/etc/yuneng/ecuid.conf",'r');
@@ -135,7 +140,7 @@ class Management_model extends CI_Model {
             }
 
             //ECU_version
-            $version = "unkonw";        
+            $version = "unknow";        
             $fp = @fopen("/etc/yuneng/version.conf",'r');
             if($fp)
             {
@@ -603,87 +608,12 @@ class Management_model extends CI_Model {
         return $results;
     }
 
-    /* 获取用户信息 */
-    public function get_user_info()
-    {
-        $data = array();
-        return $data;
-    }
-
-    /* 设置用户信息 */
-    public function set_user_info()
-    {
-        $results =array();
-                
-        //系统默认用户名密码
-        $data['username'] = "admin";
-        $data['password'] = "admin"; 
-        $fp = @fopen("/etc/yuneng/userinfo.conf",'r');
-        if ($fp)
-        {
-          $data['username'] = fgets($fp);
-          $data['username'] = str_replace("\n", "", $data['username']);
-          $data['password'] = fgets($fp); 
-          $data['password'] = str_replace("\n", "", $data['password']);
-          fclose($fp);
-        }
-
-        //获取页面输入用户名密码
-        $username = $this->input->post('username');
-        $old_password =  $this->input->post('old_password');
-        $new_password = $this->input->post('new_password');
-        $confirm_password = $this->input->post('confirm_password');
-        $new_username = $this->input->post('new_username');
-
-        //判断原密码是否正确并修改密码
-        if($data['username'] == $username && $data['password'] == $old_password)
-        {
-            if(!strcmp($new_password, $confirm_password))
-            {
-                if(strlen($new_password))
-                {
-                    $fp = @fopen("/etc/yuneng/userinfo.conf",'w');
-                    if($fp){
-                        //若新用户名不为空，则保存新用户名
-                        if(strlen($new_username)) {
-                            fwrite($fp, $new_username."\n".$new_password);
-                        }
-                        else {
-                            fwrite($fp, $username."\n".$new_password);
-                        }
-                        fclose($fp);
-                    }                    
-                    $results["value"] = 0;
-                    //成功修改密码后需要重新登录
-                    $this->session->set_userdata('logged_in',FALSE);                    
-                }
-                else
-                {
-                    //新输入密码为空
-                    $results["value"] = 2;
-                }
-            }
-            else
-            {
-                //两次输入的密码不相同
-                $results["value"] = 3;
-            }
-        }
-        else
-        {
-            //用户名密码错误
-            $results["value"] = 1;
-        }
-        return $results;        
-    }
-
     /* 获取无线局域网信息 */
     public function get_wlan()
     {      
         $data = array();
         $data['ssid'] = "-";
         $data['ifconnect'] = 0;
-        $data['ifopen'] = 0;
         $data['ap_info']['ssid'] = "";
         $data['ap_info']['channel'] = 0;
         $data['ap_info']['method'] = 0;
@@ -700,16 +630,10 @@ class Management_model extends CI_Model {
             fclose($fp);
         }
 
-
         if($data['mode'] == 1)
         {
             /* 主机模式 */
-
             //读取主机模式参数
-            $data['ap_info']['ssid'] = "";
-            $data['ap_info']['channel'] = 0;
-            $data['ap_info']['method'] = 0;
-            $data['ap_info']['psk'] = "";
             $fp = @fopen("/etc/yuneng/wifi_ap_info.conf", 'r');
             if($fp)
             {
@@ -742,9 +666,8 @@ class Management_model extends CI_Model {
             }
         }
         else if($data['mode'] == 2)
-        {   
-            /* 从机模式 */
-            
+        {
+            /* 从机模式 */            
             //获取wifi信号名称
             system("/usr/sbin/iwconfig | grep -E \"wlan0\">/tmp/wifi_temp.conf");
             $fp = @fopen("/tmp/wifi_temp.conf", 'r');
@@ -757,7 +680,6 @@ class Management_model extends CI_Model {
                     $temp = substr($temp, 7);
                     sscanf($temp, "%[^\"]", $data['ssid']);
                     $data['ifconnect'] = 1;
-                    $data['ifopen'] = 1;
                 }
                 fclose($fp);
             }
@@ -794,7 +716,6 @@ class Management_model extends CI_Model {
                 while(!feof($fp))
                 {
                     $temp = fgets($fp);
-
                     if(!strncmp($temp, "ESSID", 5))
                     {
                         $temp = substr($temp, 7);
@@ -804,13 +725,11 @@ class Management_model extends CI_Model {
                         $data['wifi_signals'][$num+1]['group'] = "";
                         $num++;
                     }
-
                     if(!strncmp($temp, "Quality", 7))
                     {
                         $temp = substr($temp, 8, 2);
                         $data['wifi_signals'][$num]['quality'] = intval($temp);
                     }
-
                     if(!strncmp($temp, "Encryption key", 14))
                     {
                         $temp = substr($temp, 15);
@@ -820,7 +739,6 @@ class Management_model extends CI_Model {
                         else
                             $data['wifi_signals'][$num]['ifkey'] = 0;  
                     }
-
                     if(!strncmp($temp, "Group Cipher", 12))
                     {
                         $temp = substr($temp, 15);
@@ -832,7 +750,6 @@ class Management_model extends CI_Model {
             }
             $data['num'] = $num;
         }
-
         return $data;
     }
 
@@ -842,8 +759,7 @@ class Management_model extends CI_Model {
         $results =array();
         //获取wifi工作模式      
         $mode = $this->input->post('mode');
-        if($mode == 0) {
-            
+        if($mode == 0) {           
             //断开wifi连接
             system("killall wpa_supplicant");
             //关闭AP
@@ -857,7 +773,7 @@ class Management_model extends CI_Model {
                 fclose($fp);
             }
         }
-        if($mode == 1) {   
+        if($mode == 1) {
         /* 将wifi工作切换至AP模式 */
 
             //将工作模式记录到配置文件
@@ -955,7 +871,6 @@ class Management_model extends CI_Model {
     public function set_wlan_ap()
     {
         $results =array();
-
 //         //关闭原有AP
 //         system("killall udhcpd");
 //         system("killall hostapd");
@@ -1052,7 +967,6 @@ class Management_model extends CI_Model {
                         
             //重启ECU
             system("/sbin/reboot");
-
             $results["value"] = 0;
         }
         else {

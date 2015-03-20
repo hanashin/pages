@@ -127,7 +127,7 @@ $(document).ready(function()
         //设置表单处理
         $("#result").hide();       	
 	    $.ajax({
-    		url : "<?php echo base_url('index.php/management/set_user_info');?>",
+    		url : "<?php echo base_url('index.php/configuration/set_user_info');?>",
     		type : "post",
             dataType : "json",
     		data: "username=" + $("#inputdata1").val()

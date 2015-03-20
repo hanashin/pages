@@ -99,9 +99,9 @@
 	
 	//能量柱状图
 	$lang['function_energy'] = "能量柱状图";
-	$lang['energy_the_recent_week'] = "最近一周";
-	$lang['energy_the_recent_month'] = "最近一月";
-	$lang['energy_the_recent_year'] = "最近一年";
+	$lang['energy_weekly'] = "最近一周";
+	$lang['energy_monthly'] = "最近一月";
+	$lang['energy_yearly'] = "最近一年";
 	
 	//逆变器工作状态
 	$lang['function_inverter_status'] = "逆变器状态";
@@ -168,9 +168,10 @@
 	$lang['switch_turn_on_all'] = "开启所有逆变器";
 	$lang['switch_turn_off_all'] = "关闭所有逆变器";
 	
-	$lang['switch_result_0'] = "请过5分钟之后查看结果";
-	$lang['switch_result_1'] = "请选择逆变器";
-	
+	$lang['switch_result_0'] = "请过5分钟之后查看结果！";
+	$lang['switch_result_1'] = "请选择逆变器！";
+	$lang['switch_result_2'] = "设置失败！";
+		
 	//最大功率设置
 	$lang['function_maxpower'] = "功率设置";
 	$lang['maxpower_inverter_id'] = "逆变器 ID";
@@ -182,7 +183,7 @@
 	
 /* 系统管理 */	
 	//ID管理
-	$lang['function_id'] = "逆变器ID";
+	$lang['function_id'] = "ID管理";
 	$lang['id_inverter_id'] = "逆变器 ID";
 	$lang['id_clear_id'] = "清空 ID";
 	$lang['id_total'] = "总数";
@@ -405,5 +406,14 @@
 	
 	$lang['signal_level_result_0'] = "读取成功";
 	$lang['signal_level_result_1'] = "读取失败";
+	
+	//上传文件到ECU临时目录
+	$lang['function_upload'] = "上传文件";
+	$lang['upload_filename'] = "文件名称";
+	$lang['upload_browse'] = "浏览";
+	
+	$lang['upload_result_0'] = "上传文件成功！";
+	$lang['upload_result_1'] = "上传文件失败！";
+	$lang['upload_result_2'] = "文件已存在！";
 	
 ?>

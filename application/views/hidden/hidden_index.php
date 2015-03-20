@@ -1,15 +1,23 @@
 <p>1.参数配置</p>
-<p>(1)设置13项保护参数：
+<p>(1)设置保护参数：
+  <a href="<?php echo base_url('index.php/configuration');?>"><?php echo base_url('index.php/configuration');?></a>
+</p>
+<p>(2)设置13项保护参数：
   <a href="<?php echo base_url('index.php/configuration/protection2');?>"><?php echo base_url('index.php/configuration/protection2');?></a>
 </p>
-<p>(2)最大功率设置：
+<p>(3)GFDI：
+  <a href="<?php echo base_url('index.php/configuration/gfdi_state');?>"><?php echo base_url('index.php/configuration/gfdi_state');?></a>
+</p>
+<p>(4)远程控制：
+  <a href="<?php echo base_url('index.php/configuration/switch_state');?>"><?php echo base_url('index.php/configuration/switch_state');?></a>
+</p>
+<p>(5)最大功率设置：
   <a href="<?php echo base_url('index.php/configuration/maxpower');?>"><?php echo base_url('index.php/configuration/maxpower');?></a>
 </p>
-<p>2.系统管理</p>
-<p>(1)更改登陆密码：
-  <a href="<?php echo base_url('index.php/management/user_info');?>"><?php echo base_url('index.php/management/user_info');?></a>
+<p>(6)用户名密码设置：
+  <a href="<?php echo base_url('index.php/configuration/user_info');?>"><?php echo base_url('index.php/configuration/user_info');?></a>
 </p>
-<p>3.隐藏功能</p>
+<p>2.隐藏功能</p>
 <p>(1)Updatecenter: 
   <a href="<?php echo base_url('index.php/hidden/updatecenter');?>"><?php echo base_url('index.php/hidden/updatecenter');?></a>
 </p>
@@ -37,14 +45,17 @@
 <p>(9)逆变器信号强度: 
   <a href="<?php echo base_url('index.php/hidden/signal_level');?>"><?php echo base_url('index.php/hidden/signal_level');?></a>
 </p>
-<p>4.查看status</p>
+<p>(10)上传文件到/tmp目录: 
+  <a href="<?php echo base_url('index.php/hidden/upload');?>"><?php echo base_url('index.php/hidden/upload');?></a>
+</p>
+<p>3.查看status</p>
 <p>(1)Status: 
   <a href="<?php echo base_url('index.php/display/status');?>"><?php echo base_url('index.php/display/status');?></a>
 </p>
 <p>(2)Status2: 
   <a href="<?php echo base_url('index.php/display/status2');?>"><?php echo base_url('index.php/display/status2');?></a>
 </p>
-<p>5.查看数据库</p>
+<p>4.查看数据库</p>
 <p>(1)Historical_data: 
   <a href="<?php echo base_url('index.php/display/historical_data');?>"><?php echo base_url('index.php/display/historical_data');?></a>
 </p>

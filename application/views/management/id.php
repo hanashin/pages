@@ -161,7 +161,8 @@ $(document).ready(function()
 
     //清空逆变器列表
     $("#clear_id").click(function(){
-        $("#result").hide();        	
+        $("#result").hide();
+        $("#inverter_list").attr("value","");   	
         $.ajax({
     		url : "<?php echo base_url('index.php/management/set_id_clear');?>",
     		type : "post",

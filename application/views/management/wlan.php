@@ -495,7 +495,7 @@ $(document).ready(function() {
                 if(Results.value == 0) {
     	            $('#ecu_reboot').modal('toggle');
     	            setInterval('doProgress()', 500);
-    	    	    setTimeout('window.location.reload()', 50000); 
+    	    	    setTimeout('window.location.reload()', 55000); 
   	            }
     		},
     		error : function() { alert("Error"); }

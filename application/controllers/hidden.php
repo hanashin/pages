@@ -12,6 +12,7 @@ class Hidden extends CI_Controller {
         $this->load->helper('url');
         $this->load->helper('form');    
         $this->load->model('hidden_model');
+        $this->load->library('upload');
 
         /* 设置系统语言 */
         $language = "english";
@@ -235,6 +236,28 @@ class Hidden extends CI_Controller {
         $results["message"] = $this->lang->line("signal_level_result_{$results["value"]}");
         echo json_encode($results);
     }
+    
+    /* 显示上传文件页面 */
+    public function upload()
+    {
+        $data['page'] = $this->page;
+        $data['func'] = "upload";
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('hidden/upload');
+        $this->load->view('templates/footer');
+    }
+    
+    function do_upload()
+    {
+        $data = $this->hidden_model->do_upload();
+        $data['page'] = $this->page;
+        $data['func'] = "upload";
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('hidden/upload_result');
+        $this->load->view('templates/footer');        
+    } 
 
 }
 
