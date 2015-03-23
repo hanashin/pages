@@ -14,7 +14,6 @@
     <link href="<?php echo base_url('css/bootstrap.min.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('css/ecu-style.css');?>" rel="stylesheet">  
     <link href="<?php echo base_url('css/bootstrapValidator.css');?>" rel="stylesheet">
-    <link href="<?php echo base_url('css/jquery.onoff.css');?>" rel="stylesheet">
     
     <!--[if lt IE 8]>
       <link href="<?php echo base_url('css/bootstrap-ie7.css');?>" rel="stylesheet">

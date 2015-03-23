@@ -412,8 +412,9 @@
 	$lang['upload_filename'] = "Filename";
 	$lang['upload_browse'] = "Browse";
 	
-	$lang['upload_result_0'] = "Your file was successfully uploaded!";
-	$lang['upload_result_1'] = "Your file was uploaded failed!";
-	$lang['upload_result_2'] = "Your file was already exists!";
+	$lang['upload_result_0'] = "Your file was successfully uploaded !";
+	$lang['upload_result_1'] = "Your file was uploaded failed !";
+	$lang['upload_result_2'] = "Please upload file less than 10Mb !";
+	$lang['upload_result_3'] = "Your file was already exists!";
 	
 ?>

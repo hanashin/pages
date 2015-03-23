@@ -229,10 +229,10 @@
 	$lang['network_preferred_dns_server'] = "首选 DNS 服务器";
 	$lang['network_alternate_dns_server'] = "备用 DNS 服务器";
 	
-	$lang['gprs_result_0_1'] = "GPRS enabled successfully";
-	$lang['gprs_result_0_0'] = "GPRS disabled successfully";
-	$lang['gprs_result_1_1'] = "GPRS enabled failed";
-	$lang['gprs_result_1_0'] = "GPRS disabled failed";
+	$lang['gprs_result_0_1'] = "已启用GPRS模式";
+	$lang['gprs_result_0_0'] = "已关闭GPRS模式";
+	$lang['gprs_result_1_1'] = "启用GPRS失败";
+	$lang['gprs_result_1_0'] = "关闭GPRS失败";
 	$lang['network_result_success_dhcp'] = "设置动态IP成功";
 	$lang['network_result_success_static_ip'] = "设置静态IP成功";
 	
@@ -414,6 +414,7 @@
 	
 	$lang['upload_result_0'] = "上传文件成功！";
 	$lang['upload_result_1'] = "上传文件失败！";
-	$lang['upload_result_2'] = "文件已存在！";
+	$lang['upload_result_2'] = "请上传10Mb以下的文件！";
+	$lang['upload_result_3'] = "文件已存在！";
 	
 ?>

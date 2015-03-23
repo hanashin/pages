@@ -49,7 +49,7 @@
 	//无线网络管理
 	  //AP
 	$lang['validform_ap_ssid'] = "请输入4-18位任意字符";
-	$lang['validform_ap_password_wep'] = "请输入5位或13位字符";
+	$lang['validform_ap_password_wep'] = "请输入5位或13位数字";
 	$lang['validform_ap_password_wpa'] = "请输入8-18位任意字符";
 	$lang['validform_null_ap_ssid'] = "请输入信号名称";
 	$lang['validform_null_ap_password'] = "请输入密码";
