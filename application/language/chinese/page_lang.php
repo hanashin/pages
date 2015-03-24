@@ -414,7 +414,7 @@
 	
 	$lang['upload_result_0'] = "上传文件成功！";
 	$lang['upload_result_1'] = "上传文件失败！";
-	$lang['upload_result_2'] = "请上传10Mb以下的文件！";
+	$lang['upload_result_2'] = "请上传8Mb以下的文件！";
 	$lang['upload_result_3'] = "文件已存在！";
 	
 ?>

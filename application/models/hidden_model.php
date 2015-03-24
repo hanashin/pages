@@ -535,35 +535,24 @@ class Hidden_model extends CI_Model {
     {
         $results = array();
         $res_array = array();
-        if ($_FILES["file"]["size"] < 10485760){
-            if ($_FILES["file"]["error"] > 0)
-            {
-                array_push($res_array, "Return Code: " . $_FILES["file"]["error"] . "<br />");
-                $results["value"] = 1;
-            }
-            else
-            {
-                array_push($res_array, "Upload: " . $_FILES["file"]["name"] . "<br />");
-                array_push($res_array, "Type: " . $_FILES["file"]["type"] . "<br />");
-                array_push($res_array, "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />");
-                array_push($res_array, "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />");
         
-    //             if (file_exists("/tmp/" . $_FILES["file"]["name"]))
-    //             {
-    //                 array_push($res_array, $_FILES["file"]["name"] . " already exists. ");
-    //                 $results["value"] = 2;
-    //             }
-    //             else
-    //             {
-                    move_uploaded_file($_FILES["file"]["tmp_name"], "/tmp/" . $_FILES["file"]["name"]);
-                    array_push($res_array, "Stored in: " . "/tmp/" . $_FILES["file"]["name"]);
-                    $results["value"] = 0;
-    //             }
-            }
+        if ($_FILES["file"]["error"] > 0)
+        {
+            array_push($res_array, "Return Code: " . $_FILES["file"]["error"] . "<br />");
+            $results["value"] = 1;
         }
-        else{
-            $results["value"] = 2;
+        else
+        {
+            array_push($res_array, "Upload: " . $_FILES["file"]["name"] . "<br />");
+            array_push($res_array, "Type: " . $_FILES["file"]["type"] . "<br />");
+            array_push($res_array, "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />");
+            array_push($res_array, "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />");        
+
+            move_uploaded_file($_FILES["file"]["tmp_name"], "/tmp/" . $_FILES["file"]["name"]);
+            array_push($res_array, "Stored in: " . "/tmp/" . $_FILES["file"]["name"]);
+            $results["value"] = 0;
         }
+
         $results["result"] = implode("\n",$res_array);
         return $results;
      }

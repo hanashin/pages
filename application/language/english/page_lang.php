@@ -414,7 +414,7 @@
 	
 	$lang['upload_result_0'] = "Your file was successfully uploaded !";
 	$lang['upload_result_1'] = "Your file was uploaded failed !";
-	$lang['upload_result_2'] = "Please upload file less than 10Mb !";
+	$lang['upload_result_2'] = "Please upload file less than 8Mb !";
 	$lang['upload_result_3'] = "Your file was already exists!";
 	
 ?>
