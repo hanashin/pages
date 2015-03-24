@@ -935,6 +935,24 @@ class Configuration_model extends CI_Model {
         return $results;
     }
     
+    /* 读取逆变器最大功率 */
+    public function read_maxpower()
+    {
+        $results = array();
+    
+        $fp = @fopen("/tmp/getmaxpower.conf", "w");
+        if($fp)
+        {
+            fwrite($fp, "ALL");
+            fclose($fp);
+            $results["value"] = 0;
+        }
+        else{
+            $results["value"] = 2;
+        }
+        return $results;
+    }
+    
     /* 获取用户信息 */
     public function get_user_info()
     {

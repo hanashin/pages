@@ -178,9 +178,10 @@
 	$lang['maxpower_maxpower'] = "Maximum Power(20-300W)";
 	$lang['maxpower_actual_maxpower'] = "Actual Maximum Power";
 	
-	$lang['maxpower_result_0'] = "See the results 5 minutes later";
-	$lang['maxpower_result_1'] = "Please enter an integer between 20-300";
-
+	$lang['maxpower_result_0'] = "See the results 5 minutes later !";
+	$lang['maxpower_result_1'] = "Please enter an integer between 20-300 !";
+	$lang['maxpower_result_2'] = "Read maxpower failed !";
+	
 /* 系统管理 */
 	//ID管理
 	$lang['function_id'] = "ID Management";

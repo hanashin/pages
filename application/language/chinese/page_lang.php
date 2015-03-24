@@ -178,8 +178,9 @@
 	$lang['maxpower_maxpower'] = "最大功率(20-300W)";
 	$lang['maxpower_actual_maxpower'] = "实际最大功率";
 	
-	$lang['maxpower_result_0'] = "请过5分钟之后查看结果看";
-	$lang['maxpower_result_1'] = "请输入20-300之间的整数";
+	$lang['maxpower_result_0'] = "请过5分钟之后查看结果！";
+	$lang['maxpower_result_1'] = "请输入20-300之间的整数！";
+	$lang['maxpower_result_2'] = "读取最大功率失败！";
 	
 /* 系统管理 */	
 	//ID管理

@@ -208,6 +208,14 @@ class Configuration extends CI_Controller {
         echo json_encode($results);
     }
     
+    /* 读取逆变器最大功率 */
+    public function read_maxpower()
+    {
+        $results = $this->configuration_model->read_maxpower();
+        $results["message"] = $this->lang->line("maxpower_result_{$results["value"]}");
+        echo json_encode($results);
+    }
+    
     /* 显示用户信息 */
     public function user_info()
     {
