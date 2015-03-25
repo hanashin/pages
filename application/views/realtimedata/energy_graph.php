@@ -24,7 +24,7 @@
 </div>
 
 <!-- 总能量 -->
-<h4><span class="label label-warning pull-right"><?php echo $this->lang->line("graph_{$period}_energy").": ".$total;?>kWh</span></h4>
+<h4><span class="label label-warning pull-right"><?php echo $this->lang->line("graph_{$period}_energy").": ".$total;?> kWh</span></h4>
 
 <script src="<?php echo base_url('js/datepicker/WdatePicker.js');?>"></script>
 <script src="<?php echo base_url('js/highcharts.js');?>"></script>

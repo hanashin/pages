@@ -45,7 +45,7 @@
 	$lang['item_3_4'] = "Power Setting";
 	$lang['item_4'] = "Administration";
 	$lang['item_4_1'] = "ID Management";
-	$lang['item_4_2'] = "Date,Time,Timezone";
+	$lang['item_4_2'] = "Date,Time,Time Zone";
 	$lang['item_4_3'] = "Language";
 	$lang['item_4_4'] = "Network Connectivity";
 	$lang['item_4_5'] = "User Management";
@@ -56,19 +56,19 @@
 	$lang['home_ecuid'] = "ECU ID";
 	$lang['home_lifetimepower'] = "Lifetime generation";
 	$lang['home_systemp'] = "Last System Power";
-	$lang['home_todaypower'] = "Generation Of Current Day";
-	$lang['home_datetime'] = "Last connection to website";
+	$lang['home_todaypower'] = "Generation of Current Day";
+	$lang['home_datetime'] = "Last Connection to website";
 	$lang['home_maxnum'] = "Number of Inverters";
 	$lang['home_curnum'] = "Last Number of Inverters Online";
 	$lang['home_version'] = "Current Software Version";
 	$lang['home_file_size'] = "Database Size";
-	$lang['home_timezone'] = "Current Timezone";
+	$lang['home_timezone'] = "Current Time Zone";
 	$lang['home_eth0_mac'] = "ECU Eth0 Mac Address";
 	$lang['home_wlan0_mac'] = "ECU Wlan0 Mac Address";
-	$lang['home_grid_quality'] = "Inverter Comm. signal level";
+	$lang['home_grid_quality'] = "Inverter Comm. Signal Level";
 	//环保效益
 	$lang['home_environment_benefits'] = "ENVIRONMENTAL BENEFITS";
-	$lang['home_equivalent'] = "C02 Offset Equivalent to";
+	$lang['home_equivalent'] = "CO<sub>2</sub> Offset Equivalent to";
 	$lang['home_gallons'] = "GALLONS";
 	$lang['home_trees'] = "TREES";
 	$lang['home_kg'] = "KG";
@@ -86,22 +86,22 @@
 	$lang['graph_language'] = "lang:'en'";
 	$lang['graph_title'] = "Power Generation";
 	$lang['graph_y_label_power'] = "Power(W)";
-	$lang['graph_y_label_energy'] = "Energy(kWh)";
+	$lang['graph_y_label_energy'] = "Energy(kW·h)";
 	$lang['graph_value_power'] = "Power";
 	$lang['graph_value_energy'] = "Energy";
-	$lang['graph_daily_energy'] = "TODAY SOLAR GENERATED";
-	$lang['graph_weekly_energy'] = "WEEK SOLAR GENERATED";
-	$lang['graph_monthly_energy'] = "MONTH SOLAR GENERATED";
-	$lang['graph_yearly_energy'] = "YEAR SOLAR GENERATED";
+	$lang['graph_daily_energy'] = "Solar Generated Today";
+	$lang['graph_weekly_energy'] = "Solar Generated Current Week";
+	$lang['graph_monthly_energy'] = "Solar Generated Current Month";
+	$lang['graph_yearly_energy'] = "Solar Generated Current Year";
 		
 	//功率曲线图
 	$lang['function_power'] = "Power";
 	
 	//能量柱状图
 	$lang['function_energy'] = "Energy";
-	$lang['energy_weekly'] = "The Recent Week";
-	$lang['energy_monthly'] = "The Recent Month";
-	$lang['energy_yearly'] = "The Recent Year";
+	$lang['energy_weekly'] = "Current Week";
+	$lang['energy_monthly'] = " Current Month";
+	$lang['energy_yearly'] = "Current Year";
 	
 	//逆变器工作状态
 	$lang['function_inverter_status'] = "Inverter Status";
@@ -114,7 +114,7 @@
 
 	//登录页面
 	$lang['function_login'] = "Login";
-	$lang['login_title'] = "Please Login";
+	$lang['login_title'] = "Login";
 	$lang['login_username'] = "Username";
 	$lang['login_password'] = "Password";
 	$lang['login_login'] = "Login";	
@@ -126,7 +126,7 @@
 	$lang['function_protection2'] = "Parameters";
 	$lang['protection_set'] = "Settings";
 	$lang['protection_actual_value'] = "Actual value";	
-	$lang['protection_select_inverter'] = "Please select inverter";
+	$lang['protection_select_inverter'] = "Select Inverter";
 	$lang['protection_select_inverter_all'] = "All Inverters";	
 	$lang['protection_inverter_id'] = "Inverter ID";
 	$lang['protection_under_voltage_fast'] = "Undervoltage Fast";
@@ -175,7 +175,7 @@
 	//最大功率设置
 	$lang['function_maxpower'] = "Power Setting";
 	$lang['maxpower_inverter_id'] = "Inverter ID";
-	$lang['maxpower_maxpower'] = "Maximum Power(20-300W)";
+	$lang['maxpower_maxpower'] = "Maximum Power (20-300W)";
 	$lang['maxpower_actual_maxpower'] = "Actual Maximum Power";
 	
 	$lang['maxpower_result_0'] = "See the results 5 minutes later !";
@@ -197,15 +197,15 @@
 	$lang['set_id_result_2'] = "Please enter an inverter ID !";
 	
 	//时间管理
-	$lang['function_time'] = "Date,Time,Timezone";
+	$lang['function_time'] = "Date,Time,Time Zone";
 	$lang['time_datetime'] = "Date Time";
-	$lang['time_timezone'] = "Timezone";
+	$lang['time_timezone'] = "Time Zone";
 	$lang['time_ntp'] = "NTP Server";
 
 	$lang['datetime_result_0'] = "Datetime updated successfully !";
 	$lang['datetime_result_1'] = "Datetime updated failed !";	
-	$lang['timezone_result_0'] = "Timezone updated successfully !";
-	$lang['timezone_result_1'] = "Timezone updated failed !";
+	$lang['timezone_result_0'] = "Time Zone updated successfully !";
+	$lang['timezone_result_1'] = "Time Zone updated failed !";
 	$lang['ntp_result_0'] = "Ntp_server updated successfully !";
 	$lang['ntp_result_1'] = "Ntp_server updated failed !";
 	
@@ -240,11 +240,11 @@
 	//用户管理
 	$lang['function_user_info'] = "User Management";
 	$lang['user_info_username'] = "Username";
-	$lang['user_info_new_username'] = "New username";
-	$lang['user_info_old_password'] = "Old password";
-	$lang['user_info_new_password'] = "New password";
-	$lang['user_info_confirm_password'] = "Confirm password";
-	$lang['user_info_change_password'] = "Change password";
+	$lang['user_info_new_username'] = "New Username";
+	$lang['user_info_old_password'] = "Old Password";
+	$lang['user_info_new_password'] = "New Password";
+	$lang['user_info_confirm_password'] = "Confirm Password";
+	$lang['user_info_change_password'] = "Change Password";
 	
 	$lang['user_info_result_0'] = "Password updated successfully !";
 	$lang['user_info_result_1'] = "Incorrect username or old password !";
@@ -309,16 +309,16 @@
 	$lang['display_status_event'] = "Event";
 	$lang['display_status_inverter_id'] = "Inverter ID";
 	$lang['display_status_date'] = "Date";
-	$lang['display_status_event_0'] = "AC Frequency under Range";
-	$lang['display_status_event_1'] = "AC Frequency exceeding Range";
-	$lang['display_status_event_2'] = "AC Voltage exceeding Range";
-	$lang['display_status_event_3'] = "AC Voltage under Range";
+	$lang['display_status_event_0'] = "AC Frequency Under Range";
+	$lang['display_status_event_1'] = "AC Frequency Exceeding Range";
+	$lang['display_status_event_2'] = "AC Voltage Exceeding Range";
+	$lang['display_status_event_3'] = "AC Voltage Under Range";
 	$lang['display_status_event_7'] = "Over Critical Temperature";
 	$lang['display_status_event_11'] = "GFDI Locked";
-	$lang['display_status_event_13'] = "Active anti-island protection";
-	$lang['display_status_event_14'] = "CP protection";
-	$lang['display_status_event_15'] = "HV protection";
-	$lang['display_status_event_16'] = "Over zero protection";
+	$lang['display_status_event_13'] = "Active Anti-island Protection";
+	$lang['display_status_event_14'] = "CP Protection";
+	$lang['display_status_event_15'] = "HV Protection";
+	$lang['display_status_event_16'] = "Over Zero Protection";
 	
 	//显示数据库
 	$lang['function_database'] = "Database";
@@ -392,7 +392,7 @@
 	$lang['function_ird'] = "IRD";
 	$lang['ird_result'] = "Result";
 	$lang['ird_setting'] = "IRD Mode";
-	$lang['ird_select'] = "--Select a IRD Mode--";
+	$lang['ird_select'] = "--Select IRD Mode--";
 	$lang['ird_select_1'] = "Turn off IRD";
 	$lang['ird_select_2'] = "Turn on IRD with locked";
 	$lang['ird_select_3'] = "Turn on IRD without locked";
@@ -402,8 +402,8 @@
 	$lang['ird_result_2'] = "Set IRD Mode Failed";
 	
 	//逆变器信号强度
-	$lang['function_signal_level'] = "Inverter Comm. signal level";
-	$lang['signal_level'] = "Inverter Comm. signal level";
+	$lang['function_signal_level'] = "Inverter Comm. Signal Level";
+	$lang['signal_level'] = "Inverter Comm. Signal Level";
 	
 	$lang['signal_level_result_0'] = "Read Signal Level Success";
 	$lang['signal_level_result_1'] = "Read Signal Level Failed";

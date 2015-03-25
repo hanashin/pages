@@ -114,7 +114,7 @@
 
 	//登录页面
 	$lang['function_login'] = "登录";
-	$lang['login_title'] = "欢迎登录";
+	$lang['login_title'] = "登录";
 	$lang['login_username'] = "用户名";
 	$lang['login_password'] = "密码";
 	$lang['login_login'] = "登录";	
@@ -126,7 +126,7 @@
 	$lang['function_protection2'] = "参数配置(13项)";
 	$lang['protection_set'] = "参数设置";
 	$lang['protection_actual_value'] = "逆变器实际值";	
-	$lang['protection_select_inverter'] = "请选择逆变器";
+	$lang['protection_select_inverter'] = "选择逆变器";
 	$lang['protection_select_inverter_all'] = "所有逆变器";
 	$lang['protection_inverter_id'] = "逆变器 ID";	
 	$lang['protection_under_voltage_fast'] = "外围电压下限";
@@ -175,7 +175,7 @@
 	//最大功率设置
 	$lang['function_maxpower'] = "功率设置";
 	$lang['maxpower_inverter_id'] = "逆变器 ID";
-	$lang['maxpower_maxpower'] = "最大功率(20-300W)";
+	$lang['maxpower_maxpower'] = "最大功率 (20-300W)";
 	$lang['maxpower_actual_maxpower'] = "实际最大功率";
 	
 	$lang['maxpower_result_0'] = "请过5分钟之后查看结果！";

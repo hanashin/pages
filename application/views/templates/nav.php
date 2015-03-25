@@ -33,9 +33,9 @@
             //主页 
             if(!strncmp($page, "home", 4))
             {
-              echo "<center><a id=\"ecu_time\" class=\"list-group-item\"></a>";
-              echo "<a class=\"list-group-item active\">".$this->lang->line('home_environment_benefits')."</a>";
-              echo "<a class=\"list-group-item benefit\">".$this->lang->line('home_equivalent')."</a></center>";
+              echo "<a id=\"ecu_time\" class=\"list-group-item align-center\"></a>";
+              echo "<a class=\"list-group-item active align-center\">".$this->lang->line('home_environment_benefits')."</a>";
+              echo "<a class=\"list-group-item benefit align-center\">".$this->lang->line('home_equivalent')."</a>";
               echo "<a class=\"list-group-item benefit\"><img src=\"".base_url('images/car.png')."\"><div class=\"pull-right\"><center>$gallon<br>".$this->lang->line('home_gallons')."</center></div></a>";
               echo "<a class=\"list-group-item benefit\"><img src=\"".base_url('images/tree.png')."\"><div class=\"pull-right\"><center>$tree<br>".$this->lang->line('home_trees')."</center></div></a>";
               echo "<a class=\"list-group-item benefit\"><img src=\"".base_url('images/carbon.png')."\"><div class=\"pull-right\"><center>$kg<br>".$this->lang->line('home_kg')."</center></div></a>";
