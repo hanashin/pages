@@ -339,8 +339,8 @@
 	$lang['function_export_file'] = "导出历史数据";
 	$lang['export_file_start_time'] = "起始时间";
 	$lang['export_file_end_time'] = "结束时间";
-	$lang['export_file_export'] = "导出历史数据";
-	
+	$lang['export_file_export'] = "导出";
+
 	//EMA服务器地址与端口
 	$lang['function_datacenter'] = "数据服务器";
 	$lang['datacenter_domain'] = "域名";

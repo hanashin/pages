@@ -67,7 +67,7 @@ class Hidden extends CI_Controller {
     {
         $data = $this->hidden_model->get_export_time();
         $data['page'] = $this->page;
-        $data['func'] = "export_file";  
+        $data['func'] = "export_file";
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
         $this->load->view('hidden/export_file');
@@ -77,7 +77,7 @@ class Hidden extends CI_Controller {
     /* 执行导数据操作 */
     public function exec_export_file()
     {
-        $this->hidden_model->exec_export_file();  
+        $result = $this->hidden_model->exec_export_file();
     }
 
     /* 显示自动更新的服务器的地址和端口 */
