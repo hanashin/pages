@@ -3,6 +3,33 @@
 class Configuration extends CI_Controller {
 
     public $page = "configuration";
+    public $nav = array(
+        'protection' => array(
+            'url' => 'index.php/configuration',
+            'active' => '0',
+            'name' => 'protection'
+        ),
+        'gfdi_state' => array(
+            'url' => 'index.php/configuration/gfdi_state',
+            'active' => '0',
+            'name' => 'gfdi'
+        ),
+        'switch_state' => array(
+            'url' => 'index.php/configuration/switch_state',
+            'active' => '0',
+            'name' => 'switch'
+        ),
+        'user_info' => array(
+            'url' => 'index.php/configuration/user_info',
+            'active' => '0',
+            'name' => 'user_info'
+        ),
+        'maxpower' => array(
+            'url' => 'index.php/configuration/maxpower',
+            'active' => '0',
+            'name' => 'maxpower'
+        )
+    );
 
     public function __construct()
     {
@@ -36,6 +63,8 @@ class Configuration extends CI_Controller {
     {
         $data['page'] = $this->page;
         $data['func'] = "login";
+        $data['nav'] = $this->nav;
+        
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
         $this->load->view('configuration/login');
@@ -58,9 +87,16 @@ class Configuration extends CI_Controller {
             $this->login();
         }
         else{
-            $data = $this->configuration_model->get_protection();
+            //页面、标题、导航
             $data['page'] = $this->page;
             $data['func'] = "protection";
+            $this->nav['protection']['active'] = '1';
+            $data['nav'] = $this->nav;
+            
+            //获取数据            
+            $result = $this->configuration_model->get_protection();
+            $data = array_merge($data, $result);
+            
             $this->load->view('templates/header', $data);
             $this->load->view('templates/nav');
             $this->load->view('configuration/protection');
@@ -93,9 +129,15 @@ class Configuration extends CI_Controller {
         }
         else
         {
-            $data = $this->configuration_model->get_protection2();
+            //页面、标题、导航
             $data['page'] = $this->page;
             $data['func'] = "protection2";
+            $data['nav'] = $this->nav;
+            
+            //获取数据
+            $result = $this->configuration_model->get_protection2();
+            $data = array_merge($data, $result);
+            
             $this->load->view('templates/header', $data);
             $this->load->view('templates/nav');
             $this->load->view('configuration/protection2');
@@ -120,9 +162,16 @@ class Configuration extends CI_Controller {
         }
         else
         {
-            $data = $this->configuration_model->get_gfdi_state();
+            //页面、标题、导航
             $data['page'] = $this->page;
             $data['func'] = "gfdi";
+            $this->nav['gfdi_state']['active'] = '1';
+            $data['nav'] = $this->nav;
+            
+            //获取数据
+            $result = $this->configuration_model->get_gfdi_state();
+            $data = array_merge($data, $result);
+            
             $this->load->view('templates/header', $data);
             $this->load->view('templates/nav');
             $this->load->view('configuration/gfdi_state');
@@ -147,9 +196,15 @@ class Configuration extends CI_Controller {
         }
         else
         {
-            $data = $this->configuration_model->get_switch_state();
             $data['page'] = $this->page;
             $data['func'] = "switch";
+            $this->nav['switch_state']['active'] = '1';
+            $data['nav'] = $this->nav;
+            
+            //获取数据
+            $result = $this->configuration_model->get_switch_state();
+            $data = array_merge($data, $result);
+            
             $this->load->view('templates/header', $data);
             $this->load->view('templates/nav');
             $this->load->view('configuration/switch_state');
@@ -190,9 +245,14 @@ class Configuration extends CI_Controller {
         }
         else
         {
-            $data = $this->configuration_model->get_maxpower();
             $data['page'] = $this->page;
-            $data['func'] = "maxpower"; 
+            $data['func'] = "maxpower";
+            $data['nav'] = $this->nav;
+            
+            //获取数据
+            $result = $this->configuration_model->get_maxpower();
+            $data = array_merge($data, $result);
+            
             $this->load->view('templates/header', $data);
             $this->load->view('templates/nav');
             $this->load->view('configuration/maxpower');
@@ -219,9 +279,11 @@ class Configuration extends CI_Controller {
     /* 显示用户信息 */
     public function user_info()
     {
-        $data = $this->configuration_model->get_user_info();
         $data['page'] = $this->page;
         $data['func'] = "user_info";
+        $this->nav['user_info']['active'] = '1';
+        $data['nav'] = $this->nav;
+        
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
         $this->load->view('configuration/user_info');

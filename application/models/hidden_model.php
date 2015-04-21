@@ -571,6 +571,7 @@ class Hidden_model extends CI_Model {
         return $results;
     }
     
+    /* 上传文件 */
     public function do_upload()
     {
         $results = array();

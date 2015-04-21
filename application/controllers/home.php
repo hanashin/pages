@@ -3,6 +3,7 @@
 class Home extends CI_Controller {
 
     public $page = "home";
+    public $nav = array();
 
     public function __construct()
     {
@@ -32,13 +33,17 @@ class Home extends CI_Controller {
 
     public function index()
     {
-        $data = $this->home_model->get_data();
-        $data['page'] = $this->page;
+        
         $data['func'] = "home";
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/nav');
-        $this->load->view('home');
-        $this->load->view('templates/footer');
+        $data['nav'] = $this->nav;
+        $data['page'] = $this->page;
+        
+        //获取主页显示数据
+        $result = $this->home_model->get_data();
+        $data = array_merge($data, $result);
+        
+        //显示页面
+        $this->load->view('home', $data);
     }
 
 }

@@ -3,6 +3,23 @@
 class Realtimedata extends CI_Controller {
 
     public $page = "realtimedata";
+    public $nav = array(
+        'realtimedata' => array(
+            'url' => 'index.php/realtimedata',
+            'active' => '0',
+            'name' => 'data'
+            ),
+        'power_graph' => array(
+            'url' => 'index.php/realtimedata/power_graph',
+            'active' => '0',
+            'name' => 'power'
+            ),
+        'energy_graph' => array(
+            'url' => 'index.php/realtimedata/energy_graph',
+            'active' => '0',
+            'name' => 'energy'
+            )
+    );
 
     public function __construct()
     {
@@ -33,11 +50,18 @@ class Realtimedata extends CI_Controller {
 
     /* 显示实时数据(默认函数) */
     public function index()
-    {      
-        $data = $this->realtimedata_model->get_data();
+    {
+        //页面、标题、导航
         $data['page'] = $this->page;
         $data['func'] = "data";
-        //当一次性载入多个视图的时候，只需在第一个视图传入数据就可以了
+        $this->nav['realtimedata']['active'] = '1';
+        $data['nav'] = $this->nav;
+        
+        //获取数据
+        $result = $this->realtimedata_model->get_data();
+        $data = array_merge($data, $result);
+        
+        //显示页面
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
         $this->load->view('realtimedata/realtimedata');
@@ -46,10 +70,14 @@ class Realtimedata extends CI_Controller {
 
     /* 显示图表 */
     public function power_graph()
-    {      
-        $data = $this->realtimedata_model->get_power_graph();
-        $data['page'] = $this->page;
+    { 
         $data['func'] = "power";
+        $this->nav['power_graph']['active'] = '1';
+        $data['nav'] = $this->nav;
+        $data['page'] = $this->page;
+        $result = $this->realtimedata_model->get_power_graph();
+        $data = array_merge($data, $result);
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
         $this->load->view('realtimedata/power_graph');
@@ -58,10 +86,14 @@ class Realtimedata extends CI_Controller {
 
     /* 显示图表 */
     public function energy_graph()
-    {      
-        $data = $this->realtimedata_model->get_energy_graph();
-        $data['page'] = $this->page;
+    {
         $data['func'] = "energy";
+        $this->nav['energy_graph']['active'] = '1';
+        $data['nav'] = $this->nav;
+        $data['page'] = $this->page;
+        $result = $this->realtimedata_model->get_energy_graph();
+        $data = array_merge($data, $result);
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
         $this->load->view('realtimedata/energy_graph');
@@ -70,10 +102,13 @@ class Realtimedata extends CI_Controller {
 
     /* 显示逆变器工作状态 */
     public function inverter_status()
-    {      
-        $data = $this->realtimedata_model->get_inverter_status();
-        $data['page'] = $this->page;
+    {    
         $data['func'] = "inverter_status";
+        $data['nav'] = $this->nav;
+        $data['page'] = $this->page;
+        $result = $this->realtimedata_model->get_inverter_status();
+        $data = array_merge($data, $result);
+        
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
         $this->load->view('realtimedata/inverter_status');
@@ -81,7 +116,6 @@ class Realtimedata extends CI_Controller {
     }
 
 }
-
 
 /* End of file realtimedata.php */
 /* Location: ./application/controllers/realtimedata.php */

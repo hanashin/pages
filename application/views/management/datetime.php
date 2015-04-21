@@ -8,7 +8,6 @@
     <div class="col-sm-4">
       <input id="inputdatetime" class="form-control datepicker" type="text" name="datetime" value="<?php echo date("Y/m/d",time())." ".date("H:i:s",time());?>" 
             onClick="WdatePicker({
-                maxDate:'%y-%M-%d',
                 dateFmt:'yyyy/MM/dd HH:mm:ss',
                 <?php echo $this->lang->line('graph_language')?>})" 
             readonly>

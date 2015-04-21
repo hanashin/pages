@@ -109,9 +109,3 @@ window.scrollTo(0,110);//页面位置调整（显示完整图表）
     });
 });
 </script>
-<script>
-function myrefresh(){
-   window.location.reload();
-}
-setTimeout('myrefresh()',300000); //指定5分钟刷新一次
-</script>

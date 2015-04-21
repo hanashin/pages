@@ -248,6 +248,7 @@ class Hidden extends CI_Controller {
         $this->load->view('templates/footer');
     }
     
+    /* 执行上传文件 */
     function do_upload()
     {
         $data = $this->hidden_model->do_upload();

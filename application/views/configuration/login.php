@@ -3,9 +3,7 @@
 
 <!-- 登录表单 -->
 <form class="form-horizontal" id="defaultForm" method="ajax">
-  <div class="col-sm-offset-4 col-sm-5">
-    <h2 class="form-signin-heading"><?php echo $this->lang->line('login_title')?></h2>
-  </div>  
+  <br><br>
   <div class="form-group">    
     <label for="inputdata1" class="col-sm-4 control-label"><?php echo $this->lang->line('login_username')?></label>
     <div class="col-sm-4">

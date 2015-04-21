@@ -953,12 +953,12 @@ class Configuration_model extends CI_Model {
         return $results;
     }
     
-    /* 获取用户信息 */
-    public function get_user_info()
-    {
-        $data = array();
-        return $data;
-    }
+//     /* 获取用户信息 */
+//     public function get_user_info()
+//     {
+//         $data = array();
+//         return $data;
+//     }
     
     /* 设置用户信息 */
     public function set_user_info()

@@ -162,7 +162,7 @@
 <fieldset>
   <legend><?php echo $this->lang->line('protection_actual_value')?>
     <div class="btn-group">
-        <button class="btn btn-default btn-xs" id="refresh" type="button"><?php echo $this->lang->line('button_refresh')?></button>
+        <button class="btn btn-default btn-xs" id="refresh" type="button"><?php echo $this->lang->line('protection_read_parameters')?></button>
     </div>
   </legend>
 

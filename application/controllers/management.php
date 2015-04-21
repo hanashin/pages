@@ -3,6 +3,33 @@
 class Management extends CI_Controller {
 
     public $page = "management";
+    public $nav = array(
+        'id' => array(
+            'url' => 'index.php/management',
+            'active' => '0',
+            'name' => 'id'
+        ),
+        'datetime' => array(
+            'url' => 'index.php/management/datetime',
+            'active' => '0',
+            'name' => 'time'
+        ),
+        'language' => array(
+            'url' => 'index.php/management/language',
+            'active' => '0',
+            'name' => 'language'
+        ),
+        'network' => array(
+            'url' => 'index.php/management/network',
+            'active' => '0',
+            'name' => 'network'
+        ),
+        'wlan' => array(
+            'url' => 'index.php/management/wlan',
+            'active' => '0',
+            'name' => 'wlan'
+        )
+    );
 
     public function __construct()
     {
@@ -34,9 +61,14 @@ class Management extends CI_Controller {
     /* 显示逆变器列表(默认函数) */
     public function index()
     {      
-        $data = $this->management_model->get_id();
         $data['page'] = $this->page;
         $data['func'] = "id";
+        $this->nav['id']['active'] = '1';
+        $data['nav'] = $this->nav;
+        
+        $result = $this->management_model->get_id();
+        $data = array_merge($data, $result);
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
         $this->load->view('management/id');
@@ -62,9 +94,14 @@ class Management extends CI_Controller {
     /* 显示时间时区信息 */
     public function datetime()
     {  
-        $data = $this->management_model->get_datetime();
         $data['page'] = $this->page;
         $data['func'] = "time";
+        $this->nav['datetime']['active'] = '1';
+        $data['nav'] = $this->nav;
+        
+        $result = $this->management_model->get_datetime();
+        $data = array_merge($data, $result);
+        
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
         $this->load->view('management/datetime');
@@ -98,9 +135,14 @@ class Management extends CI_Controller {
     /* 显示语言信息 */
     public function language()
     {      
-        $data = $this->management_model->get_language();
         $data['page'] = $this->page;
         $data['func'] = "language";
+        $this->nav['language']['active'] = '1';
+        $data['nav'] = $this->nav;
+        
+        $result = $this->management_model->get_language();
+        $data = array_merge($data, $result);
+        
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
         $this->load->view('management/language');
@@ -118,9 +160,14 @@ class Management extends CI_Controller {
     /* 显示网络配置信息 */
     public function network()
     {      
-        $data = $this->management_model->get_network();
         $data['page'] = $this->page;
         $data['func'] = "network";
+        $this->nav['network']['active'] = '1';
+        $data['nav'] = $this->nav;
+        
+        $result = $this->management_model->get_network();
+        $data = array_merge($data, $result);
+        
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
         $this->load->view('management/network');
@@ -145,9 +192,14 @@ class Management extends CI_Controller {
     /* 显示无线局域网 */
     public function wlan()
     {      
-        $data = $this->management_model->get_wlan();
         $data['page'] = $this->page;
         $data['func'] = "wlan";
+        $this->nav['wlan']['active'] = '1';
+        $data['nav'] = $this->nav;
+        
+        $result = $this->management_model->get_wlan();
+        $data = array_merge($data, $result);
+        
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
         $this->load->view('management/wlan');
