@@ -128,6 +128,31 @@ class Hidden_model extends CI_Model {
                         $count++;
                     }      
                 }
+                //支持版本:APS15
+                if(!strncmp($value['record'], "APS15", 5))
+                {
+                    $num = (strlen($value['record']) - 87) / 50;
+                    for ($i=0; $i<$num; $i++) {
+                        $temp = substr($value['record'], 86+50*$i, 50);//每段数据为50个字符
+                        $data[$count]['inverter_id'] = ' '.strval(substr($temp, 0, 12));
+                        $data[$count]['channel'] = substr($temp, 12, 1);
+                        $temp = str_replace("A", "0", $temp);//将A替换为0
+                        $data[$count]['dc_voltage'] = number_format(floatval(substr($temp, 13, 5)/10), 1);
+                        $data[$count]['dc_current'] = number_format(floatval(substr($temp, 18, 3)/10), 1);
+                        $data[$count]['power'] = number_format(floatval(substr($temp, 21, 5)/100), 2);
+                        $data[$count]['grid_frequency'] = number_format(floatval(substr($temp, 26, 5)/10), 1);
+                        $data[$count]['temperature'] = intval(substr($temp, 31, 3)) - 100;                    
+                        $data[$count]['grid_voltage'] = intval(substr($temp, 34, 3));
+                        $data[$count]['energy'] = number_format(floatval(substr($temp, 37, 10)/1000000), 6);
+                        $data[$count]['datetime'] = substr($value['record'], 60, 4)."/".
+                            substr($value['record'], 64, 2)."/".
+                            substr($value['record'], 66, 2)." ".
+                            substr($value['record'], 68, 2).":".
+                            substr($value['record'], 70, 2).":".
+                            substr($value['record'], 72, 2);
+                        $count++;
+                    }
+                }
             }
         }
 
