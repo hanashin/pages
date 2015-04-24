@@ -3,7 +3,7 @@
     	</article>
       </div>
     </section>
-    <footer class="footer">&copy; 2015 Altenergy Power System Inc.</footer>
+    <footer class="footer">Copyright ZEN 2015</footer>
     <script>
     <?php if(!strncmp($page, "home", 4) || !strncmp($page, "realtimedata", 12)): ?>
     /* 指定5分钟刷新一次 */
