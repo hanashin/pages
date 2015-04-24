@@ -9,8 +9,8 @@
     <!-- 响应式布局 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">   
 
-    <title>Energy systems</title>
-    <link type="image/x-icon" href="<?php echo base_url('images/favicon.ico');?>" rel="shortcut icon">    
+    <title><?php echo $this->lang->line('title')?></title>
+    <link type="image/x-icon" href="<?php echo base_url('images/logo-icon.png');?>" rel="shortcut icon">    
     <link href="<?php echo base_url('css/bootstrap.min.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('css/ecu-style.css');?>" rel="stylesheet">  
     <link href="<?php echo base_url('css/bootstrapValidator.css');?>" rel="stylesheet">    
@@ -40,16 +40,14 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://www.zenenergy.com.au/">
-              <img src="<?php echo base_url('images/logo-systems.png');?>">
+            <a class="navbar-brand" href="http://www.altenergy-power.com">
+              <img src="<?php echo base_url('images/logo.png');?>">
             </a>
           </div>
           <div class="navbar-collapse collapse" id="navbar-header">
-<!--          
             <ul class="nav navbar-nav navbar-title">
               <li><a id="ecu_title"><?php echo $this->lang->line('title_ecu');?></a></li>
             </ul>
--->
             <ul class="nav navbar-nav navbar-right">
               <a class="btn chlang" id="english" ><?php echo $this->lang->line('language_english');?></a>|
               <a class="btn chlang" id="chinese" ><?php echo $this->lang->line('language_chinese');?></a>

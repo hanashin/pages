@@ -65,4 +65,7 @@
 <p>(3)Record: 
   <a href="<?php echo base_url('index.php/display/record');?>"><?php echo base_url('index.php/display/record');?></a>
 </p>
+<p>(4)Optimizer: 
+  <a href="<?php echo base_url('index.php/display/optimizer');?>"><?php echo base_url('index.php/display/optimizer');?></a>
+</p>
 

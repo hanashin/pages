@@ -80,7 +80,8 @@
 	$lang['data_grid_frequency'] = "电网频率";
 	$lang['data_grid_voltage'] = "电网电压";
 	$lang['data_temperature'] = "机内温度";
-	$lang['data_date'] = "上报时间";
+	$lang['data_date'] = "上报时间";	
+	$lang['data_optimizer_id'] = "优化器 ID";
 	
 	//图表属性
 	$lang['graph_language'] = "lang:'zh-cn'";
@@ -98,7 +99,7 @@
 	$lang['function_power'] = "功率曲线图";
 	
 	//能量柱状图
-	$lang['function_energy'] = "能量柱状图";
+	$lang['function_energy'] = "图表";
 	$lang['energy_weekly'] = "最近一周";
 	$lang['energy_monthly'] = "最近一月";
 	$lang['energy_yearly'] = "最近一年";

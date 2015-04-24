@@ -81,6 +81,7 @@
 	$lang['data_grid_voltage'] = "Grid Voltage";
 	$lang['data_temperature'] = "Temperature";
 	$lang['data_date'] = "Reporting Time";
+	$lang['data_optimizer_id'] = "Optimizer ID";
 	
 	//图表属性
 	$lang['graph_language'] = "lang:'en'";
@@ -98,7 +99,7 @@
 	$lang['function_power'] = "Power";
 	
 	//能量柱状图
-	$lang['function_energy'] = "Energy";
+	$lang['function_energy'] = "Charts";
 	$lang['energy_weekly'] = "Current Week";
 	$lang['energy_monthly'] = " Current Month";
 	$lang['energy_yearly'] = "Current Year";

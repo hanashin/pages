@@ -128,31 +128,6 @@ class Hidden_model extends CI_Model {
                         $count++;
                     }      
                 }
-                //支持版本:APS15
-                if(!strncmp($value['record'], "APS15", 5))
-                {
-                    $num = (strlen($value['record']) - 87) / 50;
-                    for ($i=0; $i<$num; $i++) {
-                        $temp = substr($value['record'], 86+50*$i, 50);//每段数据为50个字符
-                        $data[$count]['inverter_id'] = ' '.strval(substr($temp, 0, 12));
-                        $data[$count]['channel'] = substr($temp, 12, 1);
-                        $temp = str_replace("A", "0", $temp);//将A替换为0
-                        $data[$count]['dc_voltage'] = number_format(floatval(substr($temp, 13, 5)/10), 1);
-                        $data[$count]['dc_current'] = number_format(floatval(substr($temp, 18, 3)/10), 1);
-                        $data[$count]['power'] = number_format(floatval(substr($temp, 21, 5)/100), 2);
-                        $data[$count]['grid_frequency'] = number_format(floatval(substr($temp, 26, 5)/10), 1);
-                        $data[$count]['temperature'] = intval(substr($temp, 31, 3)) - 100;                    
-                        $data[$count]['grid_voltage'] = intval(substr($temp, 34, 3));
-                        $data[$count]['energy'] = number_format(floatval(substr($temp, 37, 10)/1000000), 6);
-                        $data[$count]['datetime'] = substr($value['record'], 60, 4)."/".
-                            substr($value['record'], 64, 2)."/".
-                            substr($value['record'], 66, 2)." ".
-                            substr($value['record'], 68, 2).":".
-                            substr($value['record'], 70, 2).":".
-                            substr($value['record'], 72, 2);
-                        $count++;
-                    }
-                }
             }
         }
 
@@ -622,6 +597,76 @@ class Hidden_model extends CI_Model {
         $results["result"] = implode("\n",$res_array);
         return $results;
      }
+     
+     /* 读取信道 */
+     public function get_channel()
+     {
+         /* 初始化 */
+         $data = array(
+             'channel' => ''
+         );
+         
+         /* 查询channel */
+         $fp = @fopen("/etc/yuneng/channel.conf", 'r');
+         if ($fp) {
+             $data['channel'] = fgets($fp);
+             fclose($fp);
+         }
+         
+         return $data;
+     }
+     
+     /* 设置信道 */
+    public function set_channel()
+    {
+        $results = array();
+         
+        //读取信道
+        $channel = $this->input->post('channel');
+        
+        //保存信道
+        $fp = @fopen("/etc/yuneng/channel.conf", 'w');
+        if($fp)
+        {
+            fwrite($fp, $channel);
+            fclose($fp);
+        
+            $results["value"] = 0;
+            exec("killall main.exe");//重启主函数
+            $this->pdo->exec("DELETE FROM id");//清空ID表
+            $fp = @fopen("/etc/yuneng/limitedid.conf", 'w');
+            if($fp){
+                fwrite($fp, "1");
+                fclose($fp);
+            }
+        }
+        else
+        {
+            $results["value"] = 1;
+        }
+        
+        return $results;
+    }
+    
+    /* 获取需要重置的优化器ID */
+    public function get_reset()
+    {
+        $temp = array();
+        
+        $query = "SELECT id FROM id";
+        $result = $this->pdo->prepare($query);
+        if(!empty($result))
+        {
+            $result->execute();
+            $res = $result->fetchAll();
+            foreach ($res as $key => $value) {
+                $temp[$key] = $value[0];
+            }
+        }        
+        $data['ids'] = $temp;
+        
+        return $data;
+    }
     
 }
 

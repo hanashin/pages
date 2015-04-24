@@ -76,7 +76,7 @@ class Management_model extends CI_Model {
             $this->pdo->exec("DELETE FROM id");
             foreach ($results['ids'] as $key => $id) 
             {
-                $this->pdo->exec("INSERT INTO id (item,id,flag) VALUES($key, \"$id\", 0)");
+                $this->pdo->exec("INSERT INTO id (item,id) VALUES($key, \"$id\")");
             }     
             //power表(注：最好能设置power表的主键为id,采用replace添加新的逆变器)
             $query = "SELECT item FROM power";
@@ -113,6 +113,12 @@ class Management_model extends CI_Model {
             }
             $fp = @fopen("/etc/yuneng/presetdata.txt", 'w');
             if($fp){
+                fclose($fp);
+            }
+            //新增
+            $fp = @fopen("/etc/yuneng/limitedid.conf", 'w');
+            if($fp){
+                fwrite($fp, "1");
                 fclose($fp);
             }
             
@@ -201,6 +207,11 @@ class Management_model extends CI_Model {
         //清空逆变器列表 
         $this->pdo->exec("DELETE FROM id");
         system('killall main.exe');
+        $fp = @fopen("/etc/yuneng/limitedid.conf", 'w');
+        if($fp){
+            fwrite($fp, "0");
+            fclose($fp);
+        }
 
         $results["value"] = 0;
 
@@ -1070,8 +1081,7 @@ class Management_model extends CI_Model {
                     $ip_arr = explode(".", $gateway);
                     $cmd = "/sbin/route add -net ".$ip_arr[0].".".$ip_arr[1].".".$ip_arr[2].".0 "."netmask 255.255.255.0 dev wlan0";
                     system($cmd);
-
-                    //重新获取IP地址
+                    
                     exec("/sbin/udhcpc");
 
                     $data['result'] = "success_connect_sta";

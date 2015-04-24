@@ -93,6 +93,20 @@ class Display extends CI_Controller {
         $this->load->view('display/database_view');
         $this->load->view('templates/footer');
     }
+    
+    /* 显示数据库optimizer.db */
+    public function optimizer($table = "")
+    {
+        $data = $this->display_model->get_optimizer($table);
+        $data['page'] = $this->page;
+        $data['func'] = "optimizer";
+        $data['table'] = $table;
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('display/database_view');
+        $this->load->view('templates/footer');
+    }
+    
 }
 
 

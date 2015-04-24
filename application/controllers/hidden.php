@@ -258,7 +258,48 @@ class Hidden extends CI_Controller {
         $this->load->view('templates/nav');
         $this->load->view('hidden/upload_result');
         $this->load->view('templates/footer');        
-    } 
+    }
+    
+    /* 显示信道页面 */
+    function channel()
+    {
+        $data = $this->hidden_model->get_channel();
+        $data['page'] = $this->page;
+        $data['func'] = "";
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('hidden/channel');
+        $this->load->view('templates/footer');
+    }
+    
+    /* 设置信道 */
+    function set_channel()
+    {
+        $results = $this->hidden_model->set_channel();
+        if(!$results['value'])
+            $results["message"] = "channel saved successfully";
+        else
+            $results["message"] = "channel saved failed";
+        echo json_encode($results);
+    }
+    
+    /* 显示重置优化器页面 */
+    function reset()
+    {
+        $data = $this->hidden_model->get_reset();
+        $data['page'] = $this->page;
+        $data['func'] = "";
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/nav');
+        $this->load->view('management/id');
+        $this->load->view('templates/footer');
+    }
+    
+    /* 保存重置优化器页面 */
+    function save_reset()
+    {
+
+    }
 
 }
 

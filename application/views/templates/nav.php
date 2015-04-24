@@ -1,17 +1,17 @@
-<!-- 菜单导航栏 -->
+<!-- 橙色导航栏 -->
 <nav>
-    <div class="navbar navbar-default navbar-menu">
+    <div class="navbar navbar-default navbar-orange">
         <div class="container">
-            <p class="navbar-menu-title"><?php echo $this->lang->line('energy_control')?></p>     
+            <p class="navbar-orange-title"><?php echo $this->lang->line('energy_control')?></p>     
             <div class="navbar-header">            
-                <button class="navbar-toggle" data-target="#navbar-menu" data-toggle="collapse" type="button">
+                <button class="navbar-toggle" data-target="#navbar-orange" data-toggle="collapse" type="button">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
             </div>
             
-            <div class="navbar-collapse collapse" id="navbar-menu">
+            <div class="navbar-collapse collapse" id="navbar-orange">
                 <ul class="nav navbar-nav ">
                     <li><a href="<?php echo base_url('index.php/home');?>"<?php if(!strncmp($page, "home", 4)){echo " class=\"active\"";}?>><?php echo $this->lang->line('item_1')?></a></li>
                     <li><a href="<?php echo base_url('index.php/realtimedata');?>"<?php if(!strncmp($page, "realtimedata", 12)){echo " class=\"active\"";}?>><?php echo $this->lang->line('item_2')?></a><span> </span></li>
@@ -33,10 +33,10 @@
                 <?php if(!strncmp($page, "home", 4)): ?>
                     <a id="ecu_time" class="list-group-item align-center" ></a>
                     <a class="list-group-item active align-center"><?php echo $this->lang->line('home_environment_benefits');?></a>
-                    <a class="list-group-item benefit align-center">Equivalent (This Week)</a>
-                    <a class="list-group-item benefit"><img src="<?php echo base_url('images/bulb_light.png'); ?>"> Light bulbs powered<div class="pull-right"><?php echo intval($week_energy/0.33); ?></div></a>
-                    <a class="list-group-item benefit"><img src="<?php echo base_url('images/tree_green.png'); ?>"> Trees planted<div class="pull-right"><?php echo intval($week_energy/27.2); ?></div></a>
-                    <a class="list-group-item benefit"><img src="<?php echo base_url('images/factory_black.png'); ?>"> Carbon reduced<div class="pull-right"><?php echo intval($week_energy/1.36); ?> kg</div></a>
+                    <a class="list-group-item benefit align-center"><?php echo $this->lang->line('home_equivalent');?></a>
+                    <a class="list-group-item benefit"><img src="<?php echo base_url('images/car.png'); ?>"><div class="pull-right"><center><?php echo $gallon; ?><br><?php echo $this->lang->line('home_gallons'); ?></center></div></a>
+                    <a class="list-group-item benefit"><img src="<?php echo base_url('images/tree.png'); ?>"><div class="pull-right"><center><?php echo $tree; ?><br><?php echo $this->lang->line('home_trees'); ?></center></div></a>
+                    <a class="list-group-item benefit"><img src="<?php echo base_url('images/carbon.png'); ?>"><div class="pull-right"><center><?php echo $kg; ?><br><?php echo $this->lang->line('home_kg'); ?></center></div></a>
                 <?php endif; ?>
             </div>
         </aside>

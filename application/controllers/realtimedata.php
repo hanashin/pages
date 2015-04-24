@@ -9,16 +9,11 @@ class Realtimedata extends CI_Controller {
             'active' => '0',
             'name' => 'data'
             ),
-        'power_graph' => array(
-            'url' => 'index.php/realtimedata/power_graph',
-            'active' => '0',
-            'name' => 'power'
-            ),
-        'energy_graph' => array(
-            'url' => 'index.php/realtimedata/energy_graph',
+        'graph' => array(
+            'url' => 'index.php/realtimedata/graph',
             'active' => '0',
             'name' => 'energy'
-            )
+        )
     );
 
     public function __construct()
@@ -64,55 +59,31 @@ class Realtimedata extends CI_Controller {
         //显示页面
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
-        $this->load->view('realtimedata/realtimedata');
+        $this->load->view('realtimedata/realtimedata', $data);
         $this->load->view('templates/footer');
     }
-
+    
     /* 显示图表 */
-    public function power_graph()
-    { 
-        $data['func'] = "power";
-        $this->nav['power_graph']['active'] = '1';
-        $data['nav'] = $this->nav;
-        $data['page'] = $this->page;
-        $result = $this->realtimedata_model->get_power_graph();
-        $data = array_merge($data, $result);
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/nav');
-        $this->load->view('realtimedata/power_graph');
-        $this->load->view('templates/footer');
-    }
-
-    /* 显示图表 */
-    public function energy_graph()
+    public function graph()
     {
         $data['func'] = "energy";
-        $this->nav['energy_graph']['active'] = '1';
+        $this->nav['graph']['active'] = '1';
         $data['nav'] = $this->nav;
         $data['page'] = $this->page;
-        $result = $this->realtimedata_model->get_energy_graph();
+        $result = $this->realtimedata_model->get_cur_graph();
         $data = array_merge($data, $result);
-
+    
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav');
-        $this->load->view('realtimedata/energy_graph');
+        $this->load->view('realtimedata/graph');
         $this->load->view('templates/footer');
     }
-
-    /* 显示逆变器工作状态 */
-    public function inverter_status()
-    {    
-        $data['func'] = "inverter_status";
-        $data['nav'] = $this->nav;
-        $data['page'] = $this->page;
-        $result = $this->realtimedata_model->get_inverter_status();
-        $data = array_merge($data, $result);
-        
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/nav');
-        $this->load->view('realtimedata/inverter_status');
-        $this->load->view('templates/footer');
+    
+    /* 显示图表 */
+    public function get_old_graph()
+    {
+        $results = $this->realtimedata_model->get_old_graph();
+        echo json_encode($results);    
     }
 
 }
