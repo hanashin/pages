@@ -172,7 +172,7 @@ class Display_model extends CI_Model {
     
         //查询数据库中某张表中的数据
         $table_value = array();
-        $query = "SELECT * FROM $table ORDER BY date_time DESC LIMIT 1,2000";
+        $query = "SELECT * FROM $table ORDER BY date_time DESC";
         $result = $this->pdo->prepare($query);
         if(!empty($result))
         {

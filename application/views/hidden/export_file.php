@@ -2,10 +2,10 @@
   <div class="form-group">    
     <label for="start" class="col-sm-5 control-label"><?php echo $this->lang->line('export_file_start_time')?></label>
     <div class="col-sm-4">
-      <input id="start" class="form-control datepicker" type="text" name="start_time" value="<?php echo $start_time;?>" 
+      <input id="start" class="form-control datepicker" type="text" name="date" value="<?php echo $start_time;?>" 
             onClick="WdatePicker({
                 maxDate:'#F{$dp.$D(\'end\')}',
-                dateFmt:'yyyy-MM-dd HH:mm:ss',
+                dateFmt:'yyyy/MM/dd HH:mm:ss',
                 <?php echo $this->lang->line('graph_language')?>})" 
             readonly>
     </div>
@@ -13,11 +13,11 @@
   <div class="form-group">    
     <label for="end" class="col-sm-5 control-label"><?php echo $this->lang->line('export_file_end_time')?></label>
     <div class="col-sm-4">
-      <input id="end" class="form-control datepicker" type="text" name="end_time" value="<?php echo $end_time;?>" 
+      <input id="end" class="form-control datepicker" type="text" name="date" value="<?php echo $end_time;?>" 
             onClick="WdatePicker({
                 minDate:'#F{$dp.$D(\'start\')}',
                 maxDate:'%y-%M-%d',
-                dateFmt:'yyyy-MM-dd HH:mm:ss',
+                dateFmt:'yyyy/MM/dd HH:mm:ss',
                 <?php echo $this->lang->line('graph_language')?>})" 
             readonly>
     </div>

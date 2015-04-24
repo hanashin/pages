@@ -44,8 +44,8 @@ class Hidden_model extends CI_Model {
           fclose($fp);
         }
         date_default_timezone_set($timezone);
-        $data['start_time'] = date("Y-m-d H:i:s",time()-3600*24)."\n";
-        $data['end_time'] = date("Y-m-d H:i:s",time());
+        $data['start_time'] = date("Y/m/d H:i:s",time()-3600*12)."\n";
+        $data['end_time'] = date("Y/m/d H:i:s",time());
 
         return $data;
     }
@@ -54,7 +54,6 @@ class Hidden_model extends CI_Model {
     public function exec_export_file()
     {
         $data = array();
-        $temp = array();
 
         //获取起止时间
         $start_time = $this->input->post('start_time');
@@ -62,7 +61,7 @@ class Hidden_model extends CI_Model {
         sscanf($start_time, "%d-%d-%d %d:%d:%d", $year, $month, $day, $hour, $minute, $second);
         $start = sprintf("%04d%02d%02d%02d%02d%02d", $year, $month, $day, $hour, $minute, $second);
         sscanf($end_time, "%d-%d-%d %d:%d:%d", $year, $month, $day, $hour, $minute, $second);
-        $end = sprintf("%04d%02d%02d%02d%02d%02d", $year, $month, $day, $hour, $minute, $second);       
+        $end = sprintf("%04d%02d%02d%02d%02d%02d", $year, $month, $day, $hour, $minute, $second);
 
         $title = array(
                     'Inverter ID',
@@ -82,31 +81,26 @@ class Hidden_model extends CI_Model {
         $this->pdo = new PDO($dsn);
         $query = "SELECT record FROM data WHERE date_time BETWEEN $start AND $end";
         $result = $this->pdo->prepare($query);
-
         if(!empty($result))
         {
             $result->execute();
-            $res = $result->fetchAll(PDO::FETCH_ASSOC);
-            
-            //限制文件大小
-            foreach($res as $k => $v) {$temp[$k] = $v['record'];}
-            //$length = strlen(implode(' ', $temp));
-            if(strlen(implode(' ', $temp)) > 1000000) { 
-                $this->load->view('hidden/export_file_error');
-                return 1;
-            }
-            
+            $res = $result->fetchAll();
+
             $count = 0;
-            foreach ($res as  $value) {
+            foreach ($res as $key => $value) {
                 //支持版本:APS11,ASP12,APS13
                 if(!strncmp($value['record'], "APS11", 5) || !strncmp($value['record'], "APS12", 5) || !strncmp($value['record'], "APS13", 5))
                 {
-                    $num = (strlen($value['record']) - 87) / 57;
+                    $num = (strlen($value['record'])-87)/57;
                     for ($i=0; $i<$num; $i++) {
-                        $temp = substr($value['record'], 86+57*$i, 57);//每段数据为57个字符
-                        $data[$count]['inverter_id'] = ' '.strval(substr($temp, 0, 12));
-                        $data[$count]['channel'] = substr($temp, 12, 1);                        
-                        $temp = str_replace("A", "0", $temp);//将A替换为0
+
+                        $temp = substr($value['record'], 86+57*$i, 57);
+                        $data[$count]['inverter_id'] = strval(substr($temp, 0, 12));
+                        $data[$count]['channel'] = substr($temp, 12, 1);
+
+                        //将A替换为0
+                        $temp = str_replace("A", "0", $temp);
+
                         $data[$count]['dc_voltage'] = number_format(floatval(substr($temp, 13, 5)/10), 1);
                         $data[$count]['dc_current'] = number_format(floatval(substr($temp, 18, 3)/10), 1);
                         $data[$count]['power'] = number_format(floatval(substr($temp, 21, 5)/100), 2);
@@ -154,60 +148,26 @@ class Hidden_model extends CI_Model {
                     }
                 }
             }
+        }   
+
+        //将数据通过csv文件形式进行下载
+        header("Content-Type: application/octet-stream");  
+        header("Content-Disposition: attachment; filename=historical_data($start_time - $end_time).csv");  
+        header('Cache-Control:must-revalidate,post-check=0,pre-check=0');  
+        header('Expires:0');  
+        header('Pragma:public');
+        //标题  
+        foreach ($title as $value) {
+            echo $value.",";
         }
-
-        /* 导出为csv文件 */
-//         header("Content-Type: application/octet-stream");
-//         header("Content-Type: text/csv");
-//         header("Content-Disposition: attachment; filename=historical_data.csv");
-//         header('Cache-Control:must-revalidate,post-check=0,pre-check=0');
-//         header('Expires:0');
-//         header('Pragma:public');        
-//         foreach ($title as $value) {
-//             echo $value.",";
-//         }
-//         echo "\n";
-//         foreach ($data as $record) {
-//             foreach ($record as $value) {
-//                 echo $value.",";
-//             }
-//             echo "\n";
-//         }
-
-        /* 导出为xls文件 */
-        header("Content-Type: application/vnd.ms-execl");
-        header("Content-Disposition: attachment; filename=historical_data($start~$end).xls");
-        header("Pragma: no-cache");
-        header("Expires: 0");
-        echo "<table border=1>";
-        echo "<tr height=50>";
-        echo " <td bgcolor=#ff9a00>Inverter ID</td>";  
-        echo " <td bgcolor=#ff9a00>Channel</td>"; 
-        echo " <td bgcolor=#ff9a00>DC Voltage(V)</td>"; 
-        echo " <td bgcolor=#ff9a00>DC Current(A)</td>"; 
-        echo " <td bgcolor=#ff9a00>Power(W)</td>";
-        echo " <td bgcolor=#ff9a00>Grid Frequency(Hz)</td>";
-        echo " <td bgcolor=#ff9a00>Temperature(<sup>o</sup>C)</td>";
-        echo " <td bgcolor=#ff9a00>Grid Voltage(V)</td>";
-        echo " <td bgcolor=#ff9a00>Energy(kWh)</td>";
-        echo " <td bgcolor=#ff9a00>Report Date and Time</td>";
-        echo "</tr>";
+        echo "\n";
+        //数据
         foreach ($data as $record) {
-            echo "<tr>";
-            echo "<td align=center style=\"vnd.ms-excel.numberformat:@\">".$record['inverter_id']."</td>";
-            echo "<td align=center>".$record['channel']."</td>";
-            echo "<td align=center>".$record['dc_voltage']."</td>";
-            echo "<td align=center>".$record['dc_current']."</td>";
-            echo "<td align=center>".$record['power']."</td>";
-            echo "<td align=center>".$record['grid_frequency']."</td>";
-            echo "<td align=center >".$record['temperature']."</td>";
-            echo "<td align=center>".$record['grid_voltage']."</td>";
-            echo "<td align=center>".$record['energy']."</td>";
-            echo "<td align=center style=\"vnd.ms-excel.numberformat:@\">".$record['datetime']."</td>";
-            echo "</tr>";
-        }        
-        echo "</table>";
-        //echo $length;
+            foreach ($record as $value) {
+                echo $value.",";
+            }
+            echo "\n";
+        }
     }
 
     /* 显示自动更新的服务器的地址和端口 */
