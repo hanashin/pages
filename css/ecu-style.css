@@ -4,27 +4,21 @@
 html { font-size: 1em; }
 
 body { font-family: Arial, 'Microsoft YaHei', sans-serif; overflow-x: hidden;
-			position:absolute;width:100%;min-height:100%;
-			background-image:url(../images/bg_page_comm.jpg);
-			background-size:100% ;
-			background-repeat:no-repeat;
-			background-attachment:fixed}
+			position:absolute;width:100%;min-height:100%; }
+
+::selection { background:#eb7203; color:#fff;}
+::-moz-selection { background:#eb7203; color:#fff;}
+::-webkit-selection { background:#eb7203; color:#fff;} 
 
 /*------------------------------------------------------
     顶部导航栏
 --------------------------------------------------------*/
 .navbar-top {
-  background-color: transparent;
+  background-color: #fff;
   border: none;
   border-radius: 0px;
   margin-bottom: 0px;
-  min-height: 75px;
-}
-.navbar-top .container {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	background:rgba(255, 255, 255, 0.8) none repeat scroll 0 0 !important;/*实现FF背景透明，文字不透明*/
-	filter:Alpha(opacity=80); background:#fff;/*实现IE背景透明*/}
+  min-height: 110px;
 }
 @media (max-width: 1200px) {
   .navbar-top .navbar-title > li > a{
@@ -37,9 +31,6 @@ body { font-family: Arial, 'Microsoft YaHei', sans-serif; overflow-x: hidden;
   }
 }
 @media (min-width: 768px) {
-.navbar-top .container {
-	height: 72px;
-}
   .navbar-top .navbar-title > li > a,
   .navbar-top .navbar-title > li > a:hover,
   .navbar-top .navbar-title > li > a:focus{
@@ -98,8 +89,8 @@ left: -63px;
 clip:rect(0px 130px 65px 65px); 
 }
 .navbar-top .navbar-toggle {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   border: 0px solid #eb7203;
 }
 .navbar-top .navbar-toggle .icon-bar {
@@ -123,12 +114,17 @@ clip:rect(0px 130px 65px 65px);
   min-width: 90px;
   padding: 0px;
 }
+.navbar-top .dropdown-menu :hover {
+  color: white;
+  border-color: #eb7203;
+  background-color: #eb7203;
+}
 
 /*------------------------------------------------------
     菜单导航栏
 --------------------------------------------------------*/
 .navbar-menu{
-  background-color: #555555;
+  background-color: #eb7203;
   border-radius: 0px; 
   border: none;
   -webkit-box-shadow: 0 2px 4px rgba(1, 1, 1, 0.15);
@@ -146,7 +142,7 @@ clip:rect(0px 130px 65px 65px);
   }
 }
 .navbar-menu .navbar-nav > li > a {
-    color: #999999;
+    color: #494949;
     font-size: 16px;
     font-weight: bold;
 }
@@ -155,8 +151,7 @@ clip:rect(0px 130px 65px 65px);
 }
 .navbar-menu .navbar-nav > li > a:hover,
 .navbar-menu .navbar-nav > li > a:focus {
-  color: white;
-  text-shadow: 0px 0px 10px #FFFFFF;
+  text-shadow: 0px 0px 10px #FFCC99;
 }
 .navbar-menu .container > p {
   margin-top: 10px;
@@ -170,11 +165,11 @@ clip:rect(0px 130px 65px 65px);
   border: 1px solid transparent;
 }
 .navbar-menu .navbar-toggle .icon-bar {
-  background-color: #FFFFFF;
+  background-color: #fff;
 }
 .navbar-menu .navbar-toggle:hover,
 .navbar-menu .navbar-toggle:focus {
-  background-color: #666666;
+  background-color: #F5820A;
 }
 @media (min-width: 768px) {
   .navbar-menu{
@@ -184,7 +179,7 @@ clip:rect(0px 130px 65px 65px);
     width: 1px;
 	  height: 24px;
 	  display: inline-block;
-	  background:#BBBBBB;
+	  background:#F58603;
 	  top: 13px;
 	  position: absolute;
     -webkit-box-shadow: 1px 0 5px rgba(1, 1, 1, 0.25);
@@ -215,9 +210,6 @@ clip:rect(0px 130px 65px 65px);
 }
 .no-display {
 	display: none;
-}
-.label-warning {
-  background-color: #999999;
 }
 
 /*------------------------------------------------------
@@ -275,11 +267,10 @@ input:checked + .slider::after {
   }
   .container-main .panel {
     border-radius: 0px;
-  	margin-bottom: 0px;
   }
   .container-main .panel-heading {
     border-radius: 0px;
-    color: #428BCA;
+    color: #eb7203;
   }
 }
 .container-main .panel-body {
@@ -287,7 +278,7 @@ input:checked + .slider::after {
 }
 @media (min-width: 768px) {
   .container-main .panel {
-    background-color: #666666;
+    background-color: #ffcc00;
     border: 0px;
     border-radius: 5px;
     padding: 1px;
@@ -329,8 +320,8 @@ input:checked + .slider::after {
     列表
 --------------------------------------------------------*/
 .container-main .list-group .active {
-  border-color: #666666;
-  background-color: #666666;
+  border-color: #99cc33;
+  background-color: #99cc33;
 }
 .container-main .list-group {
 	border-radius: 4px;
@@ -347,13 +338,12 @@ input:checked + .slider::after {
   }
 }
 .benefit {
-	padding:5px 10px;
+	padding:5px 30px;
 	border-top:0px;
 	border-bottom:0px;
 }
 .benefit .pull-right {
-	font-weight: bold;
-	padding :3px;
+	width:80px;
 }
 
 /*------------------------------------------------------
@@ -363,8 +353,8 @@ input:checked + .slider::after {
   padding: 0px;
 }
 .container-main .dropdown-menu .active {
-  border-color: #428BCA;
-  background-color: #428BCA;
+  border-color: #eb7203;
+  background-color: #eb7203;
 }
 
 /*------------------------------------------------------

@@ -1,17 +1,17 @@
-<!-- 橙色导航栏 -->
+﻿<!-- 橙色导航栏 -->
 <nav>
-    <div class="navbar navbar-default navbar-orange">
+    <div class="navbar navbar-default navbar-menu">
         <div class="container">
-            <p class="navbar-orange-title"><?php echo $this->lang->line('energy_control')?></p>     
+            <p class="navbar-menu-title"><?php echo $this->lang->line('energy_control')?></p>     
             <div class="navbar-header">            
-                <button class="navbar-toggle" data-target="#navbar-orange" data-toggle="collapse" type="button">
+                <button class="navbar-toggle" data-target="#navbar-menu" data-toggle="collapse" type="button">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
             </div>
             
-            <div class="navbar-collapse collapse" id="navbar-orange">
+            <div class="navbar-collapse collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ">
                     <li><a href="<?php echo base_url('index.php/home');?>"<?php if(!strncmp($page, "home", 4)){echo " class=\"active\"";}?>><?php echo $this->lang->line('item_1')?></a></li>
                     <li><a href="<?php echo base_url('index.php/realtimedata');?>"<?php if(!strncmp($page, "realtimedata", 12)){echo " class=\"active\"";}?>><?php echo $this->lang->line('item_2')?></a><span> </span></li>
