@@ -1,4 +1,4 @@
-<form class="form-horizontal" role="form" action="<?php echo base_url('index.php/realtimedata/power_graph');?>" method="post">
+﻿<form class="form-horizontal" role="form" action="<?php echo base_url('index.php/realtimedata/power_graph');?>" method="post">
   <div class="col-sm-4 col-sm-offset-4">
     <div class="input-group input-group-sm">
       <input class="form-control datepicker" type="text" name="date" value="<?php echo $date;?>" onClick="WdatePicker({maxDate:'%y-%M-%d', <?php echo $this->lang->line('graph_language')?>})" readonly>
